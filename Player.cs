@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
@@ -9,6 +10,16 @@ public partial class Player : CharacterBody2D
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
 
+	//Inventory Variables; Effects are also Items
+	//Dynamic Variables
+	List<string> Item = new List<string>();
+	List<double> Item_Strenght = new List<double>();
+	List<double> Item_durabillity = new List<double>();
+	List<double> Item_duration = new List<double>();
+	//"static" variables
+	Dictionary<string, string> initial_effect = new Dictionary<string, string>();
+	Dictionary<string, string> continuous_effect = new Dictionary<string, string>();
+	Dictionary<string, string> end_efect = new Dictionary<string, string>();
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -56,6 +67,8 @@ public partial class Player : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+
+		Update_Inventory(delta);
 	}
 
 	public override void _Process(double delta){
@@ -64,6 +77,75 @@ public partial class Player : CharacterBody2D
 		}
 
 		
+	}
+
+	private void Update_Inventory(double delta_time)
+	{
+		int i = 0;
+		foreach (string element in Item)
+		{
+			if (Item_duration[i] <= delta_time && !(Item_duration[i] == -1))
+			{
+				Item_Effect("end", Item[i]);
+				Item.Remove(Item[i]);
+				Item_durabillity.Remove(Item_duration[i]);
+				Item_duration.Remove(Item_duration[i]);
+				Item_Strenght.Remove(Item_Strenght[i]);
+			}
+			else
+			{
+				Item_duration[i] = Item_duration[i] - delta_time;
+			}
+
+			
+
+
+			i = i++;
+		}
+	}
+
+	private void Item_add(string item_name, double item_strenght, double item_durabillity, double item_duration)
+	{
+		Item.Add(item_name);
+		Item_Strenght.Add(item_strenght);
+		Item_durabillity.Add(item_durabillity);
+		Item_duration.Add(item_duration);
+	}
+
+	private void Item_Effect (string Time, string Item)
+	{
+		switch (Time)
+		{
+			"initial":
+			switch (initial_effect[Item])
+			{
+				
+				default:
+				break;
+			}
+			break;
+
+			"continuous":
+			switch (continuous_effect[Item])
+			{
+				
+				default:
+				break;
+			}
+
+			"end":
+			switch (end_efect[Item])
+			{
+				
+				default:
+				break;
+			}
+
+			default:
+			break;
+		}
+	
+	
 	}
 
 
