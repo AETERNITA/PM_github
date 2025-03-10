@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=11 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://player.tscn" id="1_gl4pd"]
 [ext_resource type="Texture2D" uid="uid://bbcxv2bt4b4a7" path="res://ground_placeholder.jpg" id="2_f72e8"]
 [ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://icon.svg" id="3_omf6i"]
+[ext_resource type="Script" path="res://Portal.cs" id="4_vuk5f"]
+[ext_resource type="Texture2D" uid="uid://b4raupav8yyx2" path="res://Portal.jpg" id="5_6i05o"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -307,6 +309,15 @@ texture = ExtResource("3_omf6i")
 scale = Vector2(10.5553, 10.5553)
 shape = SubResource("RectangleShape2D_vifiy")
 one_way_collision_margin = 0.0
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="Interactables"]
+freeze = true
+script = ExtResource("4_vuk5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/RigidBody2D2"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/RigidBody2D2"]
+texture = ExtResource("5_6i05o")
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
