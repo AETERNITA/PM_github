@@ -23,10 +23,11 @@ bounce = 0.7
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_gl4pd")]
+[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_gl4pd")]
 physics_interpolation_mode = 1
 position = Vector2(0, -57)
 scale = Vector2(0.32, 0.32)
+_healthbar = NodePath("../CanvasLayer/Control/_healthbar")
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 zoom = Vector2(0.75, 0.75)
@@ -43,7 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+[node name="_healthbar" type="TextureProgressBar" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -54,6 +55,22 @@ grow_vertical = 0
 value = 100.0
 texture_progress = SubResource("GradientTexture2D_ccd35")
 metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.848837, 0.961991)
+
+[node name="HealButton" type="Button" parent="CanvasLayer/Control/GridContainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Heal"
+
+[node name="DamageButton" type="Button" parent="CanvasLayer/Control/GridContainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Damge"
 
 [node name="World" type="Node" parent="."]
 
@@ -290,3 +307,6 @@ texture = ExtResource("3_omf6i")
 scale = Vector2(10.5553, 10.5553)
 shape = SubResource("RectangleShape2D_vifiy")
 one_way_collision_margin = 0.0
+
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]

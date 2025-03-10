@@ -3,6 +3,9 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	[Export] private TextureProgressBar _healthbar;
+
+
 	public const float Speed = 400.0f;
 	public const float JumpVelocity = -500.0f;
 	private int jumpCount = 0;
@@ -64,6 +67,22 @@ public partial class Player : CharacterBody2D
 		}
 
 		
+	}
+
+	public void _on_heal_button_pressed()
+	{
+		{
+			_healthbar.Value += 10;
+			if (_healthbar.Value >100 ) _healthbar.Value = 100; 
+		}
+	}
+
+	public void _on_damage_button_pressed()
+	{
+		{
+			_healthbar.Value -= 10;
+			if (_healthbar.Value < 0 ) _healthbar.Value = 0; 
+		}
 	}
 
 
