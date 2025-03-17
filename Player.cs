@@ -21,6 +21,11 @@ public partial class Player : CharacterBody2D
 	Dictionary<string, string> continuous_effect = new Dictionary<string, string>();
 	Dictionary<string, string> end_efect = new Dictionary<string, string>();
 
+	public override void _Ready ()
+	{
+		initialise_inventory_system();
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
@@ -97,9 +102,6 @@ public partial class Player : CharacterBody2D
 				Item_duration[i] = Item_duration[i] - delta_time;
 			}
 
-			
-
-
 			i = i++;
 		}
 	}
@@ -116,37 +118,60 @@ public partial class Player : CharacterBody2D
 	{
 		switch (Time)
 		{
-			"initial":
-			switch (initial_effect[Item])
-			{
-				
-				default:
-				break;
-			}
+			case "initial":
+			Item_initial_effect(Item);
 			break;
 
-			"continuous":
-			switch (continuous_effect[Item])
-			{
-				
-				default:
-				break;
-			}
+			case "continuous":
+			Item_continuous_effect(Item);
+			break;
 
-			"end":
-			switch (end_efect[Item])
-			{
-				
-				default:
-				break;
-			}
+			case "end":
+			Item_end_effect(Item);
+			break;
 
 			default:
 			break;
 		}
-	
-	
+	}
+
+	// THE CODE FOR THE EFFECTS AND THE ITEMS IS IN THE SWITCH STATEMENTS BELOW
+	// add variables for conditions affecting other systems at the top
+
+	private void Item_initial_effect (string Item)
+	{
+		switch (initial_effect[Item])
+			{
+				default:
+				break;
+			}
+	}
+
+	private void Item_continuous_effect (string Item)
+	{
+		switch (continuous_effect[Item])
+			{
+				default:
+				break;
+			}
+	}
+
+	private void Item_end_effect (string Item)
+	{
+		switch (end_efect[Item])
+			{
+				default:
+				break;
+			}
+	}
+
+	//ADD THE CODE FOR INITIALISING THE DICTIONARIES HERE:
+
+	private void initialise_inventory_system ()
+	{
+		//initial_effect.Add()
 	}
 
 
-}
+
+}  
