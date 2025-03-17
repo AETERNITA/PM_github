@@ -7,7 +7,7 @@ public partial class PortalController : Node2D
 	private Portal newportal;
 	[Export] public PackedScene PortalSpawner;
 	List<Portal> portale;
-	private CharacterBody2D player;
+	[Export] private CharacterBody2D player;
 	private int touchedPortal;
 	public override void _Ready()
 	{

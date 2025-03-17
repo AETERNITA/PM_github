@@ -16,8 +16,9 @@ _data = {
 "idle": SubResource("Animation_jg61r")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gunSprite")]
 script = ExtResource("1_7irut")
+gunSprite = NodePath("gunPivot")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.0625001, 1.19209e-06)
@@ -38,7 +39,6 @@ libraries = {
 position = Vector2(232, 222)
 
 [node name="gunSprite" type="Sprite2D" parent="gunPivot"]
-position = Vector2(60, 69)
-rotation = 0.753788
+position = Vector2(116, -1)
 scale = Vector2(1.7014, 1.7014)
 texture = ExtResource("3_6xx8g")
