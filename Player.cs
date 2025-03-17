@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
+	[Export] private TextureProgressBar _healthbar;
+
 	public const float Speed = 400.0f;
 	public const float JumpVelocity = -500.0f;
 	private int jumpCount = 0;
@@ -21,6 +23,10 @@ public partial class Player : CharacterBody2D
 	Dictionary<string, string> continuous_effect = new Dictionary<string, string>();
 	Dictionary<string, string> end_efect = new Dictionary<string, string>();
 
+	// Reference to the gun sprite (child of the Node2D)
+	[Export] private Node2D gunSprite;
+
+
 	public override void _Ready ()
 	{
 		initialise_inventory_system();
@@ -29,28 +35,33 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
-		
 
-		// Add the gravity.
+		// Add gravity.
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
-		} else {
-			jumpCount = 0; 
+		}
+		else
+		{
+			jumpCount = 0;
 			velocity = new Vector2(0, -2);
-		} 
+		}
 
 		// Handle Jump.
-		if(jumpActive && jumpTimer <= 0){
+		if (jumpActive && jumpTimer <= 0)
+		{
 			velocity.Y = JumpVelocity;
 			jumpCount++;
 			jumpTimer = 0.3;
 			jumpActive = false;
 		}
-		if (Input.IsActionJustPressed("w") && jumpCount == 1){
+
+		if (Input.IsActionJustPressed("w") && jumpCount == 1)
+		{
 			jumpActive = true;
 			jumpCount = 2;
 		}
+
 		if (Input.IsActionJustPressed("w") && jumpCount < 2 && jumpTimer <= 0)
 		{
 			velocity.Y = JumpVelocity;
@@ -58,8 +69,7 @@ public partial class Player : CharacterBody2D
 			jumpTimer = 0.3;
 		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
+		// Get input direction and handle movement.
 		Vector2 direction = Input.GetVector("a", "d", "ui_up", "ui_down");
 		if (direction != Vector2.Zero)
 		{
@@ -76,12 +86,15 @@ public partial class Player : CharacterBody2D
 		Update_Inventory(delta);
 	}
 
-	public override void _Process(double delta){
-		if(jumpTimer > 0){
+	public override void _Process(double delta)
+	{
+		if (jumpTimer > 0)
+		{
 			jumpTimer -= delta;
 		}
 
-		
+		// Rotate the gun to face the mouse position.
+		RotateGunToMouse();
 	}
 
 	private void Update_Inventory(double delta_time)
@@ -171,6 +184,39 @@ public partial class Player : CharacterBody2D
 	{
 		//initial_effect.Add()
 	}
+
+
+	private void RotateGunToMouse()
+	{
+		if (gunSprite != null)
+		{
+			// Get the position of the mouse relative to the player.
+			Vector2 mousePosition = GetGlobalMousePosition();
+			Vector2 directionToMouse = mousePosition - gunSprite.GlobalPosition;
+
+			// Calculate the angle to the mouse.
+			float angle = directionToMouse.Angle();
+
+			// Apply the rotation to the gun sprite.
+			gunSprite.Rotation = angle;
+		}
+	}
+
+	public void _on_heal_button_pressed()
+	{
+		_healthbar.Value += 10;
+		if (_healthbar.Value > 100) _healthbar.Value = 100;
+	}
+
+	public void _on_damage_button_pressed()
+	{
+		_healthbar.Value -= 10;
+		if (_healthbar.Value < 0) _healthbar.Value = 0;
+	}
+
+
+
+
 
 
 

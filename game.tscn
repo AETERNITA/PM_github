@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=10 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://player.tscn" id="1_gl4pd"]
 [ext_resource type="Texture2D" uid="uid://bbcxv2bt4b4a7" path="res://ground_placeholder.jpg" id="2_f72e8"]
+[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://bg city game.jpg-autosave.jpg" id="3_fyw3g"]
 [ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://icon.svg" id="3_omf6i"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
@@ -24,7 +25,6 @@ bounce = 0.7
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_gl4pd")]
-physics_interpolation_mode = 1
 position = Vector2(0, -57)
 scale = Vector2(0.32, 0.32)
 
@@ -43,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+[node name="_healthbar" type="TextureProgressBar" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -54,6 +54,22 @@ grow_vertical = 0
 value = 100.0
 texture_progress = SubResource("GradientTexture2D_ccd35")
 metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.848837, 0.961991)
+
+[node name="HealButton" type="Button" parent="CanvasLayer/Control/GridContainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Heal"
+
+[node name="DamageButton" type="Button" parent="CanvasLayer/Control/GridContainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Damge"
 
 [node name="World" type="Node" parent="."]
 
@@ -274,6 +290,13 @@ position = Vector2(2.49999, -4)
 scale = Vector2(148.143, 29.9721)
 shape = SubResource("RectangleShape2D_wcvuv")
 
+[node name="Background" type="Sprite2D" parent="World"]
+z_index = -1
+z_as_relative = false
+position = Vector2(0, -1073)
+scale = Vector2(1.48, 1.48)
+texture = ExtResource("3_fyw3g")
+
 [node name="Interactables" type="Node" parent="."]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Interactables"]
@@ -290,3 +313,8 @@ texture = ExtResource("3_omf6i")
 scale = Vector2(10.5553, 10.5553)
 shape = SubResource("RectangleShape2D_vifiy")
 one_way_collision_margin = 0.0
+
+[node name="PortalController" type="Node2D" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]

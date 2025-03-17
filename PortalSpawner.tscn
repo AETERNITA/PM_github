@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://csjmp3gb88qlc"]
+
+[ext_resource type="Script" path="res://Portal.cs" id="1_slqus"]
+[ext_resource type="Texture2D" uid="uid://yettfr00xsb4" path="res://portalsprite2.png" id="2_qai3c"]
+[ext_resource type="Script" path="res://PortalCollision.cs" id="3_x1opk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dyrba"]
+radius = 36.0
+height = 110.0
+
+[node name="Portal" type="RigidBody2D"]
+freeze = true
+script = ExtResource("1_slqus")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("2_qai3c")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_x1opk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -5)
+shape = SubResource("CapsuleShape2D_dyrba")
