@@ -77,6 +77,7 @@ public partial class Player : CharacterBody2D
 
 		// Handle Left/Right Movement
 		Vector2 direction = Input.GetVector("a", "d", "ui_up", "ui_down");
+
 		if (direction.X != 0)
 		{
 			velocity.X = direction.X * Speed;
@@ -100,6 +101,7 @@ public partial class Player : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+		
 
 		Update_Inventory(delta);
 	}

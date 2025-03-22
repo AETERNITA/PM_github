@@ -10,10 +10,8 @@ public partial class Background : Sprite2D
 	 
 	public override void _Ready()
 	{
-		GetTree().CreateTimer(0.1f).Timeout += () =>
 		player = GetNode<CharacterBody2D>("/root/Game/Player");
 		lastPlayerpos = new Vector2(player.GlobalPosition.X, player.GlobalPosition.Y);
-		GD.Print(player);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
