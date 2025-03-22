@@ -89,7 +89,7 @@ frame = 4
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 34)
+position = Vector2(-15, 34)
 shape = SubResource("CapsuleShape2D_egyrd")
 
 [node name="gunPivot" type="Node2D" parent="."]
