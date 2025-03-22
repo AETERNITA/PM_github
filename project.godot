@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Portalmario"
-run/main_scene="res://game.tscn"
+run/main_scene="res://Scenes/game.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://Art/icon.svg"
 
 [dotnet]
 

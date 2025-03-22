@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=16 format=3 uid="uid://bxddjp0nvi1s4"]
 
-[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://player.tscn" id="1_gl4pd"]
-[ext_resource type="Texture2D" uid="uid://bbcxv2bt4b4a7" path="res://ground_placeholder.jpg" id="2_f72e8"]
-[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://bg city game.jpg-autosave.jpg" id="3_fyw3g"]
-[ext_resource type="Script" path="res://PortalController.cs" id="3_i7q0x"]
-[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://icon.svg" id="3_omf6i"]
-[ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://PortalSpawner.tscn" id="4_bbxe4"]
-[ext_resource type="Script" path="res://Background.cs" id="4_ssnrg"]
+[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
+[ext_resource type="Texture2D" uid="uid://bbcxv2bt4b4a7" path="res://Art/ground_placeholder.jpg" id="2_mwbda"]
+[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="3_smvof"]
+[ext_resource type="Script" path="res://Scripts/Background.cs" id="4_oglym"]
+[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="5_amekv"]
+[ext_resource type="Script" path="res://Scripts/PortalController.cs" id="6_56shs"]
+[ext_resource type="Script" path="res://Scripts/Item.cs" id="6_i6o8q"]
+[ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="7_r0gjb"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -25,9 +26,14 @@ bounce = 0.7
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vifiy"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1up"]
+size = Vector2(8.68872, 16.1114)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s6pmr"]
+
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_gl4pd")]
+[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_vex8i")]
 physics_interpolation_mode = 1
 position = Vector2(0, -57)
 scale = Vector2(0.32, 0.32)
@@ -85,7 +91,7 @@ position = Vector2(0, 239)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground1"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground1"]
 position = Vector2(2.49999, -4)
@@ -97,7 +103,7 @@ position = Vector2(1779, 239)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground2"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground2"]
 position = Vector2(2.49999, -4)
@@ -109,7 +115,7 @@ position = Vector2(-1771, 239)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground3"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground3"]
 position = Vector2(2.49999, -4)
@@ -124,7 +130,7 @@ rotation = 1.5708
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Wall_Left"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Left"]
 position = Vector2(2.49999, -4)
@@ -137,7 +143,7 @@ rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Hoop1"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop1"]
 position = Vector2(2.49999, -4)
@@ -150,7 +156,7 @@ rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Hoop2"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop2"]
 position = Vector2(2.49999, -4)
@@ -163,7 +169,7 @@ rotation = 3.14159
 scale = Vector2(-0.138444, -0.138444)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Hoop3"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop3"]
 position = Vector2(2.49999, -4)
@@ -176,7 +182,7 @@ rotation = 1.5708
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Wall_Right"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Right"]
 position = Vector2(2.49999, -4)
@@ -190,7 +196,7 @@ position = Vector2(644, -82)
 scale = Vector2(0.16, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D"]
 position = Vector2(2.49999, -4)
@@ -202,7 +208,7 @@ position = Vector2(1307, -196)
 scale = Vector2(0.16, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D2"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D2"]
 position = Vector2(2.49999, -4)
@@ -215,7 +221,7 @@ rotation = -1.57079
 scale = Vector2(0.236862, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D5"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D5"]
 position = Vector2(2.49999, -4)
@@ -228,7 +234,7 @@ rotation = -0.702637
 scale = Vector2(0.236862, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D9"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D9"]
 position = Vector2(2.49999, -4)
@@ -240,7 +246,7 @@ position = Vector2(-745, -473)
 scale = Vector2(0.0717163, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D8"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D8"]
 position = Vector2(2.49999, -4)
@@ -252,7 +258,7 @@ position = Vector2(-318, -281)
 scale = Vector2(0.116861, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D6"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D6"]
 position = Vector2(2.49999, -4)
@@ -264,7 +270,7 @@ position = Vector2(-713, -43)
 scale = Vector2(0.116861, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D7"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D7"]
 position = Vector2(2.49999, -4)
@@ -276,7 +282,7 @@ position = Vector2(1927, -388)
 scale = Vector2(0.0800004, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D3"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D3"]
 position = Vector2(2.49999, -4)
@@ -288,7 +294,7 @@ position = Vector2(1549, -637)
 scale = Vector2(0.0383451, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D4"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_mwbda")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D4"]
 position = Vector2(2.49999, -4)
@@ -298,8 +304,8 @@ shape = SubResource("RectangleShape2D_wcvuv")
 [node name="Background" type="Sprite2D" parent="World"]
 z_index = -1
 z_as_relative = false
-texture = ExtResource("3_fyw3g")
-script = ExtResource("4_ssnrg")
+texture = ExtResource("3_smvof")
+script = ExtResource("4_oglym")
 
 [node name="Interactables" type="Node" parent="."]
 
@@ -311,16 +317,32 @@ physics_material_override = SubResource("PhysicsMaterial_y0ww5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/RigidBody2D"]
 scale = Vector2(1.54452, 1.54452)
-texture = ExtResource("3_omf6i")
+texture = ExtResource("5_amekv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/RigidBody2D"]
 scale = Vector2(10.5553, 10.5553)
 shape = SubResource("RectangleShape2D_vifiy")
 one_way_collision_margin = 0.0
 
+[node name="Item" type="Area2D" parent="Interactables"]
+position = Vector2(633, -184)
+scale = Vector2(-35.1554, -60.0571)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("6_i6o8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Item"]
+position = Vector2(0.014225, 0.00832605)
+scale = Vector2(0.114583, 0.0609753)
+shape = SubResource("RectangleShape2D_nf1up")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Item"]
+texture = SubResource("PlaceholderTexture2D_s6pmr")
+
 [node name="PortalController" type="Node2D" parent="."]
-script = ExtResource("3_i7q0x")
-PortalSpawner = ExtResource("4_bbxe4")
+script = ExtResource("6_56shs")
+PortalSpawner = ExtResource("7_r0gjb")
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
+[connection signal="body_entered" from="Interactables/Item" to="Player" method="_on_area_2d_body_entered"]

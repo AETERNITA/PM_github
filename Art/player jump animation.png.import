@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbcxv2bt4b4a7"
-path="res://.godot/imported/ground_placeholder.jpg-3fc15c980422b2862f71ae4fb51b236d.ctex"
+uid="uid://dfck8gkf2bqas"
+path="res://.godot/imported/player jump animation.png-9885650db6be00efd75a10cfdbbec912.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ground_placeholder.jpg"
-dest_files=["res://.godot/imported/ground_placeholder.jpg-3fc15c980422b2862f71ae4fb51b236d.ctex"]
+source_file="res://Art/player jump animation.png"
+dest_files=["res://.godot/imported/player jump animation.png-9885650db6be00efd75a10cfdbbec912.ctex"]
 
 [params]
 

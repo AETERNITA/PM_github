@@ -226,4 +226,12 @@ public partial class Player : CharacterBody2D
 		_healthbar.Value -= 10;
 		if (_healthbar.Value < 0) _healthbar.Value = 0;
 	}
+
+	public void _on_area_2d_body_entered(Node2D body)
+	{
+   		//add item 
+		GD.Print("item used");
+	}
+
+	 
 }
