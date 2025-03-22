@@ -98,6 +98,7 @@ height = 654.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite")]
 script = ExtResource("1_7irut")
+_healthbar = NodePath("CanvasLayer/Control/_healthbar")
 _animatedSprite = NodePath("animatedSprite")
 gunSprite = NodePath("gunPivot")
 
