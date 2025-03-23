@@ -11,7 +11,7 @@ public partial class PortalController : Node2D
 	private int touchedPortal;
 	public override void _Ready()
 	{
-		CallDeferred(nameof(SpawnPortal));
+		CallDeferred(nameof(SpawnPortal), new Vector2(0,0));
 		portale = new List<Portal>();
 		
 	}
@@ -20,7 +20,7 @@ public partial class PortalController : Node2D
 	{
 	}
 
-	public void SpawnPortal(){
+	public void SpawnPortal(Vector2 spawnpoint){
 		if (GetPortalCount() > 5){
 			RigidBody2D delPortal = portale[0]; 
 			delPortal.QueueFree(); 
@@ -28,12 +28,14 @@ public partial class PortalController : Node2D
 			delPortal = portale[0]; 
 			delPortal.QueueFree(); 
 			portale.RemoveAt(0);
+			SpawnPortal();
 		}
 		else{
 			newportal = PortalSpawner.Instantiate<Portal>();
 			GetParent().AddChild(newportal); 
 			portale.Add(newportal);
 			newportal.SetPortalType(portale.IndexOf(newportal));}
+			newportal.GlobalPosition = spawnpoint;
 	}
 	
 
