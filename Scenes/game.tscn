@@ -1,7 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=35 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
+[ext_resource type="Script" path="res://Scripts/Projectile.cs" id="2_3j0tg"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_437uy"]
+[ext_resource type="Texture2D" uid="uid://cwegm84khu1qs" path="res://Art/projektil2.png" id="3_3by6r"]
 [ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="3_bdcor"]
 [ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="3_smvof"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="4_727y2"]
@@ -63,6 +65,9 @@ size = Vector2(3974.98, 587.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y13s1"]
 size = Vector2(3885.76, 562.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ctm2"]
+radius = 46.57
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y0ww5"]
 friction = 0.45
@@ -178,7 +183,6 @@ texture = ExtResource("3_bdcor")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Left"]
 position = Vector2(-6.25006, 96.5278)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_s5eht")
 
 [node name="Hoop1" type="StaticBody2D" parent="World/Walls"]
@@ -204,7 +208,6 @@ texture = ExtResource("4_727y2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop2"]
 position = Vector2(-999.955, 11.7007)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_de0fb")
 
 [node name="Hoop3" type="StaticBody2D" parent="World/Walls"]
@@ -230,7 +233,6 @@ texture = ExtResource("3_bdcor")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Right"]
 position = Vector2(4.16559, -161.252)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4lybf")
 
 [node name="Platfroms" type="Node" parent="World"]
@@ -349,6 +351,24 @@ scale = Vector2(1.38748, 1.38748)
 texture = ExtResource("3_smvof")
 script = ExtResource("4_oglym")
 
+[node name="Projectile" type="RigidBody2D" parent="World"]
+physics_interpolation_mode = 2
+position = Vector2(0, -57)
+scale = Vector2(0.32, 0.32)
+gravity_scale = 0.0
+script = ExtResource("2_3j0tg")
+
+[node name="Area2D" type="Area2D" parent="World/Projectile"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Projectile/Area2D"]
+shape = SubResource("CircleShape2D_0ctm2")
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Projectile"]
+texture = ExtResource("3_3by6r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="World/Projectile"]
+visible = false
+
 [node name="Interactables" type="Node" parent="."]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Interactables"]
@@ -381,9 +401,10 @@ shape = SubResource("RectangleShape2D_nf1up")
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/Item"]
 texture = SubResource("PlaceholderTexture2D_s6pmr")
 
-[node name="PortalController" type="Node2D" parent="."]
+[node name="PortalController" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("6_56shs")
 PortalSpawner = ExtResource("7_r0gjb")
+player = NodePath("../Player")
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
