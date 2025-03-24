@@ -31,7 +31,6 @@ public partial class Projectile : RigidBody2D
 	
 	public void Shoot(Vector2 playerPos){
 		if (projectileActive == false) {
-		this.Sleeping = false;
 		this.GlobalPosition = new Vector2(playerPos.X, playerPos.Y);
 		sprite.Visible = true;
 		sprite.Rotation = gun.Rotation;
@@ -44,7 +43,6 @@ public partial class Projectile : RigidBody2D
 	public void EndShot(){
 		sprite.Visible = false;
 		projectileActive = false;
-		this.Sleeping = true;
 		
 	}
 
