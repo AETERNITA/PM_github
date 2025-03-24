@@ -1,7 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
-[ext_resource type="Script" path="res://Scripts/Projectile.cs" id="2_3j0tg"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_437uy"]
 [ext_resource type="Texture2D" uid="uid://cwegm84khu1qs" path="res://Art/projektil2.png" id="3_3by6r"]
 [ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="3_bdcor"]
@@ -12,6 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/PortalController.cs" id="6_56shs"]
 [ext_resource type="Script" path="res://Scripts/Item.cs" id="6_i6o8q"]
 [ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="7_r0gjb"]
+[ext_resource type="Script" path="res://Scripts/Projectilenew.cs" id="8_wxlax"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -66,8 +66,8 @@ size = Vector2(3974.98, 587.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y13s1"]
 size = Vector2(3885.76, 562.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0ctm2"]
-radius = 46.57
+[sub_resource type="CircleShape2D" id="CircleShape2D_68dvk"]
+radius = 1.9105
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y0ww5"]
 friction = 0.45
@@ -351,23 +351,18 @@ scale = Vector2(1.38748, 1.38748)
 texture = ExtResource("3_smvof")
 script = ExtResource("4_oglym")
 
-[node name="Projectile" type="RigidBody2D" parent="World"]
-physics_interpolation_mode = 2
-position = Vector2(0, -57)
-scale = Vector2(0.32, 0.32)
-gravity_scale = 0.0
-script = ExtResource("2_3j0tg")
+[node name="Projectile" type="Area2D" parent="World"]
+position = Vector2(100, 0)
+script = ExtResource("8_wxlax")
 
-[node name="Area2D" type="Area2D" parent="World/Projectile"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Projectile/Area2D"]
-shape = SubResource("CircleShape2D_0ctm2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Projectile"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_68dvk")
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Projectile"]
+position = Vector2(-6, 0)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_3by6r")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="World/Projectile"]
-visible = false
 
 [node name="Interactables" type="Node" parent="."]
 
