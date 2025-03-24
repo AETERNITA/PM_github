@@ -66,9 +66,6 @@ size = Vector2(3974.98, 587.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y13s1"]
 size = Vector2(3885.76, 562.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_68dvk"]
-radius = 1.9105
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y0ww5"]
 friction = 0.45
 bounce = 0.7
@@ -79,6 +76,9 @@ bounce = 0.7
 size = Vector2(8.68872, 16.1114)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s6pmr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_68dvk"]
+radius = 1.9105
 
 [node name="Game" type="Node2D"]
 
@@ -351,19 +351,6 @@ scale = Vector2(1.38748, 1.38748)
 texture = ExtResource("3_smvof")
 script = ExtResource("4_oglym")
 
-[node name="Projectile" type="Area2D" parent="World"]
-position = Vector2(100, 0)
-script = ExtResource("8_wxlax")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Projectile"]
-scale = Vector2(10, 10)
-shape = SubResource("CircleShape2D_68dvk")
-
-[node name="Sprite2D" type="Sprite2D" parent="World/Projectile"]
-position = Vector2(-6, 0)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_3by6r")
-
 [node name="Interactables" type="Node" parent="."]
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Interactables"]
@@ -395,6 +382,19 @@ shape = SubResource("RectangleShape2D_nf1up")
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/Item"]
 texture = SubResource("PlaceholderTexture2D_s6pmr")
+
+[node name="Projectile" type="Area2D" parent="Interactables"]
+position = Vector2(100, 0)
+script = ExtResource("8_wxlax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Projectile"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_68dvk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Projectile"]
+position = Vector2(-6, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_3by6r")
 
 [node name="PortalController" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("6_56shs")
