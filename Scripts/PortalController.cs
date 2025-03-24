@@ -12,7 +12,6 @@ public partial class PortalController : Node2D
 	public override void _Ready()
 	{
 		portale = new List<Portal>();
-		SpawnPortal(new Vector2(0,0));
 		
 	}
 
@@ -34,10 +33,10 @@ public partial class PortalController : Node2D
 			newportal = PortalSpawner.Instantiate<Portal>();
 			GetParent().CallDeferred("add_child", newportal);
 			portale.Add(newportal);
-			newportal.SetPortalType(portale.IndexOf(newportal));}
-			newportal.GlobalPosition = spawnpoint;
+			newportal.CallDeferred("set_portal_type", portale.IndexOf(newportal));
+			newportal.CallDeferred("set", "global_position", spawnpoint);
 	}
-	
+	}
 
 	public String GetPartnerPortal(int touchedportal){
 		switch(touchedportal){
@@ -59,8 +58,15 @@ public partial class PortalController : Node2D
 		Teleport();
 	}
 	public void Teleport(){
+		if (portale[touchedPortal].GetTelTo()){}else{
 		RigidBody2D partnerPortal = GetNode<RigidBody2D>(GetPartnerPortal(touchedPortal));
 		RigidBody2D rigidTouchedPortal = portale[touchedPortal];
-		player.SetDeferred("GlobalPosition", new Vector2(partnerPortal.GlobalPosition.Y,partnerPortal.GlobalPosition.X));
+		player.GlobalPosition = partnerPortal.GlobalPosition;}
+	}
+	public void _on_projectile_body_exited(Node2D body){
+		if(body is CharacterBody2D){
+			foreach (Portal p in portale){
+			p.set_portal_teleported_to(false);
+		}}
 	}
 }

@@ -9,6 +9,8 @@ public partial class Projectilenew : Area2D
 	private bool projectileActive = false;
 	private Node2D gun;
 	private float speed = 5.0f;
+	private Vector2 lastPos;
+	private PortalController portalController;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -29,8 +31,8 @@ public partial class Projectilenew : Area2D
 
 	public void Shoot(Vector2 playerPos){
 		if (projectileActive == false) {
-		RotateProjectileToMouse();
 		this.GlobalPosition = new Vector2(playerPos.X, playerPos.Y);
+		RotateProjectileToMouse();
 		sprite.Visible = true;
 		sprite.Rotation = direction;
 		projectileActive = true;}
@@ -39,10 +41,12 @@ public partial class Projectilenew : Area2D
 	public void EndShot(){
 		sprite.Visible = false;
 		projectileActive = false;
-		
+		lastPos = GlobalPosition;
+		portalController.SpawnPortal(lastPos);
 	}
 
 	public void AssignReferences(){
+		portalController = GetNode<PortalController>("/root/Game/PortalController");
 		player = GetNode<CharacterBody2D>("/root/Game/Player");
 		sprite = GetNode<Sprite2D>("Sprite2D");
 		gun = player.GetNode<Node2D>("gunPivot/gunSprite");
@@ -55,5 +59,11 @@ public partial class Projectilenew : Area2D
 			Vector2 directionToMouse = mousePosition - GlobalPosition;
 			float angle = directionToMouse.Angle();
 			direction = angle;
+	}
+	
+	public void _on_body_entered(Node2D body){
+		if(body is StaticBody2D){
+			EndShot();
+		}
 	}
 }
