@@ -67,6 +67,7 @@ public partial class PortalController : Node2D
 		if(body is CharacterBody2D){
 			foreach (Portal p in portale){
 			p.set_portal_teleported_to(false);
+			GD.Print("Exited");
 		}}
 	}
 }
