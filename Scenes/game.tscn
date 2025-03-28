@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=36 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_437uy"]
+[ext_resource type="AudioStream" uid="uid://det1hknmp4rko" path="res://running-sounds-6003.mp3" id="2_lrwp5"]
 [ext_resource type="Texture2D" uid="uid://cwegm84khu1qs" path="res://Art/projektil2.png" id="3_3by6r"]
 [ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="3_bdcor"]
 [ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="3_smvof"]
@@ -91,6 +92,9 @@ _healthbar = NodePath("../CanvasLayer/Control/_healthbar")
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 zoom = Vector2(0.75, 0.75)
 position_smoothing_enabled = true
+
+[node name="Move" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("2_lrwp5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

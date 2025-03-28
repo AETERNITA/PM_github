@@ -7,6 +7,7 @@ public partial class Player : CharacterBody2D
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
+	private AudioStreamPlayer Move;
 
 	public const float Speed = 400.0f;
 	public const float JumpVelocity = -500.0f;
@@ -34,6 +35,7 @@ public partial class Player : CharacterBody2D
 		{
 			GD.PrintErr("ERROR: _animatedSprite is not assigned in the Inspector!");
 		}
+		Move = GetNode<AudioStreamPlayer>("Move");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -80,6 +82,7 @@ public partial class Player : CharacterBody2D
 
 		if (direction.X != 0)
 		{
+			Move.Play();
 			velocity.X = direction.X * Speed;
 			
 			// Flip sprite based on movement direction
