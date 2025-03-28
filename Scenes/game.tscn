@@ -408,3 +408,5 @@ player = NodePath("../Player")
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
 [connection signal="body_entered" from="Interactables/Item" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
+[connection signal="body_exited" from="Interactables/Projectile" to="PortalController" method="_on_projectile_body_exited"]
