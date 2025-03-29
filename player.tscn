@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8qt2qtvfxrjn"]
 
-[ext_resource type="Script" path="res://Player.cs" id="1_7irut"]
+[ext_resource type="Script" uid="uid://cakbyx5pip703" path="res://Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://cmsxiu7c5q3fi" path="res://Player1.png" id="2_suijm"]
 [ext_resource type="Texture2D" uid="uid://luvbi3mbxp62" path="res://portalgun.png" id="3_6xx8g"]
 
@@ -13,7 +13,7 @@ resource_name = "idle"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yym7t"]
 _data = {
-"idle": SubResource("Animation_jg61r")
+&"idle": SubResource("Animation_jg61r")
 }
 
 [node name="Player" type="CharacterBody2D"]

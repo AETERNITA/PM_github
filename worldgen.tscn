@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=10 format=3 uid="uid://biyvswk4c2uqq"]
 
-[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://player.tscn" id="1_gl4pd"]
-[ext_resource type="Texture2D" uid="uid://bbcxv2bt4b4a7" path="res://ground_placeholder.jpg" id="2_f72e8"]
-[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://bg city game.jpg-autosave.jpg" id="3_fyw3g"]
-[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://icon.svg" id="3_omf6i"]
+[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://player.tscn" id="1_dfbyg"]
+[ext_resource type="Texture2D" uid="uid://bbcxv2bt4b4a7" path="res://ground_placeholder.jpg" id="2_wvy0v"]
+[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://bg city game.jpg-autosave.jpg" id="3_bee7x"]
+[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://icon.svg" id="4_lmixm"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -22,9 +22,9 @@ bounce = 0.7
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vifiy"]
 
-[node name="Game" type="Node2D"]
+[node name="genworld" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_gl4pd")]
+[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_dfbyg")]
 position = Vector2(0, -57)
 scale = Vector2(0.32, 0.32)
 _healthbar = NodePath("../CanvasLayer/Control/_healthbar")
@@ -81,7 +81,7 @@ position = Vector2(0, 239)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground1"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground1"]
 position = Vector2(2.49999, -4)
@@ -93,7 +93,7 @@ position = Vector2(1779, 239)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground2"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground2"]
 position = Vector2(2.49999, -4)
@@ -105,7 +105,7 @@ position = Vector2(-1771, 239)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground3"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground3"]
 position = Vector2(2.49999, -4)
@@ -120,7 +120,7 @@ rotation = 1.5708
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Wall_Left"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Left"]
 position = Vector2(2.49999, -4)
@@ -133,7 +133,7 @@ rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Hoop1"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop1"]
 position = Vector2(2.49999, -4)
@@ -146,7 +146,7 @@ rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Hoop2"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop2"]
 position = Vector2(2.49999, -4)
@@ -159,7 +159,7 @@ rotation = 3.14159
 scale = Vector2(-0.138444, -0.138444)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Hoop3"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop3"]
 position = Vector2(2.49999, -4)
@@ -172,7 +172,7 @@ rotation = 1.5708
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Wall_Right"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Right"]
 position = Vector2(2.49999, -4)
@@ -186,7 +186,7 @@ position = Vector2(644, -82)
 scale = Vector2(0.16, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D"]
 position = Vector2(2.49999, -4)
@@ -198,7 +198,7 @@ position = Vector2(1307, -196)
 scale = Vector2(0.16, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D2"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D2"]
 position = Vector2(2.49999, -4)
@@ -211,7 +211,7 @@ rotation = -1.57079
 scale = Vector2(0.236862, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D5"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D5"]
 position = Vector2(2.49999, -4)
@@ -224,7 +224,7 @@ rotation = -0.702637
 scale = Vector2(0.236862, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D9"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D9"]
 position = Vector2(2.49999, -4)
@@ -236,7 +236,7 @@ position = Vector2(-745, -473)
 scale = Vector2(0.0717163, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D8"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D8"]
 position = Vector2(2.49999, -4)
@@ -248,7 +248,7 @@ position = Vector2(-318, -281)
 scale = Vector2(0.116861, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D6"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D6"]
 position = Vector2(2.49999, -4)
@@ -260,7 +260,7 @@ position = Vector2(-713, -43)
 scale = Vector2(0.116861, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D7"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D7"]
 position = Vector2(2.49999, -4)
@@ -272,7 +272,7 @@ position = Vector2(1927, -388)
 scale = Vector2(0.0800004, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D3"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D3"]
 position = Vector2(2.49999, -4)
@@ -284,7 +284,7 @@ position = Vector2(1549, -637)
 scale = Vector2(0.0383451, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D4"]
-texture = ExtResource("2_f72e8")
+texture = ExtResource("2_wvy0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D4"]
 position = Vector2(2.49999, -4)
@@ -292,11 +292,12 @@ scale = Vector2(148.143, 29.9721)
 shape = SubResource("RectangleShape2D_wcvuv")
 
 [node name="Background" type="Sprite2D" parent="World"]
+visible = false
 z_index = -1
 z_as_relative = false
-position = Vector2(0, -1073)
+position = Vector2(-5, -1078)
 scale = Vector2(1.48, 1.48)
-texture = ExtResource("3_fyw3g")
+texture = ExtResource("3_bee7x")
 
 [node name="Interactables" type="Node" parent="."]
 
@@ -308,7 +309,7 @@ physics_material_override = SubResource("PhysicsMaterial_y0ww5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/RigidBody2D"]
 scale = Vector2(1.54452, 1.54452)
-texture = ExtResource("3_omf6i")
+texture = ExtResource("4_lmixm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/RigidBody2D"]
 scale = Vector2(10.5553, 10.5553)
