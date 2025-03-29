@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yettfr00xsb4"
-path="res://.godot/imported/portalsprite2.png-410b12e7f7eb65cb5aa7a54c69e76cd5.ctex"
+uid="uid://b25bu1hq0o8t4"
+path="res://.godot/imported/Ground Green.jpg-5d22a9668b927b844fa3b8c517aec0de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://portalsprite2.png"
-dest_files=["res://.godot/imported/portalsprite2.png-410b12e7f7eb65cb5aa7a54c69e76cd5.ctex"]
+source_file="res://Art/Ground Green.jpg"
+dest_files=["res://.godot/imported/Ground Green.jpg-5d22a9668b927b844fa3b8c517aec0de.ctex"]
 
 [params]
 

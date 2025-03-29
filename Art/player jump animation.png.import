@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bild35rlvgaa8"
-path="res://.godot/imported/portalsprite.png-39bbf6baa275951f738bd43bce979624.ctex"
+uid="uid://dfck8gkf2bqas"
+path="res://.godot/imported/player jump animation.png-9885650db6be00efd75a10cfdbbec912.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://portalsprite.png"
-dest_files=["res://.godot/imported/portalsprite.png-39bbf6baa275951f738bd43bce979624.ctex"]
+source_file="res://Art/player jump animation.png"
+dest_files=["res://.godot/imported/player jump animation.png-9885650db6be00efd75a10cfdbbec912.ctex"]
 
 [params]
 

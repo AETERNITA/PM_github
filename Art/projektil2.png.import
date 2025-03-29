@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbcxv2bt4b4a7"
-path="res://.godot/imported/ground_placeholder.jpg-3fc15c980422b2862f71ae4fb51b236d.ctex"
+uid="uid://cwegm84khu1qs"
+path="res://.godot/imported/projektil2.png-c30060eb7d267f89b4750773bf3161af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ground_placeholder.jpg"
-dest_files=["res://.godot/imported/ground_placeholder.jpg-3fc15c980422b2862f71ae4fb51b236d.ctex"]
+source_file="res://Art/projektil2.png"
+dest_files=["res://.godot/imported/projektil2.png-c30060eb7d267f89b4750773bf3161af.ctex"]
 
 [params]
 

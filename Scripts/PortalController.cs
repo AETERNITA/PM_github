@@ -7,11 +7,10 @@ public partial class PortalController : Node2D
 	private Portal newportal;
 	[Export] public PackedScene PortalSpawner;
 	List<Portal> portale;
-	private CharacterBody2D player;
+	[Export] private CharacterBody2D player;
 	private int touchedPortal;
 	public override void _Ready()
 	{
-		CallDeferred(nameof(SpawnPortal));
 		portale = new List<Portal>();
 		
 	}
@@ -20,7 +19,7 @@ public partial class PortalController : Node2D
 	{
 	}
 
-	public void SpawnPortal(){
+	public void SpawnPortal(Vector2 spawnpoint){
 		if (GetPortalCount() > 5){
 			RigidBody2D delPortal = portale[0]; 
 			delPortal.QueueFree(); 
@@ -28,14 +27,16 @@ public partial class PortalController : Node2D
 			delPortal = portale[0]; 
 			delPortal.QueueFree(); 
 			portale.RemoveAt(0);
+			SpawnPortal(spawnpoint);
 		}
 		else{
 			newportal = PortalSpawner.Instantiate<Portal>();
-			GetParent().AddChild(newportal); 
+			GetParent().CallDeferred("add_child", newportal);
 			portale.Add(newportal);
-			newportal.SetPortalType(portale.IndexOf(newportal));}
+			newportal.CallDeferred("set_portal_type", portale.IndexOf(newportal));
+			newportal.CallDeferred("set", "global_position", spawnpoint);
 	}
-	
+	}
 
 	public String GetPartnerPortal(int touchedportal){
 		switch(touchedportal){
@@ -57,8 +58,16 @@ public partial class PortalController : Node2D
 		Teleport();
 	}
 	public void Teleport(){
+		if (portale[touchedPortal].GetTelTo()){}else{
 		RigidBody2D partnerPortal = GetNode<RigidBody2D>(GetPartnerPortal(touchedPortal));
 		RigidBody2D rigidTouchedPortal = portale[touchedPortal];
-		player.SetDeferred("GlobalPosition", new Vector2(partnerPortal.GlobalPosition.Y,partnerPortal.GlobalPosition.X));
+		player.GlobalPosition = partnerPortal.GlobalPosition;}
+	}
+	public void _on_projectile_body_exited(Node2D body){
+		if(body is CharacterBody2D){
+			foreach (Portal p in portale){
+			p.set_portal_teleported_to(false);
+			GD.Print("Exited");
+		}}
 	}
 }

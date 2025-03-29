@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://b8qt2qtvfxrjn"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_7irut"]
+[ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
+[ext_resource type="Texture2D" uid="uid://dfck8gkf2bqas" path="res://Art/player jump animation.png" id="3_6rnjq"]
+[ext_resource type="Texture2D" uid="uid://luvbi3mbxp62" path="res://Art/portalgun.png" id="3_6xx8g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk2e2"]
+atlas = ExtResource("2_54v62")
+region = Rect2(0, 0, 666, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_you4m"]
+atlas = ExtResource("2_54v62")
+region = Rect2(666, 0, 666, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmbuq"]
+atlas = ExtResource("2_54v62")
+region = Rect2(1332, 0, 666, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br4io"]
+atlas = ExtResource("3_6rnjq")
+region = Rect2(1399, 0, 691, 777)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sh4nt"]
+atlas = ExtResource("3_6rnjq")
+region = Rect2(2090, 0, 691, 777)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3n5q"]
+atlas = ExtResource("3_6rnjq")
+region = Rect2(2781, 0, 691, 777)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cv5gn"]
+animations = [{
+"frames": [{
+"duration": 10.0,
+"texture": SubResource("AtlasTexture_rk2e2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_you4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmbuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_you4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk2e2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br4io")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh4nt")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_t3n5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sh4nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br4io")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_egyrd"]
+radius = 240.0
+height = 654.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite")]
+collision_layer = 3
+script = ExtResource("1_7irut")
+_animatedSprite = NodePath("animatedSprite")
+gunSprite = NodePath("gunPivot")
+
+[node name="animatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cv5gn")
+animation = &"Jump"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-15, 34)
+shape = SubResource("CapsuleShape2D_egyrd")
+
+[node name="gunPivot" type="Node2D" parent="."]
+position = Vector2(232, 222)
+
+[node name="gunSprite" type="Sprite2D" parent="gunPivot"]
+position = Vector2(116, -1)
+scale = Vector2(1.7014, 1.7014)
+texture = ExtResource("3_6xx8g")

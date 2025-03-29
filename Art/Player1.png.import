@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://luvbi3mbxp62"
-path="res://.godot/imported/portalgun.png-a36f7d2173446a30cd73fc87d7e90f2e.ctex"
+uid="uid://cmsxiu7c5q3fi"
+path="res://.godot/imported/Player1.png-5e66c9ae7e446b88897c8e0aa6b66c3a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://portalgun.png"
-dest_files=["res://.godot/imported/portalgun.png-a36f7d2173446a30cd73fc87d7e90f2e.ctex"]
+source_file="res://Art/Player1.png"
+dest_files=["res://.godot/imported/Player1.png-5e66c9ae7e446b88897c8e0aa6b66c3a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doejes84npxb7"
-path="res://.godot/imported/bg city game.jpg-autosave.jpg-00068a3182eab9d5cdf637abd633992f.ctex"
+uid="uid://bgmgu1qk0dngu"
+path="res://.godot/imported/Ground red.jpg-7901b13f99174176183920c7612b9796.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bg city game.jpg-autosave.jpg"
-dest_files=["res://.godot/imported/bg city game.jpg-autosave.jpg-00068a3182eab9d5cdf637abd633992f.ctex"]
+source_file="res://Art/Ground red.jpg"
+dest_files=["res://.godot/imported/Ground red.jpg-7901b13f99174176183920c7612b9796.ctex"]
 
 [params]
 
