@@ -10,6 +10,9 @@ public partial class Player : CharacterBody2D
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
 	private AudioStreamPlayer Move;
+	private AudioStreamPlayer Jump;
+	private AudioStreamPlayer Damage;
+	private AudioStreamPlayer Heal;
 
 	public const float Speed = 400.0f;
 	public const float JumpVelocity = -500.0f;
@@ -39,6 +42,9 @@ public partial class Player : CharacterBody2D
 			GD.PrintErr("ERROR: _animatedSprite is not assigned in the Inspector!");
 		}
 		Move = GetNode<AudioStreamPlayer>("Move");
+		Jump = GetNode<AudioStreamPlayer>("Jump");
+		Damage = GetNode<AudioStreamPlayer>("Damage");
+		Heal = GetNode<AudioStreamPlayer>("Heal");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -73,6 +79,7 @@ public partial class Player : CharacterBody2D
 		{
 			jumpActive = true;
 			jumpCount = 2;
+			Jump.Play();
 		}
 
 		if (Input.IsActionJustPressed("w") && jumpCount < 2 && jumpTimer <= 0)
@@ -81,6 +88,7 @@ public partial class Player : CharacterBody2D
 			jumpCount++;
 			jumpTimer = 0.3;
 			_animatedSprite.Play("Jump"); // Play jump animation
+			Jump.Play();
 		}
 
 		// Handle Left/Right Movement
@@ -88,7 +96,9 @@ public partial class Player : CharacterBody2D
 
 		if (direction.X != 0)
 		{
+			if(IsOnFloor()){
 			Move.Play();
+			}
 			velocity.X = direction.X * Speed;
 			
 			// Flip sprite based on movement direction
@@ -259,7 +269,7 @@ public partial class Player : CharacterBody2D
 				break;
 			}
 	}
-    
+	
 	//ADD THE CODE FOR INITIALISING THE DICTIONARIES HERE:
 
 	private void initialise_inventory_system ()
@@ -281,12 +291,16 @@ public partial class Player : CharacterBody2D
 		//minderwertiger alter code
 		//_healthbar.Value += 10;
 		//if (_healthbar.Value > 100) _healthbar.Value = 100;
+		
+		Heal.Play();
 	}
 
 	public void _on_damage_button_pressed()
 	{
 		_healthbar.Value -= 10;
 		if (_healthbar.Value < 0) _healthbar.Value = 0;
+		
+		Damage.Play();
 		
 	}
 
