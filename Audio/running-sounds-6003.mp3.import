@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://det1hknmp4rko"
-path="res://.godot/imported/running-sounds-6003.mp3-c59a0a5c8c4eae69bdb8c1a9be31e4f9.mp3str"
+path="res://.godot/imported/running-sounds-6003.mp3-79d32a43a1579339239536060a836b04.mp3str"
 
 [deps]
 
-source_file="res://running-sounds-6003.mp3"
-dest_files=["res://.godot/imported/running-sounds-6003.mp3-c59a0a5c8c4eae69bdb8c1a9be31e4f9.mp3str"]
+source_file="res://Audio/running-sounds-6003.mp3"
+dest_files=["res://.godot/imported/running-sounds-6003.mp3-79d32a43a1579339239536060a836b04.mp3str"]
 
 [params]
 

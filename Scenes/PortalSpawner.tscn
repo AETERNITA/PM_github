@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://csjmp3gb88qlc"]
 
-[ext_resource type="Script" path="res://Scripts/Portal.cs" id="1_slqus"]
+[ext_resource type="Script" uid="uid://j70y8leva7yj" path="res://Scripts/Portal.cs" id="1_slqus"]
 [ext_resource type="Texture2D" uid="uid://yettfr00xsb4" path="res://Art/portalsprite2.png" id="2_qai3c"]
-[ext_resource type="Script" path="res://Scripts/PortalCollision.cs" id="3_x1opk"]
+[ext_resource type="Script" uid="uid://wvxe3e5v1gih" path="res://Scripts/PortalCollision.cs" id="3_x1opk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dyrba"]
 radius = 36.0
