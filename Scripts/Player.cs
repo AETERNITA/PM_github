@@ -43,6 +43,9 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+
+		Update_Inventory(delta);
+
 		Vector2 velocity = Velocity;
 
 		// Add gravity
@@ -109,7 +112,7 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 		
 
-		Update_Inventory(delta);
+		
 	}
 
 	public override void _Process(double delta)
@@ -146,7 +149,8 @@ public partial class Player : CharacterBody2D
 				Item_durabillity.Remove(Item_duration[i]);
 				Item_duration.Remove(Item_duration[i]);
 				Item_Strenght.Remove(Item_Strenght[i]);
-				ForDeletion.Add(i);
+				break;
+				//ForDeletion.Add(i);
 			}
 			else
 			{

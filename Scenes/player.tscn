@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://b8qt2qtvfxrjn"]
 
-[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_7irut"]
+[ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
 [ext_resource type="Texture2D" uid="uid://dfck8gkf2bqas" path="res://Art/player jump animation.png" id="3_6rnjq"]
 [ext_resource type="Texture2D" uid="uid://luvbi3mbxp62" path="res://Art/portalgun.png" id="3_6xx8g"]

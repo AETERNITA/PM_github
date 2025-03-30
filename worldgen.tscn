@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://biyvswk4c2uqq"]
 
-[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://player.tscn" id="1_dfbyg"]
-[ext_resource type="Texture2D" uid="uid://bbcxv2bt4b4a7" path="res://ground_placeholder.jpg" id="2_wvy0v"]
-[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://bg city game.jpg-autosave.jpg" id="3_bee7x"]
-[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://icon.svg" id="4_lmixm"]
+[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_dfbyg"]
+[ext_resource type="Texture2D" uid="uid://bbcxv2bt4b4a7" path="res://Art/ground_placeholder.jpg" id="2_wvy0v"]
+[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="3_bee7x"]
+[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="4_lmixm"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -24,10 +24,10 @@ bounce = 0.7
 
 [node name="genworld" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_dfbyg")]
+[node name="Player" parent="." instance=ExtResource("1_dfbyg")]
 position = Vector2(0, -57)
 scale = Vector2(0.32, 0.32)
-_healthbar = NodePath("../CanvasLayer/Control/_healthbar")
+script = null
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 zoom = Vector2(0.75, 0.75)
