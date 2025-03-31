@@ -27,6 +27,9 @@ colors = PackedColorArray(1, 0, 0, 1, 0.890188, 0.843423, 0, 1, 0.0666667, 1, 0,
 gradient = SubResource("Gradient_5eq1c")
 width = 128
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcvuv"]
+size = Vector2(26.9634, 19.7202)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5eht"]
 size = Vector2(4054.17, 415.278)
 
@@ -41,9 +44,6 @@ size = Vector2(3987.17, 592.3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lybf"]
 size = Vector2(4008.33, 302.503)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcvuv"]
-size = Vector2(26.9634, 19.7202)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xolf"]
 size = Vector2(3987.5, 600)
@@ -147,11 +147,49 @@ layout_mode = 2
 action_mode = 0
 text = "10 Damge"
 
-[node name="World" type="Node" parent="." groups=["World"]]
+[node name="World" type="Node" parent="."]
 
-[node name="Walls" type="Node" parent="World" groups=["World"]]
+[node name="Ground" type="Node" parent="World"]
 
-[node name="Wall_Left" type="StaticBody2D" parent="World/Walls" groups=["World"]]
+[node name="Ground2" type="StaticBody2D" parent="World/Ground"]
+position = Vector2(2847, 286)
+scale = Vector2(0.72, 0.72)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground2"]
+texture = ExtResource("2_437uy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground2"]
+position = Vector2(4.1665, -5.16653)
+scale = Vector2(148.143, 29.9721)
+shape = SubResource("RectangleShape2D_wcvuv")
+
+[node name="Ground3" type="StaticBody2D" parent="World/Ground"]
+position = Vector2(-2728, 286)
+scale = Vector2(0.72, 0.72)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground3"]
+texture = ExtResource("2_437uy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground3"]
+position = Vector2(4.1665, -5.16653)
+scale = Vector2(148.143, 29.9721)
+shape = SubResource("RectangleShape2D_wcvuv")
+
+[node name="Ground1" type="StaticBody2D" parent="World/Ground"]
+position = Vector2(0, 286)
+scale = Vector2(0.72, 0.72)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground1"]
+texture = ExtResource("2_437uy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground1"]
+position = Vector2(4.1665, -3.08319)
+scale = Vector2(148.143, 29.9721)
+shape = SubResource("RectangleShape2D_wcvuv")
+
+[node name="Walls" type="Node" parent="World"]
+
+[node name="Wall_Left" type="StaticBody2D" parent="World/Walls"]
 position = Vector2(2851, -479)
 rotation = 1.5708
 scale = Vector2(0.72, 0.72)
@@ -163,7 +201,7 @@ texture = ExtResource("3_bdcor")
 position = Vector2(-6.25006, 96.5278)
 shape = SubResource("RectangleShape2D_s5eht")
 
-[node name="Hoop1" type="StaticBody2D" parent="World/Walls" groups=["World"]]
+[node name="Hoop1" type="StaticBody2D" parent="World/Walls"]
 position = Vector2(-1872, -558)
 rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
@@ -176,7 +214,7 @@ position = Vector2(-0.000976563, -0.00195313)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_wcj5y")
 
-[node name="Hoop2" type="StaticBody2D" parent="World/Walls" groups=["World"]]
+[node name="Hoop2" type="StaticBody2D" parent="World/Walls"]
 position = Vector2(-2666, -555)
 rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
@@ -188,7 +226,7 @@ texture = ExtResource("4_727y2")
 position = Vector2(-999.955, 11.7007)
 shape = SubResource("RectangleShape2D_de0fb")
 
-[node name="Hoop3" type="StaticBody2D" parent="World/Walls" groups=["World"]]
+[node name="Hoop3" type="StaticBody2D" parent="World/Walls"]
 position = Vector2(-1233, -723)
 rotation = 3.14159
 scale = Vector2(-0.138444, -0.138444)
@@ -201,7 +239,7 @@ position = Vector2(7.22266, -21.6685)
 shape = SubResource("RectangleShape2D_iyp13")
 one_way_collision = true
 
-[node name="Wall_Right" type="StaticBody2D" parent="World/Walls" groups=["World"]]
+[node name="Wall_Right" type="StaticBody2D" parent="World/Walls"]
 position = Vector2(-2828, -479)
 rotation = 1.5708
 scale = Vector2(0.72, 0.72)
@@ -213,48 +251,9 @@ texture = ExtResource("3_bdcor")
 position = Vector2(4.16559, -161.252)
 shape = SubResource("RectangleShape2D_4lybf")
 
-[node name="Ground" type="Node" parent="World" groups=["World"]]
+[node name="Platfroms" type="Node" parent="World"]
 
-[node name="Ground2" type="StaticBody2D" parent="World/Ground" groups=["World"]]
-position = Vector2(2847, 286)
-scale = Vector2(0.72, 0.72)
-
-[node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground2"]
-texture = ExtResource("2_437uy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground2"]
-position = Vector2(4.1665, -5.16653)
-scale = Vector2(148.143, 29.9721)
-shape = SubResource("RectangleShape2D_wcvuv")
-
-[node name="Ground3" type="StaticBody2D" parent="World/Ground" groups=["World"]]
-visible = false
-position = Vector2(-2728, 286)
-scale = Vector2(0.72, 0.72)
-
-[node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground3"]
-texture = ExtResource("2_437uy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground3"]
-position = Vector2(4.1665, -5.16653)
-scale = Vector2(148.143, 29.9721)
-shape = SubResource("RectangleShape2D_wcvuv")
-
-[node name="Ground1" type="StaticBody2D" parent="World/Ground" groups=["World"]]
-position = Vector2(0, 286)
-scale = Vector2(0.72, 0.72)
-
-[node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground1"]
-texture = ExtResource("2_437uy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground1"]
-position = Vector2(4.1665, -3.08319)
-scale = Vector2(148.143, 29.9721)
-shape = SubResource("RectangleShape2D_wcvuv")
-
-[node name="Platfroms" type="Node" parent="World" groups=["World"]]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Platfroms"]
 position = Vector2(644, -82)
 scale = Vector2(0.16, 0.16)
 
@@ -264,7 +263,7 @@ texture = ExtResource("4_727y2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D"]
 shape = SubResource("RectangleShape2D_8xolf")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
+[node name="StaticBody2D2" type="StaticBody2D" parent="World/Platfroms"]
 position = Vector2(1307, -162)
 scale = Vector2(0.16, 0.16)
 
@@ -277,7 +276,7 @@ position = Vector2(-3.125, 0)
 shape = SubResource("RectangleShape2D_t8kt2")
 one_way_collision = true
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
+[node name="StaticBody2D5" type="StaticBody2D" parent="World/Platfroms"]
 position = Vector2(-913, -182)
 rotation = -1.57079
 scale = Vector2(0.236862, 0.116861)
@@ -290,7 +289,7 @@ texture = ExtResource("2_437uy")
 position = Vector2(-0.000183105, 8.55713)
 shape = SubResource("RectangleShape2D_depoi")
 
-[node name="StaticBody2D9" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
+[node name="StaticBody2D9" type="StaticBody2D" parent="World/Platfroms"]
 position = Vector2(-1209, -185)
 rotation = -0.702637
 scale = Vector2(0.236862, 0.116861)
@@ -303,7 +302,7 @@ texture = ExtResource("3_bdcor")
 position = Vector2(10.6257, -10.5747)
 shape = SubResource("RectangleShape2D_i4t5q")
 
-[node name="StaticBody2D8" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
+[node name="StaticBody2D8" type="StaticBody2D" parent="World/Platfroms"]
 position = Vector2(-745, -487)
 scale = Vector2(0.0717163, 0.116861)
 
@@ -315,7 +314,7 @@ position = Vector2(13.9424, 4.27881)
 shape = SubResource("RectangleShape2D_lrrmg")
 one_way_collision = true
 
-[node name="StaticBody2D6" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
+[node name="StaticBody2D6" type="StaticBody2D" parent="World/Platfroms"]
 position = Vector2(-318, -271)
 scale = Vector2(0.116861, 0.116861)
 
@@ -327,7 +326,7 @@ position = Vector2(8.55811, -8.55713)
 shape = SubResource("RectangleShape2D_r8nri")
 one_way_collision = true
 
-[node name="StaticBody2D7" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
+[node name="StaticBody2D7" type="StaticBody2D" parent="World/Platfroms"]
 position = Vector2(-713, -43)
 scale = Vector2(0.116861, 0.116861)
 
@@ -339,7 +338,7 @@ texture = ExtResource("4_727y2")
 position = Vector2(-17.1143, -4.27859)
 shape = SubResource("RectangleShape2D_7pkej")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
+[node name="StaticBody2D3" type="StaticBody2D" parent="World/Platfroms"]
 position = Vector2(1927, -361)
 scale = Vector2(0.0800004, 0.16)
 
@@ -349,7 +348,7 @@ texture = ExtResource("3_bdcor")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D3"]
 shape = SubResource("RectangleShape2D_r57cw")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
+[node name="StaticBody2D4" type="StaticBody2D" parent="World/Platfroms"]
 position = Vector2(1549, -624)
 scale = Vector2(0.0383451, 0.16)
 
@@ -441,6 +440,7 @@ player = NodePath("../Player")
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
-[connection signal="body_entered" from="Interactables/Item" to="Player" method="_on_jump_boosted"]
-[connection signal="body_entered" from="Interactables/Item2" to="Player" method="_on_healing_potioned"]
+[connection signal="body_entered" from="Interactables/Item" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Interactables/Item2" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
+[connection signal="body_exited" from="Interactables/Projectile" to="PortalController" method="_on_projectile_body_exited"]

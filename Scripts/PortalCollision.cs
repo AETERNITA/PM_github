@@ -12,9 +12,8 @@ public partial class PortalCollision : Area2D
 		Portal = GetParent<Portal>();
 		PortalController = GetNode<PortalController>("/root/Game/PortalController");
 		if(Portal is null){
-			
+			GD.Print("Nope");
 		}
-		BodyExited += OnBodyExited;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,15 +23,8 @@ public partial class PortalCollision : Area2D
 	public void OnBodyEntered(Node2D body){
 			if(body is CharacterBody2D player){
 				PortalController.PortalTouched(Portal.GetPortalType());
-				
+				GD.Print("Touched");
 			}
 
 	}
-		private void OnBodyExited(Node2D body)
-{
-    if (body is CharacterBody2D player || body is RigidBody2D)
-    {
-        PortalController.Call("PortalExited", this.GetParent()); 
-    }
-}
 }
