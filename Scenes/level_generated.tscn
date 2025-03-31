@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cgbltl8a4q4et"]
+[gd_scene load_steps=15 format=3 uid="uid://cgbltl8a4q4et"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_htq0c"]
 [ext_resource type="AudioStream" uid="uid://507pfam8pkjt" path="res://Audio/Running.MP3" id="2_tligs"]
@@ -18,6 +18,8 @@ colors = PackedColorArray(1, 0, 0, 1, 0.890188, 0.843423, 0, 1, 0.0666667, 1, 0,
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ccd35"]
 gradient = SubResource("Gradient_5eq1c")
 width = 128
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lylri"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lybf"]
 size = Vector2(4008.33, 302.503)
@@ -88,6 +90,12 @@ text = "10 Damge"
 [node name="World" type="Node" parent="."]
 
 [node name="Ground" type="Node" parent="World"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/StaticBody2D"]
+position = Vector2(0, 787)
+shape = SubResource("WorldBoundaryShape2D_lylri")
 
 [node name="Walls" type="Node" parent="World"]
 
