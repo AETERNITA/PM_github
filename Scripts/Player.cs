@@ -9,21 +9,13 @@ public partial class Player : CharacterBody2D
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
-	[Export] public float DashSpeed = 1200.0f; // Geschwindigkeit beim Dash
-	[Export] public float DashTime = 0.2f; // Dauer des Dashs
-	[Export] public float DashDuration = 0.2f; // Dauer des Dashs
-	private bool isDashing = false;
-	private bool canDash = true;
-	private Vector2 dashDirection = Vector2.Zero;
-	private Vector2 direction = Vector2.Zero;
 	private AudioStreamPlayer Move;
 	private AudioStreamPlayer Jump;
 	private AudioStreamPlayer Damage;
 	private AudioStreamPlayer Heal;
-	private float dashTime = 0f;
 
-	public const float Speed = 400.0f;
-	public const float JumpVelocity = -500.0f;
+	public float Speed = 400.0f;
+	public float JumpVelocity = -500.0f;
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
@@ -62,37 +54,6 @@ public partial class Player : CharacterBody2D
 
 		Vector2 velocity = Velocity;
 
-		if (isDashing)
-		{
-			dashTime -= (float)delta;
-			if (dashTime <= 0)
-			{
-				isDashing = false; // Dash beenden
-			}
-			else
-			{
-				Velocity = dashDirection * DashSpeed;
-				MoveAndSlide();
-				return;
-			}
-		}
-
-		direction = Input.GetVector("a", "d", "ui_up", "ui_down");
-
-		// if alt + a or d --> dash
-		if (Input.IsActionJustPressed("alt") && direction.X != 0 && !isDashing && canDash)
-		{
-			GD.Print("dash active");
-			StartDash();
-			return;
-		}
-		
-		if (Input.IsActionJustReleased("alt"))
-		{
-			GD.Print("dash inactive");
-			canDash = true;
-		}
-		
 		// Add gravity
 		if (!IsOnFloor())
 		{
@@ -131,7 +92,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		// Handle Left/Right Movement
-		direction = Input.GetVector("a", "d", "ui_up", "ui_down");
+		Vector2 direction = Input.GetVector("a", "d", "ui_up", "ui_down");
 
 		if (direction.X != 0)
 		{
@@ -173,14 +134,6 @@ public partial class Player : CharacterBody2D
 
 		RotateGunToMouse();
 	}
-
-private void StartDash()
-{
-	isDashing = true;
-	dashTime = DashDuration;
-	dashDirection = direction.Normalized();
-	canDash = false; // Dash wurde benutzt
-}
 
 	private void RotateGunToMouse()
 	{
@@ -275,11 +228,15 @@ private void StartDash()
 				_healthbar.Value += strenght;
 				break;
 
+				case "jump boost":
+				JumpVelocity = JumpVelocity * (int)strenght;
+				break;
+
 				case "nothing":
 				break;
 				
 				default:
-				Print("Warning: initial effect: default case triggered");
+				PrintErr("Warning: initial effect: default case triggered");
 				break;
 			}
 	}
@@ -298,7 +255,7 @@ private void StartDash()
 				break;
 				
 				default:
-				Print("Warning: continouos effect: default case triggered");
+				PrintErr("Warning: continouos effect: default case triggered");
 				break;
 			}
 	}
@@ -311,8 +268,12 @@ private void StartDash()
 				case "nothing":
 				break;
 				
+				case "jump boost":
+				JumpVelocity = JumpVelocity / (int)strenght;
+				break;
+
 				default:
-				Print("Warning: end effect: default case triggered");
+				PrintErr("Warning: end effect: default case triggered");
 				break;
 			}
 	}
@@ -324,7 +285,10 @@ private void StartDash()
 		initial_effect.Add("healing_effect", "instant_healing");
 		continuous_effect.Add("healing_effect", "regeneration");
 		end_efect.Add("healing_effect", "nothing");
-
+		
+		initial_effect.Add("jump boost effect", "jump boost");
+		continuous_effect.Add("jump boost effect", "nothing");
+		end_efect.Add("jump boost effect", "jump boost");
 
 	}
 
@@ -357,7 +321,17 @@ private void StartDash()
 		GD.Print("item used");
 	}
 
+	public void _on_healing_potioned(Node2D body)
+	{
+		Print("healing");
+		Item_add("healing_effect", 1, -1, 0.75);
+	}
 
+	public void _on_jump_boosted(Node2D body)
+	{
+		Print("jump boosted");
+		Item_add("jump boost effect", 2, -1, 15);
+	}
 
 
 
