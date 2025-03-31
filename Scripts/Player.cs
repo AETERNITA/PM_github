@@ -20,10 +20,10 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer Jump;
 	private AudioStreamPlayer Damage;
 	private AudioStreamPlayer Heal;
-	private float dashTime = 0f;
 
-	public const float Speed = 400.0f;
-	public const float JumpVelocity = -500.0f;
+	public float Speed = 400.0f;
+	public float JumpVelocity = -500.0f;
+	private float dashTime = 0f;
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
@@ -44,6 +44,7 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 			initialise_inventory_system();
+			InitializeInputMap();
 
 		if (_animatedSprite == null)
 		{
@@ -86,13 +87,13 @@ public partial class Player : CharacterBody2D
 			StartDash();
 			return;
 		}
-		
+
 		if (Input.IsActionJustReleased("alt"))
 		{
 			GD.Print("dash inactive");
 			canDash = true;
 		}
-		
+
 		// Add gravity
 		if (!IsOnFloor())
 		{
@@ -174,14 +175,28 @@ public partial class Player : CharacterBody2D
 		RotateGunToMouse();
 	}
 
-private void StartDash()
-{
+	private void StartDash()
+	{
 	isDashing = true;
 	dashTime = DashDuration;
 	dashDirection = direction.Normalized();
 	canDash = false; // Dash wurde benutzt
-}
+	}
+	
+	private void InitializeInputMap()
+	{
+	string actionName = "alt";
 
+	if (!InputMap.HasAction(actionName))
+	{
+		InputEventKey altKey = new InputEventKey();
+		altKey.Keycode = Key.Alt;
+
+		InputMap.AddAction(actionName);
+		InputMap.ActionAddEvent(actionName, altKey);
+	}
+	}
+	
 	private void RotateGunToMouse()
 	{
 		if (gunSprite != null)
@@ -275,11 +290,15 @@ private void StartDash()
 				_healthbar.Value += strenght;
 				break;
 
+				case "jump boost":
+				JumpVelocity = JumpVelocity * (int)strenght;
+				break;
+
 				case "nothing":
 				break;
 				
 				default:
-				Print("Warning: initial effect: default case triggered");
+				PrintErr("Warning: initial effect: default case triggered");
 				break;
 			}
 	}
@@ -298,7 +317,7 @@ private void StartDash()
 				break;
 				
 				default:
-				Print("Warning: continouos effect: default case triggered");
+				PrintErr("Warning: continouos effect: default case triggered");
 				break;
 			}
 	}
@@ -311,8 +330,12 @@ private void StartDash()
 				case "nothing":
 				break;
 				
+				case "jump boost":
+				JumpVelocity = JumpVelocity / (int)strenght;
+				break;
+
 				default:
-				Print("Warning: end effect: default case triggered");
+				PrintErr("Warning: end effect: default case triggered");
 				break;
 			}
 	}
@@ -324,7 +347,10 @@ private void StartDash()
 		initial_effect.Add("healing_effect", "instant_healing");
 		continuous_effect.Add("healing_effect", "regeneration");
 		end_efect.Add("healing_effect", "nothing");
-
+		
+		initial_effect.Add("jump boost effect", "jump boost");
+		continuous_effect.Add("jump boost effect", "nothing");
+		end_efect.Add("jump boost effect", "jump boost");
 
 	}
 
@@ -357,7 +383,17 @@ private void StartDash()
 		GD.Print("item used");
 	}
 
+	public void _on_healing_potioned(Node2D body)
+	{
+		Print("healing");
+		Item_add("healing_effect", 1, -1, 0.75);
+	}
 
+	public void _on_jump_boosted(Node2D body)
+	{
+		Print("jump boosted");
+		Item_add("jump boost effect", 2, -1, 15);
+	}
 
 
 
