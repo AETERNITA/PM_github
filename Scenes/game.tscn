@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=40 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_437uy"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://c3jr1av6ahmj1" path="res://Scripts/Item.cs" id="6_i6o8q"]
 [ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="7_r0gjb"]
 [ext_resource type="Script" uid="uid://du65swo1xmtj5" path="res://Scripts/Projectilenew.cs" id="8_wxlax"]
+[ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="13_ewbju"]
+[ext_resource type="Texture2D" uid="uid://26b0rxcrsd0t" path="res://Art/wrench.png" id="14_85qyi"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -77,9 +79,7 @@ bounce = 0.7
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vifiy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1up"]
-size = Vector2(8.68872, 16.1114)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_s6pmr"]
+size = Vector2(24.8249, 68.4821)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_68dvk"]
 radius = 1.9105
@@ -385,19 +385,40 @@ shape = SubResource("RectangleShape2D_vifiy")
 one_way_collision_margin = 0.0
 
 [node name="Item" type="Area2D" parent="Interactables"]
-position = Vector2(633, -184)
-scale = Vector2(-35.1554, -60.0571)
+position = Vector2(633, -235)
+scale = Vector2(-30.2796, -51.7277)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("6_i6o8q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Item"]
-position = Vector2(0.014225, 0.00832605)
+position = Vector2(-0.113781, 0.158183)
 scale = Vector2(0.114583, 0.0609753)
 shape = SubResource("RectangleShape2D_nf1up")
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/Item"]
-texture = SubResource("PlaceholderTexture2D_s6pmr")
+position = Vector2(-0.0284451, 0)
+rotation = 3.14159
+scale = Vector2(0.0398611, 0.0199066)
+texture = ExtResource("13_ewbju")
+
+[node name="Item2" type="Area2D" parent="Interactables"]
+position = Vector2(1317, -322)
+scale = Vector2(-30.2796, -51.7277)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("6_i6o8q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Item2"]
+position = Vector2(-0.113781, 0.0773282)
+scale = Vector2(0.114583, 0.0609753)
+shape = SubResource("RectangleShape2D_nf1up")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Item2"]
+position = Vector2(-0.0284451, 0)
+rotation = 3.14159
+scale = Vector2(0.0398611, 0.0199066)
+texture = ExtResource("14_85qyi")
 
 [node name="Projectile" type="Area2D" parent="Interactables"]
 position = Vector2(100, 0)
@@ -420,5 +441,6 @@ player = NodePath("../Player")
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
 [connection signal="body_entered" from="Interactables/Item" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Interactables/Item2" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
 [connection signal="body_exited" from="Interactables/Projectile" to="PortalController" method="_on_projectile_body_exited"]
