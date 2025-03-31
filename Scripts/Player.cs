@@ -1,12 +1,18 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using static Godot.GD;
+
 
 public partial class Player : CharacterBody2D
 {
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
+	private AudioStreamPlayer Move;
+	private AudioStreamPlayer Jump;
+	private AudioStreamPlayer Damage;
+	private AudioStreamPlayer Heal;
 
 	public const float Speed = 400.0f;
 	public const float JumpVelocity = -500.0f;
@@ -20,6 +26,7 @@ public partial class Player : CharacterBody2D
 	List<double> Item_Strenght = new List<double>();
 	List<double> Item_durabillity = new List<double>();
 	List<double> Item_duration = new List<double>();
+	List<int> ForDeletion = new List<int>();
 	//"static" variables
 	Dictionary<string, string> initial_effect = new Dictionary<string, string>();
 	Dictionary<string, string> continuous_effect = new Dictionary<string, string>();
@@ -34,10 +41,17 @@ public partial class Player : CharacterBody2D
 		{
 			GD.PrintErr("ERROR: _animatedSprite is not assigned in the Inspector!");
 		}
+		Move = GetNode<AudioStreamPlayer>("Move");
+		Jump = GetNode<AudioStreamPlayer>("Jump");
+		Damage = GetNode<AudioStreamPlayer>("Damage");
+		Heal = GetNode<AudioStreamPlayer>("Heal");
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+
+		Update_Inventory(delta);
+
 		Vector2 velocity = Velocity;
 
 		// Add gravity
@@ -65,6 +79,7 @@ public partial class Player : CharacterBody2D
 		{
 			jumpActive = true;
 			jumpCount = 2;
+			Jump.Play();
 		}
 
 		if (Input.IsActionJustPressed("w") && jumpCount < 2 && jumpTimer <= 0)
@@ -73,6 +88,7 @@ public partial class Player : CharacterBody2D
 			jumpCount++;
 			jumpTimer = 0.3;
 			_animatedSprite.Play("Jump"); // Play jump animation
+			Jump.Play();
 		}
 
 		// Handle Left/Right Movement
@@ -80,6 +96,9 @@ public partial class Player : CharacterBody2D
 
 		if (direction.X != 0)
 		{
+			if(IsOnFloor()){
+			Move.Play();
+			}
 			velocity.X = direction.X * Speed;
 			
 			// Flip sprite based on movement direction
@@ -103,7 +122,7 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 		
 
-		Update_Inventory(delta);
+		
 	}
 
 	public override void _Process(double delta)
@@ -132,21 +151,33 @@ public partial class Player : CharacterBody2D
 		int i = 0;
 		foreach (string element in Item)
 		{
-			if (Item_duration[i] <= delta_time && !(Item_duration[i] == -1))
+			if ((Item_duration[i] <= delta_time && !(Item_duration[i] == -1)) || (Item_durabillity[i] <= 0 && !((Item_durabillity[i] == -1))))
 			{
-				Item_Effect("end", Item[i]);
+				//Print("if");
+				Item_Effect("end", Item[i], Item_Strenght[i]);
 				Item.Remove(Item[i]);
 				Item_durabillity.Remove(Item_duration[i]);
 				Item_duration.Remove(Item_duration[i]);
 				Item_Strenght.Remove(Item_Strenght[i]);
+				break;
+				//ForDeletion.Add(i);
 			}
 			else
 			{
 				Item_duration[i] = Item_duration[i] - delta_time;
+				Item_Effect("continuous", Item[i], Item_Strenght[i]);
 			}
 
 			i = i++;
+			
 		}
+		//foreach (int k in ForDeletion)
+		//{
+		//	Item.Remove(Item[k]);
+		//	Item_durabillity.Remove(Item_duration[k]);
+		//	Item_duration.Remove(Item_duration[k]);
+		//	Item_Strenght.Remove(Item_Strenght[k]);
+		//}
 	}
 
 	private void Item_add(string item_name, double item_strenght, double item_durabillity, double item_duration)
@@ -155,22 +186,29 @@ public partial class Player : CharacterBody2D
 		Item_Strenght.Add(item_strenght);
 		Item_durabillity.Add(item_durabillity);
 		Item_duration.Add(item_duration);
+		//Print(Item[0]);
+		//Print(Item_durabillity[0]);
+		//Print(Item_Strenght[0]);
+		//Print(Item_duration[0]);
 	}
 
-	private void Item_Effect (string Time, string Item)
+
+
+	private void Item_Effect (string Time, string Item, double Item_Strenght)
 	{
+		//Print("effect");
 		switch (Time)
 		{
 			case "initial":
-			Item_initial_effect(Item);
+			Item_initial_effect(Item, Item_Strenght);
 			break;
 
 			case "continuous":
-			Item_continuous_effect(Item);
+			Item_continuous_effect(Item, Item_Strenght);
 			break;
 
 			case "end":
-			Item_end_effect(Item);
+			Item_end_effect(Item, Item_Strenght);
 			break;
 
 			default:
@@ -181,52 +219,89 @@ public partial class Player : CharacterBody2D
 	// THE CODE FOR THE EFFECTS AND THE ITEMS IS IN THE SWITCH STATEMENTS BELOW
 	// add variables for conditions affecting other systems at the top
 
-	private void Item_initial_effect (string Item)
+	private void Item_initial_effect (string Item, double strenght)
 	{
+		Print("initial_effect");
 		switch (initial_effect[Item])
 			{
+				case "instant_healing":
+				_healthbar.Value += strenght;
+				break;
+
+				case "nothing":
+				break;
+				
 				default:
+				Print("Warning: initial effect: default case triggered");
 				break;
 			}
 	}
 
-	private void Item_continuous_effect (string Item)
+	private void Item_continuous_effect (string Item, double strenght)
 	{
+		//Print("continouos_effect");
 		switch (continuous_effect[Item])
 			{
+				case "regeneration":
+				_healthbar.Value += strenght;
+				if (_healthbar.Value > 100) _healthbar.Value = 100;
+				break;
+
+				case "nothing":
+				break;
+				
 				default:
+				Print("Warning: continouos effect: default case triggered");
 				break;
 			}
 	}
 
-	private void Item_end_effect (string Item)
+	private void Item_end_effect (string Item, double strenght )
 	{
+		Print("end_effect");
 		switch (end_efect[Item])
 			{
+				case "nothing":
+				break;
+				
 				default:
+				Print("Warning: end effect: default case triggered");
 				break;
 			}
 	}
-
+	
 	//ADD THE CODE FOR INITIALISING THE DICTIONARIES HERE:
 
 	private void initialise_inventory_system ()
-	{
-		//initial_effect.Add()
+	{		
+		initial_effect.Add("healing_effect", "instant_healing");
+		continuous_effect.Add("healing_effect", "regeneration");
+		end_efect.Add("healing_effect", "nothing");
+
+
 	}
 
 
 
 	public void _on_heal_button_pressed()
 	{
-		_healthbar.Value += 10;
-		if (_healthbar.Value > 100) _healthbar.Value = 100;
+		Item_add("healing_effect", 1, -1, 0.75);
+		//Print("item added");
+		
+		//minderwertiger alter code
+		//_healthbar.Value += 10;
+		//if (_healthbar.Value > 100) _healthbar.Value = 100;
+		
+		Heal.Play();
 	}
 
 	public void _on_damage_button_pressed()
 	{
 		_healthbar.Value -= 10;
 		if (_healthbar.Value < 0) _healthbar.Value = 0;
+		
+		Damage.Play();
+		
 	}
 
 	public void _on_area_2d_body_entered(Node2D body)
@@ -235,5 +310,9 @@ public partial class Player : CharacterBody2D
 		GD.Print("item used");
 	}
 
-	 
+
+
+
+
+
 }

@@ -10,12 +10,13 @@ private int portalType = 0;
 private Vector2 portalVelocity;
 private CharacterBody2D player;
 private Node2D controller;
+private bool teleportedTo;
 
 	public override void _Ready()
 	{
 		GlobalPosition = new Vector2(0, -400);
 		player = GetNode<CharacterBody2D>("/root/Game/Player");
-
+		teleportedTo = false;
 	}
 
 	public override void _Process(double delta)
@@ -26,7 +27,14 @@ private Node2D controller;
 	public int GetPortalType(){
 		return this.portalType;
 	}
-	public void SetPortalType(int Type){
+	public void set_portal_type(int Type){
 		portalType = Type;
 	}
+	public void set_portal_teleported_to (bool telto){
+		teleportedTo = true;
+	}
+	public bool GetTelTo(){
+		return teleportedTo;
+	}
+	
 }
