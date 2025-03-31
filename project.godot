@@ -19,6 +19,10 @@ config/icon="res://Art/icon.svg"
 
 project/assembly_name="Portalmario"
 
+[global_group]
+
+World=""
+
 [input]
 
 w={

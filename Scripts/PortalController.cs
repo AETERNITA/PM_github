@@ -20,13 +20,13 @@ public partial class PortalController : Node2D
 	}
 
 	public void SpawnPortal(Vector2 spawnpoint){
-		if (GetPortalCount() > 5){
+		if (GetPortalCount() > 1){
 			RigidBody2D delPortal = portale[0]; 
 			delPortal.QueueFree(); 
 			portale.RemoveAt(0);
-			delPortal = portale[0]; 
-			delPortal.QueueFree(); 
-			portale.RemoveAt(0);
+			//delPortal = portale[0]; 
+			//delPortal.QueueFree(); 
+			//portale.RemoveAt(0);
 			SpawnPortal(spawnpoint);
 		}
 		else{
@@ -59,15 +59,21 @@ public partial class PortalController : Node2D
 	}
 	public void Teleport(){
 		if (portale[touchedPortal].GetTelTo()){}else{
-		RigidBody2D partnerPortal = GetNode<RigidBody2D>(GetPartnerPortal(touchedPortal));
+		Portal partnerPortal = GetNode<Portal>(GetPartnerPortal(touchedPortal));
 		RigidBody2D rigidTouchedPortal = portale[touchedPortal];
-		player.GlobalPosition = partnerPortal.GlobalPosition;}
+		player.GlobalPosition = partnerPortal.GlobalPosition;
+		partnerPortal.set_portal_teleported_to(true);
+		}
 	}
-	public void _on_projectile_body_exited(Node2D body){
+	
+	public void _on_portal_body_exited(Node2D body){
 		if(body is CharacterBody2D){
 			foreach (Portal p in portale){
 			p.set_portal_teleported_to(false);
-			GD.Print("Exited");
 		}}
 	}
+	public void PortalExited(Portal exitedPortal)
+{
+    exitedPortal.set_portal_teleported_to(false);
+}
 }
