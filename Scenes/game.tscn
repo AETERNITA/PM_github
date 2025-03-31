@@ -385,7 +385,7 @@ shape = SubResource("RectangleShape2D_vifiy")
 one_way_collision_margin = 0.0
 
 [node name="Item" type="Area2D" parent="Interactables"]
-position = Vector2(633, -235)
+position = Vector2(638, -254)
 scale = Vector2(-30.2796, -51.7277)
 collision_layer = 4
 collision_mask = 2
@@ -403,7 +403,7 @@ scale = Vector2(0.0398611, 0.0199066)
 texture = ExtResource("13_ewbju")
 
 [node name="Item2" type="Area2D" parent="Interactables"]
-position = Vector2(1317, -322)
+position = Vector2(1316, -344)
 scale = Vector2(-30.2796, -51.7277)
 collision_layer = 4
 collision_mask = 2
