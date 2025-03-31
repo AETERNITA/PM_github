@@ -14,8 +14,8 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer Damage;
 	private AudioStreamPlayer Heal;
 
-	public const float Speed = 400.0f;
-	public const float JumpVelocity = -500.0f;
+	public float Speed = 400.0f;
+	public float JumpVelocity = -500.0f;
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
@@ -228,11 +228,15 @@ public partial class Player : CharacterBody2D
 				_healthbar.Value += strenght;
 				break;
 
+				case "jump boost":
+				JumpVelocity = JumpVelocity * (int)strenght;
+				break;
+
 				case "nothing":
 				break;
 				
 				default:
-				Print("Warning: initial effect: default case triggered");
+				PrintErr("Warning: initial effect: default case triggered");
 				break;
 			}
 	}
@@ -251,7 +255,7 @@ public partial class Player : CharacterBody2D
 				break;
 				
 				default:
-				Print("Warning: continouos effect: default case triggered");
+				PrintErr("Warning: continouos effect: default case triggered");
 				break;
 			}
 	}
@@ -264,8 +268,12 @@ public partial class Player : CharacterBody2D
 				case "nothing":
 				break;
 				
+				case "jump boost":
+				JumpVelocity = JumpVelocity / (int)strenght;
+				break;
+
 				default:
-				Print("Warning: end effect: default case triggered");
+				PrintErr("Warning: end effect: default case triggered");
 				break;
 			}
 	}
@@ -277,7 +285,10 @@ public partial class Player : CharacterBody2D
 		initial_effect.Add("healing_effect", "instant_healing");
 		continuous_effect.Add("healing_effect", "regeneration");
 		end_efect.Add("healing_effect", "nothing");
-
+		
+		initial_effect.Add("jump boost effect", "jump boost");
+		continuous_effect.Add("jump boost effect", "nothing");
+		end_efect.Add("jump boost effect", "jump boost");
 
 	}
 
@@ -310,7 +321,17 @@ public partial class Player : CharacterBody2D
 		GD.Print("item used");
 	}
 
+	public void _on_healing_potioned(Node2D body)
+	{
+		Print("healing");
+		Item_add("healing_effect", 1, -1, 0.75);
+	}
 
+	public void _on_jump_boosted(Node2D body)
+	{
+		Print("jump boosted");
+		Item_add("jump boost effect", 2, -1, 15);
+	}
 
 
 
