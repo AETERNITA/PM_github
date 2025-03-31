@@ -1,0 +1,128 @@
+[gd_scene load_steps=15 format=3 uid="uid://cgbltl8a4q4et"]
+
+[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_htq0c"]
+[ext_resource type="AudioStream" uid="uid://507pfam8pkjt" path="res://Audio/Running.MP3" id="2_tligs"]
+[ext_resource type="AudioStream" uid="uid://bu2wuluodyasd" path="res://Audio/Jumping.MP3" id="3_7pkgb"]
+[ext_resource type="AudioStream" uid="uid://dmmp2nngdml7h" path="res://Audio/084373_heal-36672.mp3" id="4_c3s05"]
+[ext_resource type="AudioStream" uid="uid://h51u6l4wusuq" path="res://Audio/Damage.MP3" id="5_pmb1g"]
+[ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="7_5o7e5"]
+[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="9_06xa8"]
+[ext_resource type="Script" uid="uid://7s0ufxj5ol0f" path="res://Scripts/Background.cs" id="10_flmja"]
+[ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="17_ro0e1"]
+[ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="18_0yaah"]
+
+[sub_resource type="Gradient" id="Gradient_5eq1c"]
+offsets = PackedFloat32Array(0, 0.485915, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.890188, 0.843423, 0, 1, 0.0666667, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccd35"]
+gradient = SubResource("Gradient_5eq1c")
+width = 128
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lylri"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4lybf"]
+size = Vector2(4008.33, 302.503)
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_htq0c")]
+physics_interpolation_mode = 1
+position = Vector2(0, -57)
+scale = Vector2(0.32, 0.32)
+_healthbar = NodePath("../CanvasLayer/Control/_healthbar")
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+zoom = Vector2(0.75, 0.75)
+position_smoothing_enabled = true
+
+[node name="Move" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("2_tligs")
+
+[node name="Jump" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("3_7pkgb")
+
+[node name="Heal" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("4_c3s05")
+
+[node name="Damage" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("5_pmb1g")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="_healthbar" type="TextureProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 128.0
+grow_vertical = 0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_ccd35")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.848837, 0.961991)
+
+[node name="HealButton" type="Button" parent="CanvasLayer/Control/GridContainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Heal"
+
+[node name="DamageButton" type="Button" parent="CanvasLayer/Control/GridContainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Damge"
+
+[node name="World" type="Node" parent="."]
+
+[node name="Ground" type="Node" parent="World"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="World/Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/StaticBody2D"]
+position = Vector2(0, 787)
+shape = SubResource("WorldBoundaryShape2D_lylri")
+
+[node name="Walls" type="Node" parent="World"]
+
+[node name="Wall_Left" type="StaticBody2D" parent="World/Walls"]
+position = Vector2(-2828, -479)
+rotation = 1.5708
+scale = Vector2(0.72, 0.72)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Walls/Wall_Left"]
+texture = ExtResource("7_5o7e5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Left"]
+position = Vector2(4.16559, -161.252)
+shape = SubResource("RectangleShape2D_4lybf")
+
+[node name="Background" type="Sprite2D" parent="World"]
+z_index = -1
+z_as_relative = false
+position = Vector2(0, -560)
+scale = Vector2(1.38748, 1.38748)
+texture = ExtResource("9_06xa8")
+script = ExtResource("10_flmja")
+
+[node name="PortalController" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("17_ro0e1")
+PortalSpawner = ExtResource("18_0yaah")
+player = NodePath("../Player")
+
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
