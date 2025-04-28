@@ -14,26 +14,28 @@ public partial class LaserSchwert : Area2D
         BodyExited += Exited;
     }
 
-    public bool CheckHit(String Path){
-        foreach(String ListedPath in inRange){
-            if(ListedPath == Path){ return true;}
-            else{ return false;}
+    public override void _Process(){
+        if(Input.IsActionJustPressed("SwordHit")){
+           // CheckHit();
         }
-        return false;
+
+
     }
+    //Missing Reference to enemy (Controller) needs to get list of all onscreen enemies
+   // public bool CheckHit(String Path){
+   //         if(Path == Path){ return true;} return false; }
 
     public void Entered(Node2D body){
-        if (body.IsInGroup("World")){}else{
+        //body.IsInGroup("World") ||
+        if ( body == player){}else{
         inRange.Add(body.GetPath());
         GD.Print(inRange);}
     }
 
     public void Exited(Node2D body){
-        foreach(String ListedPath in inRange){
-            if(ListedPath == body.GetPath()){
-                inRange.Remove(ListedPath);
-                GD.Print(inRange);
-            }
-        }
+            inRange.RemoveAll(p => p == body.GetPath());
+            foreach(String b in inRange){
+            GD.Print(b);}
+        
     }
 }
