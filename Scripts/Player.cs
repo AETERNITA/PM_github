@@ -393,7 +393,7 @@ public partial class Player : CharacterBody2D
 	public void _on_healing_potioned(Node2D body)
 	{
 		//Print("healing");
-		Item_add("healing_effect", 1, -1, 0.75);
+		Item_add("healing_effect", 1, -1, 1.75);
 	}
 
 	public void _on_jump_boosted(Node2D body)
