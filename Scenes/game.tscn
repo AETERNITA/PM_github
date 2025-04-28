@@ -219,7 +219,7 @@ shape = SubResource("RectangleShape2D_4lybf")
 [node name="Ground" type="Node" parent="World" groups=["World"]]
 
 [node name="Ground2" type="StaticBody2D" parent="World/Ground" groups=["World"]]
-position = Vector2(2847, 286)
+position = Vector2(1479, 286)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground2"]
@@ -244,7 +244,7 @@ scale = Vector2(148.143, 29.9721)
 shape = SubResource("RectangleShape2D_wcvuv")
 
 [node name="Ground1" type="StaticBody2D" parent="World/Ground" groups=["World"]]
-position = Vector2(0, 286)
+position = Vector2(-1368, 286)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground1"]
