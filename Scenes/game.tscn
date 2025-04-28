@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=41 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_437uy"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://h51u6l4wusuq" path="res://Audio/Damage.MP3" id="5_iivbl"]
 [ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="6_56shs"]
 [ext_resource type="Script" uid="uid://c3jr1av6ahmj1" path="res://Scripts/Item.cs" id="6_i6o8q"]
+[ext_resource type="PackedScene" uid="uid://bvwp05qfomlj" path="res://Scenes/audio_menu.tscn" id="6_iivbl"]
 [ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="7_r0gjb"]
 [ext_resource type="Script" uid="uid://du65swo1xmtj5" path="res://Scripts/Projectilenew.cs" id="8_wxlax"]
 [ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="13_ewbju"]
@@ -146,6 +147,8 @@ text = "10 Heal"
 layout_mode = 2
 action_mode = 0
 text = "10 Damge"
+
+[node name="AudioMenu" parent="CanvasLayer/Control/GridContainer" instance=ExtResource("6_iivbl")]
 
 [node name="World" type="Node" parent="." groups=["World"]]
 
