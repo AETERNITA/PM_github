@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvwp05qfomlj"]
+
+[ext_resource type="Script" uid="uid://cwmspjooa2whw" path="res://Scripts/AudioSlider.cs" id="1_uk7hx"]
+
+[node name="AudioMenu" type="CanvasLayer"]
+script = ExtResource("1_uk7hx")
+
+[node name="Master_Slider" type="HSlider" parent="."]
+offset_left = 410.0
+offset_top = 41.0
+offset_right = 753.0
+offset_bottom = 57.0
+max_value = 1.0
+step = 0.1
+
+[node name="Master_Label" type="Label" parent="."]
+offset_left = 412.0
+offset_top = 12.0
+offset_right = 847.0
+offset_bottom = 35.0
+
+[connection signal="value_changed" from="Master_Slider" to="." method="_on_master_slider_value_changed"]
