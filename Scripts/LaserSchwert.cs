@@ -14,7 +14,7 @@ public partial class LaserSchwert : Area2D
         BodyExited += Exited;
     }
 
-    public override void _Process(){
+    public override void _Process(double delta){
         if(Input.IsActionJustPressed("SwordHit")){
            // CheckHit();
         }
