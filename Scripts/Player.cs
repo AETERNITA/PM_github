@@ -9,6 +9,13 @@ public partial class Player : CharacterBody2D
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
+	[Export] public float DashSpeed = 1200.0f; // Geschwindigkeit beim Dash
+	[Export] public float DashTime = 0.2f; // Dauer des Dashs
+	[Export] public float DashDuration = 0.2f; // Dauer des Dashs
+	private bool isDashing = false;
+	private bool canDash = true;
+	private Vector2 dashDirection = Vector2.Zero;
+	private Vector2 direction = Vector2.Zero;
 	private AudioStreamPlayer Move;
 	private AudioStreamPlayer Jump;
 	private AudioStreamPlayer Damage;
@@ -16,6 +23,7 @@ public partial class Player : CharacterBody2D
 
 	public float Speed = 400.0f;
 	public float JumpVelocity = -500.0f;
+	private float dashTime = 0f;
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
@@ -36,6 +44,7 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 			initialise_inventory_system();
+			InitializeInputMap();
 
 		if (_animatedSprite == null)
 		{
@@ -53,6 +62,37 @@ public partial class Player : CharacterBody2D
 		Update_Inventory(delta);
 
 		Vector2 velocity = Velocity;
+
+		if (isDashing)
+		{
+			dashTime -= (float)delta;
+			if (dashTime <= 0)
+			{
+				isDashing = false; // Dash beenden
+			}
+			else
+			{
+				Velocity = dashDirection * DashSpeed;
+				MoveAndSlide();
+				return;
+			}
+		}
+
+		direction = Input.GetVector("a", "d", "ui_up", "ui_down");
+
+		// if alt + a or d --> dash
+		if (Input.IsActionJustPressed("alt") && direction.X != 0 && !isDashing && canDash)
+		{
+			GD.Print("dash active");
+			StartDash();
+			return;
+		}
+
+		if (Input.IsActionJustReleased("alt"))
+		{
+			GD.Print("dash inactive");
+			canDash = true;
+		}
 
 		// Add gravity
 		if (!IsOnFloor())
@@ -92,7 +132,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		// Handle Left/Right Movement
-		Vector2 direction = Input.GetVector("a", "d", "ui_up", "ui_down");
+		direction = Input.GetVector("a", "d", "ui_up", "ui_down");
 
 		if (direction.X != 0)
 		{
@@ -135,6 +175,28 @@ public partial class Player : CharacterBody2D
 		RotateGunToMouse();
 	}
 
+	private void StartDash()
+	{
+	isDashing = true;
+	dashTime = DashDuration;
+	dashDirection = direction.Normalized();
+	canDash = false; // Dash wurde benutzt
+	}
+	
+	private void InitializeInputMap()
+	{
+	string actionName = "alt";
+
+	if (!InputMap.HasAction(actionName))
+	{
+		InputEventKey altKey = new InputEventKey();
+		altKey.Keycode = Key.Alt;
+
+		InputMap.AddAction(actionName);
+		InputMap.ActionAddEvent(actionName, altKey);
+	}
+	}
+	
 	private void RotateGunToMouse()
 	{
 		if (gunSprite != null)
