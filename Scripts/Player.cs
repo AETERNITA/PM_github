@@ -83,14 +83,14 @@ public partial class Player : CharacterBody2D
 		// if alt + a or d --> dash
 		if (Input.IsActionJustPressed("alt") && direction.X != 0 && !isDashing && canDash)
 		{
-			GD.Print("dash active");
+			//Print("dash active");
 			StartDash();
 			return;
 		}
 
 		if (Input.IsActionJustReleased("alt"))
 		{
-			GD.Print("dash inactive");
+			//Print("dash inactive");
 			canDash = true;
 		}
 
@@ -215,7 +215,7 @@ public partial class Player : CharacterBody2D
 		{
 			if ((Item_duration[i] <= delta_time && !(Item_duration[i] == -1)) || (Item_durabillity[i] <= 0 && !((Item_durabillity[i] == -1))))
 			{
-				//Print("if");
+				////Print("if");
 				Item_Effect("end", Item[i], Item_Strenght[i]);
 				Item.Remove(Item[i]);
 				Item_durabillity.Remove(Item_duration[i]);
@@ -248,20 +248,23 @@ public partial class Player : CharacterBody2D
 		Item_Strenght.Add(item_strenght);
 		Item_durabillity.Add(item_durabillity);
 		Item_duration.Add(item_duration);
-		//Print(Item[0]);
-		//Print(Item_durabillity[0]);
-		//Print(Item_Strenght[0]);
-		//Print(Item_duration[0]);
+		Item_Effect("initial", item_name, item_strenght);
+
+		////Print(Item[0]);
+		////Print(Item_durabillity[0]);
+		////Print(Item_Strenght[0]);
+		////Print(Item_duration[0]);
 	}
 
 
 
 	private void Item_Effect (string Time, string Item, double Item_Strenght)
 	{
-		//Print("effect");
+		////Print("effect");
 		switch (Time)
 		{
 			case "initial":
+			//Print("Item_Effect triggered: initial effect");
 			Item_initial_effect(Item, Item_Strenght);
 			break;
 
@@ -283,14 +286,15 @@ public partial class Player : CharacterBody2D
 
 	private void Item_initial_effect (string Item, double strenght)
 	{
-		Print("initial_effect");
+		//Print("initial_effect");
 		switch (initial_effect[Item])
 			{
 				case "instant_healing":
 				_healthbar.Value += strenght;
 				break;
 
-				case "jump boost":
+				case "jumpboost":
+				//Print("jump initial effect for booooooooooooooooosting");
 				JumpVelocity = JumpVelocity * (int)strenght;
 				break;
 
@@ -305,7 +309,7 @@ public partial class Player : CharacterBody2D
 
 	private void Item_continuous_effect (string Item, double strenght)
 	{
-		//Print("continouos_effect");
+		////Print("continouos_effect");
 		switch (continuous_effect[Item])
 			{
 				case "regeneration":
@@ -330,7 +334,7 @@ public partial class Player : CharacterBody2D
 				case "nothing":
 				break;
 				
-				case "jump boost":
+				case "jumpboost":
 				JumpVelocity = JumpVelocity / (int)strenght;
 				break;
 
@@ -348,9 +352,9 @@ public partial class Player : CharacterBody2D
 		continuous_effect.Add("healing_effect", "regeneration");
 		end_efect.Add("healing_effect", "nothing");
 		
-		initial_effect.Add("jump boost effect", "jump boost");
-		continuous_effect.Add("jump boost effect", "nothing");
-		end_efect.Add("jump boost effect", "jump boost");
+		initial_effect.Add("jumpboost", "jumpboost");
+		continuous_effect.Add("jumpboost", "nothing");
+		end_efect.Add("jumpboost", "jumpboost");
 
 	}
 
@@ -377,22 +381,25 @@ public partial class Player : CharacterBody2D
 		
 	}
 
+//Item adding code below:
+//(string item_name, double item_strenght, double item_durabillity, double item_duration)
+
 	public void _on_area_2d_body_entered(Node2D body)
 	{
    		//add item 
-		GD.Print("item used");
+		//Print("item used");
 	}
 
 	public void _on_healing_potioned(Node2D body)
 	{
-		Print("healing");
+		//Print("healing");
 		Item_add("healing_effect", 1, -1, 0.75);
 	}
 
 	public void _on_jump_boosted(Node2D body)
 	{
-		Print("jump boosted");
-		Item_add("jump boost effect", 2, -1, 15);
+		//Print("jump boosted");
+		Item_add("jumpboost", 3, -1, 15);
 	}
 
 
