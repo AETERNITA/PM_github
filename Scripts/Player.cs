@@ -9,9 +9,9 @@ public partial class Player : CharacterBody2D
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
-	[Export] public float DashSpeed = 1200.0f; // Geschwindigkeit beim Dash
-	[Export] public float DashTime = 0.2f; // Dauer des Dashs
-	[Export] public float DashDuration = 0.2f; // Dauer des Dashs
+	public float dashSpeed = 1200.0f; // Geschwindigkeit beim Dash
+	public float dashTime = 0.2f; // Dauer des Dashs
+	public float dashDuration = 0.2f; // Dauer des Dashs
 	private bool isDashing = false;
 	private bool canDash = true;
 	private Vector2 dashDirection = Vector2.Zero;
@@ -23,7 +23,7 @@ public partial class Player : CharacterBody2D
 
 	public float Speed = 400.0f;
 	public float JumpVelocity = -500.0f;
-	private float dashTime = 0f;
+	//private float dashTime = 0f;
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
@@ -72,7 +72,7 @@ public partial class Player : CharacterBody2D
 			}
 			else
 			{
-				Velocity = dashDirection * DashSpeed;
+				Velocity = dashDirection * dashSpeed;
 				MoveAndSlide();
 				return;
 			}
@@ -178,7 +178,7 @@ public partial class Player : CharacterBody2D
 	private void StartDash()
 	{
 	isDashing = true;
-	dashTime = DashDuration;
+	dashTime = dashDuration;
 	dashDirection = direction.Normalized();
 	canDash = false; // Dash wurde benutzt
 	}
