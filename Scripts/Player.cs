@@ -1,3 +1,4 @@
+// Autoren: Dominik von Ehrenstein, Leo Appel, Yannik Duplitzer, 
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -36,9 +37,9 @@ public partial class Player : CharacterBody2D
 	List<double> Item_duration = new List<double>();
 	List<int> ForDeletion = new List<int>();
 	//"static" variables
-	Dictionary<string, string> initial_effect = new Dictionary<string, string>();
-	Dictionary<string, string> continuous_effect = new Dictionary<string, string>();
-	Dictionary<string, string> end_efect = new Dictionary<string, string>();
+	Dictionary<string, string> initial_effect;
+	Dictionary<string, string> continuous_effect;
+	Dictionary<string, string> end_efect;
 	
 
 	public override void _Ready()
@@ -344,17 +345,19 @@ public partial class Player : CharacterBody2D
 			}
 	}
 	
-	//ADD THE CODE FOR INITIALISING THE DICTIONARIES HERE:
 
 	private void initialise_inventory_system ()
 	{		
-		initial_effect.Add("healing_effect", "instant_healing");
-		continuous_effect.Add("healing_effect", "regeneration");
-		end_efect.Add("healing_effect", "nothing");
+		//initial_effect.Add("healing_effect", "instant_healing");
+		//continuous_effect.Add("healing_effect", "regeneration");
+		//end_efect.Add("healing_effect", "nothing");
 		
-		initial_effect.Add("jumpboost", "jumpboost");
-		continuous_effect.Add("jumpboost", "nothing");
-		end_efect.Add("jumpboost", "jumpboost");
+		//initial_effect.Add("jumpboost", "jumpboost");
+		//continuous_effect.Add("jumpboost", "nothing");
+		//end_efect.Add("jumpboost", "jumpboost");
+		initial_effect = Inventory_initialisation.return_inv_dictionaries()[0];
+		continuous_effect = Inventory_initialisation.return_inv_dictionaries()[1];
+		end_efect = Inventory_initialisation.return_inv_dictionaries()[2];
 
 	}
 
