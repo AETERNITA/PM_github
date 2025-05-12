@@ -33,7 +33,7 @@ public partial class PortalController : Node2D
 			newportal = PortalSpawner.Instantiate<Portal>();
 			GetParent().CallDeferred("add_child", newportal);
 			portale.Add(newportal);
-			newportal.CallDeferred("set_portal_type", portale.IndexOf(newportal));
+			foreach(Portal p in portale){p.CallDeferred("set_portal_type", portale.IndexOf(p));}
 			newportal.CallDeferred("set", "global_position", spawnpoint);
 	}
 	}

@@ -78,7 +78,7 @@ radius = 240.0
 height = 654.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x3wgy"]
-radius = 710.138
+radius = 294.551
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite")]
 collision_layer = 3
