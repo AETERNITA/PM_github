@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceo8tttylidv6"]
+
+[ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="1_sl0hv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcvuv"]
+size = Vector2(26.9634, 19.7202)
+
+[node name="Game" type="Node2D"]
+
+[node name="World" type="Node" parent="." groups=["World"]]
+
+[node name="wall&ground" type="Node" parent="World" groups=["World"]]
+
+[node name="ground" type="StaticBody2D" parent="World/wall&ground" groups=["World"]]
+position = Vector2(-2000, -74)
+scale = Vector2(1, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/wall&ground/ground"]
+texture = ExtResource("1_sl0hv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/wall&ground/ground"]
+position = Vector2(3, 4.29153e-06)
+scale = Vector2(148.143, 29.9721)
+shape = SubResource("RectangleShape2D_wcvuv")
+
+[node name="wall" type="StaticBody2D" parent="World/wall&ground" groups=["World"]]
+position = Vector2(-4073, -2000)
+rotation = 1.5708
+scale = Vector2(1, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/wall&ground/wall"]
+texture = ExtResource("1_sl0hv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/wall&ground/wall"]
+position = Vector2(3, 4.29153e-06)
+scale = Vector2(148.143, 29.9721)
+shape = SubResource("RectangleShape2D_wcvuv")
+
+[node name="Platfroms" type="Node" parent="World" groups=["World"]]
