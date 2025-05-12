@@ -278,7 +278,6 @@ texture = ExtResource("2_437uy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D2"]
 position = Vector2(-3.125, 0)
 shape = SubResource("RectangleShape2D_t8kt2")
-one_way_collision = true
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
 position = Vector2(-913, -182)
@@ -316,7 +315,6 @@ texture = ExtResource("4_727y2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D8"]
 position = Vector2(13.9424, 4.27881)
 shape = SubResource("RectangleShape2D_lrrmg")
-one_way_collision = true
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
 position = Vector2(-318, -271)
@@ -328,7 +326,6 @@ texture = ExtResource("3_bdcor")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D6"]
 position = Vector2(8.55811, -8.55713)
 shape = SubResource("RectangleShape2D_r8nri")
-one_way_collision = true
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
 position = Vector2(-713, -43)

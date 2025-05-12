@@ -1,4 +1,4 @@
-// Autoren: Dominik von Ehrenstein, Leo Appel, Yannik Duplitzer, 
+// Autoren: Dominik von Ehrenstein, Leo Appel, Yannik Duplitzer, Leander
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -23,6 +23,7 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer Heal;
 
 	public float Speed = 400.0f;
+	private float minSpeed = 390.0f;
 	public float JumpVelocity = -500.0f;
 	//private float dashTime = 0f;
 	private int jumpCount = 0;
@@ -159,10 +160,16 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
+		if(Math.Abs(velocity.X) < minSpeed && !(velocity.X == 0))
+		{
+			velocity.X = 0;
+			Print("stop");
+		}
+
 		Velocity = velocity;
 		MoveAndSlide();
 		
-
+		
 		
 	}
 
