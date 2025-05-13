@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgbltl8a4q4et"]
+[gd_scene load_steps=16 format=3 uid="uid://cgbltl8a4q4et"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_htq0c"]
+[ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="1_ju76a"]
 [ext_resource type="AudioStream" uid="uid://507pfam8pkjt" path="res://Audio/Running.MP3" id="2_tligs"]
 [ext_resource type="AudioStream" uid="uid://bu2wuluodyasd" path="res://Audio/Jumping.MP3" id="3_7pkgb"]
 [ext_resource type="AudioStream" uid="uid://dmmp2nngdml7h" path="res://Audio/084373_heal-36672.mp3" id="4_c3s05"]
@@ -25,10 +26,11 @@ width = 128
 size = Vector2(4008.33, 302.503)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_ju76a")
 
 [node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_htq0c")]
 physics_interpolation_mode = 1
-position = Vector2(0, -122)
+position = Vector2(-327, -122)
 scale = Vector2(0.32, 0.32)
 _healthbar = NodePath("../CanvasLayer/Control/_healthbar")
 
@@ -99,7 +101,7 @@ shape = SubResource("WorldBoundaryShape2D_lylri")
 [node name="Walls" type="Node" parent="World"]
 
 [node name="Wall_Left" type="StaticBody2D" parent="World/Walls"]
-position = Vector2(-1272, -1441)
+position = Vector2(-776, -1441)
 rotation = 1.5708
 scale = Vector2(0.72, 0.72)
 
