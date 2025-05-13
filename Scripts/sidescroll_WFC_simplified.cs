@@ -4,16 +4,14 @@ using System;
 using System.Collections.Generic;
 using static Godot.GD;
 
-public partial class sidescroll_WF : Node2D
+public partial class sidescroll_WFC_simplified : Node2D
 {
     //maximum amount of stacked scenes that have the lowest possible height
     static int level_height = 4;
     static int start_height = 1;
-    //private bool[,] connected_to = new bool[level_height,level_height];
     private bool[] open_connections = new bool[level_height];
 
-    private List<Room> rooms = new List<Room>();
-
+    private List<int> gen_queue = new List<int>();
 
 	public override void _Ready()
     {
@@ -23,20 +21,24 @@ public partial class sidescroll_WF : Node2D
         }
         else
         {
-            //setup_gen_list();
-            setup_start_area(start_height);
+            gen_initialization();
             new_gen_cycle();
         }
     }
 
 
-    private void new_gen_cycle ()
+    private void place_scene ()
     {
-        create_lists();
+        var scene = GD.Load<PackedScene>("uid://bm42aiylfo3oc"); //will be a variable later
+        //var instance = scene.Instantiate();
+        Node2D node2d_instance = (Node2D)scene.Instantiate();
+        AddChild(node2d_instance);
+        //node2d_instance.set_global_position(new Vector2(150, 0));
+        //node2d_instance.global_position = new Vector2(150, 0);
 
-        
 
     }
+
 
     private void setup_start_area(int start_height)
     {
@@ -44,36 +46,33 @@ public partial class sidescroll_WF : Node2D
         open_connections[start_height] = true;
     }
 
-    private void create_lists()
+
+    private void new_gen_cycle()
+    {
+        for (int i = 0; i < level_height; i++)
+        {
+            gen_queue.Add(i);
+        }
+        definitive_placement();
+        WFC_placement();
+    }
+
+    private void definitive_placement()
     {
 
     }
 
-    private void collapse_to_list()
+    private void WFC_placement()
     {
-
+        for (int i = 0; i < gen_queue.Count; i++)
+        {
+            
+        }
     }
 
-    private void place_scenes()
+    private void gen_initialization()
     {
-
+        open_connections[0] = true;
     }
-
-/*     private void setup_gen_list()
-    {
-        //Add code for the properties of the associated scenes/rooms
-        List<string> Rooms = new List<string>();
-        Dictionary<string, List<bool>> front_connect_of_rooms = new Dictionary<string, List<bool>>();
-        Dictionary<string, List<bool>> back_connect_of_rooms = new Dictionary<string, List<bool>>();
-        // dict for reference to place scene
-
-        //front_connect_of_rooms.Add()
-    
-
-    }
-    private void add_room_to_list(List<bool> front_connect, List<bool> back_connect)
-    {
-        rooms.Add(new Room(front_connect, back_connect));  
-    } */
 
 }
