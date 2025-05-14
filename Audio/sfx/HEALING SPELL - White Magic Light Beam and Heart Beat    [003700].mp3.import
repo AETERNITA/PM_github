@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://br3pq7xgmye0w"
+path="res://.godot/imported/HEALING SPELL - White Magic Light Beam and Heart Beat    [003700].mp3-1a2902ab72212f8f7dc042803bb83531.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/HEALING SPELL - White Magic Light Beam and Heart Beat    [003700].mp3"
+dest_files=["res://.godot/imported/HEALING SPELL - White Magic Light Beam and Heart Beat    [003700].mp3-1a2902ab72212f8f7dc042803bb83531.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

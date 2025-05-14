@@ -1,16 +1,12 @@
-[gd_scene load_steps=41 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=37 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_437uy"]
-[ext_resource type="AudioStream" uid="uid://507pfam8pkjt" path="res://Audio/Running.MP3" id="2_nnt18"]
 [ext_resource type="Texture2D" uid="uid://cwegm84khu1qs" path="res://Art/projektil2.png" id="3_3by6r"]
 [ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="3_bdcor"]
-[ext_resource type="AudioStream" uid="uid://boo3dmjt2lspu" path="res://Audio/sfx/HEALING SPELL - White Magic Light Throw Whoosh 01    [003701].mp3" id="3_iivbl"]
 [ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="3_smvof"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="4_727y2"]
-[ext_resource type="AudioStream" uid="uid://cp1r5iyd44gx4" path="res://Audio/sfx/HEALING MAGIC SPELL SEQUENCE - Universal Generic Beam Throw Scrape - 01    [003694].mp3" id="4_iivbl"]
 [ext_resource type="Script" uid="uid://7s0ufxj5ol0f" path="res://Scripts/Background.cs" id="4_oglym"]
-[ext_resource type="AudioStream" uid="uid://bba8pixjmf3pw" path="res://Audio/sfx/ELECTRICITY WEAPON HIT - Electro Current Magic Spell Hit - 04    [003626].mp3" id="5_7nbq1"]
 [ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="5_amekv"]
 [ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="6_56shs"]
 [ext_resource type="Script" uid="uid://c3jr1av6ahmj1" path="res://Scripts/Item.cs" id="6_i6o8q"]
@@ -96,18 +92,6 @@ _healthbar = NodePath("../CanvasLayer/Control/_healthbar")
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 zoom = Vector2(0.75, 0.75)
 position_smoothing_enabled = true
-
-[node name="Move" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("2_nnt18")
-
-[node name="Jump" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("3_iivbl")
-
-[node name="Heal" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("4_iivbl")
-
-[node name="Damage" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("5_7nbq1")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

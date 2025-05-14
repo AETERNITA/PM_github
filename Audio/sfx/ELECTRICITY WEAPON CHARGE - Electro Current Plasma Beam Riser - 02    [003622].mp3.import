@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bw3hl0fbofnwf"
+path="res://.godot/imported/ELECTRICITY WEAPON CHARGE - Electro Current Plasma Beam Riser - 02    [003622].mp3-56ee09e1305e6ad6b6521a64b3753243.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/ELECTRICITY WEAPON CHARGE - Electro Current Plasma Beam Riser - 02    [003622].mp3"
+dest_files=["res://.godot/imported/ELECTRICITY WEAPON CHARGE - Electro Current Plasma Beam Riser - 02    [003622].mp3-56ee09e1305e6ad6b6521a64b3753243.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

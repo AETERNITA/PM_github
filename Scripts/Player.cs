@@ -21,6 +21,14 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer Jump;
 	private AudioStreamPlayer Damage;
 	private AudioStreamPlayer Heal;
+	private AudioStreamPlayer Heal_low_health;
+	private AudioStreamPlayer Dash;
+	private AudioStreamPlayer JumpBoost;
+	private AudioStreamPlayer NormalSoundscape;
+	private AudioStreamPlayer Teleport_sfx;
+	private AudioStreamPlayer PortalGun_sfx;
+
+	public string soundscapes = "normal";
 
 	public float Speed = 400.0f;
 	private float minSpeed = 390.0f;
@@ -29,6 +37,7 @@ public partial class Player : CharacterBody2D
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
+	private bool jump_boosted = false;
 
 //Inventory Variables; Effects are also Items
 	//Dynamic Variables
@@ -50,12 +59,25 @@ public partial class Player : CharacterBody2D
 
 		if (_animatedSprite == null)
 		{
-			GD.PrintErr("ERROR: _animatedSprite is not assigned in the Inspector!");
+			PrintErr("ERROR: _animatedSprite is not assigned in the Inspector!");
 		}
 		Move = GetNode<AudioStreamPlayer>("Move");
 		Jump = GetNode<AudioStreamPlayer>("Jump");
 		Damage = GetNode<AudioStreamPlayer>("Damage");
 		Heal = GetNode<AudioStreamPlayer>("Heal");
+		Heal_low_health = GetNode<AudioStreamPlayer>("Heal_low_health");
+		Dash = GetNode<AudioStreamPlayer>("Dash");
+		JumpBoost = GetNode<AudioStreamPlayer>("JumpBoost");
+		NormalSoundscape = GetNode<AudioStreamPlayer>("NormalSoundscape");
+		Teleport_sfx = GetNode<AudioStreamPlayer>("Teleport");
+		PortalGun_sfx = GetNode<AudioStreamPlayer>("PortalGun");
+
+		/* if(soundscapes == "normal")
+		{
+			//NormalSoundscape.Play();
+			Print("normal_soundscape");
+		} */
+		play_background();
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -66,7 +88,8 @@ public partial class Player : CharacterBody2D
 		Vector2 velocity = Velocity;
 
 		if (isDashing)
-		{
+		{	
+			Dash.Play();
 			dashTime -= (float)delta;
 			if (dashTime <= 0)
 			{
@@ -130,7 +153,14 @@ public partial class Player : CharacterBody2D
 			jumpCount++;
 			jumpTimer = 0.3;
 			_animatedSprite.Play("Jump"); // Play jump animation
-			Jump.Play();
+			if(jump_boosted)
+			{
+				JumpBoost.Play();
+			}
+			else
+			{
+				Jump.Play();
+			}
 		}
 
 		// Handle Left/Right Movement
@@ -160,7 +190,7 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
-		if(Math.Abs(velocity.X) < minSpeed && !(velocity.X == 0))
+		if(Math.Abs(velocity.X) < minSpeed && !(velocity.X == 0) && IsOnFloor())
 		{
 			velocity.X = 0;
 			Print("stop");
@@ -179,6 +209,8 @@ public partial class Player : CharacterBody2D
 		{
 			jumpTimer -= delta;
 		}
+		
+		
 
 		RotateGunToMouse();
 	}
@@ -299,11 +331,20 @@ public partial class Player : CharacterBody2D
 			{
 				case "instant_healing":
 				_healthbar.Value += strenght;
+				if(_healthbar.Value < 30)
+				{
+					Heal_low_health.Play();
+				}
+				else
+				{
+					Heal.Play();
+				}
 				break;
 
 				case "jumpboost":
 				//Print("jump initial effect for booooooooooooooooosting");
 				JumpVelocity = JumpVelocity * (int)strenght;
+				jump_boosted = true;
 				break;
 
 				case "nothing":
@@ -344,6 +385,7 @@ public partial class Player : CharacterBody2D
 				
 				case "jumpboost":
 				JumpVelocity = JumpVelocity / (int)strenght;
+				jump_boosted = false;
 				break;
 
 				default:
@@ -379,7 +421,7 @@ public partial class Player : CharacterBody2D
 		//_healthbar.Value += 10;
 		//if (_healthbar.Value > 100) _healthbar.Value = 100;
 		
-		Heal.Play();
+		//Heal.Play();
 	}
 
 	public void _on_damage_button_pressed()
@@ -412,6 +454,24 @@ public partial class Player : CharacterBody2D
 		Item_add("jumpboost", 3, -1, 15);
 	}
 
+	public void _on_normal_soundscape_finished()
+	{
+		play_background();
+	}
+
+	private void play_background()
+	{
+		switch (soundscapes)
+		{
+			case "normal":
+			NormalSoundscape.Play();
+			break;
+			
+			
+			default:
+			break;
+		}
+	}
 
 
 
