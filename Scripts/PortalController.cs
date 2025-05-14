@@ -35,7 +35,7 @@ public partial class PortalController : Node2D
 			portale.Add(newportal);
 			foreach(Portal p in portale){p.CallDeferred("set_portal_type", portale.IndexOf(p));}
 			newportal.CallDeferred("set", "global_position", spawnpoint);
-	}
+		}
 	}
 
 	public String GetPartnerPortal(int touchedportal){
