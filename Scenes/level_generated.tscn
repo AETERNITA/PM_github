@@ -1,11 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgbltl8a4q4et"]
+[gd_scene load_steps=12 format=3 uid="uid://cgbltl8a4q4et"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_htq0c"]
 [ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="1_ju76a"]
-[ext_resource type="AudioStream" uid="uid://507pfam8pkjt" path="res://Audio/Running.MP3" id="2_tligs"]
-[ext_resource type="AudioStream" uid="uid://bu2wuluodyasd" path="res://Audio/Jumping.MP3" id="3_7pkgb"]
-[ext_resource type="AudioStream" uid="uid://dmmp2nngdml7h" path="res://Audio/084373_heal-36672.mp3" id="4_c3s05"]
-[ext_resource type="AudioStream" uid="uid://h51u6l4wusuq" path="res://Audio/Damage.MP3" id="5_pmb1g"]
 [ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="7_5o7e5"]
 [ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="9_06xa8"]
 [ext_resource type="Script" uid="uid://7s0ufxj5ol0f" path="res://Scripts/Background.cs" id="10_flmja"]
@@ -37,18 +33,6 @@ _healthbar = NodePath("../CanvasLayer/Control/_healthbar")
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 zoom = Vector2(0.75, 0.75)
 position_smoothing_enabled = true
-
-[node name="Move" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("2_tligs")
-
-[node name="Jump" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("3_7pkgb")
-
-[node name="Heal" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("4_c3s05")
-
-[node name="Damage" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("5_pmb1g")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
