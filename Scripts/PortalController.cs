@@ -9,10 +9,13 @@ public partial class PortalController : Node2D
 	List<Portal> portale;
 	[Export] private CharacterBody2D player;
 	private int touchedPortal;
+	private AudioStreamPlayer PortalSpawn_sfx;
+	private AudioStreamPlayer Teleport_sfx;
 	public override void _Ready()
 	{
 		portale = new List<Portal>();
-		
+		Teleport_sfx = GetNode<AudioStreamPlayer>("Teleport");
+		PortalSpawn_sfx = GetNode<AudioStreamPlayer>("PortalSpawn");
 	}
 
 	public override void _Process(double delta)
@@ -35,6 +38,7 @@ public partial class PortalController : Node2D
 			portale.Add(newportal);
 			foreach(Portal p in portale){p.CallDeferred("set_portal_type", portale.IndexOf(p));}
 			newportal.CallDeferred("set", "global_position", spawnpoint);
+			PortalSpawn_sfx.Play();
 		}
 	}
 
@@ -63,6 +67,7 @@ public partial class PortalController : Node2D
 		RigidBody2D rigidTouchedPortal = portale[touchedPortal];
 		player.GlobalPosition = partnerPortal.GlobalPosition;
 		partnerPortal.set_portal_teleported_to(true);
+		Teleport_sfx.Play();
 		}
 	}
 	
