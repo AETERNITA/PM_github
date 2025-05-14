@@ -10,6 +10,7 @@ public partial class Player : CharacterBody2D
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
+	[Export] private CanvasModulate canvmod;
 	public float dashSpeed = 1200.0f; // Geschwindigkeit beim Dash
 	public float dashTime = 0.2f; // Dauer des Dashs
 	public float dashDuration = 0.2f; // Dauer des Dashs
@@ -25,8 +26,6 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer Dash;
 	private AudioStreamPlayer JumpBoost;
 	private AudioStreamPlayer NormalSoundscape;
-	private AudioStreamPlayer Teleport_sfx;
-	private AudioStreamPlayer PortalGun_sfx;
 
 	public string soundscapes = "normal";
 
@@ -69,14 +68,7 @@ public partial class Player : CharacterBody2D
 		Dash = GetNode<AudioStreamPlayer>("Dash");
 		JumpBoost = GetNode<AudioStreamPlayer>("JumpBoost");
 		NormalSoundscape = GetNode<AudioStreamPlayer>("NormalSoundscape");
-		Teleport_sfx = GetNode<AudioStreamPlayer>("Teleport");
-		PortalGun_sfx = GetNode<AudioStreamPlayer>("PortalGun");
 
-		/* if(soundscapes == "normal")
-		{
-			//NormalSoundscape.Play();
-			Print("normal_soundscape");
-		} */
 		play_background();
 	}
 
@@ -210,7 +202,7 @@ public partial class Player : CharacterBody2D
 			jumpTimer -= delta;
 		}
 		
-		
+		update_health_related_effects();
 
 		RotateGunToMouse();
 	}
@@ -471,6 +463,23 @@ public partial class Player : CharacterBody2D
 			default:
 			break;
 		}
+	}
+
+	private void update_health_related_effects()
+	{
+		/* float r1 = 0.4f;
+		float g1 = 0f;
+		float b1 = 0f;
+		float a = 0f;
+		float rgb2 = 0.144f;
+		if(_healthbar.Value < 30)
+		{
+			canvmod.Color = new Color(r1, g1, b1, a);
+		}
+		else
+		{
+			canvmod.Color = new Color(rgb2, rgb2, rgb2, a);
+		} */
 	}
 
 
