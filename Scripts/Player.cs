@@ -11,11 +11,13 @@ public partial class Player : CharacterBody2D
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
 	[Export] private CanvasModulate canvmod;
-	public float dashSpeed = 1200.0f; // Geschwindigkeit beim Dash
+	public float dashSpeed = -1200.0f; // Geschwindigkeit beim Dash
 	public float dashTime = 0.2f; // Dauer des Dashs
 	public float dashDuration = 0.2f; // Dauer des Dashs
 	private bool isDashing = false;
 	private bool canDash = true;
+	private bool isdowndashing = false;
+	private float downdash_speed = 1200.0f;
 	private Vector2 dashDirection = Vector2.Zero;
 	private Vector2 direction = Vector2.Zero;
 	private AudioStreamPlayer Move;
@@ -26,6 +28,7 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer Dash;
 	private AudioStreamPlayer JumpBoost;
 	private AudioStreamPlayer NormalSoundscape;
+	private AudioStreamPlayer DownDashImpactSFX;
 
 	public string soundscapes = "normal";
 
@@ -37,8 +40,9 @@ public partial class Player : CharacterBody2D
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
 	private bool jump_boosted = false;
+	private bool healing = false;
 
-//Inventory Variables; Effects are also Items
+	//Inventory Variables; Effects are also Items
 	//Dynamic Variables
 	List<string> Item = new List<string>();
 	List<double> Item_Strenght = new List<double>();
@@ -49,12 +53,12 @@ public partial class Player : CharacterBody2D
 	Dictionary<string, string> initial_effect;
 	Dictionary<string, string> continuous_effect;
 	Dictionary<string, string> end_efect;
-	
+
 
 	public override void _Ready()
 	{
-			initialise_inventory_system();
-			InitializeInputMap();
+		initialise_inventory_system();
+		InitializeInputMap();
 
 		if (_animatedSprite == null)
 		{
@@ -68,6 +72,7 @@ public partial class Player : CharacterBody2D
 		Dash = GetNode<AudioStreamPlayer>("Dash");
 		JumpBoost = GetNode<AudioStreamPlayer>("JumpBoost");
 		NormalSoundscape = GetNode<AudioStreamPlayer>("NormalSoundscape");
+		DownDashImpactSFX = GetNode<AudioStreamPlayer>("DownDashImpact");
 
 		play_background();
 	}
@@ -80,7 +85,7 @@ public partial class Player : CharacterBody2D
 		Vector2 velocity = Velocity;
 
 		if (isDashing)
-		{	
+		{
 			Dash.Play();
 			dashTime -= (float)delta;
 			if (dashTime <= 0)
@@ -98,14 +103,14 @@ public partial class Player : CharacterBody2D
 		direction = Input.GetVector("a", "d", "ui_up", "ui_down");
 
 		// if alt + a or d --> dash
-		if (Input.IsActionJustPressed("alt") && direction.X != 0 && !isDashing && canDash)
+		if (Input.IsActionJustPressed("dash") && direction.X != 0 && !isDashing && canDash)
 		{
 			//Print("dash active");
 			StartDash();
 			return;
 		}
 
-		if (Input.IsActionJustReleased("alt"))
+		if (Input.IsActionJustReleased("dash"))
 		{
 			//Print("dash inactive");
 			canDash = true;
@@ -115,6 +120,12 @@ public partial class Player : CharacterBody2D
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
+			if (Input.IsActionJustPressed("down_dash") && !(isdowndashing))
+			{
+				velocity.Y = downdash_speed;
+				Dash.Play();
+				isdowndashing = true;
+			}
 		}
 		else
 		{
@@ -145,7 +156,7 @@ public partial class Player : CharacterBody2D
 			jumpCount++;
 			jumpTimer = 0.3;
 			_animatedSprite.Play("Jump"); // Play jump animation
-			if(jump_boosted)
+			if (jump_boosted)
 			{
 				JumpBoost.Play();
 			}
@@ -160,11 +171,15 @@ public partial class Player : CharacterBody2D
 
 		if (direction.X != 0)
 		{
-			if(IsOnFloor()){
-			Move.Play();
+			if (IsOnFloor())
+			{
+				//if (!(Move.has_stream_playback()))
+				//	{
+						Move.Play();
+				//	}
 			}
 			velocity.X = direction.X * Speed;
-			
+
 			// Flip sprite based on movement direction
 			_animatedSprite.FlipH = direction.X < 0;
 		}
@@ -182,7 +197,7 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
-		if(Math.Abs(velocity.X) < minSpeed && !(velocity.X == 0) && IsOnFloor())
+		if (Math.Abs(velocity.X) < minSpeed && !(velocity.X == 0) && IsOnFloor())
 		{
 			velocity.X = 0;
 			Print("stop");
@@ -190,9 +205,14 @@ public partial class Player : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
-		
-		
-		
+
+		if (isdowndashing && IsOnFloor())
+		{
+			DownDashImpact();
+			isdowndashing = false;
+		}
+
+
 	}
 
 	public override void _Process(double delta)
@@ -201,7 +221,7 @@ public partial class Player : CharacterBody2D
 		{
 			jumpTimer -= delta;
 		}
-		
+
 		update_health_related_effects();
 
 		RotateGunToMouse();
@@ -209,26 +229,26 @@ public partial class Player : CharacterBody2D
 
 	private void StartDash()
 	{
-	isDashing = true;
-	dashTime = dashDuration;
-	dashDirection = direction.Normalized();
-	canDash = false; // Dash wurde benutzt
+		isDashing = true;
+		dashTime = dashDuration;
+		dashDirection = direction.Normalized();
+		canDash = false; // Dash wurde benutzt
 	}
-	
+
 	private void InitializeInputMap()
 	{
-	string actionName = "alt";
+		string actionName = "alt";
 
-	if (!InputMap.HasAction(actionName))
-	{
-		InputEventKey altKey = new InputEventKey();
-		altKey.Keycode = Key.Alt;
+		if (!InputMap.HasAction(actionName))
+		{
+			InputEventKey altKey = new InputEventKey();
+			altKey.Keycode = Key.Alt;
 
-		InputMap.AddAction(actionName);
-		InputMap.ActionAddEvent(actionName, altKey);
+			InputMap.AddAction(actionName);
+			InputMap.ActionAddEvent(actionName, altKey);
+		}
 	}
-	}
-	
+
 	private void RotateGunToMouse()
 	{
 		if (gunSprite != null)
@@ -263,7 +283,7 @@ public partial class Player : CharacterBody2D
 			}
 
 			i = i++;
-			
+
 		}
 		//foreach (int k in ForDeletion)
 		//{
@@ -290,40 +310,40 @@ public partial class Player : CharacterBody2D
 
 
 
-	private void Item_Effect (string Time, string Item, double Item_Strenght)
+	private void Item_Effect(string Time, string Item, double Item_Strenght)
 	{
 		////Print("effect");
 		switch (Time)
 		{
 			case "initial":
-			//Print("Item_Effect triggered: initial effect");
-			Item_initial_effect(Item, Item_Strenght);
-			break;
+				//Print("Item_Effect triggered: initial effect");
+				Item_initial_effect(Item, Item_Strenght);
+				break;
 
 			case "continuous":
-			Item_continuous_effect(Item, Item_Strenght);
-			break;
+				Item_continuous_effect(Item, Item_Strenght);
+				break;
 
 			case "end":
-			Item_end_effect(Item, Item_Strenght);
-			break;
+				Item_end_effect(Item, Item_Strenght);
+				break;
 
 			default:
-			break;
+				break;
 		}
 	}
 
 	// THE CODE FOR THE EFFECTS AND THE ITEMS IS IN THE SWITCH STATEMENTS BELOW
 	// add variables for conditions affecting other systems at the top
 
-	private void Item_initial_effect (string Item, double strenght)
+	private void Item_initial_effect(string Item, double strenght)
 	{
 		//Print("initial_effect");
 		switch (initial_effect[Item])
-			{
-				case "instant_healing":
+		{
+			case "instant_healing":
 				_healthbar.Value += strenght;
-				if(_healthbar.Value < 30)
+				if (_healthbar.Value < 30)
 				{
 					Heal_low_health.Play();
 				}
@@ -331,68 +351,71 @@ public partial class Player : CharacterBody2D
 				{
 					Heal.Play();
 				}
+				healing = true;
 				break;
 
-				case "jumpboost":
+			case "jumpboost":
 				//Print("jump initial effect for booooooooooooooooosting");
 				JumpVelocity = JumpVelocity * (int)strenght;
 				jump_boosted = true;
 				break;
 
-				case "nothing":
+			case "nothing":
 				break;
-				
-				default:
+
+			default:
 				PrintErr("Warning: initial effect: default case triggered");
 				break;
-			}
+		}
 	}
 
-	private void Item_continuous_effect (string Item, double strenght)
+	private void Item_continuous_effect(string Item, double strenght)
 	{
 		////Print("continouos_effect");
 		switch (continuous_effect[Item])
-			{
-				case "regeneration":
+		{
+			case "regeneration":
 				_healthbar.Value += strenght;
 				if (_healthbar.Value > 100) _healthbar.Value = 100;
+				healing = true;
 				break;
 
-				case "nothing":
+			case "nothing":
 				break;
-				
-				default:
+
+			default:
 				PrintErr("Warning: continouos effect: default case triggered");
 				break;
-			}
+		}
 	}
 
-	private void Item_end_effect (string Item, double strenght )
+	private void Item_end_effect(string Item, double strenght)
 	{
 		Print("end_effect");
 		switch (end_efect[Item])
-			{
-				case "nothing":
+		{
+			case "nothing":
+				healing = false;
 				break;
-				
-				case "jumpboost":
+
+			case "jumpboost":
 				JumpVelocity = JumpVelocity / (int)strenght;
 				jump_boosted = false;
 				break;
 
-				default:
+			default:
 				PrintErr("Warning: end effect: default case triggered");
 				break;
-			}
+		}
 	}
-	
 
-	private void initialise_inventory_system ()
-	{		
+
+	private void initialise_inventory_system()
+	{
 		//initial_effect.Add("healing_effect", "instant_healing");
 		//continuous_effect.Add("healing_effect", "regeneration");
 		//end_efect.Add("healing_effect", "nothing");
-		
+
 		//initial_effect.Add("jumpboost", "jumpboost");
 		//continuous_effect.Add("jumpboost", "nothing");
 		//end_efect.Add("jumpboost", "jumpboost");
@@ -408,29 +431,25 @@ public partial class Player : CharacterBody2D
 	{
 		Item_add("healing_effect", 1, -1, 0.75);
 		//Print("item added");
-		
+
 		//minderwertiger alter code
 		//_healthbar.Value += 10;
 		//if (_healthbar.Value > 100) _healthbar.Value = 100;
-		
+
 		//Heal.Play();
 	}
 
 	public void _on_damage_button_pressed()
 	{
-		_healthbar.Value -= 10;
-		if (_healthbar.Value < 0) _healthbar.Value = 0;
-		
-		Damage.Play();
-		
+		receive_damage(10);
 	}
 
-//Item adding code below:
-//(string item_name, double item_strenght, double item_durabillity, double item_duration)
+	//Item adding code below:
+	//(string item_name, double item_strenght, double item_durabillity, double item_duration)
 
 	public void _on_area_2d_body_entered(Node2D body)
 	{
-   		//add item 
+		//add item 
 		//Print("item used");
 	}
 
@@ -456,30 +475,65 @@ public partial class Player : CharacterBody2D
 		switch (soundscapes)
 		{
 			case "normal":
-			NormalSoundscape.Play();
-			break;
-			
-			
+				NormalSoundscape.Play();
+				break;
+
+
 			default:
-			break;
+				break;
 		}
 	}
 
 	private void update_health_related_effects()
 	{
-		/* float r1 = 0.4f;
+		float r1 = 0.4f;
 		float g1 = 0f;
 		float b1 = 0f;
 		float a = 0f;
 		float rgb2 = 0.144f;
-		if(_healthbar.Value < 30)
+		float rgb3 = 0.2f;
+		Color newcolor = new Color(rgb2, rgb2, rgb2);
+		if (_healthbar.Value < 30)
 		{
-			canvmod.Color = new Color(r1, g1, b1, a);
+			newcolor = new Color(r1, g1, b1);
 		}
 		else
 		{
-			canvmod.Color = new Color(rgb2, rgb2, rgb2, a);
-		} */
+			newcolor = new Color(rgb2, rgb2, rgb2);
+		}
+		if (healing)
+		{
+			newcolor = new Color(rgb3, rgb3, rgb3);
+		}
+		canvmod.Color = newcolor;
+	}
+
+	public void receive_damage(double damage)
+	{
+		_healthbar.Value -= damage;
+		if (_healthbar.Value < 0)
+		{
+			_healthbar.Value = 0;
+			player_killed();
+		}
+
+		Damage.Play();
+	}
+
+	public void player_killed()
+	{
+
+	}
+
+	private void DownDashImpact()
+	{
+		DownDashImpactSFX.Play();
+		Print("DownDashImpact");
+	}
+
+	public void _on_move_finished()
+	{
+
 	}
 
 

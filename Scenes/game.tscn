@@ -1,5 +1,6 @@
 [gd_scene load_steps=62 format=3 uid="uid://bxddjp0nvi1s4"]
 
+[ext_resource type="Script" uid="uid://busk1wx1s1yfw" path="res://Scripts/Game.cs" id="1_7nbq1"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_437uy"]
 [ext_resource type="Texture2D" uid="uid://cwegm84khu1qs" path="res://Art/projektil2.png" id="3_3by6r"]
@@ -18,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://koth7u0taw7c" path="res://Audio/sfx/Sparkly Magic Beam Wind Whirl - LOOPING VERSION    [003770].mp3" id="14_iivbl"]
 [ext_resource type="AudioStream" uid="uid://bs43oc3weuyhw" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 02    [003609].mp3" id="15_7nbq1"]
 [ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="16_ewbju"]
-[ext_resource type="AudioStream" uid="uid://cyff1p8jlclnx" path="res://Audio/sfx/hits/BLACK MAGIC SPELL HIT - Dark Scary Curse Cinematic Impact - 01    [003601].mp3" id="19_iivbl"]
+[ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="19_iivbl"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -153,28 +154,14 @@ height = 500
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Environment" id="Environment_ewbju"]
-background_mode = 3
-tonemap_mode = 1
-glow_intensity = 0.0
-glow_hdr_threshold = 0.9
-fog_light_energy = 1.59
-fog_sun_scatter = 8.5
-fog_density = 0.0195
-fog_sky_affect = 0.872
-adjustment_saturation = 1.2
-
 [node name="Game" type="Node2D"]
+script = ExtResource("1_7nbq1")
 
 [node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_vex8i")]
 physics_interpolation_mode = 1
 position = Vector2(0, -57)
 scale = Vector2(0.32, 0.32)
 _healthbar = NodePath("../CanvasLayer/Control/_healthbar")
-
-[node name="Camera2D2" type="Camera2D" parent="Player"]
-zoom = Vector2(0.75, 0.75)
-position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -592,12 +579,6 @@ stream = ExtResource("16_ewbju")
 
 [node name="PortalSpawn" type="AudioStreamPlayer" parent="PortalController"]
 stream = ExtResource("19_iivbl")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ewbju")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="WorldEnvironment"]
-color = Color(0.154876, 0.154876, 0.154876, 1)
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b8qt2qtvfxrjn"]
+[gd_scene load_steps=46 format=3 uid="uid://b8qt2qtvfxrjn"]
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bba8pixjmf3pw" path="res://Audio/sfx/hits/ELECTRICITY WEAPON HIT - Electro Current Magic Spell Hit - 04    [003626].mp3" id="9_pu2lt"]
 [ext_resource type="AudioStream" uid="uid://br3pq7xgmye0w" path="res://Audio/sfx/healing/HEALING SPELL - White Magic Light Beam and Heart Beat    [003700].mp3" id="10_tx1dd"]
 [ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="11_gymyn"]
+[ext_resource type="AudioStream" uid="uid://cyff1p8jlclnx" path="res://Audio/sfx/hits/BLACK MAGIC SPELL HIT - Dark Scary Curse Cinematic Impact - 01    [003601].mp3" id="11_wohnl"]
 [ext_resource type="AudioStream" uid="uid://b6s8w1s5s27ff" path="res://Audio/soundscape/collection1/At_The_Battlefield.wav" id="12_xuaoq"]
 [ext_resource type="AudioStream" uid="uid://bkg81emdtdc52" path="res://Audio/soundscape/collection1/Breath_Of_The_Wasteland.wav" id="13_wohnl"]
 [ext_resource type="AudioStream" uid="uid://dlb2c4rmv5odv" path="res://Audio/soundscape/collection1/Reactor_Meltdown.wav" id="14_36dho"]
@@ -140,11 +141,23 @@ height = 5000
 fill = 1
 fill_from = Vector2(0.49, 0.52)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite")]
+[sub_resource type="Environment" id="Environment_xuaoq"]
+background_mode = 3
+tonemap_mode = 1
+glow_intensity = 0.0
+glow_hdr_threshold = 0.9
+fog_light_energy = 1.59
+fog_sun_scatter = 8.5
+fog_density = 0.0195
+fog_sky_affect = 0.872
+adjustment_saturation = 1.2
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite", "canvmod")]
 collision_layer = 3
 script = ExtResource("1_7irut")
 _animatedSprite = NodePath("animatedSprite")
 gunSprite = NodePath("gunPivot")
+canvmod = NodePath("WorldEnvironment/CanvasModulate")
 
 [node name="animatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cv5gn")
@@ -193,6 +206,9 @@ stream = ExtResource("10_tx1dd")
 [node name="Dash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_tx1dd")
 
+[node name="DownDashImpact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_wohnl")
+
 [node name="JumpBoost" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_gymyn")
 
@@ -205,6 +221,17 @@ shadow_filter = 1
 shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_36dho")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xuaoq")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="WorldEnvironment"]
+color = Color(0.154876, 0.154876, 0.154876, 1)
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+zoom = Vector2(0.75, 0.75)
+position_smoothing_enabled = true
+
 [connection signal="body_entered" from="LaserSchwert/Area2D" to="LaserSchwert/Area2D" method="Entered"]
 [connection signal="body_exited" from="LaserSchwert/Area2D" to="LaserSchwert/Area2D" method="Exited"]
+[connection signal="finished" from="Move" to="." method="_on_move_finished"]
 [connection signal="finished" from="NormalSoundscape" to="." method="_on_normal_soundscape_finished"]
