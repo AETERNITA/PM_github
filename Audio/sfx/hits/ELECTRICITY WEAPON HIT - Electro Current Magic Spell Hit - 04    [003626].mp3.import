@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bba8pixjmf3pw"
+path="res://.godot/imported/ELECTRICITY WEAPON HIT - Electro Current Magic Spell Hit - 04    [003626].mp3-25c8550ea8e65329f567aca37c44a98c.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/hits/ELECTRICITY WEAPON HIT - Electro Current Magic Spell Hit - 04    [003626].mp3"
+dest_files=["res://.godot/imported/ELECTRICITY WEAPON HIT - Electro Current Magic Spell Hit - 04    [003626].mp3-25c8550ea8e65329f567aca37c44a98c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

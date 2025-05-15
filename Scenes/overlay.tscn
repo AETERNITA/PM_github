@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bvwp05qfomlj"]
 
-[ext_resource type="Script" uid="uid://cwmspjooa2whw" path="res://Scripts/AudioSlider.cs" id="1_uk7hx"]
+[ext_resource type="Script" uid="uid://bupeemfutk4xi" path="res://Scripts/Overlay.cs" id="1_mvb6l"]
 
 [node name="AudioMenu" type="CanvasLayer"]
-script = ExtResource("1_uk7hx")
+script = ExtResource("1_mvb6l")
 
 [node name="Master_Slider" type="HSlider" parent="."]
 offset_left = 410.0
@@ -18,5 +18,19 @@ offset_left = 412.0
 offset_top = 12.0
 offset_right = 847.0
 offset_bottom = 35.0
+
+[node name="Points" type="Label" parent="."]
+offset_left = 769.0
+offset_top = 39.0
+offset_right = 1204.0
+offset_bottom = 62.0
+scale = Vector2(0.84, 1)
+
+[node name="Stopwatch" type="Label" parent="."]
+offset_left = 769.0
+offset_top = 100.0
+offset_right = 1204.0
+offset_bottom = 123.0
+scale = Vector2(0.88, 1)
 
 [connection signal="value_changed" from="Master_Slider" to="." method="_on_master_slider_value_changed"]

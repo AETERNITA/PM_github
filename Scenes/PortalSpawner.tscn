@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://csjmp3gb88qlc"]
+[gd_scene load_steps=7 format=3 uid="uid://csjmp3gb88qlc"]
 
 [ext_resource type="Script" uid="uid://j70y8leva7yj" path="res://Scripts/Portal.cs" id="1_slqus"]
 [ext_resource type="Texture2D" uid="uid://yettfr00xsb4" path="res://Art/portalsprite2.png" id="2_qai3c"]
@@ -7,6 +7,17 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dyrba"]
 radius = 36.0
 height = 110.0
+
+[sub_resource type="Gradient" id="Gradient_qcu6d"]
+offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qcu6d"]
+gradient = SubResource("Gradient_qcu6d")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.49, 0.52)
 
 [node name="Portal" type="RigidBody2D"]
 freeze = true
@@ -22,3 +33,9 @@ script = ExtResource("3_x1opk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, -5)
 shape = SubResource("CapsuleShape2D_dyrba")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_qcu6d")
