@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bs43oc3weuyhw"
+path="res://.godot/imported/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 02    [003609].mp3-7311db5489a8c4ad739c31d1f07c8aef.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 02    [003609].mp3"
+dest_files=["res://.godot/imported/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 02    [003609].mp3-7311db5489a8c4ad739c31d1f07c8aef.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

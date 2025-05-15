@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=62 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_437uy"]
@@ -10,13 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="5_amekv"]
 [ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="6_56shs"]
 [ext_resource type="Script" uid="uid://c3jr1av6ahmj1" path="res://Scripts/Item.cs" id="6_i6o8q"]
-[ext_resource type="PackedScene" uid="uid://bvwp05qfomlj" path="res://Scenes/audio_menu.tscn" id="6_iivbl"]
+[ext_resource type="PackedScene" uid="uid://bvwp05qfomlj" path="res://Scenes/overlay.tscn" id="6_iivbl"]
 [ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="7_r0gjb"]
 [ext_resource type="Script" uid="uid://du65swo1xmtj5" path="res://Scripts/Projectilenew.cs" id="8_wxlax"]
 [ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="13_ewbju"]
 [ext_resource type="Texture2D" uid="uid://26b0rxcrsd0t" path="res://Art/wrench.png" id="14_85qyi"]
+[ext_resource type="AudioStream" uid="uid://koth7u0taw7c" path="res://Audio/sfx/Sparkly Magic Beam Wind Whirl - LOOPING VERSION    [003770].mp3" id="14_iivbl"]
+[ext_resource type="AudioStream" uid="uid://bs43oc3weuyhw" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 02    [003609].mp3" id="15_7nbq1"]
 [ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="16_ewbju"]
-[ext_resource type="AudioStream" uid="uid://bw3hl0fbofnwf" path="res://Audio/sfx/ELECTRICITY WEAPON CHARGE - Electro Current Plasma Beam Riser - 02    [003622].mp3" id="17_85qyi"]
+[ext_resource type="AudioStream" uid="uid://cyff1p8jlclnx" path="res://Audio/sfx/hits/BLACK MAGIC SPELL HIT - Dark Scary Curse Cinematic Impact - 01    [003601].mp3" id="19_iivbl"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -128,8 +130,39 @@ bounce = 0.7
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1up"]
 size = Vector2(24.8249, 68.4821)
 
+[sub_resource type="Gradient" id="Gradient_qcu6d"]
+offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ewbju"]
+gradient = SubResource("Gradient_qcu6d")
+fill = 1
+fill_from = Vector2(0.49, 0.52)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_68dvk"]
 radius = 1.9105
+
+[sub_resource type="Gradient" id="Gradient_ewbju"]
+offsets = PackedFloat32Array(0, 0.733129)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_85qyi"]
+gradient = SubResource("Gradient_ewbju")
+width = 500
+height = 500
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Environment" id="Environment_ewbju"]
+background_mode = 3
+tonemap_mode = 1
+glow_intensity = 0.0
+glow_hdr_threshold = 0.9
+fog_light_energy = 1.59
+fog_sun_scatter = 8.5
+fog_density = 0.0195
+fog_sky_affect = 0.872
+adjustment_saturation = 1.2
 
 [node name="Game" type="Node2D"]
 
@@ -182,7 +215,7 @@ layout_mode = 2
 action_mode = 0
 text = "10 Damge"
 
-[node name="AudioMenu" parent="CanvasLayer/Control/GridContainer" instance=ExtResource("6_iivbl")]
+[node name="overlay" parent="CanvasLayer/Control/GridContainer" instance=ExtResource("6_iivbl")]
 
 [node name="World" type="Node" parent="." groups=["World"]]
 
@@ -492,6 +525,12 @@ rotation = 3.14159
 scale = Vector2(0.0398611, 0.0199066)
 texture = ExtResource("13_ewbju")
 
+[node name="PointLight2D" type="PointLight2D" parent="Interactables/Item"]
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_ewbju")
+
 [node name="Item2" type="Area2D" parent="Interactables"]
 position = Vector2(1316, -344)
 scale = Vector2(-30.2796, -51.7277)
@@ -510,9 +549,17 @@ rotation = 3.14159
 scale = Vector2(0.0398611, 0.0199066)
 texture = ExtResource("14_85qyi")
 
-[node name="Projectile" type="Area2D" parent="Interactables"]
+[node name="PointLight2D" type="PointLight2D" parent="Interactables/Item2"]
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_ewbju")
+
+[node name="Projectile" type="Area2D" parent="Interactables" node_paths=PackedStringArray("shoot_sfx", "flying_sfx")]
 position = Vector2(100, 0)
 script = ExtResource("8_wxlax")
+shoot_sfx = NodePath("shooting_sfx")
+flying_sfx = NodePath("flying_sfx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Projectile"]
 scale = Vector2(10, 10)
@@ -523,6 +570,18 @@ position = Vector2(-6, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_3by6r")
 
+[node name="projectile_light" type="PointLight2D" parent="Interactables/Projectile"]
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_85qyi")
+
+[node name="flying_sfx" type="AudioStreamPlayer2D" parent="Interactables/Projectile"]
+stream = ExtResource("14_iivbl")
+
+[node name="shooting_sfx" type="AudioStreamPlayer" parent="Interactables/Projectile"]
+stream = ExtResource("15_7nbq1")
+
 [node name="PortalController" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("6_56shs")
 PortalSpawner = ExtResource("7_r0gjb")
@@ -532,7 +591,13 @@ player = NodePath("../Player")
 stream = ExtResource("16_ewbju")
 
 [node name="PortalSpawn" type="AudioStreamPlayer" parent="PortalController"]
-stream = ExtResource("17_85qyi")
+stream = ExtResource("19_iivbl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ewbju")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="WorldEnvironment"]
+color = Color(0.154876, 0.154876, 0.154876, 1)
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]

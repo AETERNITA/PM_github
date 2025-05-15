@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cyff1p8jlclnx"
+path="res://.godot/imported/BLACK MAGIC SPELL HIT - Dark Scary Curse Cinematic Impact - 01    [003601].mp3-0690f9a1f4faaf76aa7012eea2e5ae6d.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/hits/BLACK MAGIC SPELL HIT - Dark Scary Curse Cinematic Impact - 01    [003601].mp3"
+dest_files=["res://.godot/imported/BLACK MAGIC SPELL HIT - Dark Scary Curse Cinematic Impact - 01    [003601].mp3-0690f9a1f4faaf76aa7012eea2e5ae6d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

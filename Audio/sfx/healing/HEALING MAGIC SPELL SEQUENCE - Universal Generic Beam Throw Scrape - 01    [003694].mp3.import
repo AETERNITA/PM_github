@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cp1r5iyd44gx4"
+path="res://.godot/imported/HEALING MAGIC SPELL SEQUENCE - Universal Generic Beam Throw Scrape - 01    [003694].mp3-f7c26988d41ff51093ec8c829b521763.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/healing/HEALING MAGIC SPELL SEQUENCE - Universal Generic Beam Throw Scrape - 01    [003694].mp3"
+dest_files=["res://.godot/imported/HEALING MAGIC SPELL SEQUENCE - Universal Generic Beam Throw Scrape - 01    [003694].mp3-f7c26988d41ff51093ec8c829b521763.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -11,10 +11,14 @@ public partial class Projectilenew : Area2D
 	private float speed = 5.0f;
 	private Vector2 lastPos;
 	private PortalController portalController;
+	[Export] private AudioStreamPlayer shoot_sfx;
+	[Export] private AudioStreamPlayer2D flying_sfx;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		CallDeferred(nameof(AssignReferences));
+		shoot_sfx = GetNode<AudioStreamPlayer>("shooting_sfx");
+		flying_sfx = GetNode<AudioStreamPlayer2D>("flying_sfx");
 	} 
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,7 +39,10 @@ public partial class Projectilenew : Area2D
 		RotateProjectileToMouse();
 		sprite.Visible = true;
 		sprite.Rotation = direction;
-		projectileActive = true;}
+		projectileActive = true;
+		shoot_sfx.Play();
+		flying_sfx.Play();
+		}
 	}
 	
 	public void EndShot(){
@@ -43,6 +50,7 @@ public partial class Projectilenew : Area2D
 		projectileActive = false;
 		lastPos = GlobalPosition;
 		portalController.SpawnPortal(lastPos);
+		flying_sfx.Stop();
 	}
 
 	public void AssignReferences(){

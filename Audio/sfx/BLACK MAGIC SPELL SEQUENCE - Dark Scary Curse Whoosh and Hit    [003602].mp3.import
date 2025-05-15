@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bol1rsaualgg8"
+path="res://.godot/imported/BLACK MAGIC SPELL SEQUENCE - Dark Scary Curse Whoosh and Hit    [003602].mp3-c24b12fb05fad8118f08b561b0693abe.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/BLACK MAGIC SPELL SEQUENCE - Dark Scary Curse Whoosh and Hit    [003602].mp3"
+dest_files=["res://.godot/imported/BLACK MAGIC SPELL SEQUENCE - Dark Scary Curse Whoosh and Hit    [003602].mp3-c24b12fb05fad8118f08b561b0693abe.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

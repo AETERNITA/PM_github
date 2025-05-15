@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7aqbex0stmfo"
+path="res://.godot/imported/BLACK MAGIC SPELL - Dark Scary DEMON VOICE Curse    [003599].mp3-f4cdeca2ca58bc3f0be76e198c088149.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary DEMON VOICE Curse    [003599].mp3"
+dest_files=["res://.godot/imported/BLACK MAGIC SPELL - Dark Scary DEMON VOICE Curse    [003599].mp3-f4cdeca2ca58bc3f0be76e198c088149.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
