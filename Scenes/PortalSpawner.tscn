@@ -35,6 +35,39 @@ position = Vector2(1, -5)
 shape = SubResource("CapsuleShape2D_dyrba")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -55)
+energy = 0.2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_qcu6d")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+energy = 0.2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_qcu6d")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(0, 44)
+energy = 0.2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_qcu6d")
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(35, 0)
+energy = 0.2
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_qcu6d")
+
+[node name="PointLight2D5" type="PointLight2D" parent="."]
+position = Vector2(-32, 0)
+energy = 0.2
 shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 9.3
