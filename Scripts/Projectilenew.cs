@@ -8,7 +8,7 @@ public partial class Projectilenew : Area2D
 	private float direction;
 	private bool projectileActive = false;
 	private Node2D gun;
-	private float speed = 5.0f;
+	private float speed = 15.0f;
 	private Vector2 lastPos;
 	private PortalController portalController;
 	[Export] private AudioStreamPlayer shoot_sfx;
