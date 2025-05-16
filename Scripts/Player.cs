@@ -11,7 +11,8 @@ public partial class Player : CharacterBody2D
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
 	[Export] private CanvasModulate canvmod;
-	public float dashSpeed = -1200.0f; // Geschwindigkeit beim Dash
+	private bool isplaying = false;
+	public float dashSpeed = 1200.0f; // Geschwindigkeit beim Dash
 	public float dashTime = 0.2f; // Dauer des Dashs
 	public float dashDuration = 0.2f; // Dauer des Dashs
 	private bool isDashing = false;
@@ -32,15 +33,19 @@ public partial class Player : CharacterBody2D
 
 	public string soundscapes = "normal";
 
+	public bool escape_menu_active = false;
+
 	public float Speed = 400.0f;
 	private float minSpeed = 390.0f;
-	public float JumpVelocity = -500.0f;
+	public float JumpVelocity = -700.0f;
 	//private float dashTime = 0f;
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
 	private bool jump_boosted = false;
 	private bool healing = false;
+
+	private double on_floor_temporal = 0;
 
 	//Inventory Variables; Effects are also Items
 	//Dynamic Variables
@@ -53,6 +58,8 @@ public partial class Player : CharacterBody2D
 	Dictionary<string, string> initial_effect;
 	Dictionary<string, string> continuous_effect;
 	Dictionary<string, string> end_efect;
+
+	float gravity_multiplier = 1.0f;
 
 
 	public override void _Ready()
@@ -74,11 +81,21 @@ public partial class Player : CharacterBody2D
 		NormalSoundscape = GetNode<AudioStreamPlayer>("NormalSoundscape");
 		DownDashImpactSFX = GetNode<AudioStreamPlayer>("DownDashImpact");
 
+
+
 		play_background();
+
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+
+		on_floor_temporal = on_floor_temporal * 0.9;
+		if (IsOnFloor())
+		{
+			on_floor_temporal = on_floor_temporal + 1;
+		}
+		//Print(on_floor_temporal);
 
 		Update_Inventory(delta);
 
@@ -117,9 +134,18 @@ public partial class Player : CharacterBody2D
 		}
 
 		// Add gravity
-		if (!IsOnFloor())
+		if (!(IsOnFloor()))
 		{
-			velocity += GetGravity() * (float)delta;
+			velocity += GetGravity() * (float)delta * gravity_multiplier;
+		}
+		else
+		{
+			jumpCount = 0;
+			velocity.Y = -2; // Small downward force to prevent jittering
+		}
+
+		if (on_floor_temporal < 0.5)
+		{
 			if (Input.IsActionJustPressed("down_dash") && !(isdowndashing))
 			{
 				velocity.Y = downdash_speed;
@@ -127,11 +153,7 @@ public partial class Player : CharacterBody2D
 				isdowndashing = true;
 			}
 		}
-		else
-		{
-			jumpCount = 0;
-			velocity.Y = -2; // Small downward force to prevent jittering
-		}
+
 
 		// Handle Jump
 		if (jumpActive && jumpTimer <= 0)
@@ -171,12 +193,20 @@ public partial class Player : CharacterBody2D
 
 		if (direction.X != 0)
 		{
-			if (IsOnFloor())
+			if (on_floor_temporal > 0.5)
 			{
-				//if (!(Move.has_stream_playback()))
-				//	{
-						Move.Play();
-				//	}
+				if (!(isplaying))
+				{
+					Move.Play();
+					Print("start_play_move");
+					isplaying = true;
+				}
+			}
+			else
+			{
+				Move.Stop();
+				Print("stop_play_move");
+				isplaying = false;
 			}
 			velocity.X = direction.X * Speed;
 
@@ -186,7 +216,12 @@ public partial class Player : CharacterBody2D
 		else
 		{
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Speed * (float)delta);
+			Move.Stop();
+			Print("stop_play_move2");
+			isplaying = false;
 		}
+
+		Print(isplaying);
 
 		// If player is on the ground and no input, play idle animation
 		if (IsOnFloor())
@@ -225,6 +260,18 @@ public partial class Player : CharacterBody2D
 		update_health_related_effects();
 
 		RotateGunToMouse();
+
+		if (Input.IsActionJustPressed("escape"))
+		{
+			if (escape_menu_active)
+			{
+				escape_menu_active = false;
+			}
+			else
+			{
+				escape_menu_active = true;
+			}
+		}
 	}
 
 	private void StartDash()
@@ -462,7 +509,7 @@ public partial class Player : CharacterBody2D
 	public void _on_jump_boosted(Node2D body)
 	{
 		//Print("jump boosted");
-		Item_add("jumpboost", 3, -1, 15);
+		Item_add("jumpboost", 2, -1, 15);
 	}
 
 	public void _on_normal_soundscape_finished()
@@ -505,6 +552,17 @@ public partial class Player : CharacterBody2D
 		{
 			newcolor = new Color(rgb3, rgb3, rgb3);
 		}
+
+		if (escape_menu_active)
+		{
+			newcolor = new Color(0.00f, 0.00f, 0.00f);
+		}
+
+		if (_healthbar.Value == 0)
+		{
+			newcolor = new Color(0.00f, 0.00f, 0.00f);
+		}
+
 		canvmod.Color = newcolor;
 	}
 
@@ -518,6 +576,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		Damage.Play();
+		screenshake(true, true, 1);
 	}
 
 	public void player_killed()
@@ -529,13 +588,18 @@ public partial class Player : CharacterBody2D
 	{
 		DownDashImpactSFX.Play();
 		Print("DownDashImpact");
+		screenshake(false, true, 2);
+	}
+	//move is the audiostream
+	public void _on_move_finished()
+	{
+		Move.Play();
 	}
 
-	public void _on_move_finished()
+	private void screenshake(bool x, bool y, double strenght)
 	{
 
 	}
-
 
 
 }

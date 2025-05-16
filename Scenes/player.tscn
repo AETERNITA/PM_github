@@ -225,6 +225,7 @@ texture = SubResource("GradientTexture2D_36dho")
 environment = SubResource("Environment_xuaoq")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="WorldEnvironment"]
+light_mask = 3
 color = Color(0.154876, 0.154876, 0.154876, 1)
 
 [node name="Camera2D2" type="Camera2D" parent="."]
