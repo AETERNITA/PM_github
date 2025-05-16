@@ -30,6 +30,7 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer JumpBoost;
 	private AudioStreamPlayer NormalSoundscape;
 	private AudioStreamPlayer DownDashImpactSFX;
+	private Camera2D PlayerCam;
 
 	public string soundscapes = "normal";
 
@@ -81,10 +82,9 @@ public partial class Player : CharacterBody2D
 		NormalSoundscape = GetNode<AudioStreamPlayer>("NormalSoundscape");
 		DownDashImpactSFX = GetNode<AudioStreamPlayer>("DownDashImpact");
 
-
+		PlayerCam = GetNode<Camera2D>("Camera2D2");
 
 		play_background();
-
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -198,14 +198,14 @@ public partial class Player : CharacterBody2D
 				if (!(isplaying))
 				{
 					Move.Play();
-					Print("start_play_move");
+					//Print("start_play_move");
 					isplaying = true;
 				}
 			}
 			else
 			{
 				Move.Stop();
-				Print("stop_play_move");
+				//Print("stop_play_move");
 				isplaying = false;
 			}
 			velocity.X = direction.X * Speed;
@@ -217,11 +217,11 @@ public partial class Player : CharacterBody2D
 		{
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Speed * (float)delta);
 			Move.Stop();
-			Print("stop_play_move2");
+			//Print("stop_play_move2");
 			isplaying = false;
 		}
 
-		Print(isplaying);
+		//Print(isplaying);
 
 		// If player is on the ground and no input, play idle animation
 		if (IsOnFloor())
@@ -235,7 +235,7 @@ public partial class Player : CharacterBody2D
 		if (Math.Abs(velocity.X) < minSpeed && !(velocity.X == 0) && IsOnFloor())
 		{
 			velocity.X = 0;
-			Print("stop");
+			//Print("stop");
 		}
 
 		Velocity = velocity;
