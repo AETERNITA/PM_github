@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b8qt2qtvfxrjn"]
+[gd_scene load_steps=66 format=3 uid="uid://b8qt2qtvfxrjn"]
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
@@ -175,6 +175,81 @@ fog_density = 0.0195
 fog_sky_affect = 0.872
 adjustment_saturation = 1.2
 
+[sub_resource type="Curve" id="Curve_ph33w"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.345277, 0.601725), 0.0, 0.0, 0, 0, Vector2(0.584691, 0.157049), 0.0, 0.0, 0, 0, Vector2(0.82899, 0.0603808), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ldla"]
+curve = SubResource("Curve_ph33w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r7t2e"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(100, 150, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 0)
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 211.66
+initial_velocity_max = 211.66
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_7ldla")
+color = Color(1, 0.431373, 0.113725, 1)
+
+[sub_resource type="Curve" id="Curve_r7t2e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.345277, 0.601725), 0.0, 0.0, 0, 0, Vector2(0.584691, 0.157049), 0.0, 0.0, 0, 0, Vector2(0.82899, 0.0603808), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_nmr2m"]
+curve = SubResource("Curve_r7t2e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ax3m3"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(200, 300, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 0)
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 211.66
+initial_velocity_max = 211.66
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_nmr2m")
+color = Color(1, 0.803922, 0, 1)
+
+[sub_resource type="Curve" id="Curve_7ldla"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.345277, 0.601725), 0.0, 0.0, 0, 0, Vector2(0.584691, 0.157049), 0.0, 0.0, 0, 0, Vector2(0.82899, 0.0603808), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_r7t2e"]
+curve = SubResource("Curve_7ldla")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nmr2m"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(100, 150, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(1, 1, 0)
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 211.66
+initial_velocity_max = 211.66
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_r7t2e")
+color = Color(0, 0.917647, 0.286275, 1)
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite", "canvmod")]
 collision_layer = 3
 script = ExtResource("1_7irut")
@@ -258,6 +333,31 @@ color = Color(0.154876, 0.154876, 0.154876, 1)
 [node name="Camera2D2" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
 position_smoothing_enabled = true
+
+[node name="low_health_particles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 27)
+emitting = false
+amount = 50
+lifetime = 1.5
+explosiveness = 0.2
+process_material = SubResource("ParticleProcessMaterial_r7t2e")
+
+[node name="damage_particles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 27)
+emitting = false
+amount = 100
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ax3m3")
+
+[node name="healing_particles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 27)
+emitting = false
+amount = 100
+lifetime = 1.5
+explosiveness = 0.2
+process_material = SubResource("ParticleProcessMaterial_nmr2m")
 
 [connection signal="body_entered" from="LaserSchwert/Area2D" to="LaserSchwert/Area2D" method="Entered"]
 [connection signal="body_exited" from="LaserSchwert/Area2D" to="LaserSchwert/Area2D" method="Exited"]
