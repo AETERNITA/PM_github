@@ -11,6 +11,7 @@ private Vector2 portalVelocity;
 private CharacterBody2D player;
 private PortalController controller;
 private bool teleportedTo;
+private GpuParticles2D spawn_particles;
 
 	public override void _Ready()
 	{
@@ -18,7 +19,10 @@ private bool teleportedTo;
 		player = GetNode<CharacterBody2D>("/root/Game/Player");
 		teleportedTo = false;
 		controller = GetNode<PortalController>("/root/Game/PortalController");
-		if (controller == null)GD.Print("Con error");
+		if (controller == null) GD.Print("Con error");
+		spawn_particles = GetNode<GpuParticles2D>("spawn_particles");
+		spawn_particles.Restart();
+		//GD.Print("spawned");
 	}
 
 	public override void _Process(double delta)

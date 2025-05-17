@@ -32,6 +32,9 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer DownDashImpactSFX;
 	private AudioStreamPlayer Landing_sfx;
 	private Camera2D PlayerCam;
+	private GpuParticles2D damage_particles;
+	private GpuParticles2D low_health_particles;
+	private GpuParticles2D healing_particles;
 	public double screenshake_duration = 0.5;
 	public double screenshake_strenght_dynamic = 0;
 
@@ -87,6 +90,10 @@ public partial class Player : CharacterBody2D
 		NormalSoundscape = GetNode<AudioStreamPlayer>("NormalSoundscape");
 		DownDashImpactSFX = GetNode<AudioStreamPlayer>("DownDashImpact");
 		Landing_sfx = GetNode<AudioStreamPlayer>("Landing_sfx");
+
+		damage_particles = GetNode<GpuParticles2D>("damage_particles");
+		low_health_particles = GetNode<GpuParticles2D>("low_health_particles");
+		healing_particles  = GetNode<GpuParticles2D>("healing_particles");
 
 		PlayerCam = GetNode<Camera2D>("Camera2D2");
 
@@ -570,21 +577,28 @@ public partial class Player : CharacterBody2D
 		float r1 = 0.4f;
 		float g1 = 0f;
 		float b1 = 0f;
-		float a = 0f;
+		//float a = 0f;
 		float rgb2 = 0.144f;
 		float rgb3 = 0.2f;
 		Color newcolor = new Color(rgb2, rgb2, rgb2);
 		if (_healthbar.Value < 30)
 		{
 			newcolor = new Color(r1, g1, b1);
+			low_health_particles.Emitting = true;
 		}
 		else
 		{
 			newcolor = new Color(rgb2, rgb2, rgb2);
+			low_health_particles.Emitting = false;
 		}
 		if (healing)
 		{
 			newcolor = new Color(rgb3, rgb3, rgb3);
+			healing_particles.Emitting = true;
+		}
+		else
+		{
+			healing_particles.Emitting = false;
 		}
 
 		if (escape_menu_active)
@@ -608,6 +622,8 @@ public partial class Player : CharacterBody2D
 			_healthbar.Value = 0;
 			player_killed();
 		}
+
+		damage_particles.Restart();
 
 		Damage.Play();
 		screenshake(true, true);
