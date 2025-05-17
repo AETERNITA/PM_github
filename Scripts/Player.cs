@@ -30,7 +30,9 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer JumpBoost;
 	private AudioStreamPlayer NormalSoundscape;
 	private AudioStreamPlayer DownDashImpactSFX;
+	private AudioStreamPlayer Landing_sfx;
 	private Camera2D PlayerCam;
+	public double screenshake_duration;
 
 	public string soundscapes = "normal";
 
@@ -46,7 +48,7 @@ public partial class Player : CharacterBody2D
 	private bool jump_boosted = false;
 	private bool healing = false;
 
-	private double on_floor_temporal = 0;
+	private double on_floor_temporal = 2;
 
 	//Inventory Variables; Effects are also Items
 	//Dynamic Variables
@@ -62,6 +64,8 @@ public partial class Player : CharacterBody2D
 
 	float gravity_multiplier = 1.0f;
 
+	private double step_queue_remaining = 0;
+	private double step_queue_time = 0.2;
 
 	public override void _Ready()
 	{
@@ -81,6 +85,7 @@ public partial class Player : CharacterBody2D
 		JumpBoost = GetNode<AudioStreamPlayer>("JumpBoost");
 		NormalSoundscape = GetNode<AudioStreamPlayer>("NormalSoundscape");
 		DownDashImpactSFX = GetNode<AudioStreamPlayer>("DownDashImpact");
+		Landing_sfx = GetNode<AudioStreamPlayer>("Landing_sfx");
 
 		PlayerCam = GetNode<Camera2D>("Camera2D2");
 
@@ -89,6 +94,19 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		bool play_impact = false;
+		if (on_floor_temporal < 0.5 && IsOnFloor())
+		{
+			/* if (!(isdowndashing))
+			{
+				Landing_sfx.Play();
+			} */
+			play_impact = true;
+		}
+		else
+		{
+			play_impact = false;
+		}
 
 		on_floor_temporal = on_floor_temporal * 0.9;
 		if (IsOnFloor())
@@ -241,6 +259,11 @@ public partial class Player : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 
+		if (!(isdowndashing) && play_impact == true)
+			{
+				Landing_sfx.Play();
+			}
+
 		if (isdowndashing && IsOnFloor())
 		{
 			DownDashImpact();
@@ -272,6 +295,14 @@ public partial class Player : CharacterBody2D
 				escape_menu_active = true;
 			}
 		}
+
+		step_queue_remaining = step_queue_remaining - delta;
+		if (step_queue_remaining <= 0 && isplaying)
+		{
+			step_queue_remaining = step_queue_time;
+			Move.Play();
+		}
+		
 	}
 
 	private void StartDash()
@@ -576,7 +607,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		Damage.Play();
-		screenshake(true, true, 1);
+		screenshake(true, true);
 	}
 
 	public void player_killed()
@@ -588,16 +619,37 @@ public partial class Player : CharacterBody2D
 	{
 		DownDashImpactSFX.Play();
 		Print("DownDashImpact");
-		screenshake(false, true, 2);
+		screenshake(false, true);
 	}
 	//move is the audiostream
 	public void _on_move_finished()
 	{
-		Move.Play();
+		//Move.Play();
 	}
 
-	private void screenshake(bool x, bool y, double strenght)
+	private void screenshake(bool x, bool y)
 	{
+		/* double shake_duration = 0.5;
+
+		if (x)
+		{
+			screenshake_duration[0] = shake_duration;
+		}
+		else
+		{
+			screenshake_duration[0] = 0;
+		}
+
+		if (y)
+		{
+			screenshake_duration[1] = shake_duration;
+		}
+		else
+		{
+			screenshake_duration[1] = 0;
+		} */
+
+		
 
 	}
 

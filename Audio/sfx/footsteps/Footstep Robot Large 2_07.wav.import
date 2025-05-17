@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://meo8xtpcs02i"
+path="res://.godot/imported/Footstep Robot Large 2_07.wav-cfa3148c7e2756a88bc2f349d6fbddcc.sample"
+
+[deps]
+
+source_file="res://Audio/sfx/footsteps/Footstep Robot Large 2_07.wav"
+dest_files=["res://.godot/imported/Footstep Robot Large 2_07.wav-cfa3148c7e2756a88bc2f349d6fbddcc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
