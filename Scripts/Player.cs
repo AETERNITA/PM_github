@@ -32,7 +32,8 @@ public partial class Player : CharacterBody2D
 	private AudioStreamPlayer DownDashImpactSFX;
 	private AudioStreamPlayer Landing_sfx;
 	private Camera2D PlayerCam;
-	public double screenshake_duration;
+	public double screenshake_duration = 0.5;
+	public double screenshake_strenght_dynamic = 0;
 
 	public string soundscapes = "normal";
 
@@ -302,6 +303,8 @@ public partial class Player : CharacterBody2D
 			step_queue_remaining = step_queue_time;
 			Move.Play();
 		}
+
+		//PlayerCam.offset = 0;
 		
 	}
 
@@ -649,7 +652,7 @@ public partial class Player : CharacterBody2D
 			screenshake_duration[1] = 0;
 		} */
 
-		
+		screenshake_strenght_dynamic = (screenshake_duration);
 
 	}
 
