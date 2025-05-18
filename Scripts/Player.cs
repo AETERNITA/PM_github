@@ -676,6 +676,7 @@ public partial class Player : GenericCharacterClass
 	{
 		receive_damage(damage);
 	}
+	
 
 	public void _on_dashdown_damage_area_body_entered(Node2D victim)
 	{
@@ -685,6 +686,8 @@ public partial class Player : GenericCharacterClass
 			Print("your mine" + victim);
 		}
 	}
+
+
 
 	public void _on_dashdown_damage_area_body_exited(Node2D victim)
 	{
