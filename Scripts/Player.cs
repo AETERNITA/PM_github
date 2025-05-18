@@ -105,10 +105,6 @@ public partial class Player : CharacterBody2D
 		bool play_impact = false;
 		if (on_floor_temporal < 0.5 && IsOnFloor())
 		{
-			/* if (!(isdowndashing))
-			{
-				Landing_sfx.Play();
-			} */
 			play_impact = true;
 		}
 		else
@@ -311,7 +307,12 @@ public partial class Player : CharacterBody2D
 			Move.Play();
 		}
 
-		//PlayerCam.offset = 0;
+		PlayerCam.Offset = new Vector2((float)screenshake_strenght_dynamic * (float)Randf() * (float)screenshake_duration, (float)screenshake_strenght_dynamic * (float)Randf() * (float)screenshake_duration);
+		screenshake_duration = screenshake_duration - delta;
+		if (screenshake_duration < 0)
+		{
+			screenshake_duration = 0;
+		}
 		
 	}
 
@@ -626,7 +627,7 @@ public partial class Player : CharacterBody2D
 		damage_particles.Restart();
 
 		Damage.Play();
-		screenshake(true, true);
+		screenshake();
 	}
 
 	public void player_killed()
@@ -638,7 +639,7 @@ public partial class Player : CharacterBody2D
 	{
 		DownDashImpactSFX.Play();
 		Print("DownDashImpact");
-		screenshake(false, true);
+		screenshake();
 	}
 	//move is the audiostream
 	public void _on_move_finished()
@@ -646,30 +647,10 @@ public partial class Player : CharacterBody2D
 		//Move.Play();
 	}
 
-	private void screenshake(bool x, bool y)
+	private void screenshake()
 	{
-		/* double shake_duration = 0.5;
-
-		if (x)
-		{
-			screenshake_duration[0] = shake_duration;
-		}
-		else
-		{
-			screenshake_duration[0] = 0;
-		}
-
-		if (y)
-		{
-			screenshake_duration[1] = shake_duration;
-		}
-		else
-		{
-			screenshake_duration[1] = 0;
-		} */
-
-		screenshake_strenght_dynamic = (screenshake_duration);
-
+		screenshake_duration = 0.25;
+		screenshake_strenght_dynamic = 50;
 	}
 
 
