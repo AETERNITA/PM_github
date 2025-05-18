@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using static Godot.GD;
 
 
-public partial class Player : CharacterBody2D
+public partial class Player : GenericCharacterClass
 {
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
@@ -37,6 +37,8 @@ public partial class Player : CharacterBody2D
 	private GpuParticles2D healing_particles;
 	public double screenshake_duration = 0.5;
 	public double screenshake_strenght_dynamic = 0;
+
+	private List<GenericCharacterClass> downdash_area = new List<GenericCharacterClass>();
 
 	public string soundscapes = "normal";
 
@@ -93,7 +95,7 @@ public partial class Player : CharacterBody2D
 
 		damage_particles = GetNode<GpuParticles2D>("damage_particles");
 		low_health_particles = GetNode<GpuParticles2D>("low_health_particles");
-		healing_particles  = GetNode<GpuParticles2D>("healing_particles");
+		healing_particles = GetNode<GpuParticles2D>("healing_particles");
 
 		PlayerCam = GetNode<Camera2D>("Camera2D2");
 
@@ -102,6 +104,12 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		//debug code for the downdash damage area
+		for (int i = 0; i < downdash_area.Count; i++)
+		{
+			downdash_area[i].take_damage(100);
+		}
+
 		bool play_impact = false;
 		if (on_floor_temporal < 0.5 && IsOnFloor())
 		{
@@ -264,9 +272,9 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 
 		if (!(isdowndashing) && play_impact == true)
-			{
-				Landing_sfx.Play();
-			}
+		{
+			Landing_sfx.Play();
+		}
 
 		if (isdowndashing && IsOnFloor())
 		{
@@ -313,7 +321,7 @@ public partial class Player : CharacterBody2D
 		{
 			screenshake_duration = 0;
 		}
-		
+
 	}
 
 	private void StartDash()
@@ -651,6 +659,29 @@ public partial class Player : CharacterBody2D
 	{
 		screenshake_duration = 0.25;
 		screenshake_strenght_dynamic = 50;
+	}
+
+	public override void take_damage(double damage)
+	{
+		receive_damage(damage);
+	}
+
+	public void _on_dashdown_damage_area_body_entered(Node2D victim)
+	{
+		if (victim as GenericCharacterClass != null && victim != this)
+		{
+			downdash_area.Add(victim as GenericCharacterClass);
+		}
+		//Print("your mine" + victim);
+	}
+
+	public void _on_dashdown_damage_area_body_exited(Node2D victim)
+	{
+		if (victim as GenericCharacterClass != null)
+		{
+			downdash_area.Remove(victim as GenericCharacterClass);
+		}
+		//Print("miss you" + victim);
 	}
 
 
