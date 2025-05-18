@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=68 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="Script" uid="uid://busk1wx1s1yfw" path="res://Scripts/Game.cs" id="1_7nbq1"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
@@ -172,9 +172,8 @@ height = 500
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7nbq1"]
-friction = 0.05
-bounce = 0.5
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exi56"]
+size = Vector2(541.091, 148.044)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vifiy"]
 
@@ -186,9 +185,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.0040
 gradient = SubResource("Gradient_7nbq1")
 fill = 1
 fill_from = Vector2(0.49, 0.52)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exi56"]
-size = Vector2(541.091, 148.044)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7nbq1")
@@ -609,29 +605,6 @@ stream = ExtResource("19_iivbl")
 [node name="temp_enemy" type="CharacterBody2D" parent="."]
 script = ExtResource("20_exi56")
 
-[node name="box" type="RigidBody2D" parent="temp_enemy"]
-position = Vector2(2521, -43)
-scale = Vector2(0.959173, 0.959173)
-collision_layer = 3
-physics_material_override = SubResource("PhysicsMaterial_7nbq1")
-
-[node name="Sprite2D" type="Sprite2D" parent="temp_enemy/box"]
-scale = Vector2(1.54452, 1.54452)
-texture = ExtResource("5_amekv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy/box"]
-scale = Vector2(10.5553, 10.5553)
-shape = SubResource("RectangleShape2D_vifiy")
-one_way_collision_margin = 0.0
-
-[node name="PointLight2D" type="PointLight2D" parent="temp_enemy/box"]
-position = Vector2(3.8147e-05, 4.17027)
-scale = Vector2(4.19877, 4.22461)
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 9.3
-texture = SubResource("GradientTexture2D_exi56")
-
 [node name="damage_area" type="Area2D" parent="temp_enemy"]
 position = Vector2(2394, -43)
 scale = Vector2(0.959173, 0.959173)
@@ -639,6 +612,25 @@ scale = Vector2(0.959173, 0.959173)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy/damage_area"]
 position = Vector2(9.90454, 35.4472)
 shape = SubResource("RectangleShape2D_exi56")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy"]
+position = Vector2(2521, -43)
+scale = Vector2(10.1244, 10.1244)
+shape = SubResource("RectangleShape2D_vifiy")
+one_way_collision_margin = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="temp_enemy"]
+position = Vector2(2521, -43)
+scale = Vector2(1.48146, 1.48146)
+texture = ExtResource("5_amekv")
+
+[node name="PointLight2D" type="PointLight2D" parent="temp_enemy"]
+position = Vector2(2521, -39)
+scale = Vector2(4.02735, 4.05213)
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_exi56")
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
