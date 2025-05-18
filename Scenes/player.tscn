@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://b8qt2qtvfxrjn"]
+[gd_scene load_steps=68 format=3 uid="uid://b8qt2qtvfxrjn"]
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
@@ -42,6 +42,7 @@
 [ext_resource type="AudioStream" uid="uid://b3iy3docgfkln" path="res://Audio/soundscape/collection1/Hellfire.wav" id="29_8eeqe"]
 [ext_resource type="AudioStream" uid="uid://d4ho3kjluwie1" path="res://Audio/soundscape/collection1/Hell_Machine.wav" id="30_5x828"]
 [ext_resource type="AudioStream" uid="uid://d0c0p0lgsy8rx" path="res://Audio/soundscape/collection1/Night_Terrors.wav" id="31_c1k8q"]
+[ext_resource type="AudioStream" uid="uid://7aqbex0stmfo" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary DEMON VOICE Curse    [003599].mp3" id="43_7ldla"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rk2e2"]
 atlas = ExtResource("2_54v62")
@@ -251,6 +252,7 @@ scale_curve = SubResource("CurveTexture_r7t2e")
 color = Color(0, 0.917647, 0.286275, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ph33w"]
+size = Vector2(20, 23.75)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite", "canvmod")]
 collision_layer = 3
@@ -365,9 +367,12 @@ process_material = SubResource("ParticleProcessMaterial_nmr2m")
 [node name="dashdown_damage_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dashdown_damage_area"]
-position = Vector2(0, 380)
-scale = Vector2(24.12, 7.04)
+position = Vector2(0, 390.5)
+scale = Vector2(24.12, 5.6)
 shape = SubResource("RectangleShape2D_ph33w")
+
+[node name="dead_loser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("43_7ldla")
 
 [connection signal="body_entered" from="LaserSchwert/Area2D" to="LaserSchwert/Area2D" method="Entered"]
 [connection signal="body_exited" from="LaserSchwert/Area2D" to="LaserSchwert/Area2D" method="Exited"]

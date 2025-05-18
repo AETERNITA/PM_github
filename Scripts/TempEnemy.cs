@@ -9,6 +9,11 @@ public partial class TempEnemy : GenericCharacterClass
 
 	private double health = 100;
 
+	public override void _Ready()
+	{
+
+	}
+
    public override void _PhysicsProcess(double delta)
 	{
 		for (int i = 0; i < victims.Count; i++)
@@ -19,6 +24,7 @@ public partial class TempEnemy : GenericCharacterClass
 
 	public override void take_damage(double damage)
 	{
+		Print("the box has emotions too!!");
 		health = health - damage;
 		if (health <= 0)
 		{
@@ -28,7 +34,7 @@ public partial class TempEnemy : GenericCharacterClass
 
 	public void _on_damage_area_body_entered(Node2D victim)
 	{
-		if (victim as GenericCharacterClass != null)
+		if (victim as GenericCharacterClass != null && victim != this)
 		{
 			victims.Add(victim as GenericCharacterClass);
 		}

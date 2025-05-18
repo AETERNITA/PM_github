@@ -31,6 +31,7 @@ public partial class Player : GenericCharacterClass
 	private AudioStreamPlayer NormalSoundscape;
 	private AudioStreamPlayer DownDashImpactSFX;
 	private AudioStreamPlayer Landing_sfx;
+	private AudioStreamPlayer Losing_sfx;
 	private Camera2D PlayerCam;
 	private GpuParticles2D damage_particles;
 	private GpuParticles2D low_health_particles;
@@ -92,6 +93,7 @@ public partial class Player : GenericCharacterClass
 		NormalSoundscape = GetNode<AudioStreamPlayer>("NormalSoundscape");
 		DownDashImpactSFX = GetNode<AudioStreamPlayer>("DownDashImpact");
 		Landing_sfx = GetNode<AudioStreamPlayer>("Landing_sfx");
+		Losing_sfx = GetNode<AudioStreamPlayer>("dead_loser");
 
 		damage_particles = GetNode<GpuParticles2D>("damage_particles");
 		low_health_particles = GetNode<GpuParticles2D>("low_health_particles");
@@ -104,11 +106,13 @@ public partial class Player : GenericCharacterClass
 
 	public override void _PhysicsProcess(double delta)
 	{
-		//debug code for the downdash damage area
+		/* //debug code for the downdash damage area
 		for (int i = 0; i < downdash_area.Count; i++)
 		{
-			downdash_area[i].take_damage(100);
+			Print("damage to:" + downdash_area[i]);
+			downdash_area[i].take_damage(1);
 		}
+ */
 
 		bool play_impact = false;
 		if (on_floor_temporal < 0.5 && IsOnFloor())
@@ -626,10 +630,11 @@ public partial class Player : GenericCharacterClass
 	public void receive_damage(double damage)
 	{
 		_healthbar.Value -= damage;
-		if (_healthbar.Value < 0)
+		if (_healthbar.Value <= 0)
 		{
 			_healthbar.Value = 0;
 			player_killed();
+			SetProcessInput(false);
 		}
 
 		damage_particles.Restart();
@@ -640,7 +645,7 @@ public partial class Player : GenericCharacterClass
 
 	public void player_killed()
 	{
-
+		Losing_sfx.Play();
 	}
 
 	private void DownDashImpact()
@@ -648,6 +653,12 @@ public partial class Player : GenericCharacterClass
 		DownDashImpactSFX.Play();
 		Print("DownDashImpact");
 		screenshake();
+		for (int i = 0; i < downdash_area.Count; i++)
+		{
+			Print("damage to:" + downdash_area[i]);
+			downdash_area[i].take_damage(34);
+		}
+
 	}
 	//move is the audiostream
 	public void _on_move_finished()
@@ -671,8 +682,8 @@ public partial class Player : GenericCharacterClass
 		if (victim as GenericCharacterClass != null && victim != this)
 		{
 			downdash_area.Add(victim as GenericCharacterClass);
+			Print("your mine" + victim);
 		}
-		//Print("your mine" + victim);
 	}
 
 	public void _on_dashdown_damage_area_body_exited(Node2D victim)
@@ -680,8 +691,8 @@ public partial class Player : GenericCharacterClass
 		if (victim as GenericCharacterClass != null)
 		{
 			downdash_area.Remove(victim as GenericCharacterClass);
+			Print("miss you" + victim);
 		}
-		//Print("miss you" + victim);
 	}
 
 
