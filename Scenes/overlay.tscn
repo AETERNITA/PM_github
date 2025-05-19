@@ -33,4 +33,12 @@ offset_right = 1204.0
 offset_bottom = 123.0
 scale = Vector2(0.88, 1)
 
+[node name="Play_Button" type="Button" parent="."]
+offset_left = 914.0
+offset_top = 537.0
+offset_right = 1067.0
+offset_bottom = 591.0
+text = "Play"
+
 [connection signal="value_changed" from="Master_Slider" to="." method="_on_master_slider_value_changed"]
+[connection signal="pressed" from="Play_Button" to="." method="_on_button_pressed"]

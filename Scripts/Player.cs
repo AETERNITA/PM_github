@@ -10,7 +10,7 @@ public partial class Player : GenericCharacterClass
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
-	[Export] private CanvasModulate canvmod;
+	private CanvasModulate canvmod;
 	private bool isplaying = false;
 	public float dashSpeed = 1200.0f; // Geschwindigkeit beim Dash
 	public float dashTime = 0.2f; // Dauer des Dashs
@@ -100,6 +100,8 @@ public partial class Player : GenericCharacterClass
 		healing_particles = GetNode<GpuParticles2D>("healing_particles");
 
 		PlayerCam = GetNode<Camera2D>("Camera2D2");
+
+		canvmod = GetNode<CanvasModulate>("%canvmod");
 
 		play_background();
 		
@@ -584,44 +586,47 @@ public partial class Player : GenericCharacterClass
 
 	private void update_health_related_effects()
 	{
-		float r1 = 0.4f;
-		float g1 = 0f;
-		float b1 = 0f;
-		//float a = 0f;
-		float rgb2 = 0.144f;
-		float rgb3 = 0.2f;
-		Color newcolor = new Color(rgb2, rgb2, rgb2);
-		if (_healthbar.Value < 30)
+		if (GetNode<Overlay>("%overlay").in_start_menu == false)
 		{
-			newcolor = new Color(r1, g1, b1);
-			low_health_particles.Emitting = true;
-		}
-		else
-		{
-			newcolor = new Color(rgb2, rgb2, rgb2);
-			low_health_particles.Emitting = false;
-		}
-		if (healing)
-		{
-			newcolor = new Color(rgb3, rgb3, rgb3);
-			healing_particles.Emitting = true;
-		}
-		else
-		{
-			healing_particles.Emitting = false;
-		}
+			float r1 = 0.4f;
+			float g1 = 0f;
+			float b1 = 0f;
+			//float a = 0f;
+			float rgb2 = 0.144f;
+			float rgb3 = 0.2f;
+			Color newcolor = new Color(rgb2, rgb2, rgb2);
+			if (_healthbar.Value < 30)
+			{
+				newcolor = new Color(r1, g1, b1);
+				low_health_particles.Emitting = true;
+			}
+			else
+			{
+				newcolor = new Color(rgb2, rgb2, rgb2);
+				low_health_particles.Emitting = false;
+			}
+			if (healing)
+			{
+				newcolor = new Color(rgb3, rgb3, rgb3);
+				healing_particles.Emitting = true;
+			}
+			else
+			{
+				healing_particles.Emitting = false;
+			}
 
-		if (escape_menu_active)
-		{
-			newcolor = new Color(0.00f, 0.00f, 0.00f);
-		}
+			if (escape_menu_active)
+			{
+				newcolor = new Color(0.00f, 0.00f, 0.00f);
+			}
 
-		if (_healthbar.Value == 0)
-		{
-			newcolor = new Color(0.00f, 0.00f, 0.00f);
-		}
+			if (_healthbar.Value == 0)
+			{
+				newcolor = new Color(0.00f, 0.00f, 0.00f);
+			}
 
-		canvmod.Color = newcolor;
+			canvmod.Color = newcolor;
+		}
 	}
 
 	public void receive_damage(double damage)
