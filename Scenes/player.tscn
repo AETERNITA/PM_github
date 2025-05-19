@@ -308,6 +308,7 @@ stream = ExtResource("11_wohnl")
 stream = ExtResource("11_gymyn")
 
 [node name="NormalSoundscape" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = SubResource("AudioStreamRandomizer_gymyn")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -353,6 +354,7 @@ scale = Vector2(24.12, 5.6)
 shape = SubResource("RectangleShape2D_ph33w")
 
 [node name="dead_loser" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("43_7ldla")
 
 [connection signal="body_entered" from="LaserSchwert/Area2D" to="LaserSchwert/Area2D" method="Entered"]
