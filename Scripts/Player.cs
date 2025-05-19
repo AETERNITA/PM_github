@@ -102,17 +102,11 @@ public partial class Player : GenericCharacterClass
 		PlayerCam = GetNode<Camera2D>("Camera2D2");
 
 		play_background();
+		
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		/* //debug code for the downdash damage area
-		for (int i = 0; i < downdash_area.Count; i++)
-		{
-			Print("damage to:" + downdash_area[i]);
-			downdash_area[i].take_damage(1);
-		}
- */
 
 		bool play_impact = false;
 		if (on_floor_temporal < 0.5 && IsOnFloor())
@@ -402,6 +396,9 @@ public partial class Player : GenericCharacterClass
 		Item_durabillity.Add(item_durabillity);
 		Item_duration.Add(item_duration);
 		Item_Effect("initial", item_name, item_strenght);
+
+		var OverlayRef = GetNode("%overlay") as Overlay;
+			OverlayRef.AddPoints(500);
 
 		////Print(Item[0]);
 		////Print(Item_durabillity[0]);

@@ -235,6 +235,7 @@ action_mode = 0
 text = "10 Damge"
 
 [node name="overlay" parent="CanvasLayer/Control/GridContainer" instance=ExtResource("6_iivbl")]
+unique_name_in_owner = true
 
 [node name="World" type="Node" parent="." groups=["World"]]
 
