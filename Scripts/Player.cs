@@ -648,6 +648,7 @@ public partial class Player : GenericCharacterClass
 	public void player_killed()
 	{
 		Losing_sfx.Play();
+		GetTree().Paused = true;
 	}
 
 	private void DownDashImpact()
