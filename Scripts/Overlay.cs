@@ -41,8 +41,17 @@ public partial class Overlay : CanvasLayer
 
     public override void _Process(double delta)
     {
-        time = time + delta;
-        Stopwatch.Text = "Time:" + Math.Round(time, 2).ToString();
+        if (!GetTree().Paused)
+        {
+            time = time + delta;
+            Stopwatch.Text = "Time:" + Math.Round(time, 2).ToString();
+        }
+        else
+        {
+            time = 0;
+            Stopwatch.Text = "Time:" + Math.Round(time, 2).ToString();
+        }
+
         if (isinit == false)
         {
             darken();

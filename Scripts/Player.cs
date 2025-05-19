@@ -648,6 +648,7 @@ public partial class Player : GenericCharacterClass
 	public void player_killed()
 	{
 		Losing_sfx.Play();
+		canvmod.Color = new Color(0.00f, 0.00f, 0.00f);
 		GetTree().Paused = true;
 	}
 
