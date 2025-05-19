@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgjdeid8pc1tg"
+path="res://.godot/imported/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3-eff2d10c289177f50af57aa3b1800d58.mp3str"
+
+[deps]
+
+source_file="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3"
+dest_files=["res://.godot/imported/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3-eff2d10c289177f50af57aa3b1800d58.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

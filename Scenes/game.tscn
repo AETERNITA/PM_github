@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=70 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="Script" uid="uid://busk1wx1s1yfw" path="res://Scripts/Game.cs" id="1_7nbq1"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
@@ -21,6 +21,8 @@
 [ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="16_ewbju"]
 [ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="19_iivbl"]
 [ext_resource type="Script" uid="uid://cqgw24mvbuby" path="res://Scripts/TempEnemy.cs" id="20_exi56"]
+[ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="22_mg4q0"]
+[ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="22_vm72l"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -632,6 +634,13 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_exi56")
+
+[node name="enemy_damage_sfx" type="AudioStreamPlayer" parent="temp_enemy"]
+stream = ExtResource("22_vm72l")
+
+[node name="standart_enemy_death_sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("22_mg4q0")
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]

@@ -8,10 +8,13 @@ public partial class TempEnemy : GenericCharacterClass
 	private List<GenericCharacterClass> victims = new List<GenericCharacterClass>();
 
 	private double health = 100;
+	private AudioStreamPlayer DeathSFX;
+	private AudioStreamPlayer DamageSFX;
 
 	public override void _Ready()
 	{
-
+		DeathSFX = GetNode<AudioStreamPlayer>("%standart_enemy_death_sfx");
+		DamageSFX = GetNode<AudioStreamPlayer>("enemy_damage_sfx");
 	}
 
    public override void _PhysicsProcess(double delta)
@@ -30,12 +33,14 @@ public partial class TempEnemy : GenericCharacterClass
 		{
 			var OverlayRef = GetNode("%overlay") as Overlay;
 			OverlayRef.AddPoints(10000);
+			DeathSFX.Play();
 			QueueFree();
 		}
 		else
 		{
 			var OverlayRef = GetNode("%overlay") as Overlay;
 			OverlayRef.AddPoints(100);
+			DamageSFX.Play();
 		}
 	}
 
