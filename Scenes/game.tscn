@@ -635,12 +635,14 @@ shadow_filter = 1
 shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_exi56")
 
-[node name="enemy_damage_sfx" type="AudioStreamPlayer" parent="temp_enemy"]
-stream = ExtResource("22_vm72l")
-
 [node name="standart_enemy_death_sfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("22_mg4q0")
+
+[node name="standart_enemy_damage_sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("22_vm72l")
+volume_db = 10.0
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
