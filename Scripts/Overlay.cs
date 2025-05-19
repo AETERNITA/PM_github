@@ -10,9 +10,11 @@ public partial class Overlay : CanvasLayer
     private HSlider Master_Slider;
     private Label Stopwatch;
     private Label Points;
-
+    public bool in_start_menu = true;
     private double time = 0;
     private double Points_number = 0;
+    private CanvasModulate canvmod;
+    private bool isinit = false;
 
     public override void _Ready()
     {
@@ -31,10 +33,22 @@ public partial class Overlay : CanvasLayer
         Master_Slider.Value = 0.5;
     }
 
+    private void darken()
+    {
+        canvmod = GetNode<CanvasModulate>("%canvmod");
+        canvmod.Color = new Color(0.00f, 0.00f, 0.00f);
+    }
+
     public override void _Process(double delta)
     {
         time = time + delta;
         Stopwatch.Text = "Time:" + Math.Round(time, 2).ToString();
+        if (isinit == false)
+        {
+            darken();
+            isinit = true;
+            GetTree().Paused = true;
+        }
     }
 
     public void _on_master_slider_value_changed(float myFloat)
@@ -47,5 +61,16 @@ public partial class Overlay : CanvasLayer
     {
         Points_number = Points_number + points;
         Points.Text = "Points: " + Points_number.ToString();
+    }
+
+    public void _on_button_pressed()
+    {
+        GetTree().Paused = false;
+        if (in_start_menu)
+        {
+            Button start_button = GetNode<Button>("Play_Button");
+            start_button.Hide();
+            in_start_menu = false;
+        }
     }
 }

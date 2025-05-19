@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://b8qt2qtvfxrjn"]
+[gd_scene load_steps=67 format=3 uid="uid://b8qt2qtvfxrjn"]
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
@@ -165,17 +165,6 @@ height = 5000
 fill = 1
 fill_from = Vector2(0.49, 0.52)
 
-[sub_resource type="Environment" id="Environment_xuaoq"]
-background_mode = 3
-tonemap_mode = 1
-glow_intensity = 0.0
-glow_hdr_threshold = 0.9
-fog_light_energy = 1.59
-fog_sun_scatter = 8.5
-fog_density = 0.0195
-fog_sky_affect = 0.872
-adjustment_saturation = 1.2
-
 [sub_resource type="Curve" id="Curve_ph33w"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.345277, 0.601725), 0.0, 0.0, 0, 0, Vector2(0.584691, 0.157049), 0.0, 0.0, 0, 0, Vector2(0.82899, 0.0603808), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 5
@@ -254,12 +243,11 @@ color = Color(0, 0.917647, 0.286275, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ph33w"]
 size = Vector2(20, 23.75)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite", "canvmod")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite")]
 collision_layer = 3
 script = ExtResource("1_7irut")
 _animatedSprite = NodePath("animatedSprite")
 gunSprite = NodePath("gunPivot")
-canvmod = NodePath("WorldEnvironment/CanvasModulate")
 
 [node name="animatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cv5gn")
@@ -327,13 +315,6 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_36dho")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xuaoq")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="WorldEnvironment"]
-light_mask = 3
-color = Color(0.154876, 0.154876, 0.154876, 1)
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
