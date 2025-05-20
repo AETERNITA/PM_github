@@ -104,7 +104,7 @@ public partial class Player : GenericCharacterClass
 		canvmod = GetNode<CanvasModulate>("%canvmod");
 
 		play_background();
-		
+
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -400,7 +400,7 @@ public partial class Player : GenericCharacterClass
 		Item_Effect("initial", item_name, item_strenght);
 
 		var OverlayRef = GetNode("%overlay") as Overlay;
-			OverlayRef.AddPoints(500);
+		OverlayRef.AddPoints(500);
 
 		////Print(Item[0]);
 		////Print(Item_durabillity[0]);
@@ -680,7 +680,7 @@ public partial class Player : GenericCharacterClass
 	{
 		receive_damage(damage);
 	}
-	
+
 
 	public void _on_dashdown_damage_area_body_entered(Node2D victim)
 	{
@@ -700,6 +700,11 @@ public partial class Player : GenericCharacterClass
 			downdash_area.Remove(victim as GenericCharacterClass);
 			Print("miss you" + victim);
 		}
+	}
+
+	public void Bone_picked_up()
+	{
+		Print("mjam lecker");
 	}
 
 
