@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bt5503q8ju41i"]
+
+[ext_resource type="Script" uid="uid://7b5wfmmwfs32" path="res://Scripts/BoneItem.cs" id="1_xp1jw"]
+[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="2_xp1jw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1up"]
+size = Vector2(24.8249, 68.4821)
+
+[sub_resource type="Gradient" id="Gradient_qcu6d"]
+offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ewbju"]
+gradient = SubResource("Gradient_qcu6d")
+fill = 1
+fill_from = Vector2(0.49, 0.52)
+
+[node name="BoneItem" type="Area2D"]
+scale = Vector2(-30.2796, -51.7277)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_xp1jw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.49012e-08, 0)
+scale = Vector2(0.129114, 0.026951)
+shape = SubResource("RectangleShape2D_nf1up")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(-0.024869, 0.0144936)
+texture = ExtResource("2_xp1jw")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_ewbju")

@@ -1,28 +1,29 @@
-[gd_scene load_steps=71 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=72 format=3 uid="uid://bxddjp0nvi1s4"]
 
-[ext_resource type="Script" uid="uid://busk1wx1s1yfw" path="res://Scripts/Game.cs" id="1_7nbq1"]
-[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="1_vex8i"]
-[ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_437uy"]
-[ext_resource type="Texture2D" uid="uid://cwegm84khu1qs" path="res://Art/projektil2.png" id="3_3by6r"]
-[ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="3_bdcor"]
-[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="3_smvof"]
-[ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="4_727y2"]
-[ext_resource type="Script" uid="uid://7s0ufxj5ol0f" path="res://Scripts/Background.cs" id="4_oglym"]
-[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="5_amekv"]
-[ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="6_56shs"]
-[ext_resource type="Script" uid="uid://c3jr1av6ahmj1" path="res://Scripts/Item.cs" id="6_i6o8q"]
-[ext_resource type="PackedScene" uid="uid://bvwp05qfomlj" path="res://Scenes/overlay.tscn" id="6_iivbl"]
-[ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="7_r0gjb"]
-[ext_resource type="Script" uid="uid://du65swo1xmtj5" path="res://Scripts/Projectilenew.cs" id="8_wxlax"]
-[ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="13_ewbju"]
-[ext_resource type="Texture2D" uid="uid://26b0rxcrsd0t" path="res://Art/wrench.png" id="14_85qyi"]
-[ext_resource type="AudioStream" uid="uid://koth7u0taw7c" path="res://Audio/sfx/Sparkly Magic Beam Wind Whirl - LOOPING VERSION    [003770].mp3" id="14_iivbl"]
-[ext_resource type="AudioStream" uid="uid://bs43oc3weuyhw" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 02    [003609].mp3" id="15_7nbq1"]
-[ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="16_ewbju"]
-[ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="19_iivbl"]
-[ext_resource type="Script" uid="uid://cqgw24mvbuby" path="res://Scripts/TempEnemy.cs" id="20_exi56"]
-[ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="22_mg4q0"]
-[ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="22_vm72l"]
+[ext_resource type="Script" uid="uid://busk1wx1s1yfw" path="res://Scripts/Game.cs" id="1_ue7nt"]
+[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_faq46"]
+[ext_resource type="PackedScene" uid="uid://bvwp05qfomlj" path="res://Scenes/overlay.tscn" id="3_21bgp"]
+[ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="4_mjlbw"]
+[ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="5_6yole"]
+[ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="6_3vema"]
+[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="7_lsin8"]
+[ext_resource type="Script" uid="uid://7s0ufxj5ol0f" path="res://Scripts/Background.cs" id="8_7wmti"]
+[ext_resource type="Script" uid="uid://c3jr1av6ahmj1" path="res://Scripts/Item.cs" id="9_w17hh"]
+[ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="10_46o42"]
+[ext_resource type="Texture2D" uid="uid://26b0rxcrsd0t" path="res://Art/wrench.png" id="11_08pp3"]
+[ext_resource type="PackedScene" uid="uid://bt5503q8ju41i" path="res://Scenes/bone_item.tscn" id="12_tiasa"]
+[ext_resource type="Script" uid="uid://du65swo1xmtj5" path="res://Scripts/Projectilenew.cs" id="13_av53s"]
+[ext_resource type="Texture2D" uid="uid://cwegm84khu1qs" path="res://Art/projektil2.png" id="14_58tqp"]
+[ext_resource type="AudioStream" uid="uid://koth7u0taw7c" path="res://Audio/sfx/Sparkly Magic Beam Wind Whirl - LOOPING VERSION    [003770].mp3" id="15_msno5"]
+[ext_resource type="AudioStream" uid="uid://bs43oc3weuyhw" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 02    [003609].mp3" id="16_meslp"]
+[ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="17_um2ri"]
+[ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="18_mbonv"]
+[ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="19_386dh"]
+[ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="20_xqd0m"]
+[ext_resource type="Script" uid="uid://cqgw24mvbuby" path="res://Scripts/TempEnemy.cs" id="21_5ilht"]
+[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="22_3reuf"]
+[ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="23_hh5op"]
+[ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_l0qju"]
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -201,9 +202,9 @@ adjustment_saturation = 1.2
 
 [node name="Game" type="Node2D"]
 process_mode = 1
-script = ExtResource("1_7nbq1")
+script = ExtResource("1_ue7nt")
 
-[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("1_vex8i")]
+[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("2_faq46")]
 unique_name_in_owner = true
 physics_interpolation_mode = 1
 position = Vector2(0, -57)
@@ -250,7 +251,7 @@ layout_mode = 2
 action_mode = 0
 text = "10 Damge"
 
-[node name="overlay" parent="CanvasLayer/Control/GridContainer" instance=ExtResource("6_iivbl")]
+[node name="overlay" parent="CanvasLayer/Control/GridContainer" instance=ExtResource("3_21bgp")]
 unique_name_in_owner = true
 
 [node name="World" type="Node" parent="." groups=["World"]]
@@ -263,7 +264,7 @@ rotation = 1.5708
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Wall_Left"]
-texture = ExtResource("3_bdcor")
+texture = ExtResource("4_mjlbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Left"]
 position = Vector2(-6.25006, 96.5278)
@@ -278,7 +279,7 @@ rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Hoop1"]
-texture = ExtResource("4_727y2")
+texture = ExtResource("5_6yole")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop1"]
 position = Vector2(-0.000976563, -0.00195313)
@@ -294,7 +295,7 @@ rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Hoop2"]
-texture = ExtResource("4_727y2")
+texture = ExtResource("5_6yole")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop2"]
 position = Vector2(-999.955, 11.7007)
@@ -309,7 +310,7 @@ rotation = 3.14159
 scale = Vector2(-0.138444, -0.138444)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Hoop3"]
-texture = ExtResource("3_bdcor")
+texture = ExtResource("4_mjlbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop3"]
 position = Vector2(7.22266, -21.6685)
@@ -325,7 +326,7 @@ rotation = 1.5708
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Walls/Wall_Right"]
-texture = ExtResource("3_bdcor")
+texture = ExtResource("4_mjlbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Right"]
 position = Vector2(4.16559, -161.252)
@@ -341,7 +342,7 @@ position = Vector2(1479, 286)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground2"]
-texture = ExtResource("2_437uy")
+texture = ExtResource("6_3vema")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground2"]
 position = Vector2(4.1665, -5.16653)
@@ -357,7 +358,7 @@ position = Vector2(-2728, 286)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground3"]
-texture = ExtResource("2_437uy")
+texture = ExtResource("6_3vema")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground3"]
 position = Vector2(4.1665, -5.16653)
@@ -372,7 +373,7 @@ position = Vector2(-1368, 286)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground1"]
-texture = ExtResource("2_437uy")
+texture = ExtResource("6_3vema")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground1"]
 position = Vector2(4.1665, -3.08319)
@@ -389,7 +390,7 @@ position = Vector2(644, -82)
 scale = Vector2(0.16, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D"]
-texture = ExtResource("4_727y2")
+texture = ExtResource("5_6yole")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D"]
 shape = SubResource("RectangleShape2D_8xolf")
@@ -403,7 +404,7 @@ scale = Vector2(0.16, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D2"]
 scale = Vector2(0.500008, 0.500008)
-texture = ExtResource("2_437uy")
+texture = ExtResource("6_3vema")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D2"]
 position = Vector2(-3.125, 0)
@@ -420,7 +421,7 @@ scale = Vector2(0.236862, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D5"]
 scale = Vector2(0.324499, 1)
-texture = ExtResource("2_437uy")
+texture = ExtResource("6_3vema")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D5"]
 position = Vector2(-0.000183105, 8.55713)
@@ -437,7 +438,7 @@ scale = Vector2(0.236862, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D9"]
 scale = Vector2(0.652888, 0.652888)
-texture = ExtResource("3_bdcor")
+texture = ExtResource("4_mjlbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D9"]
 position = Vector2(10.6257, -10.5747)
@@ -452,7 +453,7 @@ position = Vector2(-745, -487)
 scale = Vector2(0.0717163, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D8"]
-texture = ExtResource("4_727y2")
+texture = ExtResource("5_6yole")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D8"]
 position = Vector2(13.9424, 4.27881)
@@ -466,7 +467,7 @@ position = Vector2(-318, -271)
 scale = Vector2(0.116861, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D6"]
-texture = ExtResource("3_bdcor")
+texture = ExtResource("4_mjlbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D6"]
 position = Vector2(8.55811, -8.55713)
@@ -481,7 +482,7 @@ scale = Vector2(0.116861, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D7"]
 scale = Vector2(0.657703, 1)
-texture = ExtResource("4_727y2")
+texture = ExtResource("5_6yole")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D7"]
 position = Vector2(-17.1143, -4.27859)
@@ -496,7 +497,7 @@ position = Vector2(1927, -361)
 scale = Vector2(0.0800004, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D3"]
-texture = ExtResource("3_bdcor")
+texture = ExtResource("4_mjlbw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D3"]
 shape = SubResource("RectangleShape2D_r57cw")
@@ -509,7 +510,7 @@ position = Vector2(1549, -624)
 scale = Vector2(0.0383451, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D4"]
-texture = ExtResource("4_727y2")
+texture = ExtResource("5_6yole")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Platfroms/StaticBody2D4"]
 position = Vector2(39.1211, -12.5)
@@ -523,8 +524,8 @@ z_index = -1
 z_as_relative = false
 position = Vector2(0, -560)
 scale = Vector2(1.38748, 1.38748)
-texture = ExtResource("3_smvof")
-script = ExtResource("4_oglym")
+texture = ExtResource("7_lsin8")
+script = ExtResource("8_7wmti")
 
 [node name="Interactables" type="Node" parent="."]
 
@@ -533,7 +534,7 @@ position = Vector2(638, -254)
 scale = Vector2(-30.2796, -51.7277)
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("6_i6o8q")
+script = ExtResource("9_w17hh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Item"]
 position = Vector2(-0.113781, 0.158183)
@@ -544,7 +545,7 @@ shape = SubResource("RectangleShape2D_nf1up")
 position = Vector2(-0.0284451, 0)
 rotation = 3.14159
 scale = Vector2(0.0398611, 0.0199066)
-texture = ExtResource("13_ewbju")
+texture = ExtResource("10_46o42")
 
 [node name="PointLight2D" type="PointLight2D" parent="Interactables/Item"]
 shadow_enabled = true
@@ -557,7 +558,7 @@ position = Vector2(1316, -344)
 scale = Vector2(-30.2796, -51.7277)
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("6_i6o8q")
+script = ExtResource("9_w17hh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Item2"]
 position = Vector2(-0.113781, 0.0773282)
@@ -568,7 +569,7 @@ shape = SubResource("RectangleShape2D_nf1up")
 position = Vector2(-0.0284451, 0)
 rotation = 3.14159
 scale = Vector2(0.0398611, 0.0199066)
-texture = ExtResource("14_85qyi")
+texture = ExtResource("11_08pp3")
 
 [node name="PointLight2D" type="PointLight2D" parent="Interactables/Item2"]
 shadow_enabled = true
@@ -576,9 +577,12 @@ shadow_filter = 1
 shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_ewbju")
 
+[node name="BoneItem" parent="Interactables" instance=ExtResource("12_tiasa")]
+position = Vector2(1316, -344)
+
 [node name="Projectile" type="Area2D" parent="Interactables" node_paths=PackedStringArray("shoot_sfx", "flying_sfx")]
 position = Vector2(100, 0)
-script = ExtResource("8_wxlax")
+script = ExtResource("13_av53s")
 shoot_sfx = NodePath("shooting_sfx")
 flying_sfx = NodePath("flying_sfx")
 
@@ -589,7 +593,7 @@ shape = SubResource("CircleShape2D_68dvk")
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/Projectile"]
 position = Vector2(-6, 0)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_3by6r")
+texture = ExtResource("14_58tqp")
 
 [node name="sparkling_particles" type="GPUParticles2D" parent="Interactables/Projectile/Sprite2D"]
 amount = 200
@@ -603,24 +607,24 @@ shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_85qyi")
 
 [node name="flying_sfx" type="AudioStreamPlayer2D" parent="Interactables/Projectile"]
-stream = ExtResource("14_iivbl")
+stream = ExtResource("15_msno5")
 
 [node name="shooting_sfx" type="AudioStreamPlayer" parent="Interactables/Projectile"]
-stream = ExtResource("15_7nbq1")
+stream = ExtResource("16_meslp")
 
 [node name="PortalController" type="Node2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("6_56shs")
-PortalSpawner = ExtResource("7_r0gjb")
+script = ExtResource("17_um2ri")
+PortalSpawner = ExtResource("18_mbonv")
 player = NodePath("../Player")
 
 [node name="Teleport" type="AudioStreamPlayer" parent="PortalController"]
-stream = ExtResource("16_ewbju")
+stream = ExtResource("19_386dh")
 
 [node name="PortalSpawn" type="AudioStreamPlayer" parent="PortalController"]
-stream = ExtResource("19_iivbl")
+stream = ExtResource("20_xqd0m")
 
 [node name="temp_enemy" type="CharacterBody2D" parent="."]
-script = ExtResource("20_exi56")
+script = ExtResource("21_5ilht")
 
 [node name="damage_area" type="Area2D" parent="temp_enemy"]
 position = Vector2(2394, -43)
@@ -639,7 +643,7 @@ one_way_collision_margin = 0.0
 [node name="Sprite2D" type="Sprite2D" parent="temp_enemy"]
 position = Vector2(2521, -43)
 scale = Vector2(1.48146, 1.48146)
-texture = ExtResource("5_amekv")
+texture = ExtResource("22_3reuf")
 
 [node name="PointLight2D" type="PointLight2D" parent="temp_enemy"]
 position = Vector2(2521, -39)
@@ -651,11 +655,11 @@ texture = SubResource("GradientTexture2D_exi56")
 
 [node name="standart_enemy_death_sfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("22_mg4q0")
+stream = ExtResource("23_hh5op")
 
 [node name="standart_enemy_damage_sfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("22_vm72l")
+stream = ExtResource("24_l0qju")
 volume_db = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
