@@ -38,6 +38,7 @@ public partial class Player : GenericCharacterClass
 	private GpuParticles2D healing_particles;
 	public double screenshake_duration = 0.5;
 	public double screenshake_strenght_dynamic = 0;
+	private double red_effect_time = 0;
 
 	private List<GenericCharacterClass> downdash_area = new List<GenericCharacterClass>();
 
@@ -320,6 +321,20 @@ public partial class Player : GenericCharacterClass
 		if (screenshake_duration < 0)
 		{
 			screenshake_duration = 0;
+		}
+
+		if (red_effect_time > 0)
+		{
+			red_effect_time = red_effect_time - delta;
+			if (red_effect_time < 0)
+			{
+				red_effect_time = 0;
+			}
+			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 1);
+		}
+		else
+		{
+			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 0);
 		}
 
 	}
@@ -643,6 +658,7 @@ public partial class Player : GenericCharacterClass
 
 		Damage.Play();
 		screenshake();
+		red_effect_time = 0.15;
 	}
 
 	public void player_killed()
