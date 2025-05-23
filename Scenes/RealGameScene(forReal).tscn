@@ -1,9 +1,8 @@
-[gd_scene load_steps=75 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=77 format=3 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
 [ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://other resources/damage_shader.tres" id="3_lh6sl"]
-[ext_resource type="PackedScene" uid="uid://bvwp05qfomlj" path="res://Scenes/overlay.tscn" id="3_xqbpv"]
 [ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="4_lh6sl"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="5_waod3"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="6_du02u"]
@@ -26,14 +25,8 @@
 [ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="23_emfjr"]
 [ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_qp5vb"]
 [ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="25_xqbpv"]
-
-[sub_resource type="Gradient" id="Gradient_5eq1c"]
-offsets = PackedFloat32Array(0, 0.485915, 1)
-colors = PackedColorArray(1, 0, 0, 1, 0.890188, 0.843423, 0, 1, 0.0666667, 1, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccd35"]
-gradient = SubResource("Gradient_5eq1c")
-width = 128
+[ext_resource type="Shader" uid="uid://rhuwauvcgfwu" path="res://other resources/PostProcessV1.gdshader" id="27_lh6sl"]
+[ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5eht"]
 size = Vector2(4054.17, 415.278)
@@ -206,6 +199,18 @@ fog_density = 0.0195
 fog_sky_affect = 0.872
 adjustment_saturation = 1.2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_waod3"]
+shader = ExtResource("27_lh6sl")
+shader_parameter/size = Vector2(32, 28)
+
+[sub_resource type="Gradient" id="Gradient_5eq1c"]
+offsets = PackedFloat32Array(0, 0.485915, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.890188, 0.843423, 0, 1, 0.0666667, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccd35"]
+gradient = SubResource("Gradient_5eq1c")
+width = 128
+
 [node name="Game" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_07a3i")
@@ -215,50 +220,7 @@ unique_name_in_owner = true
 physics_interpolation_mode = 1
 position = Vector2(-2775, -56.757)
 scale = Vector2(0.32, 0.32)
-_healthbar = NodePath("../CanvasLayer/Control/_healthbar")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="_healthbar" type="TextureProgressBar" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -64.0
-offset_right = 128.0
-grow_vertical = 0
-value = 100.0
-texture_progress = SubResource("GradientTexture2D_ccd35")
-metadata/_edit_use_anchors_ = true
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.848837, 0.961991)
-
-[node name="HealButton" type="Button" parent="CanvasLayer/Control/GridContainer"]
-layout_mode = 2
-action_mode = 0
-text = "10 Heal"
-
-[node name="DamageButton" type="Button" parent="CanvasLayer/Control/GridContainer"]
-layout_mode = 2
-action_mode = 0
-text = "10 Damge"
-
-[node name="overlay" parent="CanvasLayer/Control/GridContainer" instance=ExtResource("3_xqbpv")]
-unique_name_in_owner = true
+_healthbar = NodePath("../ui layer/overlay/_healthbar")
 
 [node name="World" type="Node" parent="." groups=["World"]]
 
@@ -683,10 +645,150 @@ color = Color(0.154876, 0.154876, 0.154876, 1)
 [node name="GeneratedWorld" type="Node2D" parent="."]
 script = ExtResource("25_xqbpv")
 
-[connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
+[node name="shading layer 1" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="shading layer 1"]
+material = SubResource("ShaderMaterial_waod3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ui layer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="overlay" type="Control" parent="ui layer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("27_waod3")
+metadata/_edit_use_anchors_ = true
+
+[node name="_healthbar" type="TextureProgressBar" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 128.0
+grow_vertical = 0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_ccd35")
+metadata/_edit_use_anchors_ = true
+
+[node name="gridcontainer" type="GridContainer" parent="ui layer/overlay"]
+layout_mode = 0
+offset_right = 1356.0
+offset_bottom = 672.0
+scale = Vector2(0.848837, 0.961991)
+
+[node name="HealButton" type="Button" parent="ui layer/overlay/gridcontainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Heal"
+
+[node name="DamageButton" type="Button" parent="ui layer/overlay/gridcontainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Damge"
+
+[node name="Master_Slider" type="HSlider" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -174.0
+offset_top = 13.0
+offset_right = 175.0
+offset_bottom = 29.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.1
+
+[node name="Master_Label" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -159.0
+offset_top = 51.0
+offset_right = 159.0
+offset_bottom = 74.0
+grow_horizontal = 2
+
+[node name="Play_Button" type="Button" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -120.0
+offset_right = -175.0
+offset_bottom = -89.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Play"
+
+[node name="Points" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -309.0
+offset_top = 13.0
+offset_bottom = 36.0
+grow_horizontal = 0
+
+[node name="Stopwatch" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -290.0
+offset_top = 73.0
+offset_bottom = 96.0
+grow_horizontal = 0
+
+[node name="Item 1" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -257.0
+offset_top = -139.0
+offset_bottom = -116.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Item 2" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -47.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+
 [connection signal="body_entered" from="Interactables/Item" to="Player" method="_on_jump_boosted"]
 [connection signal="body_entered" from="Interactables/Item2" to="Player" method="_on_healing_potioned"]
 [connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
 [connection signal="body_entered" from="temp_enemy/damage_area" to="temp_enemy" method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="temp_enemy/damage_area" to="temp_enemy" method="_on_damage_area_body_exited"]
+[connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]
+[connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
+[connection signal="value_changed" from="ui layer/overlay/Master_Slider" to="ui layer/overlay" method="_on_master_slider_value_changed"]
+[connection signal="pressed" from="ui layer/overlay/Play_Button" to="ui layer/overlay" method="_on_button_pressed"]

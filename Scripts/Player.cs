@@ -335,7 +335,7 @@ public partial class Player : GenericCharacterClass
 			
 		}
 
-		var OverlayRef = GetNode("%overlay") as Overlay;
+		var OverlayRef = GetNode("%overlay") as V2Overlay;
 		if (itemqueue.Count == 0)
 		{
 			OverlayRef.override_inventory("", "");
@@ -461,7 +461,7 @@ public partial class Player : GenericCharacterClass
 		Item_duration.Add(item_duration);
 		Item_Effect("initial", item_name, item_strenght);
 
-		var OverlayRef = GetNode("%overlay") as Overlay;
+		var OverlayRef = GetNode("%overlay") as V2Overlay;
 		OverlayRef.AddPoints(500);
 
 		////Print(Item[0]);
@@ -621,7 +621,7 @@ public partial class Player : GenericCharacterClass
 		//Print("healing");
 		//Item_add("healing_effect", 1, -1, 1.75);
 		itemqueue.Add("healing_effect");
-		var OverlayRef = GetNode("%overlay") as Overlay;
+		var OverlayRef = GetNode("%overlay") as V2Overlay;
 	}
 	private void HealbyEffect()
 	{
@@ -660,7 +660,7 @@ public partial class Player : GenericCharacterClass
 
 	private void update_health_related_effects()
 	{
-		if (GetNode<Overlay>("%overlay").in_start_menu == false)
+		if (GetNode<V2Overlay>("%overlay").in_start_menu == false)
 		{
 			float r1 = 0.4f;
 			float g1 = 0f;
