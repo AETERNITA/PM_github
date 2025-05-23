@@ -50,14 +50,14 @@ public partial class TempEnemy : GenericCharacterClass
 		health = health - damage;
 		if (health <= 0)
 		{
-			var OverlayRef = GetNode("%overlay") as Overlay;
+			var OverlayRef = GetNode("%overlay") as V2Overlay;
 			OverlayRef.AddPoints(10000);
 			DeathSFX.Play();
 			QueueFree();
 		}
 		else
 		{
-			var OverlayRef = GetNode("%overlay") as Overlay;
+			var OverlayRef = GetNode("%overlay") as V2Overlay;
 			OverlayRef.AddPoints(100);
 		}
 		DamageSFX.Play();
