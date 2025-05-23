@@ -6,38 +6,61 @@
 script = ExtResource("1_mvb6l")
 
 [node name="Master_Slider" type="HSlider" parent="."]
-offset_left = 410.0
-offset_top = 41.0
-offset_right = 753.0
-offset_bottom = 57.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.0
+offset_top = 31.0
+offset_right = 172.0
+offset_bottom = 47.0
+grow_horizontal = 2
 max_value = 1.0
 step = 0.1
 
 [node name="Master_Label" type="Label" parent="."]
-offset_left = 412.0
-offset_top = 12.0
-offset_right = 847.0
-offset_bottom = 35.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 7.0
+offset_right = 218.0
+offset_bottom = 30.0
+grow_horizontal = 2
 
 [node name="Points" type="Label" parent="."]
-offset_left = 769.0
-offset_top = 39.0
-offset_right = 1204.0
-offset_bottom = 62.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -364.0
+offset_top = 22.0
+offset_right = 71.0
+offset_bottom = 45.0
+grow_horizontal = 0
 scale = Vector2(0.84, 1)
 
 [node name="Stopwatch" type="Label" parent="."]
-offset_left = 769.0
-offset_top = 100.0
-offset_right = 1204.0
-offset_bottom = 123.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -383.0
+offset_top = 95.0
+offset_right = 52.0
+offset_bottom = 118.0
+grow_horizontal = 0
 scale = Vector2(0.88, 1)
 
 [node name="Play_Button" type="Button" parent="."]
-offset_left = 914.0
-offset_top = 537.0
-offset_right = 1067.0
-offset_bottom = 591.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -364.0
+offset_top = -202.0
+offset_right = -211.0
+offset_bottom = -148.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "Play"
 
 [connection signal="value_changed" from="Master_Slider" to="." method="_on_master_slider_value_changed"]
