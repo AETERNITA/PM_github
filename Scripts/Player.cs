@@ -40,6 +40,8 @@ public partial class Player : GenericCharacterClass
 	public double screenshake_strenght_dynamic = 0;
 	private double red_effect_time = 0;
 
+	private List<string> itemqueue = new List<string>();
+
 	private List<GenericCharacterClass> downdash_area = new List<GenericCharacterClass>();
 
 	public string soundscapes = "normal";
@@ -309,6 +311,51 @@ public partial class Player : GenericCharacterClass
 			}
 		}
 
+		if (Input.IsActionJustPressed("use"))
+		{
+			if (itemqueue.Count > 0)
+			{
+				switch (itemqueue[0])
+				{
+					case "healing_effect":
+						HealbyEffect();
+						itemqueue.RemoveAt(0);
+						
+						break;
+
+					case "jumpboost":
+						JumpBoostbyEffect();
+						itemqueue.RemoveAt(0);
+						break;
+
+					default:
+						break;
+				}
+			}
+			
+		}
+
+		var OverlayRef = GetNode("%overlay") as Overlay;
+		if (itemqueue.Count == 0)
+		{
+			OverlayRef.override_inventory("", "");
+		}
+		else
+		{
+			if (itemqueue.Count == 1)
+			{
+				OverlayRef.override_inventory(itemqueue[0], "");
+			}
+			else
+			{
+				if (itemqueue.Count > 1)
+				{
+					OverlayRef.override_inventory(itemqueue[0], itemqueue[1]);
+				}
+			}
+		}
+
+
 		step_queue_remaining = step_queue_remaining - delta;
 		if (step_queue_remaining <= 0 && isplaying)
 		{
@@ -544,7 +591,7 @@ public partial class Player : GenericCharacterClass
 
 	public void _on_heal_button_pressed()
 	{
-		Item_add("healing_effect", 1, -1, 0.75);
+		//Item_add("healing_effect", 1, -1, 0.75);
 		//Print("item added");
 
 		//minderwertiger alter code
@@ -552,6 +599,7 @@ public partial class Player : GenericCharacterClass
 		//if (_healthbar.Value > 100) _healthbar.Value = 100;
 
 		//Heal.Play();
+		itemqueue.Add("healing_effect");
 	}
 
 	public void _on_damage_button_pressed()
@@ -571,12 +619,23 @@ public partial class Player : GenericCharacterClass
 	public void _on_healing_potioned(Node2D body)
 	{
 		//Print("healing");
+		//Item_add("healing_effect", 1, -1, 1.75);
+		itemqueue.Add("healing_effect");
+		var OverlayRef = GetNode("%overlay") as Overlay;
+	}
+	private void HealbyEffect()
+	{
 		Item_add("healing_effect", 1, -1, 1.75);
 	}
 
 	public void _on_jump_boosted(Node2D body)
 	{
 		//Print("jump boosted");
+		//Item_add("jumpboost", 2, -1, 15);
+		itemqueue.Add("jumpboost");
+	}
+	private void JumpBoostbyEffect()
+	{
 		Item_add("jumpboost", 2, -1, 15);
 	}
 
