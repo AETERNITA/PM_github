@@ -10,18 +10,37 @@ public partial class TempEnemy : GenericCharacterClass
 	private double health = 100;
 	private AudioStreamPlayer DeathSFX;
 	private AudioStreamPlayer DamageSFX;
+	private double red_time;
 
 	public override void _Ready()
+	{
+		GetEnemyAudioNodes();
+	}
+
+	public virtual void GetEnemyAudioNodes()
 	{
 		DeathSFX = GetNode<AudioStreamPlayer>("%standart_enemy_death_sfx");
 		DamageSFX = GetNode<AudioStreamPlayer>("%standart_enemy_damage_sfx");
 	}
 
-   public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		for (int i = 0; i < victims.Count; i++)
 		{
 			victims[i].take_damage(1);
+		}
+		if (red_time > 0)
+		{
+			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 1);
+			red_time = red_time - delta;
+			if (red_time < 0)
+			{
+				red_time = 0;
+			}
+		}
+		else
+		{
+			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 0);
 		}
 	}
 
@@ -42,6 +61,7 @@ public partial class TempEnemy : GenericCharacterClass
 			OverlayRef.AddPoints(100);
 		}
 		DamageSFX.Play();
+		red_time = 0.15;
 	}
 
 	public void _on_damage_area_body_entered(Node2D victim)
@@ -61,4 +81,6 @@ public partial class TempEnemy : GenericCharacterClass
 		}
 		//Print("miss you" + victim);
 	}
+	
+	
 }

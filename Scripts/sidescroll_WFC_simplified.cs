@@ -15,7 +15,7 @@ public partial class sidescroll_WFC_simplified : Node2D
 
 	public override void _Ready()
     {
-        if(start_height > level_height)
+        if (start_height > level_height)
         {
             PrintErr("start_height larger than level_height");
         }
@@ -23,17 +23,22 @@ public partial class sidescroll_WFC_simplified : Node2D
         {
             gen_initialization();
             new_gen_cycle();
+            //place_scene();
         }
     }
 
 
-    private void place_scene ()
+    private void place_scene()
     {
         var scene = GD.Load<PackedScene>("uid://bm42aiylfo3oc"); //will be a variable later
-        //var instance = scene.Instantiate();
-        Node2D node2d_instance = (Node2D)scene.Instantiate();
-        AddChild(node2d_instance);
-        //node2d_instance.set_global_position(new Vector2(150, 0));
+        var instance = scene.Instantiate();
+        //Node2D node2d_instance = (Node2D)scene.Instantiate();
+        instance = instance as Node2D;
+        if (instance != null)
+        {
+           // instance as Node2D.Position = new Vector2(150, 500);
+            AddChild(instance);
+        }
         //node2d_instance.global_position = new Vector2(150, 0);
 
 
