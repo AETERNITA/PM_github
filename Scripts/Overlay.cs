@@ -4,9 +4,7 @@ using System;
 public partial class Overlay : CanvasLayer
 {
     private Label Master_Label;
-
     private int Master_Index;
-
     private HSlider Master_Slider;
     private Label Stopwatch;
     private Label Points;
@@ -15,6 +13,8 @@ public partial class Overlay : CanvasLayer
     private double Points_number = 0;
     private CanvasModulate canvmod;
     private bool isinit = false;
+    private Label Item1;
+    private Label Item2;
 
     public override void _Ready()
     {
@@ -31,6 +31,9 @@ public partial class Overlay : CanvasLayer
         Points.Text = "Points: 0";
 
         Master_Slider.Value = 0.5;
+
+        Item1 = GetNode<Label>("Item 1");
+        Item2 = GetNode<Label>("Item 2");
     }
 
     private void darken()
@@ -81,5 +84,11 @@ public partial class Overlay : CanvasLayer
             start_button.Hide();
             in_start_menu = false;
         }
+    }
+
+    public void override_inventory(string a, string b)
+    {
+        Item1.Text = a;
+        Item2.Text = b;
     }
 }

@@ -63,5 +63,31 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Play"
 
+[node name="Item 1" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -317.0
+offset_top = -132.0
+offset_right = -1.0
+offset_bottom = -109.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Item 2" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -315.0
+offset_top = -64.0
+offset_right = 1.0
+offset_bottom = -41.0
+grow_horizontal = 0
+grow_vertical = 0
+
 [connection signal="value_changed" from="Master_Slider" to="." method="_on_master_slider_value_changed"]
 [connection signal="pressed" from="Play_Button" to="." method="_on_button_pressed"]
