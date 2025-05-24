@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxthtdn3hw3fn"]
+
+[ext_resource type="Texture2D" uid="uid://bp2o882xll3d3" path="res://Art/Background Menu.png" id="1_0kb2y"]
+[ext_resource type="Script" uid="uid://cfno77sym2ds8" path="res://Scripts/ESCMenu.cs" id="1_8n8km"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_left = -2.095
+anchor_top = -2.204
+anchor_right = 2.086
+anchor_bottom = 2.247
+offset_left = 0.439941
+offset_top = 0.192017
+offset_right = -16.072
+offset_bottom = -84.056
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8n8km")
+
+[node name="MainESC" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainESC"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="MainESC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "Return to Main"
+
+[node name="Button3" type="Button" parent="MainESC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "Options"
+
+[node name="TextureRect" type="TextureRect" parent="MainESC"]
+z_index = -1
+layout_mode = 2
+texture = ExtResource("1_0kb2y")
+
+[node name="Button" type="Button" parent="MainESC"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "RESUME"
+
+[node name="OptionsESC" type="Container" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="OptionsESC"]
+z_index = -1
+layout_mode = 2
+texture = ExtResource("1_0kb2y")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="OptionsESC"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 150
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1

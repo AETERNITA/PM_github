@@ -15,6 +15,9 @@ public partial class V2Overlay : Control
     private bool isinit = false;
     private Label Item1;
     private Label Item2;
+    [Export] public PackedScene ESCMenu;
+    private Node esc;
+    private CanvasLayer layer;
 
     public override void _Ready()
     {
@@ -34,6 +37,11 @@ public partial class V2Overlay : Control
 
         Item1 = GetNode<Label>("Item 1");
         Item2 = GetNode<Label>("Item 2");
+        foreach(CanvasLayer l in GetChildren()){
+        esc = ESCMenu.Instantiate();
+        l.CallDeferred("add_child", esc);
+        }
+        
     }
 
     private void darken()

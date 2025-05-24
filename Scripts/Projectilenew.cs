@@ -11,6 +11,7 @@ public partial class Projectilenew : Area2D
 	private float speed = 15.0f;
 	private Vector2 lastPos;
 	private PortalController portalController;
+	private RayCast2D ray;
 	[Export] private AudioStreamPlayer shoot_sfx;
 	[Export] private AudioStreamPlayer2D flying_sfx;
 	// Called when the node enters the scene tree for the first time.
@@ -45,11 +46,11 @@ public partial class Projectilenew : Area2D
 		}
 	}
 	
-	public void EndShot(){
+	public void EndShot(float a){
 		sprite.Visible = false;
 		projectileActive = false;
 		lastPos = GlobalPosition;
-		portalController.SpawnPortal(lastPos);
+		portalController.SpawnPortal(lastPos, a);
 		flying_sfx.Stop();
 	}
 
@@ -59,6 +60,7 @@ public partial class Projectilenew : Area2D
 		sprite = GetNode<Sprite2D>("Sprite2D");
 		gun = player.GetNode<Node2D>("gunPivot/gunSprite");
 		sprite.Visible = false;
+		ray = GetNode<RayCast2D>("/root/Game/Interactables/Projectile/RayCast2D");
 	}
 
 	private void RotateProjectileToMouse()
@@ -71,7 +73,14 @@ public partial class Projectilenew : Area2D
 	
 	public void _on_body_entered(Node2D body){
 		if(body is StaticBody2D){
-			EndShot();
+			ray.TargetPosition = new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation)) * 5;
+			float a1 = 0;
+			ray.Rotation = this.Rotation;
+			if (ray.IsColliding()){
+        	Vector2 normal = ray.GetCollisionNormal();
+			a1 = Mathf.RadToDeg(Mathf.Atan2(normal.Y, normal.X));
+		
+			}EndShot(a1);
 		}
 	}
 }
