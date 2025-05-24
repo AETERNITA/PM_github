@@ -1,8 +1,8 @@
-[gd_scene load_steps=77 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=83 format=3 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
-[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://other resources/damage_shader.tres" id="3_lh6sl"]
+[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="3_lh6sl"]
 [ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="4_lh6sl"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="5_waod3"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="6_du02u"]
@@ -25,7 +25,8 @@
 [ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="23_emfjr"]
 [ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_qp5vb"]
 [ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="25_xqbpv"]
-[ext_resource type="Shader" uid="uid://rhuwauvcgfwu" path="res://other resources/PostProcessV1.gdshader" id="27_lh6sl"]
+[ext_resource type="Shader" uid="uid://bqggrd2e5l5qs" path="res://shaders/shadertry1.gdshader" id="26_lh6sl"]
+[ext_resource type="Shader" uid="uid://csxjcaqtjnr25" path="res://shaders/pixeldither.gdshader" id="27_du02u"]
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5eht"]
@@ -199,9 +200,32 @@ fog_density = 0.0195
 fog_sky_affect = 0.872
 adjustment_saturation = 1.2
 
+[sub_resource type="Gradient" id="Gradient_du02u"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fes2o"]
+gradient = SubResource("Gradient_du02u")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fes2o"]
+shader = ExtResource("27_du02u")
+shader_parameter/shader_enabled = true
+shader_parameter/palette = SubResource("GradientTexture1D_fes2o")
+shader_parameter/dithering = true
+shader_parameter/dithering_size = 2
+shader_parameter/resolution_scale = 2
+shader_parameter/quantization_level = 16
+
+[sub_resource type="Curve" id="Curve_lh6sl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0273684, 0.943434), 0.0, 0.0, 0, 0, Vector2(0.610526, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_waod3"]
+curve = SubResource("Curve_lh6sl")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_waod3"]
-shader = ExtResource("27_lh6sl")
-shader_parameter/size = Vector2(32, 28)
+shader = ExtResource("26_lh6sl")
+shader_parameter/distance_curve = SubResource("CurveTexture_waod3")
+shader_parameter/intensity = 70.0
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -646,9 +670,18 @@ color = Color(0.154876, 0.154876, 0.154876, 1)
 script = ExtResource("25_xqbpv")
 
 [node name="shading layer 1" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="shading layer 1"]
+material = SubResource("ShaderMaterial_fes2o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="shading layer 2" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="shading layer 2"]
 material = SubResource("ShaderMaterial_waod3")
 anchors_preset = 15
 anchor_right = 1.0

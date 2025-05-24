@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
-[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://other resources/damage_shader.tres" id="2_r7t2e"]
+[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="2_r7t2e"]
 [ext_resource type="Texture2D" uid="uid://dfck8gkf2bqas" path="res://Art/player jump animation.png" id="3_6rnjq"]
 [ext_resource type="Texture2D" uid="uid://luvbi3mbxp62" path="res://Art/portalgun.png" id="3_6xx8g"]
 [ext_resource type="Script" uid="uid://bm570dyccqalk" path="res://Scripts/LaserSchwert.cs" id="5_fkybt"]
