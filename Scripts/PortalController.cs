@@ -22,7 +22,7 @@ public partial class PortalController : Node2D
 	{
 	}
 
-	public void SpawnPortal(Vector2 spawnpoint){
+	public void SpawnPortal(Vector2 spawnpoint, float spawnAngle){
 		if (GetPortalCount() > 1){
 			RigidBody2D delPortal = portale[0]; 
 			delPortal.QueueFree(); 
@@ -30,7 +30,7 @@ public partial class PortalController : Node2D
 			//delPortal = portale[0]; 
 			//delPortal.QueueFree(); 
 			//portale.RemoveAt(0);
-			SpawnPortal(spawnpoint);
+			SpawnPortal(spawnpoint, spawnAngle);
 		}
 		else{
 			newportal = PortalSpawner.Instantiate<Portal>();
@@ -38,6 +38,7 @@ public partial class PortalController : Node2D
 			portale.Add(newportal);
 			foreach(Portal p in portale){p.CallDeferred("set_portal_type", portale.IndexOf(p));}
 			newportal.CallDeferred("set", "global_position", spawnpoint);
+			newportal.Rotation = spawnAngle;
 			PortalSpawn_sfx.Play();
 		}
 	}
