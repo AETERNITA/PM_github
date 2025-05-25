@@ -299,7 +299,7 @@ public partial class Player : GenericCharacterClass
 
 		RotateGunToMouse();
 
-		if (Input.IsActionJustPressed("escape"))
+		/* if (Input.IsActionJustPressed("escape"))
 		{
 			if (escape_menu_active)
 			{
@@ -309,7 +309,7 @@ public partial class Player : GenericCharacterClass
 			{
 				escape_menu_active = true;
 			}
-		}
+		} */
 
 		if (Input.IsActionJustPressed("use"))
 		{
@@ -320,7 +320,7 @@ public partial class Player : GenericCharacterClass
 					case "healing_effect":
 						HealbyEffect();
 						itemqueue.RemoveAt(0);
-						
+
 						break;
 
 					case "jumpboost":
@@ -332,7 +332,7 @@ public partial class Player : GenericCharacterClass
 						break;
 				}
 			}
-			
+
 		}
 
 		var OverlayRef = GetNode("%overlay") as V2Overlay;
@@ -780,6 +780,11 @@ public partial class Player : GenericCharacterClass
 	public void Bone_picked_up()
 	{
 		Print("mjam lecker");
+	}
+
+	public void SetEscMenuModulate(bool active)
+	{
+		escape_menu_active = active;
 	}
 
 
