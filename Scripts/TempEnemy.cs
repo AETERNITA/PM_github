@@ -26,7 +26,6 @@ public partial class TempEnemy : GenericCharacterClass
 	public override void _Ready()
 	{
 		GetEnemyAudioNodes();
-		_wallRay = GetNode<RayCast2D>("WallRay");
 		_groundRay = GetNode<RayCast2D>("GroundRay");
         _sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
 	}
@@ -42,16 +41,14 @@ public partial class TempEnemy : GenericCharacterClass
 		Velocity = velocity;
         MoveAndSlide();
 
-        _wallRay.TargetPosition = Direction * 120;
-		_groundRay.TargetPosition = Direction * 120 + Vector2.Down * 120;
-
-        _wallRay.ForceRaycastUpdate();
+		_groundRay.TargetPosition = Direction * 100 + Vector2.Down * 120;
         _groundRay.ForceRaycastUpdate();
 
-        
-        if (_wallRay.IsColliding() || !_groundRay.IsColliding())
-        {
-            FlipDirection();
+
+		if (!_groundRay.IsColliding())
+		{
+			FlipDirection();
+			
         }
 
 
@@ -77,13 +74,27 @@ public partial class TempEnemy : GenericCharacterClass
 	}
 
 
-	private void FlipDirection()
+	private void _on_wall_hit(Node2D body)
     {
-        Direction = -Direction;
-
-        if (_sprite != null)
-            _sprite.FlipH = ! _sprite.FlipH;
+        FlipDirection();
     }
+
+
+	private void FlipDirection()
+	{
+		if (IsOnFloor())
+		{
+			Direction = -Direction;
+			var damageArea = GetNode<Node2D>("damage_area/CollisionShape2D");
+			damageArea.Position = new Vector2(-damageArea.Position.X, damageArea.Position.Y);
+			var WallBox = GetNode<Node2D>("wall_box/CollisionShape2D");
+			WallBox.Position = new Vector2(-WallBox.Position.X, WallBox.Position.Y);
+			if (_sprite != null)
+			{
+				_sprite.FlipH = !_sprite.FlipH;
+			}
+		}
+	}
 	
 	public void deal_damage()
 	{

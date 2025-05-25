@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Portalmario"
-run/main_scene="uid://ioyfqr7mv56h"
+run/main_scene="uid://dmhm0r2f0q1g1"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://Art/icon.svg"
 

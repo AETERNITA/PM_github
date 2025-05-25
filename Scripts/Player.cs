@@ -789,9 +789,7 @@ public partial class Player : GenericCharacterClass
 
 	private void LaserschwertHit()
 	{
-		DownDashImpactSFX.Play();
 		Print("LaserschwertHit");
-		screenshake();
 		for (int i = 0; i < laserschwert_area.Count; i++)
 		{
 			Print("damage to:" + laserschwert_area[i]);

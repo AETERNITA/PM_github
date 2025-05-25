@@ -405,7 +405,7 @@ text = "Resume"
 layer = 2
 
 [node name="temp_enemy" parent="." instance=ExtResource("18_tk324")]
-position = Vector2(-1566, -139)
+position = Vector2(-1511, -151)
 
 [connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]

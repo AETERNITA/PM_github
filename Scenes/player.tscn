@@ -249,7 +249,8 @@ radius = 83.1062
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite")]
 material = SubResource("ShaderMaterial_r7t2e")
-collision_layer = 3
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_7irut")
 _animatedSprite = NodePath("animatedSprite")
 gunSprite = NodePath("gunPivot")
