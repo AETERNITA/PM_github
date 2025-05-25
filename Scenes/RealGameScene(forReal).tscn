@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=83 format=3 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -28,7 +28,6 @@
 [ext_resource type="Shader" uid="uid://bqggrd2e5l5qs" path="res://shaders/shadertry1.gdshader" id="26_lh6sl"]
 [ext_resource type="Shader" uid="uid://csxjcaqtjnr25" path="res://shaders/pixeldither.gdshader" id="27_du02u"]
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
-[ext_resource type="PackedScene" uid="uid://bxthtdn3hw3fn" path="res://ESC-Menu.tscn" id="29_du02u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5eht"]
 size = Vector2(4054.17, 415.278)
@@ -668,6 +667,7 @@ light_mask = 3
 color = Color(0.154876, 0.154876, 0.154876, 1)
 
 [node name="GeneratedWorld" type="Node2D" parent="."]
+process_mode = 3
 script = ExtResource("25_xqbpv")
 
 [node name="shading layer 1" type="CanvasLayer" parent="."]
@@ -693,7 +693,7 @@ grow_vertical = 2
 [node name="ui layer" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="overlay" type="Control" parent="ui layer"]
+[node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -702,7 +702,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("27_waod3")
-ESCMenu = ExtResource("29_du02u")
+player = NodePath("../../Player")
 metadata/_edit_use_anchors_ = true
 
 [node name="_healthbar" type="TextureProgressBar" parent="ui layer/overlay"]
@@ -818,6 +818,36 @@ offset_bottom = -24.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="RestartButton" type="Button" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 15.0
+offset_right = 33.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="ResumeButton" type="Button" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -51.0
+offset_right = 35.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="ui layer/overlay"]
 layer = 2
 
@@ -830,3 +860,4 @@ layer = 2
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
 [connection signal="value_changed" from="ui layer/overlay/Master_Slider" to="ui layer/overlay" method="_on_master_slider_value_changed"]
 [connection signal="pressed" from="ui layer/overlay/Play_Button" to="ui layer/overlay" method="_on_button_pressed"]
+[connection signal="pressed" from="ui layer/overlay/ResumeButton" to="ui layer/overlay" method="_on_resume_button_pressed"]

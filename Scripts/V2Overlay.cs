@@ -3,6 +3,7 @@ using System;
 
 public partial class V2Overlay : Control
 {
+    [Export] Player player;
     private Label Master_Label;
     private int Master_Index;
     private HSlider Master_Slider;
@@ -15,9 +16,13 @@ public partial class V2Overlay : Control
     private bool isinit = false;
     private Label Item1;
     private Label Item2;
-    [Export] public PackedScene ESCMenu;
-    private Node esc;
-    private CanvasLayer layer;
+    private Button ResumeButton;
+    private Button RestartButton;
+    private bool escape_menu_active = false;
+
+    /*    [Export] public PackedScene ESCMenu;
+                   private Node esc;
+                   private CanvasLayer layer; */
 
     public override void _Ready()
     {
@@ -33,15 +38,20 @@ public partial class V2Overlay : Control
         Points = GetNode<Label>("Points");
         Points.Text = "Points: 0";
 
+        RestartButton = GetNode<Button>("RestartButton");
+        RestartButton.Visible = false;
+        ResumeButton = GetNode<Button>("ResumeButton");
+        ResumeButton.Visible = false;
+
         Master_Slider.Value = 0.5;
 
         Item1 = GetNode<Label>("Item 1");
         Item2 = GetNode<Label>("Item 2");
-        foreach(CanvasLayer l in GetChildren()){
-        esc = ESCMenu.Instantiate();
-        l.CallDeferred("add_child", esc);
-        }
-        
+        /*         foreach(CanvasLayer l in GetChildren()){
+                esc = ESCMenu.Instantiate();
+                l.CallDeferred("add_child", esc); */
+        // }
+
     }
 
     private void darken()
@@ -52,6 +62,18 @@ public partial class V2Overlay : Control
 
     public override void _Process(double delta)
     {
+
+        if (in_start_menu)
+        {
+            Master_Label.Visible = true;
+            Master_Slider.Visible = true;
+        }
+        else
+        {
+            Master_Label.Visible = escape_menu_active;
+            Master_Slider.Visible = escape_menu_active;
+        }
+
         if (!GetTree().Paused)
         {
             time = time + delta;
@@ -69,6 +91,27 @@ public partial class V2Overlay : Control
             isinit = true;
             GetTree().Paused = true;
         }
+
+        if (Input.IsActionJustPressed("escape"))
+        {
+            if (escape_menu_active)
+            {
+                escape_menu_active = false;
+            }
+            else
+            {
+                escape_menu_active = true;
+            }
+            if (in_start_menu)
+            {
+                escape_menu_active = false;
+            }
+        }
+
+        RestartButton.Visible = escape_menu_active;
+        ResumeButton.Visible = escape_menu_active;
+
+        player.SetEscMenuModulate(escape_menu_active);
     }
 
     public void _on_master_slider_value_changed(float myFloat)
@@ -99,4 +142,10 @@ public partial class V2Overlay : Control
         Item1.Text = a;
         Item2.Text = b;
     }
+
+    public void _on_resume_button_pressed()
+    {
+        escape_menu_active = false;
+    }
+
 }
