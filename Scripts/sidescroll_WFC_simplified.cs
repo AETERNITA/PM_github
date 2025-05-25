@@ -22,8 +22,8 @@ public partial class sidescroll_WFC_simplified : Node2D
         else
         {
             gen_initialization();
-            new_gen_cycle();
-            //place_scene();
+            //new_gen_cycle();
+            place_scene();
         }
     }
 
@@ -35,13 +35,11 @@ public partial class sidescroll_WFC_simplified : Node2D
         Node2D instance2D = instance as Node2D;
         if (instance2D != null)
         {
-            instance2D.Position = new Vector2(20000, 30000);
             AddChild(instance2D);
-            /* await ToSignal(GetTree(), "process_frame"); // wartet einen Frame ab
-            instance2D.Position = new Vector2(20000, 30000);
-            Print("set position"); */
-           //instance2D.Position = new Vector2(20000, 30000);
-        }
+            await ToSignal(GetTree(), "process_frame"); // wartet einen Frame ab
+            instance2D.Position = new Vector2(5000, 5000);
+            Print("set position");
+        }  
     }
 
 
