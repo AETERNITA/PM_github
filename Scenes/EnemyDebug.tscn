@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dmhm0r2f0q1g1"]
+[gd_scene load_steps=36 format=3 uid="uid://dmhm0r2f0q1g1"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_pl8ce"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_kwo53"]
@@ -10,10 +10,8 @@
 [ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="16_jnvr2"]
 [ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="17_8d52h"]
 [ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="18_4g0we"]
+[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Enemy.tscn" id="18_tk324"]
 [ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="19_hphmy"]
-[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="20_pxwvi"]
-[ext_resource type="Script" uid="uid://cqgw24mvbuby" path="res://Scripts/TempEnemy.cs" id="21_piscu"]
-[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="22_vs380"]
 [ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="23_d2in4"]
 [ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_hjirg"]
 [ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="25_7pcd1"]
@@ -63,24 +61,6 @@ width = 500
 height = 500
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xqbpv"]
-shader = ExtResource("20_pxwvi")
-shader_parameter/damage_shader_int = 0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exi56"]
-size = Vector2(181.015, 133.188)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vifiy"]
-
-[sub_resource type="Gradient" id="Gradient_7nbq1"]
-offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_exi56"]
-gradient = SubResource("Gradient_7nbq1")
-fill = 1
-fill_from = Vector2(0.49, 0.52)
 
 [sub_resource type="Environment" id="Environment_mg4q0"]
 background_mode = 3
@@ -221,49 +201,6 @@ stream = ExtResource("18_4g0we")
 
 [node name="PortalSpawn" type="AudioStreamPlayer" parent="PortalController"]
 stream = ExtResource("19_hphmy")
-
-[node name="temp_enemy" type="CharacterBody2D" parent="."]
-material = SubResource("ShaderMaterial_xqbpv")
-position = Vector2(-4297, 31)
-script = ExtResource("21_piscu")
-Direction = Vector2(1, 0)
-
-[node name="damage_area" type="Area2D" parent="temp_enemy"]
-position = Vector2(2230, -144)
-scale = Vector2(0.959173, 0.959173)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy/damage_area"]
-position = Vector2(156.385, 104.256)
-shape = SubResource("RectangleShape2D_exi56")
-debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
-
-[node name="Sprite2D" type="Sprite2D" parent="temp_enemy"]
-use_parent_material = true
-position = Vector2(2521, -43)
-scale = Vector2(1.48146, 1.48146)
-texture = ExtResource("22_vs380")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy"]
-position = Vector2(2521, -43)
-scale = Vector2(10.1244, 10.1244)
-shape = SubResource("RectangleShape2D_vifiy")
-one_way_collision_margin = 0.0
-
-[node name="PointLight2D" type="PointLight2D" parent="temp_enemy"]
-position = Vector2(2521, -39)
-scale = Vector2(4.02735, 4.05213)
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 9.3
-texture = SubResource("GradientTexture2D_exi56")
-
-[node name="WallRay" type="RayCast2D" parent="temp_enemy"]
-position = Vector2(2521, -43)
-target_position = Vector2(120, 1)
-
-[node name="GroundRay" type="RayCast2D" parent="temp_enemy"]
-position = Vector2(2521, -41)
-target_position = Vector2(120, 120)
 
 [node name="standart_enemy_death_sfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -467,9 +404,10 @@ text = "Resume"
 [node name="CanvasLayer" type="CanvasLayer" parent="ui layer/overlay"]
 layer = 2
 
+[node name="temp_enemy" parent="." instance=ExtResource("18_tk324")]
+position = Vector2(-1566, -139)
+
 [connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
-[connection signal="body_entered" from="temp_enemy/damage_area" to="temp_enemy" method="_on_damage_area_body_entered"]
-[connection signal="body_exited" from="temp_enemy/damage_area" to="temp_enemy" method="_on_damage_area_body_exited"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
 [connection signal="value_changed" from="ui layer/overlay/Master_Slider" to="ui layer/overlay" method="_on_master_slider_value_changed"]

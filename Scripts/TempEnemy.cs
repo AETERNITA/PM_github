@@ -7,6 +7,7 @@ public partial class TempEnemy : GenericCharacterClass
 {
 
 	[Export] public float Speed = 150f;
+	[Export] public float Gravity = 800f;
     [Export] public Vector2 Direction = Vector2.Left;
 
 	private List<GenericCharacterClass> victims = new List<GenericCharacterClass>();
@@ -33,8 +34,12 @@ public partial class TempEnemy : GenericCharacterClass
 	
 	public override void _PhysicsProcess(double delta)
 	{
+
+		Vector2 velocity = Velocity;
 		 
-        Velocity = Direction * Speed;
+        velocity.X = Direction.X * Speed;
+		velocity.Y += Gravity * (float)delta;
+		Velocity = velocity;
         MoveAndSlide();
 
         _wallRay.TargetPosition = Direction * 120;
