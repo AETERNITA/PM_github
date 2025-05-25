@@ -235,7 +235,7 @@ colors = PackedColorArray(1, 0, 0, 1, 0.890188, 0.843423, 0, 1, 0.0666667, 1, 0,
 gradient = SubResource("Gradient_5eq1c")
 width = 128
 
-[node name="Game2" type="Node2D"]
+[node name="Game" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_07a3i")
 
@@ -307,7 +307,6 @@ texture = ExtResource("4_lh6sl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Hoop3"]
 position = Vector2(7.22266, -21.6685)
 shape = SubResource("RectangleShape2D_iyp13")
-one_way_collision = true
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="World/Walls/Hoop3"]
 occluder = SubResource("OccluderPolygon2D_iivbl")

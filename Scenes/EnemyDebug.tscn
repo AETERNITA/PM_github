@@ -1,0 +1,455 @@
+[gd_scene load_steps=43 format=3 uid="uid://dmhm0r2f0q1g1"]
+
+[ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_pl8ce"]
+[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_kwo53"]
+[ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="5_f655l"]
+[ext_resource type="Script" uid="uid://du65swo1xmtj5" path="res://Scripts/Projectilenew.cs" id="12_a1hmg"]
+[ext_resource type="Texture2D" uid="uid://cwegm84khu1qs" path="res://Art/projektil2.png" id="13_4un1v"]
+[ext_resource type="AudioStream" uid="uid://koth7u0taw7c" path="res://Audio/sfx/Sparkly Magic Beam Wind Whirl - LOOPING VERSION    [003770].mp3" id="14_2tgan"]
+[ext_resource type="AudioStream" uid="uid://bs43oc3weuyhw" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 02    [003609].mp3" id="15_d5uks"]
+[ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="16_jnvr2"]
+[ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="17_8d52h"]
+[ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="18_4g0we"]
+[ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="19_hphmy"]
+[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="20_pxwvi"]
+[ext_resource type="Script" uid="uid://cqgw24mvbuby" path="res://Scripts/TempEnemy.cs" id="21_piscu"]
+[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="22_vs380"]
+[ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="23_d2in4"]
+[ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_hjirg"]
+[ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="25_7pcd1"]
+[ext_resource type="Shader" uid="uid://csxjcaqtjnr25" path="res://shaders/pixeldither.gdshader" id="26_yxisw"]
+[ext_resource type="Shader" uid="uid://bqggrd2e5l5qs" path="res://shaders/shadertry1.gdshader" id="27_7tat2"]
+[ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="28_er4is"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcvuv"]
+size = Vector2(26.9634, 19.7202)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_exi56"]
+polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_68dvk"]
+radius = 1.9105
+
+[sub_resource type="Curve" id="Curve_7nbq1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.428339, 0.863716), 0.0, 0.0, 0, 0, Vector2(0.700326, 0.360221), 0.0, 0.0, 0, 0, Vector2(1, 0.0876529), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_exi56"]
+curve = SubResource("Curve_7nbq1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7t8sx"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(25, 25, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 10.0
+radial_accel_max = 10.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_exi56")
+color = Color(0.0980392, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_ewbju"]
+offsets = PackedFloat32Array(0, 0.733129)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_85qyi"]
+gradient = SubResource("Gradient_ewbju")
+width = 500
+height = 500
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xqbpv"]
+shader = ExtResource("20_pxwvi")
+shader_parameter/damage_shader_int = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exi56"]
+size = Vector2(541.091, 148.044)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vifiy"]
+
+[sub_resource type="Gradient" id="Gradient_7nbq1"]
+offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_exi56"]
+gradient = SubResource("Gradient_7nbq1")
+fill = 1
+fill_from = Vector2(0.49, 0.52)
+
+[sub_resource type="Environment" id="Environment_mg4q0"]
+background_mode = 3
+tonemap_mode = 1
+glow_intensity = 0.0
+glow_hdr_threshold = 0.9
+fog_light_energy = 1.59
+fog_sun_scatter = 8.5
+fog_density = 0.0195
+fog_sky_affect = 0.872
+adjustment_saturation = 1.2
+
+[sub_resource type="Gradient" id="Gradient_du02u"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fes2o"]
+gradient = SubResource("Gradient_du02u")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fes2o"]
+shader = ExtResource("26_yxisw")
+shader_parameter/shader_enabled = true
+shader_parameter/palette = SubResource("GradientTexture1D_fes2o")
+shader_parameter/dithering = true
+shader_parameter/dithering_size = 2
+shader_parameter/resolution_scale = 2
+shader_parameter/quantization_level = 16
+
+[sub_resource type="Curve" id="Curve_lh6sl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0273684, 0.943434), 0.0, 0.0, 0, 0, Vector2(0.610526, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_waod3"]
+curve = SubResource("Curve_lh6sl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_waod3"]
+shader = ExtResource("27_7tat2")
+shader_parameter/distance_curve = SubResource("CurveTexture_waod3")
+shader_parameter/intensity = 70.0
+
+[sub_resource type="Gradient" id="Gradient_5eq1c"]
+offsets = PackedFloat32Array(0, 0.485915, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.890188, 0.843423, 0, 1, 0.0666667, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ccd35"]
+gradient = SubResource("Gradient_5eq1c")
+width = 128
+
+[node name="Game" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_pl8ce")
+
+[node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("2_kwo53")]
+unique_name_in_owner = true
+physics_interpolation_mode = 1
+position = Vector2(-2775, -56.757)
+scale = Vector2(0.32, 0.32)
+_healthbar = NodePath("../ui layer/overlay/_healthbar")
+
+[node name="World" type="Node" parent="." groups=["World"]]
+
+[node name="Walls" type="Node" parent="World" groups=["World"]]
+
+[node name="Ground" type="Node" parent="World" groups=["World"]]
+
+[node name="Ground2" type="StaticBody2D" parent="World/Ground" groups=["World"]]
+position = Vector2(-2275, 247)
+scale = Vector2(0.72, 0.72)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground2"]
+texture = ExtResource("5_f655l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground2"]
+position = Vector2(4.1665, -5.16653)
+scale = Vector2(148.143, 29.9721)
+shape = SubResource("RectangleShape2D_wcvuv")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="World/Ground/Ground2"]
+occluder = SubResource("OccluderPolygon2D_exi56")
+
+[node name="Platfroms" type="Node" parent="World" groups=["World"]]
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="Projectile" type="Area2D" parent="Interactables" node_paths=PackedStringArray("shoot_sfx", "flying_sfx")]
+position = Vector2(-2675, 0.243042)
+script = ExtResource("12_a1hmg")
+shoot_sfx = NodePath("shooting_sfx")
+flying_sfx = NodePath("flying_sfx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Projectile"]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_68dvk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Projectile"]
+position = Vector2(-6, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_4un1v")
+
+[node name="sparkling_particles" type="GPUParticles2D" parent="Interactables/Projectile/Sprite2D"]
+amount = 200
+preprocess = 5.0
+process_material = SubResource("ParticleProcessMaterial_7t8sx")
+
+[node name="projectile_light" type="PointLight2D" parent="Interactables/Projectile"]
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_85qyi")
+
+[node name="flying_sfx" type="AudioStreamPlayer2D" parent="Interactables/Projectile"]
+stream = ExtResource("14_2tgan")
+
+[node name="shooting_sfx" type="AudioStreamPlayer" parent="Interactables/Projectile"]
+stream = ExtResource("15_d5uks")
+
+[node name="RayCast2D" type="RayCast2D" parent="Interactables"]
+
+[node name="PortalController" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(-2775, 0.243042)
+script = ExtResource("16_jnvr2")
+PortalSpawner = ExtResource("17_8d52h")
+player = NodePath("../Player")
+
+[node name="Teleport" type="AudioStreamPlayer" parent="PortalController"]
+stream = ExtResource("18_4g0we")
+
+[node name="PortalSpawn" type="AudioStreamPlayer" parent="PortalController"]
+stream = ExtResource("19_hphmy")
+
+[node name="temp_enemy" type="CharacterBody2D" parent="."]
+material = SubResource("ShaderMaterial_xqbpv")
+position = Vector2(-4226, -28)
+script = ExtResource("21_piscu")
+
+[node name="damage_area" type="Area2D" parent="temp_enemy"]
+position = Vector2(2394, -43)
+scale = Vector2(0.959173, 0.959173)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy/damage_area"]
+position = Vector2(9.90454, 35.4472)
+shape = SubResource("RectangleShape2D_exi56")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy"]
+position = Vector2(2521, -43)
+scale = Vector2(10.1244, 10.1244)
+shape = SubResource("RectangleShape2D_vifiy")
+one_way_collision_margin = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="temp_enemy"]
+use_parent_material = true
+position = Vector2(2521, -43)
+scale = Vector2(1.48146, 1.48146)
+texture = ExtResource("22_vs380")
+
+[node name="PointLight2D" type="PointLight2D" parent="temp_enemy"]
+position = Vector2(2521, -39)
+scale = Vector2(4.02735, 4.05213)
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_exi56")
+
+[node name="standart_enemy_death_sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("23_d2in4")
+
+[node name="standart_enemy_damage_sfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("24_hjirg")
+volume_db = 10.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mg4q0")
+
+[node name="canvmod" type="CanvasModulate" parent="WorldEnvironment"]
+unique_name_in_owner = true
+light_mask = 3
+color = Color(0.154876, 0.154876, 0.154876, 1)
+
+[node name="GeneratedWorld" type="Node2D" parent="."]
+process_mode = 3
+script = ExtResource("25_7pcd1")
+
+[node name="shading layer 1" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="shading layer 1"]
+material = SubResource("ShaderMaterial_fes2o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="shading layer 2" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="shading layer 2"]
+material = SubResource("ShaderMaterial_waod3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ui layer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("28_er4is")
+player = NodePath("../../Player")
+metadata/_edit_use_anchors_ = true
+
+[node name="_healthbar" type="TextureProgressBar" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 128.0
+grow_vertical = 0
+value = 100.0
+texture_progress = SubResource("GradientTexture2D_ccd35")
+metadata/_edit_use_anchors_ = true
+
+[node name="gridcontainer" type="GridContainer" parent="ui layer/overlay"]
+layout_mode = 0
+offset_right = 1356.0
+offset_bottom = 672.0
+scale = Vector2(0.848837, 0.961991)
+
+[node name="HealButton" type="Button" parent="ui layer/overlay/gridcontainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Heal"
+
+[node name="DamageButton" type="Button" parent="ui layer/overlay/gridcontainer"]
+layout_mode = 2
+action_mode = 0
+text = "10 Damge"
+
+[node name="Master_Slider" type="HSlider" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -174.0
+offset_top = 13.0
+offset_right = 175.0
+offset_bottom = 29.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.1
+
+[node name="Master_Label" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -159.0
+offset_top = 51.0
+offset_right = 159.0
+offset_bottom = 74.0
+grow_horizontal = 2
+
+[node name="Play_Button" type="Button" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -120.0
+offset_right = -175.0
+offset_bottom = -89.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Play"
+
+[node name="Points" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -309.0
+offset_top = 13.0
+offset_bottom = 36.0
+grow_horizontal = 0
+
+[node name="Stopwatch" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -290.0
+offset_top = 73.0
+offset_bottom = 96.0
+grow_horizontal = 0
+
+[node name="Item 1" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -257.0
+offset_top = -139.0
+offset_bottom = -116.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Item 2" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -47.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="RestartButton" type="Button" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 15.0
+offset_right = 33.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="ResumeButton" type="Button" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -51.0
+offset_right = 35.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resume"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ui layer/overlay"]
+layer = 2
+
+[connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
+[connection signal="body_entered" from="temp_enemy/damage_area" to="temp_enemy" method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="temp_enemy/damage_area" to="temp_enemy" method="_on_damage_area_body_exited"]
+[connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]
+[connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
+[connection signal="value_changed" from="ui layer/overlay/Master_Slider" to="ui layer/overlay" method="_on_master_slider_value_changed"]
+[connection signal="pressed" from="ui layer/overlay/Play_Button" to="ui layer/overlay" method="_on_button_pressed"]
+[connection signal="pressed" from="ui layer/overlay/ResumeButton" to="ui layer/overlay" method="_on_resume_button_pressed"]
