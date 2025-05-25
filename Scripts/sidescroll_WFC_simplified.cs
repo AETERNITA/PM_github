@@ -23,25 +23,24 @@ public partial class sidescroll_WFC_simplified : Node2D
         {
             gen_initialization();
             //new_gen_cycle();
-            place_scene();
+            //place_scene();
         }
     }
 
-
-    private async void place_scene()
+/* 
+    private void place_scene(string scene_uid, Vector2 position)
     {
-        var scene = GD.Load<PackedScene>("uid://bm42aiylfo3oc"); //will be a variable later
+        var scene = GD.Load<PackedScene>(scene_uid);
         var instance = scene.Instantiate();
         Node2D instance2D = instance as Node2D;
         if (instance2D != null)
         {
             AddChild(instance2D);
-            await ToSignal(GetTree(), "process_frame"); // wartet einen Frame ab
-            instance2D.Position = new Vector2(5000, 5000);
-            Print("set position");
+            //await ToSignal(GetTree(), "process_frame"); // wartet einen Frame ab
+            instance2D.Position = position;
         }  
     }
-
+ */
 
     private void setup_start_area(int start_height)
     {
@@ -62,7 +61,9 @@ public partial class sidescroll_WFC_simplified : Node2D
 
     private void definitive_placement()
     {
-
+        /* string scenenene = "uid://bm42aiylfo3oc";
+        
+        place_scene(scenenene, new Vector2(5000, 0)); */
     }
 
     private void WFC_placement()

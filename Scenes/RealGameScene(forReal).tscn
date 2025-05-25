@@ -235,7 +235,7 @@ colors = PackedColorArray(1, 0, 0, 1, 0.890188, 0.843423, 0, 1, 0.0666667, 1, 0,
 gradient = SubResource("Gradient_5eq1c")
 width = 128
 
-[node name="Game" type="Node2D"]
+[node name="Game2" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_07a3i")
 
@@ -695,7 +695,7 @@ grow_vertical = 2
 [node name="ui layer" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="overlay" type="Control" parent="ui layer"]
+[node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -704,6 +704,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("27_waod3")
+player = NodePath("../../Player")
 metadata/_edit_use_anchors_ = true
 
 [node name="_healthbar" type="TextureProgressBar" parent="ui layer/overlay"]
