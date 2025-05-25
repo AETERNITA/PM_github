@@ -32,6 +32,7 @@ public partial class Projectilenew : Area2D
 		if(projectileActive == true){
 			this.GlobalPosition = new Vector2 (GlobalPosition.X+Mathf.Cos(direction)*speed, GlobalPosition.Y + Mathf.Sin(direction)*speed);
 		}
+		
 	}
 
 	public void Shoot(Vector2 playerPos){
@@ -60,7 +61,7 @@ public partial class Projectilenew : Area2D
 		sprite = GetNode<Sprite2D>("Sprite2D");
 		gun = player.GetNode<Node2D>("gunPivot/gunSprite");
 		sprite.Visible = false;
-		ray = GetNode<RayCast2D>("/root/Game/Interactables/Projectile/RayCast2D");
+		ray = GetNode<RayCast2D>("/root/Game/Interactables/RayCast2D");
 	}
 
 	private void RotateProjectileToMouse()
@@ -73,14 +74,21 @@ public partial class Projectilenew : Area2D
 	
 	public void _on_body_entered(Node2D body){
 		if(body is StaticBody2D){
-			ray.TargetPosition = new Vector2(Mathf.Cos(Rotation), Mathf.Sin(Rotation)) * 5;
 			float a1 = 0;
-			ray.Rotation = this.Rotation;
-			if (ray.IsColliding()){
-        	Vector2 normal = ray.GetCollisionNormal();
-			a1 = Mathf.RadToDeg(Mathf.Atan2(normal.Y, normal.X));
-		
-			}EndShot(a1);
+			ray.Enabled = true;
+			ray.GlobalPosition = GlobalPosition - new Vector2(Mathf.Cos(direction), Mathf.Sin(direction))*150;
+			ray.TargetPosition = new Vector2(Mathf.Cos(direction), Mathf.Sin(direction))*1000;
+			ray.ForceRaycastUpdate();
+			
+			if(ray.IsColliding()){
+			GD.Print(ray.GetCollisionNormal());
+			Vector2 normal = ray.GetCollisionNormal();
+			a1 = Mathf.Atan2(normal.Y, normal.X);
+			
+			}
+			else GD.Print("Hä");
+			EndShot(a1);
+			GD.Print(a1);
 		}
-	}
+		}
 }

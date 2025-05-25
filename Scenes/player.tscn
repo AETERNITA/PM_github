@@ -121,7 +121,7 @@ radius = 240.0
 height = 654.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x3wgy"]
-radius = 294.551
+radius = 83.1062
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e6mvm"]
 streams_count = 10
@@ -275,12 +275,13 @@ scale = Vector2(1.7014, 1.7014)
 texture = ExtResource("3_6xx8g")
 
 [node name="LaserSchwert" type="Node2D" parent="."]
+scale = Vector2(5, 5)
 
 [node name="Area2D" type="Area2D" parent="LaserSchwert"]
 script = ExtResource("5_fkybt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaserSchwert/Area2D"]
-position = Vector2(227, 82)
+position = Vector2(48, 11)
 shape = SubResource("CircleShape2D_x3wgy")
 
 [node name="Sprite2D" type="Sprite2D" parent="LaserSchwert"]

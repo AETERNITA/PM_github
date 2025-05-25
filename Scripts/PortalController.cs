@@ -58,15 +58,15 @@ public partial class PortalController : Node2D
 	public int GetPortalCount(){
 		return portale.Count;
 	}
-	public void PortalTouched(int portalId){
+	public void PortalTouched(int portalId, Node2D charBody){
 		touchedPortal = portalId;
-		Teleport();
+		Teleport(charBody);
 	}
-	public void Teleport(){
+	public void Teleport(Node2D charBody){
 		if (portale[touchedPortal].GetTelTo()){}else{
 		Portal partnerPortal = GetNode<Portal>(GetPartnerPortal(touchedPortal));
 		RigidBody2D rigidTouchedPortal = portale[touchedPortal];
-		player.GlobalPosition = partnerPortal.GlobalPosition;
+		charBody.GlobalPosition = partnerPortal.GlobalPosition;
 		partnerPortal.set_portal_teleported_to(true);
 		Teleport_sfx.Play();
 		}
