@@ -43,6 +43,7 @@ public partial class Player : GenericCharacterClass
 	private List<string> itemqueue = new List<string>();
 
 	private List<GenericCharacterClass> downdash_area = new List<GenericCharacterClass>();
+	private List<GenericCharacterClass> laserschwert_area = new List<GenericCharacterClass>();
 
 	public string soundscapes = "normal";
 
@@ -186,6 +187,13 @@ public partial class Player : GenericCharacterClass
 				isdowndashing = true;
 			}
 		}
+
+		if(Input.IsActionJustPressed("SwordHit"))
+		{
+            LaserschwertHit();
+        }
+
+		
 
 
 		// Handle Jump
@@ -728,18 +736,8 @@ public partial class Player : GenericCharacterClass
 		GetNode<V2Overlay>("%overlay").dead = true;
 	}
 
-	private void DownDashImpact()
-	{
-		DownDashImpactSFX.Play();
-		Print("DownDashImpact");
-		screenshake();
-		for (int i = 0; i < downdash_area.Count; i++)
-		{
-			Print("damage to:" + downdash_area[i]);
-			downdash_area[i].take_damage(34);
-		}
 
-	}
+
 	//move is the audiostream
 	public void _on_move_finished()
 	{
@@ -757,26 +755,68 @@ public partial class Player : GenericCharacterClass
 		receive_damage(damage);
 	}
 
+	
+	private void DownDashImpact()
+	{
+		DownDashImpactSFX.Play();
+		Print("DownDashImpact");
+		screenshake();
+		for (int i = 0; i < downdash_area.Count; i++)
+		{
+			Print("damage to:" + downdash_area[i]);
+			downdash_area[i].take_damage(34);
+		}
+
+	}
+
 
 	public void _on_dashdown_damage_area_body_entered(Node2D victim)
 	{
 		if (victim as GenericCharacterClass != null && victim != this)
 		{
 			downdash_area.Add(victim as GenericCharacterClass);
-			Print("your mine" + victim);
 		}
 	}
-
-
 
 	public void _on_dashdown_damage_area_body_exited(Node2D victim)
 	{
 		if (victim as GenericCharacterClass != null)
 		{
 			downdash_area.Remove(victim as GenericCharacterClass);
-			Print("miss you" + victim);
 		}
 	}
+	
+
+	private void LaserschwertHit()
+	{
+		DownDashImpactSFX.Play();
+		Print("LaserschwertHit");
+		screenshake();
+		for (int i = 0; i < laserschwert_area.Count; i++)
+		{
+			Print("damage to:" + laserschwert_area[i]);
+			laserschwert_area[i].take_damage(34);
+		}
+
+	}
+
+
+	public void _on_laserschwert_area_body_entered(Node2D victim)
+	{
+		if (victim as GenericCharacterClass != null && victim != this)
+		{
+			laserschwert_area.Add(victim as GenericCharacterClass);
+		}
+	}
+
+	public void _on_laserschwert_area_body_exited(Node2D victim)
+	{
+		if (victim as GenericCharacterClass != null)
+		{
+			laserschwert_area.Remove(victim as GenericCharacterClass);
+		}
+	}
+
 
 	public void Bone_picked_up()
 	{

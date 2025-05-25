@@ -25,10 +25,7 @@ public partial class TempEnemy : GenericCharacterClass
 
 	public override void _PhysicsProcess(double delta)
 	{
-		for (int i = 0; i < victims.Count; i++)
-		{
-			victims[i].take_damage(1);
-		}
+		
 		if (red_time > 0)
 		{
 			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 1);
@@ -41,6 +38,15 @@ public partial class TempEnemy : GenericCharacterClass
 		else
 		{
 			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 0);
+		}
+	}
+
+
+	public void deal_damage()
+	{
+		for (int i = 0; i < victims.Count; i++)
+		{
+			victims[i].take_damage(1);
 		}
 	}
 
