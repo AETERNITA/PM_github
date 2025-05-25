@@ -5,27 +5,51 @@ using static Godot.GD;
 
 public partial class TempEnemy : GenericCharacterClass
 {
+
+	[Export] public float Speed = 150f;
+    [Export] public Vector2 Direction = Vector2.Left;
+
 	private List<GenericCharacterClass> victims = new List<GenericCharacterClass>();
 
 	private double health = 100;
+	private double red_time;
+
 	private AudioStreamPlayer DeathSFX;
 	private AudioStreamPlayer DamageSFX;
-	private double red_time;
+	
+    private RayCast2D _wallRay;
+    private RayCast2D _groundRay;
+
+    private Sprite2D _sprite;
 
 	public override void _Ready()
 	{
 		GetEnemyAudioNodes();
+		_wallRay = GetNode<RayCast2D>("WallRay");
+		_groundRay = GetNode<RayCast2D>("GroundRay");
+        _sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
 	}
 
-	public virtual void GetEnemyAudioNodes()
-	{
-		DeathSFX = GetNode<AudioStreamPlayer>("%standart_enemy_death_sfx");
-		DamageSFX = GetNode<AudioStreamPlayer>("%standart_enemy_damage_sfx");
-	}
-
+	
 	public override void _PhysicsProcess(double delta)
 	{
-		
+		 
+        Velocity = Direction * Speed;
+        MoveAndSlide();
+
+        _wallRay.TargetPosition = Direction * 120;
+		_groundRay.TargetPosition = Direction * 120 + Vector2.Down * 120;
+
+        _wallRay.ForceRaycastUpdate();
+        _groundRay.ForceRaycastUpdate();
+
+        
+        if (_wallRay.IsColliding() || !_groundRay.IsColliding())
+        {
+            FlipDirection();
+        }
+
+
 		if (red_time > 0)
 		{
 			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 1);
@@ -41,7 +65,21 @@ public partial class TempEnemy : GenericCharacterClass
 		}
 	}
 
+	public virtual void GetEnemyAudioNodes()
+	{
+		DeathSFX = GetNode<AudioStreamPlayer>("%standart_enemy_death_sfx");
+		DamageSFX = GetNode<AudioStreamPlayer>("%standart_enemy_damage_sfx");
+	}
 
+
+	private void FlipDirection()
+    {
+        Direction = -Direction;
+
+        if (_sprite != null)
+            _sprite.FlipH = ! _sprite.FlipH;
+    }
+	
 	public void deal_damage()
 	{
 		for (int i = 0; i < victims.Count; i++)
@@ -52,7 +90,7 @@ public partial class TempEnemy : GenericCharacterClass
 
 	public override void take_damage(double damage)
 	{
-		Print("the box has emotions too!!");
+		Print("Enemy damaged");
 		health = health - damage;
 		if (health <= 0)
 		{
@@ -76,7 +114,6 @@ public partial class TempEnemy : GenericCharacterClass
 		{
 			victims.Add(victim as GenericCharacterClass);
 		}
-		//Print("your mine" + victim);
 	}
 
 	public void _on_damage_area_body_exited(Node2D victim)
@@ -85,7 +122,6 @@ public partial class TempEnemy : GenericCharacterClass
 		{
 			victims.Remove(victim as GenericCharacterClass);
 		}
-		//Print("miss you" + victim);
 	}
 	
 	

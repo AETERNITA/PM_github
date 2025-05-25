@@ -69,7 +69,7 @@ shader = ExtResource("20_pxwvi")
 shader_parameter/damage_shader_int = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exi56"]
-size = Vector2(541.091, 148.044)
+size = Vector2(181.015, 133.188)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vifiy"]
 
@@ -146,7 +146,7 @@ _healthbar = NodePath("../ui layer/overlay/_healthbar")
 [node name="Ground" type="Node" parent="World" groups=["World"]]
 
 [node name="Ground2" type="StaticBody2D" parent="World/Ground" groups=["World"]]
-position = Vector2(-2275, 247)
+position = Vector2(-2267, 316)
 scale = Vector2(0.72, 0.72)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground2"]
@@ -159,6 +159,18 @@ shape = SubResource("RectangleShape2D_wcvuv")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="World/Ground/Ground2"]
 occluder = SubResource("OccluderPolygon2D_exi56")
+
+[node name="Ground3" type="StaticBody2D" parent="World/Ground" groups=["World"]]
+position = Vector2(-2275, -58)
+scale = Vector2(0.0763204, 0.528619)
+
+[node name="Sprite2D" type="Sprite2D" parent="World/Ground/Ground3"]
+texture = ExtResource("5_f655l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Ground/Ground3"]
+position = Vector2(4.1665, -5.16653)
+scale = Vector2(148.143, 29.9721)
+shape = SubResource("RectangleShape2D_wcvuv")
 
 [node name="Platfroms" type="Node" parent="World" groups=["World"]]
 
@@ -212,28 +224,30 @@ stream = ExtResource("19_hphmy")
 
 [node name="temp_enemy" type="CharacterBody2D" parent="."]
 material = SubResource("ShaderMaterial_xqbpv")
-position = Vector2(-4226, -28)
+position = Vector2(-4297, 31)
 script = ExtResource("21_piscu")
+Direction = Vector2(1, 0)
 
 [node name="damage_area" type="Area2D" parent="temp_enemy"]
-position = Vector2(2394, -43)
+position = Vector2(2230, -144)
 scale = Vector2(0.959173, 0.959173)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy/damage_area"]
-position = Vector2(9.90454, 35.4472)
+position = Vector2(156.385, 104.256)
 shape = SubResource("RectangleShape2D_exi56")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy"]
-position = Vector2(2521, -43)
-scale = Vector2(10.1244, 10.1244)
-shape = SubResource("RectangleShape2D_vifiy")
-one_way_collision_margin = 0.0
+debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="temp_enemy"]
 use_parent_material = true
 position = Vector2(2521, -43)
 scale = Vector2(1.48146, 1.48146)
 texture = ExtResource("22_vs380")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy"]
+position = Vector2(2521, -43)
+scale = Vector2(10.1244, 10.1244)
+shape = SubResource("RectangleShape2D_vifiy")
+one_way_collision_margin = 0.0
 
 [node name="PointLight2D" type="PointLight2D" parent="temp_enemy"]
 position = Vector2(2521, -39)
@@ -242,6 +256,14 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_exi56")
+
+[node name="WallRay" type="RayCast2D" parent="temp_enemy"]
+position = Vector2(2521, -43)
+target_position = Vector2(120, 1)
+
+[node name="GroundRay" type="RayCast2D" parent="temp_enemy"]
+position = Vector2(2521, -41)
+target_position = Vector2(120, 120)
 
 [node name="standart_enemy_death_sfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
