@@ -19,6 +19,7 @@ public partial class V2Overlay : Control
     private Button ResumeButton;
     private Button RestartButton;
     private bool escape_menu_active = false;
+    public bool dead = false;
 
     /*    [Export] public PackedScene ESCMenu;
                    private Node esc;
@@ -67,6 +68,7 @@ public partial class V2Overlay : Control
         {
             Master_Label.Visible = true;
             Master_Slider.Visible = true;
+            time = 0;
         }
         else
         {
@@ -81,7 +83,6 @@ public partial class V2Overlay : Control
         }
         else
         {
-            time = 0;
             Stopwatch.Text = "Time:" + Math.Round(time, 2).ToString();
         }
 
@@ -112,6 +113,15 @@ public partial class V2Overlay : Control
         ResumeButton.Visible = escape_menu_active;
 
         player.SetEscMenuModulate(escape_menu_active);
+
+        if (escape_menu_active && !in_start_menu && !dead)
+        {
+            GetTree().Paused = true;
+        }
+        if (!escape_menu_active && !in_start_menu && !dead)
+        {
+            GetTree().Paused = false;
+        }
     }
 
     public void _on_master_slider_value_changed(float myFloat)

@@ -725,6 +725,7 @@ public partial class Player : GenericCharacterClass
 		Losing_sfx.Play();
 		canvmod.Color = new Color(0.00f, 0.00f, 0.00f);
 		GetTree().Paused = true;
+		GetNode<V2Overlay>("%overlay").dead = true;
 	}
 
 	private void DownDashImpact()
