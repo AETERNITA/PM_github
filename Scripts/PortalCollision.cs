@@ -11,9 +11,6 @@ public partial class PortalCollision : Area2D
 		BodyEntered += OnBodyEntered;
 		Portal = GetParent<Portal>();
 		PortalController = GetNode<PortalController>("/root/Game/PortalController");
-		if(Portal is null){
-			
-		}
 		BodyExited += OnBodyExited;
 	}
 
@@ -22,15 +19,14 @@ public partial class PortalCollision : Area2D
 	{
 	}
 	public void OnBodyEntered(Node2D body){
-			if(body is CharacterBody2D player){
-				PortalController.PortalTouched(Portal.GetPortalType());
-				
+			if(body is CharacterBody2D charBody){
+				PortalController.PortalTouched(Portal.GetPortalType(), charBody);
 			}
-
 	}
+		
 		private void OnBodyExited(Node2D body)
 {
-    if (body is CharacterBody2D player || body is RigidBody2D)
+    if (body is CharacterBody2D player)
     {
         PortalController.Call("PortalExited", this.GetParent()); 
     }
