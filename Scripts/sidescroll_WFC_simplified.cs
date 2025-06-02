@@ -13,6 +13,15 @@ public partial class sidescroll_WFC_simplified : Node2D
 
     private List<int> gen_queue = new List<int>();
 
+    //RoomData
+    private List<string> RoomName = new List<string>();
+    private Dictionary<string, string> RoomRefDict = new Dictionary<string, string>();
+    private Dictionary<string, bool> OpenTopDict = new Dictionary<string, bool>();
+    private Dictionary<string, bool> OpenBottomDict = new Dictionary<string, bool>();
+    private Dictionary<string, bool> OpenRightSideDict = new Dictionary<string, bool>();
+    private Dictionary<string, bool> OpenLeftSideDict = new Dictionary<string, bool>();
+
+
 	public override void _Ready()
     {
         if (start_height > level_height)
@@ -21,13 +30,12 @@ public partial class sidescroll_WFC_simplified : Node2D
         }
         else
         {
-            gen_initialization();
-            //new_gen_cycle();
-            //place_scene();
+            //gen_initialization();
+            // new_gen_cycle();
         }
     }
 
-/* 
+ 
     private void place_scene(string scene_uid, Vector2 position)
     {
         var scene = GD.Load<PackedScene>(scene_uid);
@@ -40,7 +48,7 @@ public partial class sidescroll_WFC_simplified : Node2D
             instance2D.Position = position;
         }  
     }
- */
+
 
     private void setup_start_area(int start_height)
     {
@@ -61,9 +69,9 @@ public partial class sidescroll_WFC_simplified : Node2D
 
     private void definitive_placement()
     {
-        /* string scenenene = "uid://bm42aiylfo3oc";
+        string scenenene = "uid://bm42aiylfo3oc";
         
-        place_scene(scenenene, new Vector2(5000, 0)); */
+        place_scene(scenenene, new Vector2(5000, 0));
     }
 
     private void WFC_placement()
@@ -77,6 +85,8 @@ public partial class sidescroll_WFC_simplified : Node2D
     private void gen_initialization()
     {
         open_connections[0] = true;
+        RoomName.Add("down");
+        RoomRefDict.Add("down", "uid://dofa4avgjwor3");
     }
 
 }
