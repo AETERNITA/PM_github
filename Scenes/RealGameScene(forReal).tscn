@@ -549,7 +549,7 @@ shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_ewbju")
 
 [node name="BoneItem" parent="Interactables" instance=ExtResource("12_lip63")]
-position = Vector2(-1459, -343.757)
+position = Vector2(-1339, -438)
 
 [node name="Projectile" type="Area2D" parent="Interactables" node_paths=PackedStringArray("shoot_sfx", "flying_sfx")]
 position = Vector2(-2675, 0.243042)
@@ -619,6 +619,7 @@ process_mode = 3
 script = ExtResource("25_xqbpv")
 
 [node name="shading layer 1" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="shading layer 1"]
 material = SubResource("ShaderMaterial_fes2o")
@@ -629,6 +630,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shading layer 2" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="shading layer 2"]
 material = SubResource("ShaderMaterial_waod3")

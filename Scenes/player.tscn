@@ -343,6 +343,8 @@ explosiveness = 0.2
 process_material = SubResource("ParticleProcessMaterial_nmr2m")
 
 [node name="dashdown_damage_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dashdown_damage_area"]
 position = Vector2(0, 390.5)
@@ -356,6 +358,8 @@ stream = ExtResource("43_7ldla")
 
 [node name="laserschwert_area" type="Area2D" parent="."]
 scale = Vector2(5, 5)
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="laserschwert_area"]
 position = Vector2(48, 11)
