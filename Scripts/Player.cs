@@ -188,12 +188,12 @@ public partial class Player : GenericCharacterClass
 			}
 		}
 
-		if(Input.IsActionJustPressed("SwordHit"))
+		if (Input.IsActionJustPressed("SwordHit"))
 		{
-            LaserschwertHit();
-        }
+			LaserschwertHit();
+		}
 
-		
+
 
 
 		// Handle Jump
@@ -734,6 +734,7 @@ public partial class Player : GenericCharacterClass
 		canvmod.Color = new Color(0.00f, 0.00f, 0.00f);
 		GetTree().Paused = true;
 		GetNode<V2Overlay>("%overlay").dead = true;
+		SaveTheGame();
 	}
 
 
@@ -755,7 +756,7 @@ public partial class Player : GenericCharacterClass
 		receive_damage(damage);
 	}
 
-	
+
 	private void DownDashImpact()
 	{
 		DownDashImpactSFX.Play();
@@ -785,7 +786,7 @@ public partial class Player : GenericCharacterClass
 			downdash_area.Remove(victim as GenericCharacterClass);
 		}
 	}
-	
+
 
 	private void LaserschwertHit()
 	{
@@ -826,5 +827,16 @@ public partial class Player : GenericCharacterClass
 		escape_menu_active = active;
 	}
 
+	private void SaveTheGame()
+	{
+		//currently only the highscore
+		var savegame = new SaveGame();
+		var oldsave = Load("user://savegame.tres") as SaveGame;
+		if (GetNode<V2Overlay>("%overlay").Points_number > oldsave.HighScore)
+		{
+			savegame.HighScore = GetNode<V2Overlay>("%overlay").Points_number;
+			ResourceSaver.Save(savegame, "user://savegame.tres");
+		}
+	}
 
 }

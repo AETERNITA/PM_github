@@ -733,14 +733,25 @@ offset_top = 13.0
 offset_bottom = 36.0
 grow_horizontal = 0
 
+[node name="HighScore" type="Label" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_top = 62.0
+offset_right = -1.0
+offset_bottom = 85.0
+grow_horizontal = 0
+
 [node name="Stopwatch" type="Label" parent="ui layer/overlay"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -290.0
-offset_top = 73.0
-offset_bottom = 96.0
+offset_top = 108.0
+offset_bottom = 131.0
 grow_horizontal = 0
 
 [node name="Item 1" type="Label" parent="ui layer/overlay"]
