@@ -30,26 +30,26 @@ public partial class TempEnemy : GenericCharacterClass
         _sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
 	}
 
-	
+
 	public override void _PhysicsProcess(double delta)
 	{
 
 		Vector2 velocity = Velocity;
-		 
-        velocity.X = Direction.X * Speed;
+
+		velocity.X = Direction.X * Speed;
 		velocity.Y += Gravity * (float)delta;
 		Velocity = velocity;
-        MoveAndSlide();
+		MoveAndSlide();
 
 		_groundRay.TargetPosition = Direction * 100 + Vector2.Down * 120;
-        _groundRay.ForceRaycastUpdate();
+		_groundRay.ForceRaycastUpdate();
 
 
 		if (!_groundRay.IsColliding())
 		{
 			FlipDirection();
-			
-        }
+
+		}
 
 
 		if (red_time > 0)
@@ -65,6 +65,8 @@ public partial class TempEnemy : GenericCharacterClass
 		{
 			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 0);
 		}
+
+		deal_damage();
 	}
 
 	public virtual void GetEnemyAudioNodes()

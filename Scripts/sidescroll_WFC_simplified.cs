@@ -30,8 +30,9 @@ public partial class sidescroll_WFC_simplified : Node2D
         }
         else
         {
-            //gen_initialization();
-            // new_gen_cycle();
+            gen_initialization();
+            gridplace_debug();
+            //new_gen_cycle();
         }
     }
 
@@ -71,7 +72,7 @@ public partial class sidescroll_WFC_simplified : Node2D
     {
         string scenenene = "uid://bm42aiylfo3oc";
         
-        place_scene(scenenene, new Vector2(5000, 0));
+        place_scene(scenenene, new Vector2(4000, 0));
     }
 
     private void WFC_placement()
@@ -82,11 +83,42 @@ public partial class sidescroll_WFC_simplified : Node2D
         }
     }
 
+    private void gridplace_debug()
+    {
+        int posheight = 0;
+        int posreight = 0;
+        for (int i = 0; i < level_height; i++)
+        {
+            posreight = 1;
+            for (int j = 0; j < 100; j++)
+            {
+                posreight = posreight + 1;
+                place_scene(RoomRefDict["down"], new Vector2(4000 * posreight, i * 4000));
+            }
+        }
+    }
+
     private void gen_initialization()
     {
         open_connections[0] = true;
         RoomName.Add("down");
         RoomRefDict.Add("down", "uid://dofa4avgjwor3");
+        RoomName.Add("downright");
+        RoomRefDict.Add("downright", "uid://dm0p773ff7q5r");
+        RoomName.Add("left");
+        RoomRefDict.Add("left", "uid://bm42aiylfo3oc");
+        RoomName.Add("leftdown");
+        RoomRefDict.Add("leftdown", "uid://bu1nylkaaafly");
+        RoomName.Add("leftright");
+        RoomRefDict.Add("leftright", "uid://cnhqxo33oqtbm");
+        RoomName.Add("leftup");
+        RoomRefDict.Add("leftup", "uid://bqvy0u2i1ce53");
+        RoomName.Add("up");
+        RoomRefDict.Add("up", "uid://d320lc6jfoic0");
+        RoomName.Add("updown");
+        RoomRefDict.Add("updown", "uid://bngjl18nokyvm");
+        RoomName.Add("upright");
+        RoomRefDict.Add("upright", "uid://ceo8tttylidv6");
     }
 
 }

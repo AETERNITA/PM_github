@@ -31,3 +31,16 @@ texture = ExtResource("1_rnjrt")
 position = Vector2(3, 4.29153e-06)
 scale = Vector2(148.143, 29.9721)
 shape = SubResource("RectangleShape2D_wcvuv")
+
+[node name="wall2" type="StaticBody2D" parent="." groups=["World"]]
+position = Vector2(-4227, -2000)
+rotation = 1.5708
+scale = Vector2(1, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="wall2"]
+texture = ExtResource("1_rnjrt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
+position = Vector2(3, 4.29153e-06)
+scale = Vector2(148.143, 29.9721)
+shape = SubResource("RectangleShape2D_wcvuv")
