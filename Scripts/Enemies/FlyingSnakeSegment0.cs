@@ -9,6 +9,11 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 	[Export] public float Speed = 150f;
     [Export] public Vector2 Direction = Vector2.Left;
 
+	[Export] public FlyingSnakeFollowingSegment folower1;
+	[Export] public FlyingSnakeFollowingSegment folower2;
+
+	private Player player;
+
 	private List<GenericCharacterClass> victims = new List<GenericCharacterClass>();
 
 	private double health = 100;
@@ -17,18 +22,18 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 	private AudioStreamPlayer DeathSFX;
 	private AudioStreamPlayer DamageSFX;
 	
-    private RayCast2D _wallRay;
-    private RayCast2D _groundRay;
+    /* private RayCast2D _wallRay;
+    private RayCast2D _groundRay; */
 
     private Sprite2D _sprite;
-	private Player player;
+	
 
 	public override void _Ready()
 	{
 		GetEnemyAudioNodes();
 		//_groundRay = GetNode<RayCast2D>("GroundRay");
 		_sprite = GetNodeOrNull<Sprite2D>("Segment 0");
-		player = GetNode<Player>("%Player");
+		player = GetNode<Player>("../%Player");
 	}
 
 
@@ -77,8 +82,8 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 
 	public virtual void GetEnemyAudioNodes()
 	{
-		DeathSFX = GetNode<AudioStreamPlayer>("%standart_enemy_death_sfx");
-		DamageSFX = GetNode<AudioStreamPlayer>("%standart_enemy_damage_sfx");
+		DeathSFX = GetNode<AudioStreamPlayer>("../death_sfx");
+		DamageSFX = GetNode<AudioStreamPlayer>("../damage_sfx");
 	}
 
 
@@ -118,14 +123,16 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 		health = health - damage;
 		if (health <= 0)
 		{
-			var OverlayRef = GetNode("%overlay") as V2Overlay;
+			var OverlayRef = GetNode("../%overlay") as V2Overlay;
 			OverlayRef.AddPoints(10000);
 			DeathSFX.Play();
+			folower1.QueueFree();
+			folower2.QueueFree();
 			QueueFree();
 		}
 		else
 		{
-			var OverlayRef = GetNode("%overlay") as V2Overlay;
+			var OverlayRef = GetNode("../%overlay") as V2Overlay;
 			OverlayRef.AddPoints(100);
 		}
 		DamageSFX.Play();

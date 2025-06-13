@@ -9,7 +9,7 @@ public partial class FlyingSnakeFollowingSegment : FlyingSnakeSegment
 
 
 
-    int DistanceBetweeen = 35;
+    //int DistanceBetweeen = 35;
 
 
 
@@ -18,11 +18,21 @@ public partial class FlyingSnakeFollowingSegment : FlyingSnakeSegment
 
     }
 
-    /* public override void _PhysicsProcess(double delta)
+    public override void _PhysicsProcess(double delta)
     {
-        if (!(LeadingSegment.GlobalPosition - GlobalPosition == DistanceBetween))
+        /* if (!(LeadingSegment.GlobalPosition - GlobalPosition == DistanceBetween))
         {
             GlobalPosition = LeadingSegment.GlobalPosition - DistanceBetween;
-        }
+        } */
+        Vector2 DirectionToLeader = LeadingSegment.GlobalPosition - GlobalPosition;
+        DirectionToLeader = DirectionToLeader.Normalized();
+        Velocity = DirectionToLeader * 150f;
+        MoveAndSlide();
+    }
+
+    //disabled to make damage independent from chain lenght
+    /* public override void take_damage(double damage)
+    {
+        LeadingSegment.take_damage(damage);
     } */
 }
