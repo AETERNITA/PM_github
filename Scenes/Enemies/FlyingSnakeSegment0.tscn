@@ -1,17 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj6b4eob6gi5j"]
+[gd_scene load_steps=10 format=3 uid="uid://dssp4aip2fjud"]
 
-[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="1_2hac7"]
-[ext_resource type="Script" uid="uid://cqgw24mvbuby" path="res://Scripts/Enemies/TempEnemy.cs" id="2_e6d4v"]
-[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="3_qp131"]
+[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="1_p5l27"]
+[ext_resource type="Script" uid="uid://bn06jgqvs7iro" path="res://Scripts/Enemies/FlyingSnakeSegment0.cs" id="2_ji1gf"]
+[ext_resource type="Texture2D" uid="uid://s1a5q0a48oro" path="res://Art/Enemies/snakesegment.png" id="3_u0xik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6do27"]
-shader = ExtResource("1_2hac7")
+shader = ExtResource("1_p5l27")
 shader_parameter/damage_shader_int = 0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rvmyp"]
 radius = 100.108
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nxwx"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_u0xik"]
 
 [sub_resource type="Gradient" id="Gradient_l7chm"]
 offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
@@ -25,12 +25,11 @@ fill_from = Vector2(0.49, 0.52)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hac7"]
 size = Vector2(29.75, 217)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="FlyingSnakeSegment0" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_6do27")
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("2_e6d4v")
-Direction = Vector2(1, 0)
+script = ExtResource("2_ji1gf")
 
 [node name="damage_area" type="Area2D" parent="."]
 scale = Vector2(0.959173, 0.959173)
@@ -38,18 +37,19 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
-position = Vector2(100, 0)
+position = Vector2(58.3836, 0)
+scale = Vector2(0.416162, 0.332759)
 shape = SubResource("CircleShape2D_rvmyp")
 debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Segment 0" type="Sprite2D" parent="."]
 use_parent_material = true
-scale = Vector2(1.48146, 1.48146)
-texture = ExtResource("3_qp131")
+scale = Vector2(0.281462, 0.281461)
+texture = ExtResource("3_u0xik")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(10.1244, 10.1244)
-shape = SubResource("RectangleShape2D_2nxwx")
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_u0xik")
 one_way_collision_margin = 0.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -59,13 +59,11 @@ shadow_filter = 1
 shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_52xpa")
 
-[node name="GroundRay" type="RayCast2D" parent="."]
-target_position = Vector2(100, 108)
-
 [node name="wall_box" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall_box"]
-position = Vector2(116.125, -12.5)
+position = Vector2(30, -1)
+scale = Vector2(0.997539, 0.159999)
 shape = SubResource("RectangleShape2D_2hac7")
 debug_color = Color(0.138424, 0.63254, 0.384665, 0.42)
 

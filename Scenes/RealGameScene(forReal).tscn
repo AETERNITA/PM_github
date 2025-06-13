@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=77 format=3 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -25,6 +25,7 @@
 [ext_resource type="Shader" uid="uid://bqggrd2e5l5qs" path="res://shaders/shadertry1.gdshader" id="26_lh6sl"]
 [ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Enemy.tscn" id="26_xqbpv"]
 [ext_resource type="Shader" uid="uid://csxjcaqtjnr25" path="res://shaders/pixeldither.gdshader" id="27_du02u"]
+[ext_resource type="PackedScene" uid="uid://dssp4aip2fjud" path="res://Scenes/Enemies/FlyingSnakeSegment0.tscn" id="27_lh6sl"]
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5eht"]
@@ -803,6 +804,9 @@ layer = 2
 
 [node name="temp_enemy" parent="." instance=ExtResource("26_xqbpv")]
 position = Vector2(-483, -44)
+
+[node name="FlyingSnake" parent="." instance=ExtResource("27_lh6sl")]
+position = Vector2(-2605, -276)
 
 [connection signal="body_entered" from="Interactables/Item" to="Player" method="_on_jump_boosted"]
 [connection signal="body_entered" from="Interactables/Item2" to="Player" method="_on_healing_potioned"]
