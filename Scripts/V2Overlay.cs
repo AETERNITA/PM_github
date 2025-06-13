@@ -9,9 +9,10 @@ public partial class V2Overlay : Control
     private HSlider Master_Slider;
     private Label Stopwatch;
     private Label Points;
+    private Label HighScore;
     public bool in_start_menu = true;
     private double time = 0;
-    private double Points_number = 0;
+    public int Points_number = 0;
     private CanvasModulate canvmod;
     private bool isinit = false;
     private Label Item1;
@@ -20,6 +21,7 @@ public partial class V2Overlay : Control
     private Button RestartButton;
     private bool escape_menu_active = false;
     public bool dead = false;
+    private SaveGame savegame;
 
     /*    [Export] public PackedScene ESCMenu;
                    private Node esc;
@@ -27,6 +29,10 @@ public partial class V2Overlay : Control
 
     public override void _Ready()
     {
+        savegame = new SaveGame();
+        HighScore = GetNode<Label>("HighScore");
+        HighScore.Text = "HighScore:" + savegame.HighScore;
+
         Master_Label = GetNode<Label>("Master_Label");
 
         Master_Index = AudioServer.GetBusIndex("Master");
@@ -63,6 +69,8 @@ public partial class V2Overlay : Control
 
     public override void _Process(double delta)
     {
+        savegame = GD.Load("user://savegame.tres") as SaveGame;
+        HighScore.Text = "HighScore:" + savegame.HighScore;
 
         if (in_start_menu)
         {

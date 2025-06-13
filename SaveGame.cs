@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public partial class SaveGame : Resource
 {
-    [Export] int[] Highscores;
-    [Export] int[] RunLenghts;
-    [Export] int[] TimeofRun;
+    [Export] public int HighScore = 0;
+    [Export] public int[] Highscores = Array.Empty<int>();
+    [Export] public int[] RunLenghts = Array.Empty<int>();
+    [Export] public int[] TimeofRun = Array.Empty<int>();
 }
