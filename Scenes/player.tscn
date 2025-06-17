@@ -285,6 +285,7 @@ stream = ExtResource("8_gymyn")
 
 [node name="Damage" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_pu2lt")
+volume_db = -7.378
 max_polyphony = 10
 
 [node name="Landing_sfx" type="AudioStreamPlayer" parent="."]
