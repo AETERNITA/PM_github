@@ -95,6 +95,10 @@ public partial class V2Overlay : Control
         {
             Item1.Visible = false;
             Item2.Visible = false;
+
+            (GetNode<ColorRect>("Points/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 3);
+            (GetNode<ColorRect>("HighScore/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 3);
+            (GetNode<ColorRect>("Stopwatch/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 3);
         }
 
         if (in_start_menu)
