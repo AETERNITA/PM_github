@@ -925,6 +925,7 @@ scale = Vector2(2.17722, 0.363514)
 mouse_filter = 1
 
 [node name="RestartButton" type="Button" parent="ui layer/overlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -948,6 +949,7 @@ scale = Vector2(0.497223, 0.48)
 mouse_filter = 1
 
 [node name="ResumeButton" type="Button" parent="ui layer/overlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
