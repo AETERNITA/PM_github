@@ -9,6 +9,7 @@ public partial class sidescroll_WFC_simplified : Node2D
     //maximum amount of stacked scenes that have the lowest possible height
     static int level_height = 4;
     static int start_height = 1;
+    int gen_lenght = 100;
     private bool[] open_connections = new bool[level_height];
 
     private List<int> gen_queue = new List<int>();
@@ -22,7 +23,7 @@ public partial class sidescroll_WFC_simplified : Node2D
     private Dictionary<string, bool> OpenLeftSideDict = new Dictionary<string, bool>();
 
 
-	public override void _Ready()
+    public override void _Ready()
     {
         if (start_height > level_height)
         {
@@ -31,61 +32,53 @@ public partial class sidescroll_WFC_simplified : Node2D
         else
         {
             gen_initialization();
-            gridplace_debug();
-            //new_gen_cycle();
+
+            //Debug spawning
+            //gridplace_debug();
+
+            for (int i = 0; i < gen_lenght; i++)
+            {
+                new_gen_cycle(i);
+            }
         }
     }
 
- 
+
     private void place_scene(string scene_uid, Vector2 position)
     {
-        var scene = GD.Load<PackedScene>(scene_uid);
+        var scene = Load<PackedScene>(scene_uid);
         var instance = scene.Instantiate();
         Node2D instance2D = instance as Node2D;
         if (instance2D != null)
         {
             AddChild(instance2D);
-            //await ToSignal(GetTree(), "process_frame"); // wartet einen Frame ab
             instance2D.Position = position;
-        }  
+        }
     }
 
 
     private void setup_start_area(int start_height)
     {
-        //connected_to[start_height, 0] = true;
         open_connections[start_height] = true;
     }
 
 
-    private void new_gen_cycle()
+    private void new_gen_cycle(int column)
     {
+        gen_queue.Clear();
         for (int i = 0; i < level_height; i++)
         {
             gen_queue.Add(i);
         }
-        definitive_placement();
-        WFC_placement();
+
+        definitive_placement(column);
+        WFC_placement(column);
     }
 
-    private void definitive_placement()
-    {
-        string scenenene = "uid://bm42aiylfo3oc";
-        
-        place_scene(scenenene, new Vector2(4000, 0));
-    }
 
-    private void WFC_placement()
-    {
-        for (int i = 0; i < gen_queue.Count; i++)
-        {
-            
-        }
-    }
 
     private void gridplace_debug()
     {
-        int posheight = 0;
         int posreight = 0;
         for (int i = 0; i < level_height; i++)
         {
@@ -119,6 +112,26 @@ public partial class sidescroll_WFC_simplified : Node2D
         RoomRefDict.Add("updown", "uid://bngjl18nokyvm");
         RoomName.Add("upright");
         RoomRefDict.Add("upright", "uid://ceo8tttylidv6");
+
+        setup_start_area(start_height);
     }
+
+
+    private void definitive_placement(int column)
+    {
+        /* string scenenene = "uid://bm42aiylfo3oc";
+        place_scene(scenenene, new Vector2(4000, 0)); */
+
+
+    }
+
+    private void WFC_placement(int column)
+    {
+        for (int i = 0; i < gen_queue.Count; i++)
+        {
+
+        }
+    }
+    
 
 }
