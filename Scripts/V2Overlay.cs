@@ -4,6 +4,7 @@ using System;
 public partial class V2Overlay : Control
 {
     [Export] Player player;
+    [Export] AudioStreamPlayer UISound;
     private Label Master_Label;
     private int Master_Index;
     private HSlider Master_Slider;
@@ -69,20 +70,49 @@ public partial class V2Overlay : Control
 
     public override void _Process(double delta)
     {
-        savegame = GD.Load("user://savegame.tres") as SaveGame;
-        HighScore.Text = "HighScore:" + savegame.HighScore;
 
-        if (in_start_menu)
+        if (Item1.Text == "")
         {
-            Master_Label.Visible = true;
-            Master_Slider.Visible = true;
-            time = 0;
+            Item1.Visible = false;
         }
         else
         {
-            Master_Label.Visible = escape_menu_active;
-            Master_Slider.Visible = escape_menu_active;
+            Item1.Visible = true;
         }
+
+        if (Item2.Text == "")
+        {
+            Item2.Visible = false;
+        }
+        else
+        {
+            Item2.Visible = true;
+        }
+
+        savegame = GD.Load("user://savegame.tres") as SaveGame;
+        HighScore.Text = "HighScore:" + savegame.HighScore;
+
+        if (dead)
+        {
+            Item1.Visible = false;
+            Item2.Visible = false;
+
+            (GetNode<ColorRect>("Points/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 3);
+            (GetNode<ColorRect>("HighScore/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 3);
+            (GetNode<ColorRect>("Stopwatch/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 3);
+        }
+
+        if (in_start_menu)
+            {
+                Master_Label.Visible = true;
+                Master_Slider.Visible = true;
+                time = 0;
+            }
+            else
+            {
+                Master_Label.Visible = escape_menu_active;
+                Master_Slider.Visible = escape_menu_active;
+            }
 
         if (!GetTree().Paused)
         {
@@ -103,6 +133,7 @@ public partial class V2Overlay : Control
 
         if (Input.IsActionJustPressed("escape"))
         {
+            UISound.Play();
             if (escape_menu_active)
             {
                 escape_menu_active = false;
@@ -119,6 +150,7 @@ public partial class V2Overlay : Control
 
         if (Input.IsActionJustPressed("start_game"))
         {
+            UISound.Play();
             GetTree().Paused = false;
             if (in_start_menu)
             {
@@ -157,6 +189,7 @@ public partial class V2Overlay : Control
 
     public void _on_button_pressed()
     {
+        UISound.Play();
         GetTree().Paused = false;
         if (in_start_menu)
         {
@@ -174,6 +207,7 @@ public partial class V2Overlay : Control
 
     public void _on_resume_button_pressed()
     {
+        UISound.Play();
         escape_menu_active = false;
     }
 

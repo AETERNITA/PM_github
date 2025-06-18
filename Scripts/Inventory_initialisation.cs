@@ -30,7 +30,7 @@ public partial class Inventory_initialisation : Node
 
         initial_effect.Add("healing_effect", "instant_healing");
 		continuous_effect.Add("healing_effect", "regeneration");
-		end_efect.Add("healing_effect", "nothing");
+		end_efect.Add("healing_effect", "healing");
 		
 		initial_effect.Add("jumpboost", "jumpboost");
 		continuous_effect.Add("jumpboost", "nothing");

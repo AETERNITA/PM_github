@@ -26,7 +26,7 @@ public partial class FlyingSnakeFollowingSegment : FlyingSnakeSegment
         } */
         Vector2 DirectionToLeader = LeadingSegment.GlobalPosition - GlobalPosition;
         DirectionToLeader = DirectionToLeader.Normalized();
-        Velocity = DirectionToLeader * 150f;
+        Velocity = DirectionToLeader * 300f;
         MoveAndSlide();
     }
 

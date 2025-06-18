@@ -14,13 +14,13 @@ folower2 = NodePath("../FlyingSnakeFolowingSegment2")
 [node name="FlyingSnakeFolowingSegment" parent="." node_paths=PackedStringArray("LeadingSegment") instance=ExtResource("2_2crrk")]
 position = Vector2(-31, 0)
 collision_layer = 256
-collision_mask = 4
+collision_mask = 5
 LeadingSegment = NodePath("../FlyingSnakeSegment0")
 
 [node name="FlyingSnakeFolowingSegment2" parent="." node_paths=PackedStringArray("LeadingSegment") instance=ExtResource("2_2crrk")]
 position = Vector2(-62, 0)
 collision_layer = 1024
-collision_mask = 256
+collision_mask = 257
 LeadingSegment = NodePath("../FlyingSnakeFolowingSegment")
 
 [node name="damage_sfx" type="AudioStreamPlayer" parent="."]
