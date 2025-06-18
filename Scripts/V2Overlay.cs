@@ -69,6 +69,25 @@ public partial class V2Overlay : Control
 
     public override void _Process(double delta)
     {
+
+        if (Item1.Text == "")
+        {
+            Item1.Visible = false;
+        }
+        else
+        {
+            Item1.Visible = true;
+        }
+
+        if (Item2.Text == "")
+        {
+            Item2.Visible = false;
+        }
+        else
+        {
+            Item2.Visible = true;
+        }
+
         savegame = GD.Load("user://savegame.tres") as SaveGame;
         HighScore.Text = "HighScore:" + savegame.HighScore;
 

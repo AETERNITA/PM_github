@@ -535,6 +535,8 @@ public partial class Player : GenericCharacterClass
 					Heal.Play();
 				}
 				healing = true;
+				var HealthbarEffect = GetNode<ColorRect>("%HealthbarColorRect").Material as ShaderMaterial;
+				HealthbarEffect.SetShaderParameter("Brightness", 3f);
 				break;
 
 			case "jumpboost":
@@ -578,6 +580,12 @@ public partial class Player : GenericCharacterClass
 		switch (end_efect[Item])
 		{
 			case "nothing":
+				break;
+
+			case "healing":
+				Print("Healing ends");
+				var HealthbarEffect = GetNode<ColorRect>("%HealthbarColorRect").Material as ShaderMaterial;
+				HealthbarEffect.SetShaderParameter("Brightness", 3f);
 				healing = false;
 				break;
 

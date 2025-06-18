@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=83 format=3 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -21,7 +21,9 @@
 [ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="20_4nnjb"]
 [ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="23_emfjr"]
 [ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_qp5vb"]
+[ext_resource type="Script" uid="uid://gnla6sdxnvc6" path="res://Scripts/Canvas.cs" id="25_du02u"]
 [ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="25_xqbpv"]
+[ext_resource type="Shader" uid="uid://cvn3hm24mdeba" path="res://shaders/canvas.gdshader" id="26_fes2o"]
 [ext_resource type="Shader" uid="uid://bqggrd2e5l5qs" path="res://shaders/shadertry1.gdshader" id="26_lh6sl"]
 [ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Enemy.tscn" id="26_xqbpv"]
 [ext_resource type="Shader" uid="uid://csxjcaqtjnr25" path="res://shaders/pixeldither.gdshader" id="27_du02u"]
@@ -208,13 +210,48 @@ shader = ExtResource("26_lh6sl")
 shader_parameter/distance_curve = SubResource("CurveTexture_waod3")
 shader_parameter/intensity = 70.0
 
+[sub_resource type="Gradient" id="Gradient_fes2o"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qihwy"]
+gradient = SubResource("Gradient_fes2o")
+width = 128
+
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
-offsets = PackedFloat32Array(0, 0.485915, 1)
-colors = PackedColorArray(1, 0, 0, 1, 0.890188, 0.843423, 0, 1, 0.0666667, 1, 0, 1)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.730354)
+colors = PackedColorArray(0.1775, 0.71, 0.497, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ccd35"]
 gradient = SubResource("Gradient_5eq1c")
 width = 128
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_du02u"]
+shader = ExtResource("26_fes2o")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 0.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 1.2
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qihwy"]
+shader = ExtResource("26_fes2o")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 1.2
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
 
 [node name="Game" type="Node2D"]
 process_mode = 1
@@ -641,6 +678,7 @@ grow_vertical = 2
 
 [node name="ui layer" type="CanvasLayer" parent="."]
 process_mode = 3
+script = ExtResource("25_du02u")
 
 [node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
@@ -656,29 +694,43 @@ metadata/_edit_use_anchors_ = true
 
 [node name="_healthbar" type="TextureProgressBar" parent="ui layer/overlay"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -64.0
 offset_right = 128.0
 grow_vertical = 0
 value = 100.0
+texture_under = SubResource("GradientTexture2D_qihwy")
 texture_progress = SubResource("GradientTexture2D_ccd35")
 metadata/_edit_use_anchors_ = true
 
+[node name="HealthbarColorRect" type="ColorRect" parent="ui layer/overlay/_healthbar"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_du02u")
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+scale = Vector2(1.00296, 1.02303)
+
 [node name="gridcontainer" type="GridContainer" parent="ui layer/overlay"]
+visible = false
 layout_mode = 0
 offset_right = 1356.0
 offset_bottom = 672.0
 scale = Vector2(0.848837, 0.961991)
 
 [node name="HealButton" type="Button" parent="ui layer/overlay/gridcontainer"]
+visible = false
 layout_mode = 2
+disabled = true
 action_mode = 0
 text = "10 Heal"
 
 [node name="DamageButton" type="Button" parent="ui layer/overlay/gridcontainer"]
+visible = false
 layout_mode = 2
+disabled = true
 action_mode = 0
 text = "10 Damge"
 
@@ -721,6 +773,14 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Play"
 
+[node name="ColorRect" type="ColorRect" parent="ui layer/overlay/Play_Button"]
+material = SubResource("ShaderMaterial_qihwy")
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+scale = Vector2(0.657228, 0.48)
+mouse_filter = 1
+
 [node name="Points" type="Label" parent="ui layer/overlay"]
 layout_mode = 1
 anchors_preset = 1
@@ -753,6 +813,7 @@ offset_bottom = 131.0
 grow_horizontal = 0
 
 [node name="Item 1" type="Label" parent="ui layer/overlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -765,18 +826,35 @@ offset_bottom = -116.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="ColorRect" type="ColorRect" parent="ui layer/overlay/Item 1"]
+material = SubResource("ShaderMaterial_qihwy")
+offset_right = 128.0
+offset_bottom = 64.0
+scale = Vector2(2.01723, 0.400002)
+mouse_filter = 1
+
 [node name="Item 2" type="Label" parent="ui layer/overlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -280.0
-offset_top = -47.0
-offset_bottom = -24.0
+offset_left = -257.0
+offset_top = -71.0
+offset_right = 23.0
+offset_bottom = -48.0
 grow_horizontal = 0
 grow_vertical = 0
+scale = Vector2(0.919995, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ui layer/overlay/Item 2"]
+material = SubResource("ShaderMaterial_qihwy")
+offset_right = 128.0
+offset_bottom = 64.0
+scale = Vector2(2.17722, 0.363514)
+mouse_filter = 1
 
 [node name="RestartButton" type="Button" parent="ui layer/overlay"]
 layout_mode = 1
@@ -793,6 +871,13 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Restart"
 
+[node name="ColorRect" type="ColorRect" parent="ui layer/overlay/RestartButton"]
+material = SubResource("ShaderMaterial_qihwy")
+offset_right = 128.0
+offset_bottom = 64.0
+scale = Vector2(0.497223, 0.48)
+mouse_filter = 1
+
 [node name="ResumeButton" type="Button" parent="ui layer/overlay"]
 layout_mode = 1
 anchors_preset = 8
@@ -808,8 +893,12 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Resume"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="ui layer/overlay"]
-layer = 2
+[node name="ColorRect" type="ColorRect" parent="ui layer/overlay/ResumeButton"]
+material = SubResource("ShaderMaterial_qihwy")
+offset_right = 128.0
+offset_bottom = 64.0
+scale = Vector2(0.537233, 0.48)
+mouse_filter = 1
 
 [node name="temp_enemy" parent="." instance=ExtResource("26_xqbpv")]
 position = Vector2(-483, -44)
