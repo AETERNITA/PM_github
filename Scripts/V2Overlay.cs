@@ -165,13 +165,13 @@ public partial class V2Overlay : Control
 
         if (Input.IsActionJustPressed("start_game"))
         {
-            UISound.Play();
             GetTree().Paused = false;
             if (in_start_menu)
             {
                 Button start_button = GetNode<Button>("Play_Button");
                 start_button.Hide();
                 in_start_menu = false;
+                UISound.Play();
             }
         }
 
