@@ -4,6 +4,7 @@ using System;
 public partial class V2Overlay : Control
 {
     [Export] Player player;
+    [Export] AudioStreamPlayer UISound;
     private Label Master_Label;
     private int Master_Index;
     private HSlider Master_Slider;
@@ -132,6 +133,7 @@ public partial class V2Overlay : Control
 
         if (Input.IsActionJustPressed("escape"))
         {
+            UISound.Play();
             if (escape_menu_active)
             {
                 escape_menu_active = false;
@@ -148,6 +150,7 @@ public partial class V2Overlay : Control
 
         if (Input.IsActionJustPressed("start_game"))
         {
+            UISound.Play();
             GetTree().Paused = false;
             if (in_start_menu)
             {
@@ -186,6 +189,7 @@ public partial class V2Overlay : Control
 
     public void _on_button_pressed()
     {
+        UISound.Play();
         GetTree().Paused = false;
         if (in_start_menu)
         {
@@ -203,6 +207,7 @@ public partial class V2Overlay : Control
 
     public void _on_resume_button_pressed()
     {
+        UISound.Play();
         escape_menu_active = false;
     }
 

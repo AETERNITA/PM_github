@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=87 format=3 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -29,6 +29,7 @@
 [ext_resource type="Shader" uid="uid://csxjcaqtjnr25" path="res://shaders/pixeldither.gdshader" id="27_du02u"]
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="27_lh6sl"]
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
+[ext_resource type="AudioStream" uid="uid://hen8lhfjfgr" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001668.wav" id="28_fes2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5eht"]
 size = Vector2(4054.17, 415.278)
@@ -719,7 +720,7 @@ grow_vertical = 2
 process_mode = 3
 script = ExtResource("25_du02u")
 
-[node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player")]
+[node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player", "UISound")]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -729,6 +730,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("27_waod3")
 player = NodePath("../../Player")
+UISound = NodePath("UI Sound")
 metadata/_edit_use_anchors_ = true
 
 [node name="_healthbar" type="TextureProgressBar" parent="ui layer/overlay"]
@@ -967,6 +969,9 @@ offset_right = 128.0
 offset_bottom = 64.0
 scale = Vector2(0.537233, 0.48)
 mouse_filter = 1
+
+[node name="UI Sound" type="AudioStreamPlayer" parent="ui layer/overlay"]
+stream = ExtResource("28_fes2o")
 
 [node name="temp_enemy" parent="." instance=ExtResource("26_xqbpv")]
 position = Vector2(-483, -44)
