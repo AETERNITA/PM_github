@@ -832,6 +832,7 @@ grow_horizontal = 0
 
 [node name="ColorRect" type="ColorRect" parent="ui layer/overlay/Points"]
 material = SubResource("ShaderMaterial_deat7")
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 64.0
 scale = Vector2(2.01723, 0.400002)
@@ -850,6 +851,7 @@ grow_horizontal = 0
 
 [node name="ColorRect" type="ColorRect" parent="ui layer/overlay/HighScore"]
 material = SubResource("ShaderMaterial_m4ace")
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 64.0
 scale = Vector2(2.01723, 0.400002)
@@ -867,6 +869,7 @@ grow_horizontal = 0
 
 [node name="ColorRect" type="ColorRect" parent="ui layer/overlay/Stopwatch"]
 material = SubResource("ShaderMaterial_0kq45")
+layout_mode = 0
 offset_left = -19.0
 offset_right = 109.0
 offset_bottom = 64.0
@@ -889,6 +892,7 @@ grow_vertical = 0
 
 [node name="ColorRect" type="ColorRect" parent="ui layer/overlay/Item 1"]
 material = SubResource("ShaderMaterial_qihwy")
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 64.0
 scale = Vector2(2.01723, 0.400002)
@@ -912,6 +916,7 @@ scale = Vector2(0.919995, 1)
 
 [node name="ColorRect" type="ColorRect" parent="ui layer/overlay/Item 2"]
 material = SubResource("ShaderMaterial_qihwy")
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 64.0
 scale = Vector2(2.17722, 0.363514)
@@ -934,6 +939,7 @@ text = "Restart"
 
 [node name="ColorRect" type="ColorRect" parent="ui layer/overlay/RestartButton"]
 material = SubResource("ShaderMaterial_qihwy")
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 64.0
 scale = Vector2(0.497223, 0.48)
@@ -956,6 +962,7 @@ text = "Resume"
 
 [node name="ColorRect" type="ColorRect" parent="ui layer/overlay/ResumeButton"]
 material = SubResource("ShaderMaterial_qihwy")
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 64.0
 scale = Vector2(0.537233, 0.48)

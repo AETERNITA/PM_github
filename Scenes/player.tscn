@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://b8qt2qtvfxrjn"]
+[gd_scene load_steps=70 format=3 uid="uid://b8qt2qtvfxrjn"]
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
@@ -43,6 +43,8 @@
 [ext_resource type="AudioStream" uid="uid://d4ho3kjluwie1" path="res://Audio/soundscape/collection1/Hell_Machine.wav" id="30_5x828"]
 [ext_resource type="AudioStream" uid="uid://d0c0p0lgsy8rx" path="res://Audio/soundscape/collection1/Night_Terrors.wav" id="31_c1k8q"]
 [ext_resource type="AudioStream" uid="uid://7aqbex0stmfo" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary DEMON VOICE Curse    [003599].mp3" id="43_7ldla"]
+[ext_resource type="AudioStream" uid="uid://dr8k0ov30iu3e" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001666.wav" id="44_nmr2m"]
+[ext_resource type="AudioStream" uid="uid://dpx4vhfoerhut" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001664.wav" id="44_r7t2e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r7t2e"]
 shader = ExtResource("2_r7t2e")
@@ -247,13 +249,15 @@ size = Vector2(20, 23.75)
 [sub_resource type="CircleShape2D" id="CircleShape2D_x3wgy"]
 radius = 83.1062
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite", "ItemUseAudio", "ItemInteractAudio")]
 material = SubResource("ShaderMaterial_r7t2e")
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_7irut")
 _animatedSprite = NodePath("animatedSprite")
 gunSprite = NodePath("gunPivot")
+ItemUseAudio = NodePath("ItemUseSound")
+ItemInteractAudio = NodePath("ItemInteractAudio")
 
 [node name="animatedSprite" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -366,6 +370,14 @@ collision_mask = 4
 position = Vector2(48, 11)
 shape = SubResource("CircleShape2D_x3wgy")
 debug_color = Color(0.947792, 0.214674, 0.212736, 0.42)
+
+[node name="ItemUseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("44_nmr2m")
+max_polyphony = 2
+
+[node name="ItemInteractAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("44_r7t2e")
+max_polyphony = 2
 
 [connection signal="finished" from="Move" to="." method="_on_move_finished"]
 [connection signal="finished" from="NormalSoundscape" to="." method="_on_normal_soundscape_finished"]

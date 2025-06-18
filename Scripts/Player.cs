@@ -10,6 +10,8 @@ public partial class Player : GenericCharacterClass
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
+	[Export] private AudioStreamPlayer ItemUseAudio;
+	[Export] private AudioStreamPlayer ItemInteractAudio;
 	private CanvasModulate canvmod;
 	private bool isplaying = false;
 	public float dashSpeed = 1200.0f; // Geschwindigkeit beim Dash
@@ -327,12 +329,14 @@ public partial class Player : GenericCharacterClass
 				{
 					case "healing_effect":
 						HealbyEffect();
+						ItemUseAudio.Play();
 						itemqueue.RemoveAt(0);
 
 						break;
 
 					case "jumpboost":
 						JumpBoostbyEffect();
+						ItemUseAudio.Play();
 						itemqueue.RemoveAt(0);
 						break;
 
@@ -649,6 +653,7 @@ public partial class Player : GenericCharacterClass
 	{
 		//Print("healing");
 		//Item_add("healing_effect", 1, -1, 1.75);
+		ItemInteractAudio.Play();
 		itemqueue.Add("healing_effect");
 		var OverlayRef = GetNode("%overlay") as V2Overlay;
 	}
@@ -661,6 +666,7 @@ public partial class Player : GenericCharacterClass
 	{
 		//Print("jump boosted");
 		//Item_add("jumpboost", 2, -1, 15);
+		ItemInteractAudio.Play();
 		itemqueue.Add("jumpboost");
 	}
 	private void JumpBoostbyEffect()
