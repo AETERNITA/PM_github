@@ -72,17 +72,23 @@ public partial class V2Overlay : Control
         savegame = GD.Load("user://savegame.tres") as SaveGame;
         HighScore.Text = "HighScore:" + savegame.HighScore;
 
+        if (dead)
+        {
+            Item1.Visible = false;
+            Item2.Visible = false;
+        }
+
         if (in_start_menu)
-        {
-            Master_Label.Visible = true;
-            Master_Slider.Visible = true;
-            time = 0;
-        }
-        else
-        {
-            Master_Label.Visible = escape_menu_active;
-            Master_Slider.Visible = escape_menu_active;
-        }
+            {
+                Master_Label.Visible = true;
+                Master_Slider.Visible = true;
+                time = 0;
+            }
+            else
+            {
+                Master_Label.Visible = escape_menu_active;
+                Master_Slider.Visible = escape_menu_active;
+            }
 
         if (!GetTree().Paused)
         {

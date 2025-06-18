@@ -620,7 +620,6 @@ process_mode = 3
 script = ExtResource("25_xqbpv")
 
 [node name="shading layer 1" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="shading layer 1"]
 material = SubResource("ShaderMaterial_fes2o")
@@ -631,7 +630,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shading layer 2" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="shading layer 2"]
 material = SubResource("ShaderMaterial_waod3")
