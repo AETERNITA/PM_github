@@ -420,11 +420,24 @@ public partial class Player : GenericCharacterClass
 	{
 		if (gunSprite != null)
 		{
-			Vector2 mousePosition = GetGlobalMousePosition();
-			Vector2 directionToMouse = mousePosition - gunSprite.GlobalPosition;
-			float angle = directionToMouse.Angle();
-			gunSprite.Rotation = angle;
+			if (Input.GetActionStrength("right_stick_up") == 0 && Input.GetActionStrength("right_stick_down") == 0 && Input.GetActionStrength("right_stick_right") == 0 && Input.GetActionStrength("right_stick_left") == 0)
+			{
+				Vector2 mousePosition = GetGlobalMousePosition();
+				Vector2 directionToMouse = mousePosition - gunSprite.GlobalPosition;
+				float angle = directionToMouse.Angle();
+				gunSprite.Rotation = angle;
+			}
+			else
+			{
+				float x = Input.GetActionStrength("right_stick_right") - Input.GetActionRawStrength("right_stick_left");
+				float y = Input.GetActionStrength("right_stick_down") - Input.GetActionRawStrength("right_stick_up");
+				Vector2 Controller_direction = new Vector2(x, y);
+				float angle = Controller_direction.Angle();
+				gunSprite.Rotation = angle;
+			}
 		}
+
+		
 	}
 
 	private void Update_Inventory(double delta_time)

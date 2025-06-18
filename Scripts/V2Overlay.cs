@@ -117,6 +117,17 @@ public partial class V2Overlay : Control
             }
         }
 
+        if (Input.IsActionJustPressed("start_game"))
+        {
+            GetTree().Paused = false;
+            if (in_start_menu)
+            {
+                Button start_button = GetNode<Button>("Play_Button");
+                start_button.Hide();
+                in_start_menu = false;
+            }
+        }
+
         RestartButton.Visible = escape_menu_active;
         ResumeButton.Visible = escape_menu_active;
 

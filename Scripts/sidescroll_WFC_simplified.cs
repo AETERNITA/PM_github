@@ -122,6 +122,8 @@ public partial class sidescroll_WFC_simplified : Node2D
         /* string scenenene = "uid://bm42aiylfo3oc";
         place_scene(scenenene, new Vector2(4000, 0)); */
 
+        
+
 
     }
 
