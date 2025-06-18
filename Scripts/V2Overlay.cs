@@ -31,6 +31,12 @@ public partial class V2Overlay : Control
     public override void _Ready()
     {
         savegame = new SaveGame();
+
+        if (GD.Load("user://savegame.tres") == null)
+        {
+            ResourceSaver.Save(savegame, "user://savegame.tres");
+        }
+
         HighScore = GetNode<Label>("HighScore");
         HighScore.Text = "HighScore:" + savegame.HighScore;
 
@@ -89,8 +95,17 @@ public partial class V2Overlay : Control
             Item2.Visible = true;
         }
 
-        savegame = GD.Load("user://savegame.tres") as SaveGame;
-        HighScore.Text = "HighScore:" + savegame.HighScore;
+
+        if (GD.Load("user://savegame.tres") == null)
+        {
+
+        }
+        else
+        {
+            savegame = GD.Load("user://savegame.tres") as SaveGame;
+            HighScore.Text = "HighScore:" + savegame.HighScore;
+        }
+        
 
         if (dead)
         {
