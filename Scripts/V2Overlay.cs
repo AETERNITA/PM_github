@@ -67,6 +67,10 @@ public partial class V2Overlay : Control
                 l.CallDeferred("add_child", esc); */
         // }
 
+        Button start_button = GetNode<Button>("Play_Button");
+        start_button.FocusMode = FocusModeEnum.All;
+        start_button.GrabFocus();
+        
     }
 
     private void darken()

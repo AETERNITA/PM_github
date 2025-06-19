@@ -457,6 +457,7 @@ public partial class Player : GenericCharacterClass
 				Item_durabillity.Remove(Item_duration[i]);
 				Item_duration.Remove(Item_duration[i]);
 				Item_Strenght.Remove(Item_Strenght[i]);
+				Update_Inventory(delta_time);
 				break;
 				//ForDeletion.Add(i);
 			}
@@ -560,7 +561,7 @@ public partial class Player : GenericCharacterClass
 
 	private void Item_continuous_effect(string Item, double strenght)
 	{
-		////Print("continouos_effect");
+		Print("continouos_effect");
 		switch (continuous_effect[Item])
 		{
 			case "regeneration":
