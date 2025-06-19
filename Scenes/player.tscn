@@ -121,6 +121,9 @@ animations = [{
 radius = 240.0
 height = 654.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_x3wgy"]
+radius = 83.1062
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e6mvm"]
 streams_count = 10
 stream_0/stream = ExtResource("6_8gxox")
@@ -246,9 +249,6 @@ color = Color(0, 0.917647, 0.286275, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ph33w"]
 size = Vector2(20, 23.75)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_x3wgy"]
-radius = 83.1062
-
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite", "ItemUseAudio", "ItemInteractAudio")]
 material = SubResource("ShaderMaterial_r7t2e")
 collision_layer = 2
@@ -277,6 +277,18 @@ position = Vector2(232, 222)
 position = Vector2(116, -1)
 scale = Vector2(1.7014, 1.7014)
 texture = ExtResource("3_6xx8g")
+
+[node name="laserschwert_area" type="Area2D" parent="gunPivot/gunSprite"]
+position = Vector2(-204.537, -129.893)
+scale = Vector2(2.93876, 2.93876)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gunPivot/gunSprite/laserschwert_area"]
+position = Vector2(151, 44)
+scale = Vector2(0.64, 0.264)
+shape = SubResource("CircleShape2D_x3wgy")
+debug_color = Color(0.947792, 0.214674, 0.212736, 0.42)
 
 [node name="Move" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_e6mvm")
@@ -361,16 +373,6 @@ debug_color = Color(0.973007, 0.157827, 0.113885, 0.42)
 process_mode = 3
 stream = ExtResource("43_7ldla")
 
-[node name="laserschwert_area" type="Area2D" parent="."]
-scale = Vector2(5, 5)
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="laserschwert_area"]
-position = Vector2(48, 11)
-shape = SubResource("CircleShape2D_x3wgy")
-debug_color = Color(0.947792, 0.214674, 0.212736, 0.42)
-
 [node name="ItemUseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("44_nmr2m")
 max_polyphony = 2
@@ -379,9 +381,9 @@ max_polyphony = 2
 stream = ExtResource("44_r7t2e")
 max_polyphony = 2
 
+[connection signal="body_entered" from="gunPivot/gunSprite/laserschwert_area" to="." method="_on_laserschwert_area_body_entered"]
+[connection signal="body_exited" from="gunPivot/gunSprite/laserschwert_area" to="." method="_on_laserschwert_area_body_exited"]
 [connection signal="finished" from="Move" to="." method="_on_move_finished"]
 [connection signal="finished" from="NormalSoundscape" to="." method="_on_normal_soundscape_finished"]
 [connection signal="body_entered" from="dashdown_damage_area" to="." method="_on_dashdown_damage_area_body_entered"]
 [connection signal="body_exited" from="dashdown_damage_area" to="." method="_on_dashdown_damage_area_body_exited"]
-[connection signal="body_entered" from="laserschwert_area" to="." method="_on_laserschwert_area_body_entered"]
-[connection signal="body_exited" from="laserschwert_area" to="." method="_on_laserschwert_area_body_exited"]
