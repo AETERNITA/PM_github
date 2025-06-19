@@ -23,6 +23,7 @@ public partial class V2Overlay : Control
     private bool escape_menu_active = false;
     public bool dead = false;
     private SaveGame savegame;
+    private bool just_entered_esc_menu;
 
     /*    [Export] public PackedScene ESCMenu;
                    private Node esc;
@@ -66,6 +67,10 @@ public partial class V2Overlay : Control
                 l.CallDeferred("add_child", esc); */
         // }
 
+        Button start_button = GetNode<Button>("Play_Button");
+        start_button.FocusMode = FocusModeEnum.All;
+        start_button.GrabFocus();
+        
     }
 
     private void darken()
@@ -118,16 +123,22 @@ public partial class V2Overlay : Control
         }
 
         if (in_start_menu)
+        {
+            Master_Label.Visible = true;
+            Master_Slider.Visible = true;
+            time = 0;
+        }
+        else
+        {
+            Master_Label.Visible = escape_menu_active;
+            Master_Slider.Visible = escape_menu_active;
+
+            if (just_entered_esc_menu)
             {
-                Master_Label.Visible = true;
-                Master_Slider.Visible = true;
-                time = 0;
+                Master_Label.FocusMode = FocusModeEnum.All;
+                Master_Label.GrabFocus();
             }
-            else
-            {
-                Master_Label.Visible = escape_menu_active;
-                Master_Slider.Visible = escape_menu_active;
-            }
+        }
 
         if (!GetTree().Paused)
         {
@@ -146,6 +157,9 @@ public partial class V2Overlay : Control
             GetTree().Paused = true;
         }
 
+
+        just_entered_esc_menu = false;
+
         if (Input.IsActionJustPressed("escape"))
         {
             UISound.Play();
@@ -156,10 +170,12 @@ public partial class V2Overlay : Control
             else
             {
                 escape_menu_active = true;
+                just_entered_esc_menu = true;
             }
             if (in_start_menu)
             {
                 escape_menu_active = false;
+                just_entered_esc_menu = false;
             }
         }
 
