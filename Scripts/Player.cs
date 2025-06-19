@@ -589,7 +589,7 @@ public partial class Player : GenericCharacterClass
 			case "healing":
 				Print("Healing ends");
 				var HealthbarEffect = GetNode<ColorRect>("%HealthbarColorRect").Material as ShaderMaterial;
-				HealthbarEffect.SetShaderParameter("Brightness", 3f);
+				HealthbarEffect.SetShaderParameter("Brightness", 0f);
 				healing = false;
 				break;
 
