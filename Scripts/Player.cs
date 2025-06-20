@@ -467,7 +467,7 @@ public partial class Player : GenericCharacterClass
 				Item_Effect("continuous", Item[i], Item_Strenght[i]);
 			}
 
-			i = i++;
+			i++;
 
 		}
 		//foreach (int k in ForDeletion)
@@ -561,7 +561,7 @@ public partial class Player : GenericCharacterClass
 
 	private void Item_continuous_effect(string Item, double strenght)
 	{
-		Print("continouos_effect");
+		//Print("continouos_effect");
 		switch (continuous_effect[Item])
 		{
 			case "regeneration":

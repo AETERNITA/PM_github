@@ -11,17 +11,13 @@ public partial class sidescroll_WFC_simplified : Node2D
     static int start_height = 1;
     int gen_lenght = 100;
     private bool[] open_connections = new bool[level_height];
+    private int main_connection = start_height;
 
     private List<int> gen_queue = new List<int>();
 
     //RoomData
     private List<string> RoomName = new List<string>();
     private Dictionary<string, string> RoomRefDict = new Dictionary<string, string>();
-    private Dictionary<string, bool> OpenTopDict = new Dictionary<string, bool>();
-    private Dictionary<string, bool> OpenBottomDict = new Dictionary<string, bool>();
-    private Dictionary<string, bool> OpenRightSideDict = new Dictionary<string, bool>();
-    private Dictionary<string, bool> OpenLeftSideDict = new Dictionary<string, bool>();
-
 
     public override void _Ready()
     {
@@ -119,12 +115,10 @@ public partial class sidescroll_WFC_simplified : Node2D
 
     private void definitive_placement(int column)
     {
-        /* string scenenene = "uid://bm42aiylfo3oc";
-        place_scene(scenenene, new Vector2(4000, 0)); */
-
-        
-
-
+        if (main_connection == 0)
+        {
+            
+        }
     }
 
     private void WFC_placement(int column)
