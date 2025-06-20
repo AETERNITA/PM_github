@@ -702,8 +702,8 @@ public partial class Player : GenericCharacterClass
 			float g1 = 0f;
 			float b1 = 0f;
 			//float a = 0f;
-			float rgb2 = 0.144f;
-			float rgb3 = 0.2f;
+			float rgb2 = 0.18f;
+			float rgb3 = 0.5f;
 			Color newcolor = new Color(rgb2, rgb2, rgb2);
 			if (_healthbar.Value < 30)
 			{
