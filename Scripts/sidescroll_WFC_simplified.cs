@@ -7,10 +7,10 @@ using static Godot.GD;
 public partial class sidescroll_WFC_simplified : Node2D
 {
     //maximum amount of stacked scenes that have the lowest possible height
-    static int level_height = 4;
+    static int level_height = -4;
     static int start_height = 1;
-    int pre_gen_lenght = 2;
-    private bool[] open_connections = new bool[level_height];
+    int pre_gen_lenght = 100;
+    //private bool[] open_connections = new bool[level_height];
     private int main_connection = start_height;
     private int currentcolumn = 1;
 
@@ -22,7 +22,7 @@ public partial class sidescroll_WFC_simplified : Node2D
 
     public override void _Ready()
     {
-        if (start_height > level_height)
+        if (start_height < level_height)
         {
             PrintErr("start_height larger than level_height");
         }
@@ -65,10 +65,10 @@ public partial class sidescroll_WFC_simplified : Node2D
     }
 
 
-    private void setup_start_area(int start_height)
+/*     private void setup_start_area(int start_height)
     {
         open_connections[start_height] = true;
-    }
+    } */
 
 
     private void new_gen_cycle(int column)
@@ -101,7 +101,7 @@ public partial class sidescroll_WFC_simplified : Node2D
 
     private void gen_initialization()
     {
-        open_connections[0] = true;
+        //open_connections[0] = true;
         RoomName.Add("down");
         RoomRefDict.Add("down", "uid://dofa4avgjwor3");
         RoomName.Add("downright");
@@ -121,22 +121,28 @@ public partial class sidescroll_WFC_simplified : Node2D
         RoomName.Add("upright");
         RoomRefDict.Add("upright", "uid://ceo8tttylidv6");
 
-        setup_start_area(start_height);
+        //setup_start_area(start_height);
     }
 
 
     private void definitive_placement(int column)
     {
-        if (RandRange(0, 1) > -1)
+        if (RandRange(0, 1) > 0.5)
         {
             place_scene(RoomRefDict["leftright"], new Vector2(4000 * column, main_connection * 4000));
         }
         else
         {
-            if (main_connection == 0)
-                {
-                    
-                }
+            if (main_connection >= level_height)
+            {
+                place_scene(RoomRefDict["leftup"], new Vector2(4000 * column, 4000 * main_connection));
+                place_scene(RoomRefDict["downright"], new Vector2(4000 * column, 4000 * main_connection - 4000));
+                main_connection = main_connection - 1;
+            }
+            else
+            {
+                place_scene(RoomRefDict["leftright"], new Vector2(4000 * column, main_connection * 4000));
+            }
         }
         
         
