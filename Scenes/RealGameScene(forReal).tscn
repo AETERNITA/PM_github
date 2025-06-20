@@ -605,6 +605,7 @@ shape = SubResource("RectangleShape2D_y13s1")
 occluder = SubResource("OccluderPolygon2D_ese38")
 
 [node name="Background" type="Sprite2D" parent="World"]
+visible = false
 z_index = -1
 z_as_relative = false
 position = Vector2(-2775, -1263)

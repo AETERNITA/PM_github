@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://b8qt2qtvfxrjn"]
+[gd_scene load_steps=72 format=3 uid="uid://b8qt2qtvfxrjn"]
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
@@ -43,8 +43,10 @@
 [ext_resource type="AudioStream" uid="uid://d4ho3kjluwie1" path="res://Audio/soundscape/collection1/Hell_Machine.wav" id="30_5x828"]
 [ext_resource type="AudioStream" uid="uid://d0c0p0lgsy8rx" path="res://Audio/soundscape/collection1/Night_Terrors.wav" id="31_c1k8q"]
 [ext_resource type="AudioStream" uid="uid://7aqbex0stmfo" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary DEMON VOICE Curse    [003599].mp3" id="43_7ldla"]
+[ext_resource type="Script" uid="uid://cks7d7m1n1u3x" path="res://Scripts/Background2.cs" id="44_3vlem"]
 [ext_resource type="AudioStream" uid="uid://dr8k0ov30iu3e" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001666.wav" id="44_nmr2m"]
 [ext_resource type="AudioStream" uid="uid://dpx4vhfoerhut" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001664.wav" id="44_r7t2e"]
+[ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="46_ax3m3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r7t2e"]
 shader = ExtResource("2_r7t2e")
@@ -258,6 +260,15 @@ _animatedSprite = NodePath("animatedSprite")
 gunSprite = NodePath("gunPivot")
 ItemUseAudio = NodePath("ItemUseSound")
 ItemInteractAudio = NodePath("ItemInteractAudio")
+
+[node name="Background2" type="Sprite2D" parent="."]
+show_behind_parent = true
+z_index = -1
+z_as_relative = false
+position = Vector2(-17.0002, -9)
+scale = Vector2(3, 3)
+texture = ExtResource("46_ax3m3")
+script = ExtResource("44_3vlem")
 
 [node name="animatedSprite" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
