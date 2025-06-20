@@ -110,7 +110,7 @@ public partial class V2Overlay : Control
             savegame = GD.Load("user://savegame.tres") as SaveGame;
             HighScore.Text = "HighScore:" + savegame.HighScore;
         }
-        
+
 
         if (dead)
         {
@@ -203,6 +203,11 @@ public partial class V2Overlay : Control
         if (!escape_menu_active && !in_start_menu && !dead)
         {
             GetTree().Paused = false;
+        }
+
+        if (GetTree().Paused == true)
+        {
+            darken();
         }
     }
 

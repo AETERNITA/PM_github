@@ -9,9 +9,10 @@ public partial class sidescroll_WFC_simplified : Node2D
     //maximum amount of stacked scenes that have the lowest possible height
     static int level_height = 4;
     static int start_height = 1;
-    int gen_lenght = 100;
+    int pre_gen_lenght = 2;
     private bool[] open_connections = new bool[level_height];
     private int main_connection = start_height;
+    private int currentcolumn = 1;
 
     private List<int> gen_queue = new List<int>();
 
@@ -32,12 +33,23 @@ public partial class sidescroll_WFC_simplified : Node2D
             //Debug spawning
             //gridplace_debug();
 
-            for (int i = 0; i < gen_lenght; i++)
+            for (int i = 1; i <= pre_gen_lenght; i++)
             {
                 new_gen_cycle(i);
+                currentcolumn = i;
             }
         }
     }
+
+    public override void _Process(double delta)
+    {
+        if (currentcolumn * 4000 - GetNode<Player>("../%Player").GlobalPosition.X <= 8000)
+        {
+            new_gen_cycle(currentcolumn + 1);
+            currentcolumn++;
+        }
+    }
+
 
 
     private void place_scene(string scene_uid, Vector2 position)
@@ -73,7 +85,7 @@ public partial class sidescroll_WFC_simplified : Node2D
 
 
 
-    private void gridplace_debug()
+    /* private void gridplace_debug()
     {
         int posreight = 0;
         for (int i = 0; i < level_height; i++)
@@ -82,10 +94,10 @@ public partial class sidescroll_WFC_simplified : Node2D
             for (int j = 0; j < 100; j++)
             {
                 posreight = posreight + 1;
-                place_scene(RoomRefDict["down"], new Vector2(4000 * posreight, i * 4000));
+                place_scene(RoomRefDict["leftright"], new Vector2(4000 * posreight, i * 4000));
             }
         }
-    }
+    } */
 
     private void gen_initialization()
     {
@@ -115,10 +127,19 @@ public partial class sidescroll_WFC_simplified : Node2D
 
     private void definitive_placement(int column)
     {
-        if (main_connection == 0)
+        if (RandRange(0, 1) > -1)
         {
-            
+            place_scene(RoomRefDict["leftright"], new Vector2(4000 * column, main_connection * 4000));
         }
+        else
+        {
+            if (main_connection == 0)
+                {
+                    
+                }
+        }
+        
+        
     }
 
     private void WFC_placement(int column)
