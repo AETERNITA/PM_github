@@ -726,7 +726,7 @@ environment = SubResource("Environment_mg4q0")
 [node name="canvmod" type="CanvasModulate" parent="WorldEnvironment"]
 unique_name_in_owner = true
 light_mask = 3
-color = Color(0.154876, 0.154876, 0.154876, 1)
+color = Color(0.3, 0.3, 0.3, 1)
 
 [node name="GeneratedWorld" type="Node2D" parent="."]
 process_mode = 3
