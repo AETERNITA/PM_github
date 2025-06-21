@@ -9,7 +9,8 @@ public partial class sidescroll_WFC_simplified : Node2D
     //maximum amount of stacked scenes that have the lowest possible height
     static int level_height = -4;
     static int start_height = 1;
-    int pre_gen_lenght = 100;
+    int pre_gen_lenght = 2;
+
     //private bool[] open_connections = new bool[level_height];
     private int main_connection = start_height;
     private int currentcolumn = 1;
@@ -17,8 +18,10 @@ public partial class sidescroll_WFC_simplified : Node2D
     private List<int> gen_queue = new List<int>();
 
     //RoomData
-    private List<string> RoomName = new List<string>();
-    private Dictionary<string, string> RoomRefDict = new Dictionary<string, string>();
+    //private List<string> RoomName = new List<string>();
+    //private Dictionary<string, string> RoomRefDict = new Dictionary<string, string>();
+
+    private List<List<string>> RoomsRooms = new List<List<string>>(); //List 1: leftright; List2: leftdown; List3: Leftup; List4: upright; List5: downright
 
     public override void _Ready()
     {
@@ -61,14 +64,15 @@ public partial class sidescroll_WFC_simplified : Node2D
         {
             AddChild(instance2D);
             instance2D.Position = position;
+            instance2D.ProcessMode = ProcessModeEnum.Pausable;
         }
     }
 
 
-/*     private void setup_start_area(int start_height)
-    {
-        open_connections[start_height] = true;
-    } */
+    /*     private void setup_start_area(int start_height)
+        {
+            open_connections[start_height] = true;
+        } */
 
 
     private void new_gen_cycle(int column)
@@ -79,7 +83,8 @@ public partial class sidescroll_WFC_simplified : Node2D
             gen_queue.Add(i);
         }
 
-        definitive_placement(column);
+        precheck_placement(column);
+
         WFC_placement(column);
     }
 
@@ -102,7 +107,7 @@ public partial class sidescroll_WFC_simplified : Node2D
     private void gen_initialization()
     {
         //open_connections[0] = true;
-        RoomName.Add("down");
+        /* RoomName.Add("down");
         RoomRefDict.Add("down", "uid://dofa4avgjwor3");
         RoomName.Add("downright");
         RoomRefDict.Add("downright", "uid://dm0p773ff7q5r");
@@ -119,33 +124,147 @@ public partial class sidescroll_WFC_simplified : Node2D
         RoomName.Add("updown");
         RoomRefDict.Add("updown", "uid://bngjl18nokyvm");
         RoomName.Add("upright");
-        RoomRefDict.Add("upright", "uid://ceo8tttylidv6");
+        RoomRefDict.Add("upright", "uid://ceo8tttylidv6"); */
+
+        for (int i = 0; i < 5; i++)
+        {
+            RoomsRooms.Add(new List<string>());
+        }
+
+        //Add leftright rooms
+        RoomsRooms[0].Add("uid://uf6nec4oiunb");
+
+        //Add leftdown rooms
+        RoomsRooms[1].Add("uid://bfcvxwf4tlv6l");
+
+        //Add leftup rooms
+        RoomsRooms[2].Add("uid://hbjnuoukj6pt");
+
+        //Add upright rooms
+        RoomsRooms[3].Add("uid://b81u4l1ge1p18");
+
+        //Add downright rooms
+        RoomsRooms[4].Add("uid://dimew2aifojp2");
 
         //setup_start_area(start_height);
     }
 
-
-    private void definitive_placement(int column)
+    private string GetRoom(string connections)
     {
-        if (RandRange(0, 1) > 0.5)
+        string uid = "";
+        //return RoomRefDict[connections];
+        switch (connections)
         {
-            place_scene(RoomRefDict["leftright"], new Vector2(4000 * column, main_connection * 4000));
+            case "leftright":
+                uid = FindRoom(0);
+                break;
+
+            case "leftdown":
+                uid = FindRoom(1);
+                break;
+
+            case "leftup":
+                uid = FindRoom(2);
+                break;
+
+            case "upright":
+                uid = FindRoom(3);
+                break;
+
+            case "downright":
+                uid = FindRoom(4);
+                break;
+
+            default:
+                PrintErr("undefined room type");
+                break;
+
+        }
+        return uid;
+    }
+
+    private string FindRoom(int type)
+    {
+        return RoomsRooms[type][(int)(Randi() % RoomsRooms[0].Count)];
+    }
+
+
+    private void precheck_placement(int column)
+    {
+        bool can_go_up;
+        bool can_go_down;
+
+        if (main_connection > level_height)
+        {
+            can_go_up = true;
         }
         else
         {
-            if (main_connection >= level_height)
+            can_go_up = false;
+        }
+
+        if (main_connection < 0)
+        {
+            can_go_down = true;
+        }
+        else
+        {
+            can_go_down = false;
+        }
+
+        /* Print(can_go_up);
+        Print(can_go_down); */
+
+        pathplace(can_go_up, can_go_down, column);
+    }
+
+    private void pathplace(bool canup, bool candown, int column)
+    {
+        if (RandRange(0, 1) > 0.5)
+        {
+            if (canup && candown)
             {
-                place_scene(RoomRefDict["leftup"], new Vector2(4000 * column, 4000 * main_connection));
-                place_scene(RoomRefDict["downright"], new Vector2(4000 * column, 4000 * main_connection - 4000));
-                main_connection = main_connection - 1;
+                if (RandRange(0, 1) > 0.5)
+                {
+                    place_scene(GetRoom("leftup"), new Vector2(4000 * column, 4000 * main_connection));
+                    place_scene(GetRoom("downright"), new Vector2(4000 * column, 4000 * main_connection - 4000));
+                    main_connection = main_connection - 1;
+                }
+                else
+                {
+                    place_scene(GetRoom("leftdown"), new Vector2(4000 * column, 4000 * main_connection));
+                    place_scene(GetRoom("upright"), new Vector2(4000 * column, 4000 * main_connection + 4000));
+                    main_connection = main_connection + 1;
+                }
             }
             else
             {
-                place_scene(RoomRefDict["leftright"], new Vector2(4000 * column, main_connection * 4000));
+                if (canup)
+                {
+                    place_scene(GetRoom("leftup"), new Vector2(4000 * column, 4000 * main_connection));
+                    place_scene(GetRoom("downright"), new Vector2(4000 * column, 4000 * main_connection - 4000));
+                    main_connection = main_connection - 1;
+                }
+                else
+                {
+                    if (candown)
+                    {
+                        place_scene(GetRoom("leftdown"), new Vector2(4000 * column, 4000 * main_connection));
+                        place_scene(GetRoom("upright"), new Vector2(4000 * column, 4000 * main_connection + 4000));
+                        main_connection = main_connection + 1;
+                    }
+                    else
+                    {
+                        place_scene(GetRoom("leftright"), new Vector2(4000 * column, main_connection * 4000));
+                    }
+                }
             }
         }
-        
-        
+        else
+        {
+            place_scene(GetRoom("leftright"), new Vector2(4000 * column, main_connection * 4000));
+        }
+
     }
 
     private void WFC_placement(int column)

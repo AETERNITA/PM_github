@@ -51,6 +51,8 @@ public partial class TempEnemy : GenericCharacterClass
 
 		}
 
+		//Print("red time");
+		//Print(red_time);
 
 		if (red_time > 0)
 		{
@@ -71,8 +73,8 @@ public partial class TempEnemy : GenericCharacterClass
 
 	public virtual void GetEnemyAudioNodes()
 	{
-		DeathSFX = GetNode<AudioStreamPlayer>("%standart_enemy_death_sfx");
-		DamageSFX = GetNode<AudioStreamPlayer>("%standart_enemy_damage_sfx");
+		DeathSFX = GetNode<AudioStreamPlayer>("/root/Game/%standart_enemy_death_sfx");
+		DamageSFX = GetNode<AudioStreamPlayer>("/root/Game/%standart_enemy_damage_sfx");
 	}
 
 
@@ -112,14 +114,14 @@ public partial class TempEnemy : GenericCharacterClass
 		health = health - damage;
 		if (health <= 0)
 		{
-			var OverlayRef = GetNode("%overlay") as V2Overlay;
+			var OverlayRef = GetNode("/root/Game/%overlay") as V2Overlay;
 			OverlayRef.AddPoints(10000);
 			DeathSFX.Play();
 			QueueFree();
 		}
 		else
 		{
-			var OverlayRef = GetNode("%overlay") as V2Overlay;
+			var OverlayRef = GetNode("/root/Game/%overlay") as V2Overlay;
 			OverlayRef.AddPoints(100);
 		}
 		DamageSFX.Play();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=83 format=3 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -7,14 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="6_du02u"]
 [ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="7_fes2o"]
 [ext_resource type="Script" uid="uid://7s0ufxj5ol0f" path="res://Scripts/Background.cs" id="8_qihwy"]
-[ext_resource type="Script" uid="uid://c3jr1av6ahmj1" path="res://Scripts/Item.cs" id="9_deat7"]
-[ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="10_m4ace"]
-[ext_resource type="Texture2D" uid="uid://26b0rxcrsd0t" path="res://Art/wrench.png" id="11_0kq45"]
-[ext_resource type="PackedScene" uid="uid://bt5503q8ju41i" path="res://Scenes/bone_item.tscn" id="12_lip63"]
 [ext_resource type="Script" uid="uid://du65swo1xmtj5" path="res://Scripts/Projectilenew.cs" id="13_w7v74"]
+[ext_resource type="PackedScene" uid="uid://bom3ul8xliuam" path="res://Scenes/Interactables/jumpboost.tscn" id="13_waod3"]
 [ext_resource type="Texture2D" uid="uid://cwegm84khu1qs" path="res://Art/projektil2.png" id="14_th2a4"]
 [ext_resource type="AudioStream" uid="uid://koth7u0taw7c" path="res://Audio/sfx/Sparkly Magic Beam Wind Whirl - LOOPING VERSION    [003770].mp3" id="15_d3ch7"]
 [ext_resource type="AudioStream" uid="uid://bs43oc3weuyhw" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 02    [003609].mp3" id="16_81nbc"]
+[ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="16_qihwy"]
 [ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="17_1mxrs"]
 [ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="18_chqj8"]
 [ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="19_swstn"]
@@ -25,7 +23,7 @@
 [ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="25_xqbpv"]
 [ext_resource type="Shader" uid="uid://cvn3hm24mdeba" path="res://shaders/canvas.gdshader" id="26_fes2o"]
 [ext_resource type="Shader" uid="uid://bqggrd2e5l5qs" path="res://shaders/shadertry1.gdshader" id="26_lh6sl"]
-[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Enemy.tscn" id="26_xqbpv"]
+[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="26_xqbpv"]
 [ext_resource type="Shader" uid="uid://csxjcaqtjnr25" path="res://shaders/pixeldither.gdshader" id="27_du02u"]
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="27_lh6sl"]
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
@@ -127,18 +125,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.0040
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_deat7"]
 gradient = SubResource("Gradient_qihwy")
-fill = 1
-fill_from = Vector2(0.49, 0.52)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1up"]
-size = Vector2(24.8249, 68.4821)
-
-[sub_resource type="Gradient" id="Gradient_qcu6d"]
-offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ewbju"]
-gradient = SubResource("Gradient_qcu6d")
 fill = 1
 fill_from = Vector2(0.49, 0.52)
 
@@ -306,7 +292,7 @@ script = ExtResource("1_07a3i")
 [node name="Player" parent="." node_paths=PackedStringArray("_healthbar") instance=ExtResource("2_07a3i")]
 unique_name_in_owner = true
 physics_interpolation_mode = 1
-position = Vector2(-2775, -56.757)
+position = Vector2(-3050, -57)
 scale = Vector2(0.32, 0.32)
 _healthbar = NodePath("../ui layer/overlay/_healthbar")
 
@@ -660,57 +646,6 @@ texture = SubResource("GradientTexture2D_deat7")
 
 [node name="Interactables" type="Node" parent="."]
 
-[node name="Item" type="Area2D" parent="Interactables"]
-position = Vector2(-2137, -253.757)
-scale = Vector2(-30.2796, -51.7277)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("9_deat7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Item"]
-position = Vector2(-0.113781, 0.158183)
-scale = Vector2(0.114583, 0.0609753)
-shape = SubResource("RectangleShape2D_nf1up")
-
-[node name="Sprite2D" type="Sprite2D" parent="Interactables/Item"]
-position = Vector2(-0.0284451, 0)
-rotation = 3.14159
-scale = Vector2(0.0398611, 0.0199066)
-texture = ExtResource("10_m4ace")
-
-[node name="PointLight2D" type="PointLight2D" parent="Interactables/Item"]
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 9.3
-texture = SubResource("GradientTexture2D_ewbju")
-
-[node name="Item2" type="Area2D" parent="Interactables"]
-position = Vector2(-1459, -343.757)
-scale = Vector2(-30.2796, -51.7277)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("9_deat7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Item2"]
-position = Vector2(-0.113781, 0.0773282)
-scale = Vector2(0.114583, 0.0609753)
-shape = SubResource("RectangleShape2D_nf1up")
-
-[node name="Sprite2D" type="Sprite2D" parent="Interactables/Item2"]
-position = Vector2(-0.0284451, 0)
-rotation = 3.14159
-scale = Vector2(0.0398611, 0.0199066)
-texture = ExtResource("11_0kq45")
-
-[node name="PointLight2D" type="PointLight2D" parent="Interactables/Item2"]
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 9.3
-texture = SubResource("GradientTexture2D_ewbju")
-
-[node name="BoneItem" parent="Interactables" instance=ExtResource("12_lip63")]
-position = Vector2(-1339, -438)
-
 [node name="Projectile" type="Area2D" parent="Interactables" node_paths=PackedStringArray("shoot_sfx", "flying_sfx")]
 position = Vector2(-2675, 0.243042)
 script = ExtResource("13_w7v74")
@@ -744,6 +679,15 @@ stream = ExtResource("15_d3ch7")
 stream = ExtResource("16_81nbc")
 
 [node name="RayCast2D" type="RayCast2D" parent="Interactables"]
+
+[node name="healing" parent="Interactables" instance=ExtResource("16_qihwy")]
+position = Vector2(-1940, -247)
+
+[node name="jump boost" parent="Interactables" instance=ExtResource("13_waod3")]
+position = Vector2(-2307, -267)
+
+[node name="Enemy" parent="Interactables" instance=ExtResource("26_xqbpv")]
+position = Vector2(-4057, -875)
 
 [node name="PortalController" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(-2775, 0.243042)
@@ -1066,8 +1010,6 @@ position = Vector2(-483, -44)
 [node name="FlyingSnake" parent="." instance=ExtResource("27_lh6sl")]
 position = Vector2(-2195, -861)
 
-[connection signal="body_entered" from="Interactables/Item" to="Player" method="_on_jump_boosted"]
-[connection signal="body_entered" from="Interactables/Item2" to="Player" method="_on_healing_potioned"]
 [connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]

@@ -33,7 +33,7 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 		GetEnemyAudioNodes();
 		//_groundRay = GetNode<RayCast2D>("GroundRay");
 		_sprite = GetNodeOrNull<Sprite2D>("Segment 0");
-		player = GetNode<Player>("../%Player");
+		player = GetNode<Player>("/root/Game/%Player");
 	}
 
 
@@ -60,8 +60,10 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 		LookAt(player.GlobalPosition);
 		Vector2 directionToPlayer = (player.GlobalPosition - GlobalPosition).Normalized();
         Velocity = directionToPlayer * Speed;
-		MoveAndSlide();
-
+		if ( Math.Abs(player.GlobalPosition.X - GlobalPosition.X) < 1000 && Math.Abs(player.GlobalPosition.Y - GlobalPosition.Y) < 1000)
+		{
+			MoveAndSlide();
+		}
 
 		if (red_time > 0)
 		{
@@ -123,7 +125,7 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 		health = health - damage;
 		if (health <= 0)
 		{
-			var OverlayRef = GetNode("../%overlay") as V2Overlay;
+			var OverlayRef = GetNode("/root/Game/%overlay") as V2Overlay;
 			OverlayRef.AddPoints(10000);
 			DeathSFX.Play();
 			folower1.QueueFree();
@@ -132,7 +134,7 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 		}
 		else
 		{
-			var OverlayRef = GetNode("../%overlay") as V2Overlay;
+			var OverlayRef = GetNode("/root/Game/%overlay") as V2Overlay;
 			OverlayRef.AddPoints(100);
 		}
 		DamageSFX.Play();

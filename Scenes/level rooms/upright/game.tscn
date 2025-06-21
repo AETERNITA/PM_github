@@ -1,0 +1,126 @@
+[gd_scene load_steps=10 format=3 uid="uid://b81u4l1ge1p18"]
+
+[ext_resource type="PackedScene" uid="uid://ceo8tttylidv6" path="res://Scenes/master_roooms/room_upright.tscn" id="1_mggoy"]
+[ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="2_53yxk"]
+[ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="3_tlq2k"]
+[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="4_w5j0d"]
+[ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="5_hqstj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5j0d"]
+size = Vector2(3987.5, 600)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hqstj"]
+polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wx1nm"]
+size = Vector2(2006.25, 312.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4fy2k"]
+polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
+
+[node name="Game" instance=ExtResource("1_mggoy")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="2" groups=["World"]]
+position = Vector2(-3482, -3274)
+scale = Vector2(0.16, 0.16)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" index="0"]
+texture = ExtResource("2_53yxk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+shape = SubResource("RectangleShape2D_w5j0d")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D" index="2"]
+occluder = SubResource("OccluderPolygon2D_hqstj")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="3" groups=["World"]]
+position = Vector2(-2819, -3053)
+scale = Vector2(0.16, 0.16)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" index="0"]
+scale = Vector2(0.500008, 0.500008)
+texture = ExtResource("3_tlq2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" index="1"]
+position = Vector2(-3.125, 0)
+shape = SubResource("RectangleShape2D_wx1nm")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D2" index="2"]
+scale = Vector2(0.500008, 0.500008)
+occluder = SubResource("OccluderPolygon2D_4fy2k")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="4" groups=["World"]]
+position = Vector2(-2253, -2053)
+scale = Vector2(0.16, 0.16)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3" index="0"]
+texture = ExtResource("2_53yxk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" index="1"]
+shape = SubResource("RectangleShape2D_w5j0d")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D3" index="2"]
+occluder = SubResource("OccluderPolygon2D_hqstj")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." index="5" groups=["World"]]
+position = Vector2(-1590, -1832)
+scale = Vector2(0.16, 0.16)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4" index="0"]
+scale = Vector2(0.500008, 0.500008)
+texture = ExtResource("3_tlq2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" index="1"]
+position = Vector2(-3.125, 0)
+shape = SubResource("RectangleShape2D_wx1nm")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D4" index="2"]
+scale = Vector2(0.500008, 0.500008)
+occluder = SubResource("OccluderPolygon2D_4fy2k")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="." index="6" groups=["World"]]
+position = Vector2(-959, -1223)
+scale = Vector2(0.16, 0.16)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D5" index="0"]
+texture = ExtResource("2_53yxk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5" index="1"]
+shape = SubResource("RectangleShape2D_w5j0d")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D5" index="2"]
+occluder = SubResource("OccluderPolygon2D_hqstj")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="." index="7" groups=["World"]]
+position = Vector2(-296, -1002)
+scale = Vector2(0.16, 0.16)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D6" index="0"]
+scale = Vector2(0.500008, 0.500008)
+texture = ExtResource("3_tlq2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6" index="1"]
+position = Vector2(-3.125, 0)
+shape = SubResource("RectangleShape2D_wx1nm")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D6" index="2"]
+scale = Vector2(0.500008, 0.500008)
+occluder = SubResource("OccluderPolygon2D_4fy2k")
+
+[node name="Enemy" parent="." index="8" instance=ExtResource("4_w5j0d")]
+position = Vector2(-980, -1407)
+
+[node name="Enemy2" parent="." index="9" instance=ExtResource("4_w5j0d")]
+position = Vector2(-670, -267)
+
+[node name="Enemy3" parent="." index="10" instance=ExtResource("4_w5j0d")]
+position = Vector2(-3520, -3458)
+
+[node name="Enemy4" parent="." index="11" instance=ExtResource("4_w5j0d")]
+position = Vector2(-2299, -2229)
+
+[node name="FlyingSnake" parent="." index="12" instance=ExtResource("5_hqstj")]
+position = Vector2(-3544, -2571)
+
+[node name="FlyingSnake2" parent="." index="13" instance=ExtResource("5_hqstj")]
+position = Vector2(-2054, -1521)
