@@ -27,7 +27,11 @@ public partial class TempEnemy : GenericCharacterClass
 	{
 		GetEnemyAudioNodes();
 		_groundRay = GetNode<RayCast2D>("GroundRay");
-        _sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
+		_sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
+		
+		var originalMaterial = Material;
+		var uniqueMaterial = (Material)originalMaterial.Duplicate();
+		Material = uniqueMaterial;
 	}
 
 

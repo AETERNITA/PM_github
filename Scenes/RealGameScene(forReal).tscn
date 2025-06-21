@@ -16,8 +16,8 @@
 [ext_resource type="Script" uid="uid://bfywqgp60a3xt" path="res://Scripts/PortalController.cs" id="17_1mxrs"]
 [ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="18_chqj8"]
 [ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="19_swstn"]
+[ext_resource type="AudioStream" uid="uid://d03sdahipsbpk" path="res://Audio/sfx/Zombie002_Die_A_001.mp3" id="19_waod3"]
 [ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="20_4nnjb"]
-[ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="23_emfjr"]
 [ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_qp5vb"]
 [ext_resource type="Script" uid="uid://gnla6sdxnvc6" path="res://Scripts/Canvas.cs" id="25_du02u"]
 [ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="25_xqbpv"]
@@ -703,7 +703,8 @@ stream = ExtResource("20_4nnjb")
 
 [node name="standart_enemy_death_sfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("23_emfjr")
+stream = ExtResource("19_waod3")
+volume_db = 10.571
 
 [node name="standart_enemy_damage_sfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

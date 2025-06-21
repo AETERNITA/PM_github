@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfcvxwf4tlv6l"]
+[gd_scene load_steps=11 format=3 uid="uid://bfcvxwf4tlv6l"]
 
 [ext_resource type="PackedScene" uid="uid://bu1nylkaaafly" path="res://Scenes/master_roooms/room_leftdown.tscn" id="1_2vc7o"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="2_n867x"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="3_py0dd"]
 [ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="4_56ib4"]
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="5_d7qgd"]
+[ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="6_d7qgd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ib4"]
 size = Vector2(3987.5, 600)
@@ -150,3 +151,6 @@ position = Vector2(-3424, -1573)
 
 [node name="FlyingSnake2" parent="." index="14" instance=ExtResource("5_d7qgd")]
 position = Vector2(-3333, -1067)
+
+[node name="Item" parent="." index="15" instance=ExtResource("6_d7qgd")]
+position = Vector2(-2400, -683)

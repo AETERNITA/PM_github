@@ -65,7 +65,8 @@ target_position = Vector2(100, 108)
 [node name="wall_box" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall_box"]
-position = Vector2(116.125, -12.5)
+position = Vector2(117, 1)
+scale = Vector2(1, 0.879998)
 shape = SubResource("RectangleShape2D_2hac7")
 debug_color = Color(0.138424, 0.63254, 0.384665, 0.42)
 
