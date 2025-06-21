@@ -262,6 +262,7 @@ ItemUseAudio = NodePath("ItemUseSound")
 ItemInteractAudio = NodePath("ItemInteractAudio")
 
 [node name="Background2" type="Sprite2D" parent="."]
+visible = false
 show_behind_parent = true
 z_index = -1
 z_as_relative = false
