@@ -8,7 +8,7 @@ public partial class TempEnemy : GenericCharacterClass
 
 	[Export] public float Speed = 150f;
 	[Export] public float Gravity = 800f;
-    [Export] public Vector2 Direction = Vector2.Left;
+	[Export] public Vector2 Direction = Vector2.Left;
 
 	private List<GenericCharacterClass> victims = new List<GenericCharacterClass>();
 
@@ -18,10 +18,10 @@ public partial class TempEnemy : GenericCharacterClass
 	private AudioStreamPlayer DeathSFX;
 	private AudioStreamPlayer DamageSFX;
 	
-    private RayCast2D _wallRay;
-    private RayCast2D _groundRay;
+	private RayCast2D _wallRay;
+	private RayCast2D _groundRay;
 
-    private Sprite2D _sprite;
+	private Sprite2D _sprite;
 
 	public override void _Ready()
 	{
@@ -83,9 +83,9 @@ public partial class TempEnemy : GenericCharacterClass
 
 
 	private void _on_wall_hit(Node2D body)
-    {
-        FlipDirection();
-    }
+	{
+		FlipDirection();
+	}
 
 
 	private void FlipDirection()

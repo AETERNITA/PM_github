@@ -19,7 +19,6 @@
 [ext_resource type="Shader" uid="uid://bqggrd2e5l5qs" path="res://shaders/shadertry1.gdshader" id="27_7tat2"]
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="28_er4is"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcvuv"]
 size = Vector2(26.9634, 19.7202)
 
