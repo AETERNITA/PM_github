@@ -750,7 +750,7 @@ grow_vertical = 2
 process_mode = 3
 script = ExtResource("25_du02u")
 
-[node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player", "UISound")]
+[node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player")]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -760,7 +760,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("27_waod3")
 player = NodePath("../../Player")
-UISound = NodePath("UI Sound")
 metadata/_edit_use_anchors_ = true
 
 [node name="_healthbar" type="TextureProgressBar" parent="ui layer/overlay"]
@@ -1002,7 +1001,7 @@ offset_bottom = 64.0
 scale = Vector2(0.537233, 0.48)
 mouse_filter = 1
 
-[node name="UI Sound" type="AudioStreamPlayer" parent="ui layer/overlay"]
+[node name="UISound" type="AudioStreamPlayer" parent="ui layer/overlay"]
 stream = ExtResource("28_fes2o")
 
 [node name="temp_enemy" parent="." instance=ExtResource("26_xqbpv")]
