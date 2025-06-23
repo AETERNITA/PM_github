@@ -62,14 +62,18 @@ public partial class PortalController : Node2D
 		touchedPortal = portalId;
 		Teleport(charBody);
 	}
-	public void Teleport(Node2D charBody){
+	public void Teleport(Node2D charBody1){
 		if (portale[touchedPortal].GetTelTo()){}else{
+			if(charBody1 is CharacterBody2D charBody){
 		Portal partnerPortal = GetNode<Portal>(GetPartnerPortal(touchedPortal));
 		RigidBody2D rigidTouchedPortal = portale[touchedPortal];
+		Vector2 playvec = charBody.Velocity;
 		charBody.GlobalPosition = partnerPortal.GlobalPosition;
 		partnerPortal.set_portal_teleported_to(true);
 		Teleport_sfx.Play();
-		}
+		charBody.Velocity = playvec.Rotated(this.Rotation);
+		GD.Print(player.Velocity);
+		}}
 	}
 	
 	public void _on_portal_body_exited(Node2D body){
