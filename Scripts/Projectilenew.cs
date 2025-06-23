@@ -43,7 +43,7 @@ public partial class Projectilenew : Area2D
 	}
 
 	public void Shoot(Vector2 playerPos){
-		if (projectileActive == false) {
+		
 		this.GlobalPosition = new Vector2(playerPos.X, playerPos.Y);
 		RotateProjectileToMouse();
 		sprite.Visible = true;
@@ -52,10 +52,9 @@ public partial class Projectilenew : Area2D
 		shoot_sfx.Play();
 		flying_sfx.Play();
 		}
-	}
 	
 	public void Shoot_Controller(Vector2 playerPos){
-		if (projectileActive == false) {
+		
 		this.GlobalPosition = new Vector2(playerPos.X, playerPos.Y);
 		RotateProjectileToControllerDirection();
 		sprite.Visible = true;
@@ -63,7 +62,7 @@ public partial class Projectilenew : Area2D
 		projectileActive = true;
 		shoot_sfx.Play();
 		flying_sfx.Play();
-		}
+		
 	}
 	
 	public void EndShot(float a)
