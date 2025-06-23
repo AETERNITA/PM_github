@@ -750,7 +750,7 @@ grow_vertical = 2
 process_mode = 3
 script = ExtResource("25_du02u")
 
-[node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player")]
+[node name="overlay" type="Control" parent="ui layer" node_paths=PackedStringArray("player", "UISound")]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
