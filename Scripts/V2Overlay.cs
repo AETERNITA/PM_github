@@ -25,6 +25,7 @@ public partial class V2Overlay : Control
     public bool dead = false;
     private SaveGame savegame;
     private bool just_entered_esc_menu;
+    private bool set_volume = false;
 
     /*    [Export] public PackedScene ESCMenu;
                    private Node esc;
@@ -59,7 +60,7 @@ public partial class V2Overlay : Control
         ResumeButton = GetNode<Button>("ResumeButton");
         ResumeButton.Visible = false;
 
-        Master_Slider.Value = 0.5;
+        Master_Slider.Value = 0;
 
         Item1 = GetNode<Label>("Item 1");
         Item2 = GetNode<Label>("Item 2");
@@ -72,6 +73,10 @@ public partial class V2Overlay : Control
         start_button.FocusMode = FocusModeEnum.All;
         start_button.GrabFocus();
 
+        /* if (!(GD.Load("user://savegame.tres") == null))
+        {
+            _on_master_slider_value_changed(GD.Load<SaveGame>("user://savegame.tres").Volume);
+        } */
     }
 
     private void darken()
@@ -82,6 +87,10 @@ public partial class V2Overlay : Control
 
     public override void _Process(double delta)
     {
+        if (!set_volume && Master_Slider.Value == (GD.Load("user://savegame.tres") as SaveGame).Volume)
+        {
+            set_volume = true;
+        }
 
         if (Item1.Text == "")
         {
@@ -108,6 +117,10 @@ public partial class V2Overlay : Control
         }
         else
         {
+            if (!set_volume)
+            {
+                Master_Slider.Value = GD.Load<SaveGame>("user://savegame.tres").Volume;
+            }
             savegame = GD.Load("user://savegame.tres") as SaveGame;
             HighScore.Text = "HighScore:" + savegame.HighScore;
         }
@@ -196,7 +209,15 @@ public partial class V2Overlay : Control
             }
         }
 
-        RestartButton.Visible = escape_menu_active;
+        if (dead)
+        {
+            RestartButton.Visible = true;
+        }
+        else
+        {
+            RestartButton.Visible = escape_menu_active;
+        }
+        
         ResumeButton.Visible = escape_menu_active;
 
         player.SetEscMenuModulate(escape_menu_active);
@@ -214,12 +235,19 @@ public partial class V2Overlay : Control
         {
             darken();
         }
+
+        
     }
 
     public void _on_master_slider_value_changed(float myFloat)
     {
         Master_Label.Text = "Master: " + myFloat.ToString();
         AudioServer.SetBusVolumeDb(Master_Index, Mathf.LinearToDb(myFloat));
+
+        var savegame = new SaveGame();
+        savegame.Volume = myFloat;
+        ResourceSaver.Save(savegame, "user://savegame.tres");
+        set_volume = true;
     }
 
     public void AddPoints(int points)
@@ -255,7 +283,7 @@ public partial class V2Overlay : Control
     public async void _on_restart_button_pressed()
     {
         UISound.Play();
-        await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
 
         GetNode<RealGameScene>("/root/Game").reset_level();
     }
