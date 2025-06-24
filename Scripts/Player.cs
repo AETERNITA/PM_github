@@ -855,7 +855,7 @@ public partial class Player : GenericCharacterClass
 		escape_menu_active = active;
 	}
 
-	private void SaveTheGame()
+	public void SaveTheGame()
 	{
 		//currently only the highscore
 		var savegame = new SaveGame();

@@ -18,9 +18,9 @@
 [ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="19_swstn"]
 [ext_resource type="AudioStream" uid="uid://d03sdahipsbpk" path="res://Audio/sfx/Zombie002_Die_A_001.mp3" id="19_waod3"]
 [ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="20_4nnjb"]
+[ext_resource type="PackedScene" uid="uid://bvw102bqfjrsl" path="res://Scenes/generated_world.tscn" id="21_waod3"]
 [ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_qp5vb"]
 [ext_resource type="Script" uid="uid://gnla6sdxnvc6" path="res://Scripts/Canvas.cs" id="25_du02u"]
-[ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="25_xqbpv"]
 [ext_resource type="Shader" uid="uid://cvn3hm24mdeba" path="res://shaders/canvas.gdshader" id="26_fes2o"]
 [ext_resource type="Shader" uid="uid://bqggrd2e5l5qs" path="res://shaders/shadertry1.gdshader" id="26_lh6sl"]
 [ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="26_xqbpv"]
@@ -719,10 +719,8 @@ unique_name_in_owner = true
 light_mask = 3
 color = Color(0.3, 0.3, 0.3, 1)
 
-[node name="GeneratedWorld" type="Node2D" parent="."]
-process_mode = 3
+[node name="GeneratedWorld" parent="." instance=ExtResource("21_waod3")]
 position = Vector2(0, -3775)
-script = ExtResource("25_xqbpv")
 
 [node name="shading layer 1" type="CanvasLayer" parent="."]
 visible = false
@@ -1016,4 +1014,5 @@ position = Vector2(-2195, -861)
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
 [connection signal="value_changed" from="ui layer/overlay/Master_Slider" to="ui layer/overlay" method="_on_master_slider_value_changed"]
 [connection signal="pressed" from="ui layer/overlay/Play_Button" to="ui layer/overlay" method="_on_button_pressed"]
+[connection signal="pressed" from="ui layer/overlay/RestartButton" to="ui layer/overlay" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ui layer/overlay/ResumeButton" to="ui layer/overlay" method="_on_resume_button_pressed"]

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading;
 
 public partial class V2Overlay : Control
 {
@@ -70,7 +71,7 @@ public partial class V2Overlay : Control
         Button start_button = GetNode<Button>("Play_Button");
         start_button.FocusMode = FocusModeEnum.All;
         start_button.GrabFocus();
-        
+
     }
 
     private void darken()
@@ -116,6 +117,10 @@ public partial class V2Overlay : Control
         {
             Item1.Visible = false;
             Item2.Visible = false;
+
+            RestartButton.Visible = true;
+            RestartButton.FocusMode = FocusModeEnum.All;
+            RestartButton.GrabFocus();
 
             (GetNode<ColorRect>("Points/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 3);
             (GetNode<ColorRect>("HighScore/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 3);
@@ -246,5 +251,14 @@ public partial class V2Overlay : Control
         UISound.Play();
         escape_menu_active = false;
     }
+
+    public async void _on_restart_button_pressed()
+    {
+        UISound.Play();
+        await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
+
+        GetNode<RealGameScene>("/root/Game").reset_level();
+    }
+    
 
 }

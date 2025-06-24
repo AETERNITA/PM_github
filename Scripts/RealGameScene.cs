@@ -16,4 +16,10 @@ public partial class RealGameScene : Node2D
             instance2D.Position = EnemyPosition;
         }
     }
+
+    public void reset_level()
+    {
+        GetNode<Player>("%Player").SaveTheGame();
+        GetTree().ChangeSceneToFile("uid://ioyfqr7mv56h");
+    }
 }
