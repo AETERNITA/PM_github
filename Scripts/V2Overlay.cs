@@ -93,13 +93,13 @@ public partial class V2Overlay : Control
         }
 
         if (Item1.Text == "")
-            {
-                Item1.Visible = false;
-            }
-            else
-            {
-                Item1.Visible = true;
-            }
+        {
+            Item1.Visible = false;
+        }
+        else
+        {
+            Item1.Visible = true;
+        }
 
         if (Item2.Text == "")
         {
@@ -209,7 +209,15 @@ public partial class V2Overlay : Control
             }
         }
 
-        RestartButton.Visible = escape_menu_active;
+        if (dead)
+        {
+            RestartButton.Visible = true;
+        }
+        else
+        {
+            RestartButton.Visible = escape_menu_active;
+        }
+        
         ResumeButton.Visible = escape_menu_active;
 
         player.SetEscMenuModulate(escape_menu_active);
@@ -227,6 +235,8 @@ public partial class V2Overlay : Control
         {
             darken();
         }
+
+        
     }
 
     public void _on_master_slider_value_changed(float myFloat)
@@ -273,7 +283,7 @@ public partial class V2Overlay : Control
     public async void _on_restart_button_pressed()
     {
         UISound.Play();
-        await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
 
         GetNode<RealGameScene>("/root/Game").reset_level();
     }
