@@ -8,4 +8,5 @@ public partial class SaveGame : Resource
     [Export] public int[] Highscores = Array.Empty<int>();
     [Export] public int[] RunLenghts = Array.Empty<int>();
     [Export] public int[] TimeofRun = Array.Empty<int>();
+    [Export] public float Volume = 0.3f;
 }
