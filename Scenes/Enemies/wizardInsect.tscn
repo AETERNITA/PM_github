@@ -27,7 +27,7 @@ size = Vector2(29.75, 217)
 [sub_resource type="CircleShape2D" id="CircleShape2D_rvmyp"]
 radius = 100.108
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="wizard" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_7kucs")
 collision_layer = 4
 collision_mask = 3

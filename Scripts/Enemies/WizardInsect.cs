@@ -38,6 +38,7 @@ public partial class WizardInsect : GenericCharacterClass
 		var originalMaterial = Material;
 		var uniqueMaterial = (Material)originalMaterial.Duplicate();
 		Material = uniqueMaterial;
+		timeuntilattack = attacktime;
 	}
 
 
@@ -84,7 +85,7 @@ public partial class WizardInsect : GenericCharacterClass
 		if (timeuntilattack <= 0)
 		{
 			timeuntilattack = attacktime;
-			if (GetNode<Player>("/root/Game/%Player").GlobalPosition.X - GlobalPosition.X < 2000)
+			if (Math.Abs(GetNode<Player>("/root/Game/%Player").GlobalPosition.X - this.GlobalPosition.X) < 1000 && Math.Abs(GetNode<Player>("/root/Game/%Player").GlobalPosition.Y - this.GlobalPosition.Y) < 500)
 			{
 				attack();
 			}
