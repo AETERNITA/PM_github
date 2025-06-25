@@ -111,6 +111,18 @@ public partial class Player : GenericCharacterClass
 
 		play_background();
 
+		helth_effects();
+
+		this.ProcessMode = ProcessModeEnum.Always;
+
+	}
+
+	private async void helth_effects()
+	{
+		await ToSignal(GetTree().CreateTimer(0.1), SceneTreeTimer.SignalName.Timeout);
+		update_health_related_effects();
+		Print("wil pause");
+		this.ProcessMode = ProcessModeEnum.Pausable;
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -56,7 +56,7 @@ public partial class RealGameScene : Node2D
             }
         }
 
-        await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(GetTree().CreateTimer(0.1), SceneTreeTimer.SignalName.Timeout);
 
 
         GetTree().ReloadCurrentScene();

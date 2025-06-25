@@ -77,6 +77,11 @@ public partial class V2Overlay : Control
         {
             _on_master_slider_value_changed(GD.Load<SaveGame>("user://savegame.tres").Volume);
         } */
+
+        (GetNode<ColorRect>("Points/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 0);
+        (GetNode<ColorRect>("HighScore/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 0);
+        (GetNode<ColorRect>("Stopwatch/ColorRect").Material as ShaderMaterial).SetShaderParameter("Brightness", 0);
+
     }
 
     private void darken()
@@ -283,7 +288,7 @@ public partial class V2Overlay : Control
     public async void _on_restart_button_pressed()
     {
         UISound.Play();
-        await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(GetTree().CreateTimer(0.3), SceneTreeTimer.SignalName.Timeout);
 
         GetNode<RealGameScene>("/root/Game").reset_level();
     }
