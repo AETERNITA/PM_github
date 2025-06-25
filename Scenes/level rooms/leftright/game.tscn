@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://uf6nec4oiunb"]
+[gd_scene load_steps=13 format=3 uid="uid://uf6nec4oiunb"]
 
 [ext_resource type="PackedScene" uid="uid://cnhqxo33oqtbm" path="res://Scenes/master_roooms/room_leftright.tscn" id="1_c8dac"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="2_riiam"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="5_lxfb3"]
 [ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="6_p3m62"]
 [ext_resource type="PackedScene" uid="uid://bom3ul8xliuam" path="res://Scenes/Interactables/jumpboost.tscn" id="7_ej3ue"]
+[ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="8_ej3ue"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxfb3"]
 size = Vector2(3987.5, 600)
@@ -258,7 +259,7 @@ position = Vector2(-3061, -1058)
 position = Vector2(-1212, -1092)
 
 [node name="FlyingSnake" parent="." index="21" instance=ExtResource("5_lxfb3")]
-position = Vector2(-2385, -1079)
+position = Vector2(-3220, -1733)
 
 [node name="FlyingSnake2" parent="." index="22" instance=ExtResource("5_lxfb3")]
 position = Vector2(-1479, -601)
@@ -276,7 +277,13 @@ position = Vector2(-1260, -1953)
 position = Vector2(-2067, -3270)
 
 [node name="Item2" parent="." index="27" instance=ExtResource("7_ej3ue")]
-position = Vector2(-2022, -1553)
+position = Vector2(-2006, -1535)
 
 [node name="Item3" parent="." index="28" instance=ExtResource("6_p3m62")]
 position = Vector2(-1652, -2945)
+
+[node name="Enemy7" parent="." index="29" instance=ExtResource("8_ej3ue")]
+position = Vector2(-570, -1148)
+
+[node name="Enemy8" parent="." index="30" instance=ExtResource("8_ej3ue")]
+position = Vector2(-2364, -1113)

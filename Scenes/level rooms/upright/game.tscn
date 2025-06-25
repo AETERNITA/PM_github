@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b81u4l1ge1p18"]
+[gd_scene load_steps=13 format=3 uid="uid://b81u4l1ge1p18"]
 
 [ext_resource type="PackedScene" uid="uid://ceo8tttylidv6" path="res://Scenes/master_roooms/room_upright.tscn" id="1_mggoy"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="2_53yxk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="5_hqstj"]
 [ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="6_wx1nm"]
 [ext_resource type="PackedScene" uid="uid://bom3ul8xliuam" path="res://Scenes/Interactables/jumpboost.tscn" id="7_4fy2k"]
+[ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="8_4fy2k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5j0d"]
 size = Vector2(3987.5, 600)
@@ -132,3 +133,6 @@ position = Vector2(-1615, -2009)
 
 [node name="Item2" parent="." index="15" instance=ExtResource("7_4fy2k")]
 position = Vector2(-304, -1163)
+
+[node name="Enemy5" parent="." index="16" instance=ExtResource("8_4fy2k")]
+position = Vector2(-2852, -3203)

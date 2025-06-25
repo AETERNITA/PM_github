@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=84 format=3 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="27_lh6sl"]
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
 [ext_resource type="AudioStream" uid="uid://hen8lhfjfgr" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001668.wav" id="28_fes2o"]
+[ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="29_du02u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcj5y"]
 size = Vector2(3979.84, 577.47)
@@ -1008,6 +1009,9 @@ position = Vector2(-483, -44)
 
 [node name="FlyingSnake" parent="." instance=ExtResource("27_lh6sl")]
 position = Vector2(-2195, -861)
+
+[node name="Enemy" parent="." instance=ExtResource("29_du02u")]
+position = Vector2(-5240, -35)
 
 [connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]

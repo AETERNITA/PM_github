@@ -6,7 +6,7 @@ using static Godot.GD;
 
 public partial class RealGameScene : Node2D
 {
-
+    
     public double unpause_time = 0.1;
     public override void _Ready()
     {
@@ -56,7 +56,7 @@ public partial class RealGameScene : Node2D
             }
         }
 
-        await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(GetTree().CreateTimer(0.1), SceneTreeTimer.SignalName.Timeout);
 
 
         GetTree().ReloadCurrentScene();
