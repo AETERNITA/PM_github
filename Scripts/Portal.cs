@@ -22,7 +22,6 @@ private GpuParticles2D spawn_particles;
 		if (controller == null) GD.Print("Con error");
 		spawn_particles = GetNode<GpuParticles2D>("spawn_particles");
 		spawn_particles.Restart();
-		//GD.Print("spawned");
 	}
 
 	public override void _Process(double delta)

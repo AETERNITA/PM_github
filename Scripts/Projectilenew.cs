@@ -118,14 +118,14 @@ public partial class Projectilenew : Area2D
 
 			if (ray.IsColliding())
 			{
-				GD.Print(ray.GetCollisionNormal());
+				
 				Vector2 normal = ray.GetCollisionNormal();
 				a1 = Mathf.Atan2(normal.Y, normal.X);
 
 			}
-			else GD.Print("Hä");
+			
 			EndShot(a1);
-			GD.Print(a1);
+		
 		}
 	}
 }
