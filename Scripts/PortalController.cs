@@ -71,7 +71,9 @@ public partial class PortalController : Node2D
 		charBody.GlobalPosition = partnerPortal.GlobalPosition;
 		partnerPortal.set_portal_teleported_to(true);
 		Teleport_sfx.Play();
-		charBody.Velocity = playvec.Rotated(this.Rotation);
+		float deltarot;
+		deltarot = partnerPortal.Rotation-portale[touchedPortal].Rotation;
+		charBody.Velocity = playvec.Rotated(deltarot+Mathf.Pi);
 		GD.Print(player.Velocity);
 		}}
 	}
