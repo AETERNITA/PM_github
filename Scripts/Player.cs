@@ -41,6 +41,7 @@ public partial class Player : GenericCharacterClass
 	public double screenshake_duration = 0.5;
 	public double screenshake_strenght_dynamic = 0;
 	private double red_effect_time = 0;
+	private bool turnedleft = false;
 
 	private List<string> itemqueue = new List<string>();
 
@@ -74,6 +75,7 @@ public partial class Player : GenericCharacterClass
 	Dictionary<string, string> initial_effect;
 	Dictionary<string, string> continuous_effect;
 	Dictionary<string, string> end_efect;
+	Node2D gun;
 
 	float gravity_multiplier = 1.0f;
 
@@ -84,7 +86,7 @@ public partial class Player : GenericCharacterClass
 	{
 		initialise_inventory_system();
 		InitializeInputMap();
-
+		gun = GetNode<Node2D>("/root/Game/Player/gunPivot");
 		if (_animatedSprite == null)
 		{
 			PrintErr("ERROR: _animatedSprite is not assigned in the Inspector!");
@@ -207,7 +209,9 @@ public partial class Player : GenericCharacterClass
 			LaserschwertHit();
 		}
 
-
+		if (this.Velocity.X > 0){
+			gun.Position = new Vector2(232, 222);
+		}else if (this.Velocity.X < 0) gun.Position = new Vector2(-232, 222);
 
 
 		// Handle Jump
