@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="1_2hac7"]
 [ext_resource type="Script" uid="uid://cqgw24mvbuby" path="res://Scripts/Enemies/TempEnemy.cs" id="2_e6d4v"]
-[ext_resource type="Texture2D" uid="uid://dkhut28edxlbi" path="res://Art/enemy 1.png" id="3_7kucs"]
+[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="3_qp131"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7kucs"]
 shader = ExtResource("1_2hac7")
@@ -44,9 +44,8 @@ debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
-scale = Vector2(0.153483, 0.153483)
-skew = 0.0593412
-texture = ExtResource("3_7kucs")
+scale = Vector2(1.48146, 1.48146)
+texture = ExtResource("3_qp131")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(10.1244, 10.1244)
