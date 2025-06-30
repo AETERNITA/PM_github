@@ -251,13 +251,15 @@ color = Color(0, 0.917647, 0.286275, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ph33w"]
 size = Vector2(20, 23.75)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_animatedSprite", "gunSprite", "ItemUseAudio", "ItemInteractAudio")]
 material = SubResource("ShaderMaterial_r7t2e")
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_7irut")
 _animatedSprite = NodePath("animatedSprite")
 gunSprite = NodePath("gunPivot")
+ItemUseAudio = NodePath("ItemUseSound")
+ItemInteractAudio = NodePath("ItemInteractAudio")
 
 [node name="Background2" type="Sprite2D" parent="."]
 visible = false
