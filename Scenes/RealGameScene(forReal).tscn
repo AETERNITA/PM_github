@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=85 format=3 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="5_waod3"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="6_du02u"]
 [ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="7_fes2o"]
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="8_fes2o"]
 [ext_resource type="Script" uid="uid://7s0ufxj5ol0f" path="res://Scripts/Background.cs" id="8_qihwy"]
 [ext_resource type="Script" uid="uid://du65swo1xmtj5" path="res://Scripts/Projectilenew.cs" id="13_w7v74"]
 [ext_resource type="PackedScene" uid="uid://bom3ul8xliuam" path="res://Scenes/Interactables/jumpboost.tscn" id="13_waod3"]
@@ -644,6 +645,9 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_deat7")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="World"]
+tile_set = ExtResource("8_fes2o")
 
 [node name="Interactables" type="Node" parent="."]
 

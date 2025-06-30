@@ -1,0 +1,53 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b0jo6qw78sxvj"]
+
+[ext_resource type="Texture2D" uid="uid://dlyx0xyqds0uf" path="res://Art/tileset.png" id="1_h0u5r"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_376ak"]
+texture = ExtResource("1_h0u5r")
+46:16/size_in_atlas = Vector2i(6, 7)
+46:16/0 = 0
+53:16/size_in_atlas = Vector2i(6, 7)
+53:16/0 = 0
+5:3/size_in_atlas = Vector2i(18, 20)
+5:3/0 = 0
+24:3/size_in_atlas = Vector2i(19, 20)
+24:3/0 = 0
+24:25/size_in_atlas = Vector2i(19, 21)
+24:25/0 = 0
+45:25/size_in_atlas = Vector2i(7, 8)
+45:25/0 = 0
+52:25/size_in_atlas = Vector2i(8, 8)
+52:25/0 = 0
+45:33/size_in_atlas = Vector2i(7, 9)
+45:33/0 = 0
+52:33/size_in_atlas = Vector2i(8, 9)
+52:33/0 = 0
+47:3/size_in_atlas = Vector2i(11, 12)
+47:3/0 = 0
+61:24/size_in_atlas = Vector2i(19, 23)
+61:24/0 = 0
+61:2/size_in_atlas = Vector2i(19, 21)
+61:2/0 = 0
+83:2/size_in_atlas = Vector2i(19, 21)
+83:2/0 = 0
+105:2/size_in_atlas = Vector2i(17, 35)
+105:2/0 = 0
+82:24/size_in_atlas = Vector2i(23, 21)
+82:24/0 = 0
+107:38/size_in_atlas = Vector2i(13, 22)
+107:38/0 = 0
+27:48/size_in_atlas = Vector2i(12, 13)
+27:48/0 = 0
+3:25/size_in_atlas = Vector2i(20, 20)
+3:25/0 = 0
+87:49/size_in_atlas = Vector2i(12, 11)
+87:49/0 = 0
+64:48/size_in_atlas = Vector2i(13, 12)
+64:48/0 = 0
+45:48/size_in_atlas = Vector2i(13, 12)
+45:48/0 = 0
+3:48/size_in_atlas = Vector2i(17, 11)
+3:48/0 = 0
+
+[resource]
+sources/1 = SubResource("TileSetAtlasSource_376ak")
