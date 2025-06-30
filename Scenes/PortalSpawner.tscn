@@ -85,6 +85,7 @@ preprocess = 5.0
 process_material = SubResource("ParticleProcessMaterial_qpcni")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 6
 script = ExtResource("3_x1opk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

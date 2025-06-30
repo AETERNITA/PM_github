@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://btedkn2qjljpe"]
+
+[ext_resource type="PackedScene" uid="uid://cnhqxo33oqtbm" path="res://Scenes/master_roooms/room_leftright.tscn" id="1_iok7y"]
+[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="2_810v5"]
+[ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="3_3ucxk"]
+[ext_resource type="PackedScene" uid="uid://c3y6ac1p74m7v" path="res://Scenes/level content/static_body_a.tscn" id="4_3ucxk"]
+
+[node name="Game" instance=ExtResource("1_iok7y")]
+
+[node name="Enemy" parent="." index="2" instance=ExtResource("2_810v5")]
+position = Vector2(-3036, -273)
+
+[node name="FlyingSnake" parent="." index="3" instance=ExtResource("3_3ucxk")]
+position = Vector2(-2699, -1136)
+
+[node name="StaticBody2D3" parent="." index="4" instance=ExtResource("4_3ucxk")]
+position = Vector2(-3239, -708)
+scale = Vector2(0.441798, -0.128613)

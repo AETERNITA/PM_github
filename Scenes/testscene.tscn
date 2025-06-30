@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://reufg2aw2qy2"]
+
+[ext_resource type="PackedScene" uid="uid://dm0p773ff7q5r" path="res://Scenes/master_roooms/room_downright.tscn" id="1_nes3m"]
+[ext_resource type="PackedScene" uid="uid://cnhqxo33oqtbm" path="res://Scenes/master_roooms/room_leftright.tscn" id="2_vy56e"]
+[ext_resource type="PackedScene" uid="uid://bqvy0u2i1ce53" path="res://Scenes/master_roooms/room_leftup.tscn" id="3_0pdfm"]
+
+[node name="Testscene" type="Node2D"]
+
+[node name="Game" parent="." instance=ExtResource("1_nes3m")]
+position = Vector2(-4002, 0)
+
+[node name="Game2" parent="." instance=ExtResource("2_vy56e")]
+position = Vector2(4000, 0)
+
+[node name="Game3" parent="." instance=ExtResource("3_0pdfm")]

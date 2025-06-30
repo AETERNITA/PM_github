@@ -4,6 +4,7 @@
 
 # Godot-specific ignores
 .import/
+*.png.import
 export.cfg
 export_presets.cfg
 
@@ -18,3 +19,5 @@ mono_crash.*.json
 .vscode/
 
 *.sln
+
+Godot_v4.4.1-stable_mono_win64/

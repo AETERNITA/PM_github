@@ -11,6 +11,7 @@ public partial class Projectilenew : Area2D
 	private float speed = 15.0f;
 	private Vector2 lastPos;
 	private PortalController portalController;
+	private RayCast2D ray;
 	[Export] private AudioStreamPlayer shoot_sfx;
 	[Export] private AudioStreamPlayer2D flying_sfx;
 	// Called when the node enters the scene tree for the first time.
@@ -19,37 +20,61 @@ public partial class Projectilenew : Area2D
 		CallDeferred(nameof(AssignReferences));
 		shoot_sfx = GetNode<AudioStreamPlayer>("shooting_sfx");
 		flying_sfx = GetNode<AudioStreamPlayer2D>("flying_sfx");
-	} 
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{ 
-		if(Input.IsActionJustPressed("Shoot")){
+	{
+		if (Input.IsActionJustPressed("Shoot"))
+		{
 			Shoot(gun.GlobalPosition);
 		}
-	
-		if(projectileActive == true){
-			this.GlobalPosition = new Vector2 (GlobalPosition.X+Mathf.Cos(direction)*speed, GlobalPosition.Y + Mathf.Sin(direction)*speed);
+
+		if (projectileActive == true)
+		{
+			this.GlobalPosition = new Vector2(GlobalPosition.X + Mathf.Cos(direction) * speed, GlobalPosition.Y + Mathf.Sin(direction) * speed);
 		}
+		
+		if (Input.IsActionJustPressed("controller_shoot_portal"))
+		{
+			Shoot_Controller(gun.GlobalPosition);
+		}
+		
 	}
 
-	public void Shoot(Vector2 playerPos){
-		if (projectileActive == false) {
-		this.GlobalPosition = new Vector2(playerPos.X, playerPos.Y);
-		RotateProjectileToMouse();
-		sprite.Visible = true;
-		sprite.Rotation = direction;
-		projectileActive = true;
-		shoot_sfx.Play();
-		flying_sfx.Play();
+	public void Shoot(Vector2 playerPos)
+	{
+		if (projectileActive == false)
+		{
+			this.GlobalPosition = new Vector2(playerPos.X, playerPos.Y);
+			RotateProjectileToMouse();
+			sprite.Visible = true;
+			sprite.Rotation = direction;
+			projectileActive = true;
+			shoot_sfx.Play();
+			flying_sfx.Play();
+		}
+	}
+	public void Shoot_Controller(Vector2 playerPos){
+		if (projectileActive == false)
+		{
+
+			this.GlobalPosition = new Vector2(playerPos.X, playerPos.Y);
+			RotateProjectileToControllerDirection();
+			sprite.Visible = true;
+			sprite.Rotation = direction;
+			projectileActive = true;
+			shoot_sfx.Play();
+			flying_sfx.Play();
 		}
 	}
 	
-	public void EndShot(){
+	public void EndShot(float a)
+	{
 		sprite.Visible = false;
 		projectileActive = false;
 		lastPos = GlobalPosition;
-		portalController.SpawnPortal(lastPos);
+		portalController.SpawnPortal(lastPos, a);
 		flying_sfx.Stop();
 	}
 
@@ -59,6 +84,7 @@ public partial class Projectilenew : Area2D
 		sprite = GetNode<Sprite2D>("Sprite2D");
 		gun = player.GetNode<Node2D>("gunPivot/gunSprite");
 		sprite.Visible = false;
+		ray = GetNode<RayCast2D>("/root/Game/Interactables/RayCast2D");
 	}
 
 	private void RotateProjectileToMouse()
@@ -69,9 +95,37 @@ public partial class Projectilenew : Area2D
 			direction = angle;
 	}
 	
-	public void _on_body_entered(Node2D body){
-		if(body is StaticBody2D){
-			EndShot();
+	private void RotateProjectileToControllerDirection()
+	{
+		float x = Input.GetActionStrength("right_stick_right") - Input.GetActionRawStrength("right_stick_left");
+		float y = Input.GetActionStrength("right_stick_down") - Input.GetActionRawStrength("right_stick_up");
+
+        Vector2 Controller_direction = new Vector2(x, y);
+
+		float angle = Controller_direction.Angle();
+		direction = angle;
+	}
+	
+	public void _on_body_entered(Node2D body)
+	{
+		if (body is StaticBody2D)
+		{
+			float a1 = 0;
+			ray.Enabled = true;
+			ray.GlobalPosition = GlobalPosition - new Vector2(Mathf.Cos(direction), Mathf.Sin(direction)) * 150;
+			ray.TargetPosition = new Vector2(Mathf.Cos(direction), Mathf.Sin(direction)) * 1000;
+			ray.ForceRaycastUpdate();
+
+			if (ray.IsColliding())
+			{
+				GD.Print(ray.GetCollisionNormal());
+				Vector2 normal = ray.GetCollisionNormal();
+				a1 = Mathf.Atan2(normal.Y, normal.X);
+
+			}
+			else GD.Print("Hä");
+			EndShot(a1);
+			GD.Print(a1);
 		}
 	}
 }

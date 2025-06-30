@@ -10,6 +10,8 @@ public partial class Player : GenericCharacterClass
 	[Export] private TextureProgressBar _healthbar;
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
+	[Export] private AudioStreamPlayer ItemUseAudio;
+	[Export] private AudioStreamPlayer ItemInteractAudio;
 	private CanvasModulate canvmod;
 	private bool isplaying = false;
 	public float dashSpeed = 1200.0f; // Geschwindigkeit beim Dash
@@ -38,8 +40,12 @@ public partial class Player : GenericCharacterClass
 	private GpuParticles2D healing_particles;
 	public double screenshake_duration = 0.5;
 	public double screenshake_strenght_dynamic = 0;
+	private double red_effect_time = 0;
+
+	private List<string> itemqueue = new List<string>();
 
 	private List<GenericCharacterClass> downdash_area = new List<GenericCharacterClass>();
+	private List<GenericCharacterClass> laserschwert_area = new List<GenericCharacterClass>();
 
 	public string soundscapes = "normal";
 
@@ -105,6 +111,18 @@ public partial class Player : GenericCharacterClass
 
 		play_background();
 
+		helth_effects();
+
+		this.ProcessMode = ProcessModeEnum.Always;
+
+	}
+
+	private async void helth_effects()
+	{
+		await ToSignal(GetTree().CreateTimer(0.1), SceneTreeTimer.SignalName.Timeout);
+		update_health_related_effects();
+		Print("wil pause");
+		this.ProcessMode = ProcessModeEnum.Pausable;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -183,6 +201,13 @@ public partial class Player : GenericCharacterClass
 				isdowndashing = true;
 			}
 		}
+
+		if (Input.IsActionJustPressed("SwordHit"))
+		{
+			LaserschwertHit();
+		}
+
+
 
 
 		// Handle Jump
@@ -296,7 +321,7 @@ public partial class Player : GenericCharacterClass
 
 		RotateGunToMouse();
 
-		if (Input.IsActionJustPressed("escape"))
+		/* if (Input.IsActionJustPressed("escape"))
 		{
 			if (escape_menu_active)
 			{
@@ -306,7 +331,54 @@ public partial class Player : GenericCharacterClass
 			{
 				escape_menu_active = true;
 			}
+		} */
+
+		if (Input.IsActionJustPressed("use"))
+		{
+			if (itemqueue.Count > 0)
+			{
+				switch (itemqueue[0])
+				{
+					case "healing_effect":
+						HealbyEffect();
+						ItemUseAudio.Play();
+						itemqueue.RemoveAt(0);
+
+						break;
+
+					case "jumpboost":
+						JumpBoostbyEffect();
+						ItemUseAudio.Play();
+						itemqueue.RemoveAt(0);
+						break;
+
+					default:
+						break;
+				}
+			}
+
 		}
+
+		var OverlayRef = GetNode("%overlay") as V2Overlay;
+		if (itemqueue.Count == 0)
+		{
+			OverlayRef.override_inventory("", "");
+		}
+		else
+		{
+			if (itemqueue.Count == 1)
+			{
+				OverlayRef.override_inventory(itemqueue[0], "");
+			}
+			else
+			{
+				if (itemqueue.Count > 1)
+				{
+					OverlayRef.override_inventory(itemqueue[0], itemqueue[1]);
+				}
+			}
+		}
+
 
 		step_queue_remaining = step_queue_remaining - delta;
 		if (step_queue_remaining <= 0 && isplaying)
@@ -320,6 +392,20 @@ public partial class Player : GenericCharacterClass
 		if (screenshake_duration < 0)
 		{
 			screenshake_duration = 0;
+		}
+
+		if (red_effect_time > 0)
+		{
+			red_effect_time = red_effect_time - delta;
+			if (red_effect_time < 0)
+			{
+				red_effect_time = 0;
+			}
+			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 1);
+		}
+		else
+		{
+			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 0);
 		}
 
 	}
@@ -350,11 +436,24 @@ public partial class Player : GenericCharacterClass
 	{
 		if (gunSprite != null)
 		{
-			Vector2 mousePosition = GetGlobalMousePosition();
-			Vector2 directionToMouse = mousePosition - gunSprite.GlobalPosition;
-			float angle = directionToMouse.Angle();
-			gunSprite.Rotation = angle;
+			if (Input.GetActionStrength("right_stick_up") == 0 && Input.GetActionStrength("right_stick_down") == 0 && Input.GetActionStrength("right_stick_right") == 0 && Input.GetActionStrength("right_stick_left") == 0)
+			{
+				Vector2 mousePosition = GetGlobalMousePosition();
+				Vector2 directionToMouse = mousePosition - gunSprite.GlobalPosition;
+				float angle = directionToMouse.Angle();
+				gunSprite.Rotation = angle;
+			}
+			else
+			{
+				float x = Input.GetActionStrength("right_stick_right") - Input.GetActionRawStrength("right_stick_left");
+				float y = Input.GetActionStrength("right_stick_down") - Input.GetActionRawStrength("right_stick_up");
+				Vector2 Controller_direction = new Vector2(x, y);
+				float angle = Controller_direction.Angle();
+				gunSprite.Rotation = angle;
+			}
 		}
+
+		
 	}
 
 	private void Update_Inventory(double delta_time)
@@ -370,6 +469,7 @@ public partial class Player : GenericCharacterClass
 				Item_durabillity.Remove(Item_duration[i]);
 				Item_duration.Remove(Item_duration[i]);
 				Item_Strenght.Remove(Item_Strenght[i]);
+				Update_Inventory(delta_time);
 				break;
 				//ForDeletion.Add(i);
 			}
@@ -379,7 +479,7 @@ public partial class Player : GenericCharacterClass
 				Item_Effect("continuous", Item[i], Item_Strenght[i]);
 			}
 
-			i = i++;
+			i++;
 
 		}
 		//foreach (int k in ForDeletion)
@@ -399,7 +499,7 @@ public partial class Player : GenericCharacterClass
 		Item_duration.Add(item_duration);
 		Item_Effect("initial", item_name, item_strenght);
 
-		var OverlayRef = GetNode("%overlay") as Overlay;
+		var OverlayRef = GetNode("%overlay") as V2Overlay;
 		OverlayRef.AddPoints(500);
 
 		////Print(Item[0]);
@@ -452,6 +552,8 @@ public partial class Player : GenericCharacterClass
 					Heal.Play();
 				}
 				healing = true;
+				var HealthbarEffect = GetNode<ColorRect>("%HealthbarColorRect").Material as ShaderMaterial;
+				HealthbarEffect.SetShaderParameter("Brightness", 3f);
 				break;
 
 			case "jumpboost":
@@ -471,7 +573,7 @@ public partial class Player : GenericCharacterClass
 
 	private void Item_continuous_effect(string Item, double strenght)
 	{
-		////Print("continouos_effect");
+		//Print("continouos_effect");
 		switch (continuous_effect[Item])
 		{
 			case "regeneration":
@@ -495,6 +597,12 @@ public partial class Player : GenericCharacterClass
 		switch (end_efect[Item])
 		{
 			case "nothing":
+				break;
+
+			case "healing":
+				Print("Healing ends");
+				var HealthbarEffect = GetNode<ColorRect>("%HealthbarColorRect").Material as ShaderMaterial;
+				HealthbarEffect.SetShaderParameter("Brightness", 0f);
 				healing = false;
 				break;
 
@@ -529,7 +637,7 @@ public partial class Player : GenericCharacterClass
 
 	public void _on_heal_button_pressed()
 	{
-		Item_add("healing_effect", 1, -1, 0.75);
+		//Item_add("healing_effect", 1, -1, 0.75);
 		//Print("item added");
 
 		//minderwertiger alter code
@@ -537,6 +645,7 @@ public partial class Player : GenericCharacterClass
 		//if (_healthbar.Value > 100) _healthbar.Value = 100;
 
 		//Heal.Play();
+		itemqueue.Add("healing_effect");
 	}
 
 	public void _on_damage_button_pressed()
@@ -556,12 +665,25 @@ public partial class Player : GenericCharacterClass
 	public void _on_healing_potioned(Node2D body)
 	{
 		//Print("healing");
+		//Item_add("healing_effect", 1, -1, 1.75);
+		ItemInteractAudio.Play();
+		itemqueue.Add("healing_effect");
+		var OverlayRef = GetNode("%overlay") as V2Overlay;
+	}
+	private void HealbyEffect()
+	{
 		Item_add("healing_effect", 1, -1, 1.75);
 	}
 
 	public void _on_jump_boosted(Node2D body)
 	{
 		//Print("jump boosted");
+		//Item_add("jumpboost", 2, -1, 15);
+		ItemInteractAudio.Play();
+		itemqueue.Add("jumpboost");
+	}
+	private void JumpBoostbyEffect()
+	{
 		Item_add("jumpboost", 2, -1, 15);
 	}
 
@@ -586,14 +708,14 @@ public partial class Player : GenericCharacterClass
 
 	private void update_health_related_effects()
 	{
-		if (GetNode<Overlay>("%overlay").in_start_menu == false)
+		if (GetNode<V2Overlay>("%overlay").in_start_menu == false)
 		{
 			float r1 = 0.4f;
 			float g1 = 0f;
 			float b1 = 0f;
 			//float a = 0f;
-			float rgb2 = 0.144f;
-			float rgb3 = 0.2f;
+			float rgb2 = 0.3f;
+			float rgb3 = 0.5f;
 			Color newcolor = new Color(rgb2, rgb2, rgb2);
 			if (_healthbar.Value < 30)
 			{
@@ -643,27 +765,20 @@ public partial class Player : GenericCharacterClass
 
 		Damage.Play();
 		screenshake();
+		red_effect_time = 0.15;
 	}
 
 	public void player_killed()
 	{
 		Losing_sfx.Play();
 		canvmod.Color = new Color(0.00f, 0.00f, 0.00f);
+		GetNode<V2Overlay>("%overlay").dead = true;
+		SaveTheGame();
 		GetTree().Paused = true;
 	}
 
-	private void DownDashImpact()
-	{
-		DownDashImpactSFX.Play();
-		Print("DownDashImpact");
-		screenshake();
-		for (int i = 0; i < downdash_area.Count; i++)
-		{
-			Print("damage to:" + downdash_area[i]);
-			downdash_area[i].take_damage(34);
-		}
 
-	}
+
 	//move is the audiostream
 	public void _on_move_finished()
 	{
@@ -682,30 +797,86 @@ public partial class Player : GenericCharacterClass
 	}
 
 
+	private void DownDashImpact()
+	{
+		DownDashImpactSFX.Play();
+		Print("DownDashImpact");
+		screenshake();
+		for (int i = 0; i < downdash_area.Count; i++)
+		{
+			Print("damage to:" + downdash_area[i]);
+			downdash_area[i].take_damage(34);
+		}
+
+	}
+
+
 	public void _on_dashdown_damage_area_body_entered(Node2D victim)
 	{
 		if (victim as GenericCharacterClass != null && victim != this)
 		{
 			downdash_area.Add(victim as GenericCharacterClass);
-			Print("your mine" + victim);
 		}
 	}
-
-
 
 	public void _on_dashdown_damage_area_body_exited(Node2D victim)
 	{
 		if (victim as GenericCharacterClass != null)
 		{
 			downdash_area.Remove(victim as GenericCharacterClass);
-			Print("miss you" + victim);
 		}
 	}
+
+
+	private void LaserschwertHit()
+	{
+		Print("LaserschwertHit");
+		for (int i = 0; i < laserschwert_area.Count; i++)
+		{
+			Print("damage to:" + laserschwert_area[i]);
+			laserschwert_area[i].take_damage(34);
+		}
+
+	}
+
+
+	public void _on_laserschwert_area_body_entered(Node2D victim)
+	{
+		if (victim as GenericCharacterClass != null && victim != this)
+		{
+			laserschwert_area.Add(victim as GenericCharacterClass);
+		}
+	}
+
+	public void _on_laserschwert_area_body_exited(Node2D victim)
+	{
+		if (victim as GenericCharacterClass != null)
+		{
+			laserschwert_area.Remove(victim as GenericCharacterClass);
+		}
+	}
+
 
 	public void Bone_picked_up()
 	{
 		Print("mjam lecker");
 	}
 
+	public void SetEscMenuModulate(bool active)
+	{
+		escape_menu_active = active;
+	}
+
+	public void SaveTheGame()
+	{
+		//currently only the highscore
+		var savegame = new SaveGame();
+		var oldsave = Load("user://savegame.tres") as SaveGame;
+		if (GetNode<V2Overlay>("%overlay").Points_number > oldsave.HighScore)
+		{
+			savegame.HighScore = GetNode<V2Overlay>("%overlay").Points_number;
+			ResourceSaver.Save(savegame, "user://savegame.tres");
+		}
+	}
 
 }

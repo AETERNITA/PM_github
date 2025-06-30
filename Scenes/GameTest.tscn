@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bxddjp0nvi1s4"]
+[gd_scene load_steps=67 format=3 uid="uid://bxddjp0nvi1s4"]
 
 [ext_resource type="Script" uid="uid://busk1wx1s1yfw" path="res://Scripts/Game.cs" id="1_ue7nt"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_faq46"]
@@ -20,10 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://csjmp3gb88qlc" path="res://Scenes/PortalSpawner.tscn" id="18_mbonv"]
 [ext_resource type="AudioStream" uid="uid://csp5l65kgujqc" path="res://Audio/sfx/MAGIC TELEPORT - Whoosh Spell Transition - 01    [003744].mp3" id="19_386dh"]
 [ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="20_xqd0m"]
-[ext_resource type="Script" uid="uid://cqgw24mvbuby" path="res://Scripts/TempEnemy.cs" id="21_5ilht"]
-[ext_resource type="Texture2D" uid="uid://bo1kkxbgc6w7s" path="res://Art/icon.svg" id="22_3reuf"]
 [ext_resource type="AudioStream" uid="uid://cgjdeid8pc1tg" path="res://Audio/sfx/BLACK MAGIC SPELL - Dark Scary HUMAN VOICE Curse    [003600].mp3" id="23_hh5op"]
+[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="23_ikruy"]
 [ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_l0qju"]
+
 
 [sub_resource type="Gradient" id="Gradient_5eq1c"]
 offsets = PackedFloat32Array(0, 0.485915, 1)
@@ -174,20 +174,6 @@ width = 500
 height = 500
 fill = 1
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_exi56"]
-size = Vector2(541.091, 148.044)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vifiy"]
-
-[sub_resource type="Gradient" id="Gradient_7nbq1"]
-offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_exi56"]
-gradient = SubResource("Gradient_7nbq1")
-fill = 1
-fill_from = Vector2(0.49, 0.52)
 
 [sub_resource type="Environment" id="Environment_mg4q0"]
 background_mode = 3
@@ -623,36 +609,6 @@ stream = ExtResource("19_386dh")
 [node name="PortalSpawn" type="AudioStreamPlayer" parent="PortalController"]
 stream = ExtResource("20_xqd0m")
 
-[node name="temp_enemy" type="CharacterBody2D" parent="."]
-script = ExtResource("21_5ilht")
-
-[node name="damage_area" type="Area2D" parent="temp_enemy"]
-position = Vector2(2394, -43)
-scale = Vector2(0.959173, 0.959173)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy/damage_area"]
-position = Vector2(9.90454, 35.4472)
-shape = SubResource("RectangleShape2D_exi56")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_enemy"]
-position = Vector2(2521, -43)
-scale = Vector2(10.1244, 10.1244)
-shape = SubResource("RectangleShape2D_vifiy")
-one_way_collision_margin = 0.0
-
-[node name="Sprite2D" type="Sprite2D" parent="temp_enemy"]
-position = Vector2(2521, -43)
-scale = Vector2(1.48146, 1.48146)
-texture = ExtResource("22_3reuf")
-
-[node name="PointLight2D" type="PointLight2D" parent="temp_enemy"]
-position = Vector2(2521, -39)
-scale = Vector2(4.02735, 4.05213)
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 9.3
-texture = SubResource("GradientTexture2D_exi56")
-
 [node name="standart_enemy_death_sfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("23_hh5op")
@@ -670,10 +626,11 @@ unique_name_in_owner = true
 light_mask = 3
 color = Color(0.154876, 0.154876, 0.154876, 1)
 
+[node name="temp_enemy" parent="." instance=ExtResource("23_ikruy")]
+position = Vector2(2003, -42)
+
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
 [connection signal="body_entered" from="Interactables/Item" to="Player" method="_on_jump_boosted"]
 [connection signal="body_entered" from="Interactables/Item2" to="Player" method="_on_healing_potioned"]
 [connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
-[connection signal="body_entered" from="temp_enemy/damage_area" to="temp_enemy" method="_on_damage_area_body_entered"]
-[connection signal="body_exited" from="temp_enemy/damage_area" to="temp_enemy" method="_on_damage_area_body_exited"]

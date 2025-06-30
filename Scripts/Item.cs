@@ -13,7 +13,7 @@ public partial class Item : Node
 	{
 	}
 
-	public void _on_player_collision(Node2D body)
+	public virtual void _on_player_collision(Node2D body)
 	{
 		QueueFree();
 	}

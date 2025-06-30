@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvw102bqfjrsl"]
+
+[ext_resource type="Script" uid="uid://ceja251b52c55" path="res://Scripts/sidescroll_WFC_simplified.cs" id="1_vpsnf"]
+
+[node name="GeneratedWorld" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_vpsnf")

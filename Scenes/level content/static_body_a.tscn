@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3y6ac1p74m7v"]
+
+[ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="1_d8t0w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxfb3"]
+size = Vector2(3987.5, 600)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5vduk"]
+polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
+
+[node name="StaticBody2D3" type="StaticBody2D" groups=["World"]]
+scale = Vector2(0.16, 0.16)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d8t0w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lxfb3")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_5vduk")
