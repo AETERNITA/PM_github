@@ -1,6 +1,12 @@
-[gd_resource type="TileSet" load_steps=25 format=3 uid="uid://b0jo6qw78sxvj"]
+[gd_resource type="TileSet" load_steps=27 format=3 uid="uid://b0jo6qw78sxvj"]
 
 [ext_resource type="Texture2D" uid="uid://dlyx0xyqds0uf" path="res://Art/tileset.png" id="1_h0u5r"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_h0u5r"]
+tile_data = PackedInt32Array(0, 2949121, 25, 6, 2949121, 25, 12, 2949121, 25, 18, 2949121, 25, 24, 2949121, 25, 30, 2949121, 25, 36, 2949121, 25)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_10p3i"]
+tile_data = PackedInt32Array(0, 2949121, 25, 6, 2949121, 25, 12, 2949121, 25, 18, 2949121, 25)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_h0u5r"]
 polygon = PackedVector2Array(-95, -271, -68, -277, -51, -266, -31, -269, -16, -277, -9, -281, -1, -268, 22, -270, 39, -275, 50, -269, 63, -268, 79, -276, 92, -278, 100, -262, 107, -246, 118, -226, 121, -212, 125, -193, 124, -174, 124, -153, 127, -143, 124, -120, 123, -105, 131, -84, 134, -71, 134, -54, 124, -41, 121, -30, 121, -20, 123, -8, 127, 11, 128, 33, 127, 49, 123, 74, 127, 89, 132, 104, 134, 121, 129, 138, 130, 158, 128, 177, 103, 176, 84, 181, 73, 183, 62, 185, 51, 219, 39, 228, 38, 245, 33, 255, 22, 259, 15, 270, 1, 278, -8, 278, -18, 265, -32, 255, -42, 237, -51, 219, -66, 195, -80, 186, -98, 168, -112, 168, -129, 157, -127, 131, -131, 101, -132, 77, -126, 44, -130, -1, -128, -35, -132, -66, -127, -113, -134, -167, -122, -193, -126, -223, -106, -254)
@@ -163,3 +169,5 @@ texture = ExtResource("1_h0u5r")
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_376ak")
+pattern_0 = SubResource("TileMapPattern_h0u5r")
+pattern_1 = SubResource("TileMapPattern_10p3i")

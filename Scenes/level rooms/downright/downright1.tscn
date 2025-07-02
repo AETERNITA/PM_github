@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=4 uid="uid://b5kad35bebkb1"]
+
+[ext_resource type="PackedScene" uid="uid://dm0p773ff7q5r" path="res://Scenes/master_roooms/room_downright.tscn" id="1_23bhj"]
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="2_aytnu"]
+[ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="3_l1q5n"]
+[ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="4_0anla"]
+[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="5_s86eb"]
+
+[node name="Game" instance=ExtResource("1_23bhj")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="2"]
+tile_map_data = PackedByteArray("AAA0/+v/AQAtABkAAAA6/+v/AQAtABkAAABA/+v/AQAtABkAAAAu/+v/AQAtABkAAAAc/+v/AQAtABkAAAAo/+v/AQAtABkAAAAi/+v/AQAtABkAAADD/+z/AQA0ABkAAADJ/+z/AQA0ABkAAADP/+z/AQA0ABkAAADV/+z/AQA0ABkAAADb/+z/AQA0ABkAAADh/+z/AQA0ABkAAADn/+z/AQA0ABkAAAAs/6H/AQAtABkAAAAy/6H/AQAtABkAAAA4/6H/AQAtABkAAAA+/6H/AQAtABkAAABE/6H/AQAtABkAAABK/6H/AQAtABkAAABQ/6H/AQAtABkAAABd/3//AQAtABkAAABj/3//AQAtABkAAABp/3//AQAtABkAAABv/3//AQAtABkAAACT/2T/AQAtABkAAACZ/2T/AQAtABkAAACf/2T/AQAtABkAAACl/2T/AQAtABkAAACr/2T/AQAtABkAAACx/2T/AQAtABkAAAC3/2T/AQAtABkAAAC9/2T/AQAtABkAAADD/2T/AQAtABkAAADJ/2T/AQAtABkAAADP/2T/AQAtABkAAADV/2T/AQAtABkAAABv/8L/AQAtABkAAAB1/8L/AQAtABkAAAB7/8L/AQAtABkAAACB/8L/AQAtABkAAACH/8L/AQAtABkAAACN/8L/AQAtABkAAACT/8L/AQAtABkAAAA=")
+tile_set = ExtResource("2_aytnu")
+
+[node name="Item" parent="." index="3" instance=ExtResource("3_l1q5n")]
+position = Vector2(-778, -2736)
+
+[node name="FlyingSnake" parent="." index="4" instance=ExtResource("4_0anla")]
+position = Vector2(-2058, -789)
+
+[node name="Enemy" parent="." index="5" instance=ExtResource("5_s86eb")]
+position = Vector2(-3309, -1714)
+
+[node name="Enemy2" parent="." index="6" instance=ExtResource("5_s86eb")]
+position = Vector2(-1244, -2706)
