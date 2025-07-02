@@ -1,33 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ceo8tttylidv6"]
+[gd_scene load_steps=2 format=4 uid="uid://ceo8tttylidv6"]
 
-[ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="1_sl0hv"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wcvuv"]
-size = Vector2(26.9634, 19.7202)
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="1_sl0hv"]
 
 [node name="Game" type="Node2D"]
 
-[node name="ground" type="StaticBody2D" parent="." groups=["World"]]
-position = Vector2(-2000, -74)
-scale = Vector2(1, 0.25)
-
-[node name="Sprite2D" type="Sprite2D" parent="ground"]
-texture = ExtResource("1_sl0hv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ground"]
-position = Vector2(3, 4.29153e-06)
-scale = Vector2(148.143, 29.9721)
-shape = SubResource("RectangleShape2D_wcvuv")
-
-[node name="wall" type="StaticBody2D" parent="." groups=["World"]]
-position = Vector2(-4073, -2000)
-rotation = 1.5708
-scale = Vector2(1, 0.25)
-
-[node name="Sprite2D" type="Sprite2D" parent="wall"]
-texture = ExtResource("1_sl0hv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
-position = Vector2(3, 4.29153e-06)
-scale = Vector2(148.143, 29.9721)
-shape = SubResource("RectangleShape2D_wcvuv")
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAB//r/AQAvAAMAAAAG//r/AQAvAAMAAAAL//r/AQAvAAMAAAAR//r/AQAvAAMAAAAV//r/AQAvAAMAAAAc//r/AQAvAAMAAAAh//r/AQAvAAMAAAAo//r/AQAvAAMAAAAu//r/AQAvAAMAAAA2//r/AQAvAAMAAAA+//r/AQAvAAMAAABG//r/AQAvAAMAAABO//r/AQAvAAMAAABW//r/AQAvAAMAAABe//r/AQAvAAMAAABl//r/AQAvAAMAAABt//r/AQAvAAMAAABu//r/AQAvAAMAAAB0//r/AQAvAAMAAAB1//r/AQAvAAMAAAB9//r/AQAvAAMAAACF//r/AQAvAAMAAACL//r/AQAvAAMAAACU//r/AQAvAAMAAACb//r/AQAvAAMAAACj//r/AQAvAAMAAACr//r/AQAvAAMAAACz//r/AQAvAAMAAAC6//r/AQAvAAMAAADB//r/AQAvAAMAAADI//r/AQAvAAMAAADJ//r/AQAvAAMAAADK//r/AQAvAAMAAADS//r/AQAvAAMAAADZ//r/AQAvAAMAAADi//r/AQAvAAMAAADp//r/AQAvAAMAAADy//r/AQAvAAMAAAD6//r/AQAvAAMAAAD7//r/AQAvAAMAAAD//uX/AQAtADAAAAAA/y3/AQAtADAAAAAA/y7/AQAtADAAAAAA/zT/AQAbADAAAAAA/zX/AQAbADAAAAAA/0D/AQAtADAAAAAA/0H/AQAtADAAAAAA/0b/AQAtADAAAAAA/23/AQAtADAAAAAA/33/AQAtADAAAAAA/4H/AQAtADAAAAAA/4L/AQAtADAAAAAA/4j/AQAtADAAAAAA/4n/AQAtADAAAAAA/6z/AQAbADAAAAAA/9D/AQAbADAAAAAA/9j/AQAbADAAAAAA/9n/AQAtADAAAAAB/w//AQAtADAAAAAB/xX/AQAtADAAAAAB/xv/AQAbADAAAAAB/xz/AQAtADAAAAAB/yL/AQAbADAAAAAB/yP/AQAbADAAAAAB/yX/AQAtADAAAAAB/zf/AQAtADAAAAAB/zj/AQAtADAAAAAB/zz/AQAbADAAAAAB/0H/AQAbADAAAAAB/0r/AQAbADAAAAAB/07/AQAtADAAAAAB/1P/AQAbADAAAAAB/1j/AQAbADAAAAAB/1v/AQAtADAAAAAB/1z/AQAtADAAAAAB/13/AQAbADAAAAAB/2T/AQAtADAAAAAB/2n/AQAtADAAAAAB/3H/AQAtADAAAAAB/3T/AQAtADAAAAAB/3X/AQAtADAAAAAB/3n/AQAtADAAAAAB/47/AQAtADAAAAAB/4//AQAtADAAAAAB/5T/AQAtADAAAAAB/5v/AQAtADAAAAAB/6L/AQAtADAAAAAB/6P/AQAtADAAAAAB/6n/AQAtADAAAAAB/7L/AQAbADAAAAAB/7b/AQAbADAAAAAB/77/AQAtADAAAAAB/8T/AQAtADAAAAAB/8v/AQAtADAAAAAB/8z/AQAtADAAAAAB/9X/AQAbADAAAAAB/9z/AQAbADAAAAAB/93/AQAbADAAAAAB/9//AQAbADAAAAAB/+X/AQAbADAAAAAB/+j/AQAbADAAAAAB/+//AQAbADAAAAAB//D/AQAbADAAAAAB//L/AQAtADAAAAAC/wr/AQAbADAAAAAC/y3/AQAbADAAAAAC/2b/AQAbADAAAAAC/7v/AQAbADAAAAAC/8H/AQAbADAAAAAC/8X/AQAbADAAAAAC/8b/AQAbADAAAAAC/8n/AQAbADAAAAAC/8r/AQAbADAAAAAC/8//AQAbADAAAAAC/+v/AQAbADAAAAAC/+3/AQAbADAAAAAC//L/AQAbADAAAAA=")
+tile_set = ExtResource("1_sl0hv")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=86 format=4 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -304,7 +304,7 @@ _healthbar = NodePath("../ui layer/overlay/_healthbar")
 [node name="Walls" type="Node" parent="World" groups=["World"]]
 
 [node name="Hoop1" type="StaticBody2D" parent="World/Walls" groups=["World"]]
-position = Vector2(-4647, -557.757)
+position = Vector2(-5094, 954)
 rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
 
@@ -320,7 +320,7 @@ shape = SubResource("RectangleShape2D_wcj5y")
 occluder = SubResource("OccluderPolygon2D_ewbju")
 
 [node name="Hoop2" type="StaticBody2D" parent="World/Walls" groups=["World"]]
-position = Vector2(-5441, -554.757)
+position = Vector2(-5888, 957)
 rotation = 3.14159
 scale = Vector2(0.128146, 0.128146)
 
@@ -335,7 +335,7 @@ shape = SubResource("RectangleShape2D_de0fb")
 occluder = SubResource("OccluderPolygon2D_85qyi")
 
 [node name="Hoop3" type="StaticBody2D" parent="World/Walls" groups=["World"]]
-position = Vector2(-4008, -722.757)
+position = Vector2(-4455, 789)
 rotation = 3.14159
 scale = Vector2(-0.138444, -0.138444)
 
@@ -460,7 +460,7 @@ occluder = SubResource("OccluderPolygon2D_mg4q0")
 [node name="Platfroms" type="Node" parent="World" groups=["World"]]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
-position = Vector2(-2131, -81.757)
+position = Vector2(-2453, 1203)
 scale = Vector2(0.16, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D"]
@@ -473,7 +473,7 @@ shape = SubResource("RectangleShape2D_8xolf")
 occluder = SubResource("OccluderPolygon2D_vm72l")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
-position = Vector2(-1468, -161.757)
+position = Vector2(-1790, 1123)
 scale = Vector2(0.16, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D2"]
@@ -489,7 +489,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_22asu")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
-position = Vector2(-3688, -181.757)
+position = Vector2(-4010, 1103)
 rotation = -1.57079
 scale = Vector2(0.236862, 0.116861)
 
@@ -506,7 +506,7 @@ scale = Vector2(0.324499, 1)
 occluder = SubResource("OccluderPolygon2D_fkdbe")
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
-position = Vector2(-3984, -184.757)
+position = Vector2(-4306, 1100)
 rotation = -0.702637
 scale = Vector2(0.236862, 0.116861)
 
@@ -523,7 +523,7 @@ scale = Vector2(0.652888, 0.652888)
 occluder = SubResource("OccluderPolygon2D_81klo")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
-position = Vector2(-3520, -486.757)
+position = Vector2(-3842, 798)
 scale = Vector2(0.0717163, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D8"]
@@ -537,7 +537,7 @@ shape = SubResource("RectangleShape2D_lrrmg")
 occluder = SubResource("OccluderPolygon2D_tgy6u")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
-position = Vector2(-3093, -270.757)
+position = Vector2(-3415, 1014)
 scale = Vector2(0.116861, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D6"]
@@ -551,7 +551,7 @@ shape = SubResource("RectangleShape2D_r8nri")
 occluder = SubResource("OccluderPolygon2D_cwurv")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
-position = Vector2(-3488, -42.757)
+position = Vector2(-3810, 1242)
 scale = Vector2(0.116861, 0.116861)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D7"]
@@ -567,7 +567,7 @@ scale = Vector2(0.657703, 1)
 occluder = SubResource("OccluderPolygon2D_mucmn")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
-position = Vector2(-848, -360.757)
+position = Vector2(-1170, 924)
 scale = Vector2(0.0800004, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D3"]
@@ -580,7 +580,7 @@ shape = SubResource("RectangleShape2D_r57cw")
 occluder = SubResource("OccluderPolygon2D_8m3t6")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="World/Platfroms" groups=["World"]]
-position = Vector2(-1226, -623.757)
+position = Vector2(-1548, 661)
 scale = Vector2(0.0383451, 0.16)
 
 [node name="Sprite2D" type="Sprite2D" parent="World/Platfroms/StaticBody2D4"]
@@ -648,7 +648,7 @@ shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_deat7")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="World"]
-tile_map_data = PackedByteArray(0, 0, 185, 255, 250, 255, 1, 0, 24, 0, 3, 0, 0, 0)
+tile_map_data = PackedByteArray("AAC5//r/AQAYAAMAAADy/tP/AQAtABkAAAD4/tP/AQAtABkAAAD9/tP/AQAtABkAAAAB/9P/AQAtABkAAAAF/9P/AQAtABkAAAAI/9P/AQAtABkAAAAK/9P/AQAtABkAAAAP/9P/AQAtABkAAACn/tP/AQAtABkAAACt/tP/AQAtABkAAACy/tP/AQAtABkAAAC2/tP/AQAtABkAAAC6/tP/AQAtABkAAAC9/tP/AQAtABkAAAC//tP/AQAtABkAAADE/tP/AQAtABkAAAAl/+L/AQAtABkAAAAr/+L/AQAtABkAAAAw/+L/AQAtABkAAAA0/+L/AQAtABkAAAA4/+L/AQAtABkAAAA7/+L/AQAtABkAAAA9/+L/AQAtABkAAABC/+L/AQAtABkAAABs//v/AQAtABkAAABy//v/AQAtABkAAAB3//v/AQAtABkAAAB7//v/AQAtABkAAAB///v/AQAtABkAAACC//v/AQAtABkAAACE//v/AQAtABkAAACJ//v/AQAtABkAAADb/+3/AQAtABkAAADh/+3/AQAtABkAAADm/+3/AQAtABkAAADq/+3/AQAtABkAAADu/+3/AQAtABkAAADx/+3/AQAtABkAAADz/+3/AQAtABkAAAD4/+3/AQAtABkAAAC0/8n/AQAtABkAAAC6/8n/AQAtABkAAAC//8n/AQAtABkAAADD/8n/AQAtABkAAADH/8n/AQAtABkAAADK/8n/AQAtABkAAADM/8n/AQAtABkAAADR/8n/AQAtABkAAABQ/+3/AQAtABkAAABV/+3/AQAtABkAAABa/+3/AQAtABkAAAA=")
 tile_set = ExtResource("8_fes2o")
 
 [node name="Interactables" type="Node" parent="."]
@@ -1011,6 +1011,7 @@ mouse_filter = 1
 stream = ExtResource("28_fes2o")
 
 [node name="logo" type="Sprite2D" parent="ui layer/overlay"]
+visible = false
 position = Vector2(343.625, 233)
 scale = Vector2(0.266375, 0.302)
 texture = ExtResource("29_qihwy")
