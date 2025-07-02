@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=4 uid="uid://dnwh8jdcb2dvn"]
+
+[ext_resource type="PackedScene" uid="uid://ceo8tttylidv6" path="res://Scenes/master_roooms/room_upright.tscn" id="1_kbubs"]
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="2_0av1u"]
+[ext_resource type="PackedScene" uid="uid://bom3ul8xliuam" path="res://Scenes/Interactables/jumpboost.tscn" id="3_mymna"]
+[ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="4_2sq56"]
+[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="5_ewbst"]
+[ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="6_di6jm"]
+
+[node name="Game" instance=ExtResource("1_kbubs")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="2"]
+tile_map_data = PackedByteArray("AADD/9D/AQA0ABkAAADJ/9D/AQA0ABkAAADP/9D/AQA0ABkAAACU/7T/AQA0ABkAAACa/7T/AQA0ABkAAACg/7T/AQA0ABkAAABp/5//AQA0ABkAAABv/5//AQA0ABkAAAB1/5//AQA0ABkAAAA8/3b/AQA0ABkAAABC/3b/AQA0ABkAAABI/3b/AQA0ABkAAACf/3T/AQA0ABkAAACl/3T/AQA0ABkAAACr/3T/AQA0ABkAAABy/0z/AQA0ABkAAAB4/0z/AQA0ABkAAAB+/0z/AQA0ABkAAADL/0//AQA0ABkAAADR/0//AQA0ABkAAADX/0//AQA0ABkAAADo/yX/AQA0ABkAAADu/yX/AQA0ABkAAAD0/yX/AQA0ABkAAADX/yX/AQA0ABkAAADd/yX/AQA0ABkAAADj/yX/AQA0ABkAAABE/y7/AQA0ABkAAABK/y7/AQA0ABkAAABQ/y7/AQA0ABkAAAB3/w7/AQA0ABkAAAB9/w7/AQA0ABkAAACD/w7/AQA0ABkAAAA=")
+tile_set = ExtResource("2_0av1u")
+
+[node name="Item" parent="." index="3" instance=ExtResource("3_mymna")]
+position = Vector2(-3871, -381)
+
+[node name="Item2" parent="." index="4" instance=ExtResource("4_2sq56")]
+position = Vector2(-266, -3730)
+
+[node name="Enemy" parent="." index="5" instance=ExtResource("5_ewbst")]
+position = Vector2(-591, -3710)
+
+[node name="FlyingSnake" parent="." index="6" instance=ExtResource("6_di6jm")]
+position = Vector2(-1517, -529)

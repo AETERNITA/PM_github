@@ -30,7 +30,7 @@
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
 [ext_resource type="AudioStream" uid="uid://hen8lhfjfgr" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001668.wav" id="28_fes2o"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="29_du02u"]
-[ext_resource type="Texture2D" uid="uid://d4lhgqq1hpf2p" path="res://Art/doomscroll logo v2.png" id="29_qihwy"]
+[ext_resource type="Texture2D" uid="uid://yaffmyn624ne" path="res://Art/doomscroll logo v2.png" id="29_qihwy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcj5y"]
 size = Vector2(3979.84, 577.47)

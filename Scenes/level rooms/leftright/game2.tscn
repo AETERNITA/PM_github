@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=4 uid="uid://dv3r6iox0xgiu"]
+
+[ext_resource type="PackedScene" uid="uid://cnhqxo33oqtbm" path="res://Scenes/master_roooms/room_leftright.tscn" id="1_b37md"]
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="2_72its"]
+[ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="3_4c66c"]
+[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="4_1nvev"]
+[ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="5_unmsl"]
+
+[node name="Game" instance=ExtResource("1_b37md")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." index="2"]
+tile_map_data = PackedByteArray("AAC5//r/AQAYAAMAAABA/jAAAQA0ABkAAABG/jAAAQA0ABkAAABM/jAAAQA0ABkAAABS/jAAAQA0ABkAAABY/jAAAQA0ABkAAABe/jAAAQA0ABkAAABk/jAAAQA0ABkAAAD3/+z/AQAFAAMAAAD3/9v/AQAFAAMAAAD3/8r/AQAFAAMAAAD3/7n/AQAFAAMAAAD3/3T/AQAFAAMAAAD3/4X/AQAFAAMAAAD3/5b/AQAFAAMAAAD3/6f/AQAFAAMAAAAi/8H+AQAFAAMAAAAi/9L+AQAFAAMAAAAi/+P+AQAFAAMAAAAi//T+AQAFAAMAAADH/2//AQA0ABkAAADN/2//AQA0ABkAAADT/2//AQA0ABkAAADZ/2//AQA0ABkAAADf/2//AQA0ABkAAADl/2//AQA0ABkAAADr/2//AQA0ABkAAACd/2//AQA0ABkAAACj/2//AQA0ABkAAACp/2//AQA0ABkAAACv/2//AQA0ABkAAAC1/2//AQA0ABkAAAC7/2//AQA0ABkAAADB/2//AQA0ABkAAAC2/1b/AQAFAAMAAACd/0v/AQA0ABkAAACj/0v/AQA0ABkAAACp/0v/AQA0ABkAAACv/0v/AQA0ABkAAAC1/0v/AQA0ABkAAAC7/0v/AQA0ABkAAACd/27/AQA0ABkAAACd/23/AQA0ABkAAACd/2z/AQA0ABkAAACd/2v/AQA0ABkAAACd/2r/AQA0ABkAAACd/2n/AQA0ABkAAACd/2j/AQA0ABkAAACd/2f/AQA0ABkAAACd/2b/AQA0ABkAAACd/2X/AQA0ABkAAACd/2T/AQA0ABkAAACd/2P/AQA0ABkAAACd/2L/AQA0ABkAAACd/2H/AQA0ABkAAACd/2D/AQA0ABkAAACd/1//AQA0ABkAAACd/17/AQA0ABkAAACd/13/AQA0ABkAAACd/1z/AQA0ABkAAACd/1v/AQA0ABkAAACd/1r/AQA0ABkAAACd/1n/AQA0ABkAAACd/1j/AQA0ABkAAACd/1f/AQA0ABkAAABt/1j/AQA0ABkAAABz/1j/AQA0ABkAAAB5/1j/AQA0ABkAAAB//1j/AQA0ABkAAACF/1j/AQA0ABkAAACL/1j/AQA0ABkAAAA8/37/AQA0ABkAAABC/37/AQA0ABkAAABI/37/AQA0ABkAAABO/37/AQA0ABkAAABU/37/AQA0ABkAAABa/37/AQA0ABkAAABu/5r/AQA0ABkAAAB0/5r/AQA0ABkAAAB6/5r/AQA0ABkAAACW/7f/AQA0ABkAAACc/7f/AQA0ABkAAACi/7f/AQA0ABkAAAC//9r/AQA0ABkAAADF/9r/AQA0ABkAAADL/9r/AQA0ABkAAADR/9r/AQA0ABkAAADX/9r/AQA0ABkAAAA=")
+tile_set = ExtResource("2_72its")
+
+[node name="FlyingSnake" parent="." index="3" instance=ExtResource("3_4c66c")]
+position = Vector2(-2229, -295)
+
+[node name="Enemy" parent="." index="4" instance=ExtResource("4_1nvev")]
+position = Vector2(-970, -763)
+
+[node name="wizard" parent="." index="5" instance=ExtResource("5_unmsl")]
+position = Vector2(-2900, -2237)
