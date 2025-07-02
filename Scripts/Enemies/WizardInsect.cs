@@ -12,13 +12,13 @@ public partial class WizardInsect : GenericCharacterClass
 	 */
 	private List<GenericCharacterClass> victims = new List<GenericCharacterClass>();
 
-	private double health = 100;
+	private double health = 20;
 	private double red_time;
 
 	private AudioStreamPlayer DeathSFX;
 	private AudioStreamPlayer DamageSFX;
 	private double timeuntilattack;
-	static double attacktime = 2;
+	static double attacktime = 3;
 
 	/* 	private RayCast2D _wallRay;
 				private RayCast2D _groundRay; */

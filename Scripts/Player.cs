@@ -20,7 +20,7 @@ public partial class Player : GenericCharacterClass
 	private bool isDashing = false;
 	private bool canDash = true;
 	private bool isdowndashing = false;
-	private float downdash_speed = 1200.0f;
+	private float downdash_speed = 3000.0f;
 	private Vector2 dashDirection = Vector2.Zero;
 	private Vector2 direction = Vector2.Zero;
 	private AudioStreamPlayer Move;
@@ -116,6 +116,10 @@ public partial class Player : GenericCharacterClass
 		helth_effects();
 
 		this.ProcessMode = ProcessModeEnum.Always;
+
+		var originalMaterial = Material;
+		var uniqueMaterial = (Material)originalMaterial.Duplicate();
+		Material = uniqueMaterial;
 
 	}
 
