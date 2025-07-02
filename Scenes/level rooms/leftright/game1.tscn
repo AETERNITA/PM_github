@@ -14,7 +14,7 @@ polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 
 [node name="Game" instance=ExtResource("1_qjib1")]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="2" groups=["World"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1" groups=["World"]]
 position = Vector2(-2131, -425)
 scale = Vector2(0.16, 0.16)
 
@@ -27,7 +27,7 @@ shape = SubResource("RectangleShape2D_jbjfn")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D" index="2"]
 occluder = SubResource("OccluderPolygon2D_wlo2e")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." index="3" groups=["World"]]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="2" groups=["World"]]
 position = Vector2(-3036, -900)
 scale = Vector2(0.16, 0.16)
 
@@ -40,7 +40,7 @@ shape = SubResource("RectangleShape2D_jbjfn")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D3" index="2"]
 occluder = SubResource("OccluderPolygon2D_wlo2e")
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="." index="4" groups=["World"]]
+[node name="StaticBody2D5" type="StaticBody2D" parent="." index="3" groups=["World"]]
 position = Vector2(-1202, -940)
 scale = Vector2(0.16, 0.16)
 
@@ -53,7 +53,7 @@ shape = SubResource("RectangleShape2D_jbjfn")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D5" index="2"]
 occluder = SubResource("OccluderPolygon2D_wlo2e")
 
-[node name="StaticBody2D9" type="StaticBody2D" parent="." index="5" groups=["World"]]
+[node name="StaticBody2D9" type="StaticBody2D" parent="." index="4" groups=["World"]]
 position = Vector2(-2126, -1189)
 scale = Vector2(0.16, 0.16)
 
@@ -66,20 +66,20 @@ shape = SubResource("RectangleShape2D_jbjfn")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D9" index="2"]
 occluder = SubResource("OccluderPolygon2D_wlo2e")
 
-[node name="Enemy" parent="." index="6" instance=ExtResource("3_b5qxc")]
+[node name="Enemy" parent="." index="5" instance=ExtResource("3_b5qxc")]
 position = Vector2(-2162, -581)
 
-[node name="Enemy2" parent="." index="7" instance=ExtResource("3_b5qxc")]
+[node name="Enemy2" parent="." index="6" instance=ExtResource("3_b5qxc")]
 position = Vector2(-3061, -1058)
 
-[node name="Enemy3" parent="." index="8" instance=ExtResource("3_b5qxc")]
+[node name="Enemy3" parent="." index="7" instance=ExtResource("3_b5qxc")]
 position = Vector2(-1212, -1092)
 
-[node name="Item" parent="." index="9" instance=ExtResource("4_rfxx7")]
+[node name="Item" parent="." index="8" instance=ExtResource("4_rfxx7")]
 position = Vector2(-2133, -1441)
 
-[node name="FlyingSnake" parent="." index="10" instance=ExtResource("5_5h20r")]
+[node name="FlyingSnake" parent="." index="9" instance=ExtResource("5_5h20r")]
 position = Vector2(-2703, -2062)
 
-[node name="FlyingSnake2" parent="." index="11" instance=ExtResource("5_5h20r")]
+[node name="FlyingSnake2" parent="." index="10" instance=ExtResource("5_5h20r")]
 position = Vector2(-1533, -2084)
