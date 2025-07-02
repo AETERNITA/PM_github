@@ -44,7 +44,7 @@ public partial class Projectilenew : Area2D
 
 	public void Shoot(Vector2 playerPos)
 	{
-		if (projectileActive == false)
+		if (true)
 		{
 			this.GlobalPosition = new Vector2(playerPos.X, playerPos.Y);
 			RotateProjectileToMouse();
@@ -56,7 +56,7 @@ public partial class Projectilenew : Area2D
 		}
 	}
 	public void Shoot_Controller(Vector2 playerPos){
-		if (projectileActive == false)
+		if (true)
 		{
 
 			this.GlobalPosition = new Vector2(playerPos.X, playerPos.Y);

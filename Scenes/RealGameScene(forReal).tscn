@@ -647,6 +647,7 @@ shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_deat7")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="World"]
+tile_map_data = PackedByteArray(0, 0, 185, 255, 250, 255, 1, 0, 24, 0, 3, 0, 0, 0)
 tile_set = ExtResource("8_fes2o")
 
 [node name="Interactables" type="Node" parent="."]
