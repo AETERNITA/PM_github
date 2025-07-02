@@ -211,6 +211,7 @@ public partial class V2Overlay : Control
                 start_button.Hide();
                 in_start_menu = false;
                 UISound.Play();
+                GetNode<Sprite2D>("logo").Visible = false;
             }
         }
 
@@ -265,6 +266,7 @@ public partial class V2Overlay : Control
     {
         UISound.Play();
         GetTree().Paused = false;
+        GetNode<Sprite2D>("logo").Visible = false;
         if (in_start_menu)
         {
             Button start_button = GetNode<Button>("Play_Button");
