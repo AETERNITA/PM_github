@@ -212,12 +212,13 @@ public partial class Player : GenericCharacterClass
 		{
 			LaserschwertHit();
 		}
-
+		
+/* 
 		if (this.Velocity.X > 0){
 			gun.Position = new Vector2(232, 222);
 		}else if (this.Velocity.X < 0) gun.Position = new Vector2(-232, 222);
 
-
+ */
 		// Handle Jump
 		if (jumpActive && jumpTimer <= 0)
 		{
@@ -450,6 +451,14 @@ public partial class Player : GenericCharacterClass
 				Vector2 directionToMouse = mousePosition - gunSprite.GlobalPosition;
 				float angle = directionToMouse.Angle();
 				gunSprite.Rotation = angle;
+
+				if ((directionToMouse.X - 100) > 0)
+				{
+					gun.Position = new Vector2(232, 222);
+				}
+				else if ((directionToMouse.X + 100) < 0) gun.Position = new Vector2(-232, 222);
+
+
 			}
 			else
 			{
@@ -458,6 +467,10 @@ public partial class Player : GenericCharacterClass
 				Vector2 Controller_direction = new Vector2(x, y);
 				float angle = Controller_direction.Angle();
 				gunSprite.Rotation = angle;
+				
+				if ((Controller_direction.X - 0.5) > 0){
+					gun.Position = new Vector2(232, 222);
+				}else if ((Controller_direction.X + 0.5 )< 0) gun.Position = new Vector2(-232, 222);
 			}
 		}
 
