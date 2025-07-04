@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cm4ljepflgkgd"]
 
-[ext_resource type="Script" uid="uid://brduqvatf4sbl" path="res://Scripts/Healing.cs" id="1_a11fl"]
-[ext_resource type="Texture2D" uid="uid://26b0rxcrsd0t" path="res://Art/wrench.png" id="2_f3r8x"]
+[ext_resource type="Script" uid="uid://bj1oc0et5ulg4" path="res://Scripts/DamageBoost.cs" id="1_a11fl"]
+[ext_resource type="Texture2D" uid="uid://s1a5q0a48oro" path="res://Art/Enemies/snakesegment.png" id="2_f3r8x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1up"]
-size = Vector2(24.8249, 68.4821)
+size = Vector2(24.8249, 16.8035)
 
 [sub_resource type="Gradient" id="Gradient_qcu6d"]
 offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
@@ -22,14 +22,14 @@ collision_mask = 2
 script = ExtResource("1_a11fl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.113781, 0.158183)
+position = Vector2(-0.113781, 0.00966607)
 scale = Vector2(0.114583, 0.0609753)
 shape = SubResource("RectangleShape2D_nf1up")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.0284451, 0)
+position = Vector2(-0.130977, 0.010913)
 rotation = 3.14159
-scale = Vector2(0.0398611, 0.0199066)
+scale = Vector2(0.0303537, 0.0100854)
 texture = ExtResource("2_f3r8x")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

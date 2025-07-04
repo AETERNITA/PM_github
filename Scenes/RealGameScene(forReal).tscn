@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=84 format=4 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -31,6 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://hen8lhfjfgr" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001668.wav" id="28_fes2o"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="29_du02u"]
 [ext_resource type="Texture2D" uid="uid://d4lhgqq1hpf2p" path="res://Art/doomscroll logo v2.png" id="29_qihwy"]
+[ext_resource type="PackedScene" uid="uid://cm4ljepflgkgd" path="res://Scenes/Interactables/DamageBoost.tscn" id="30_m4ace"]
 [ext_resource type="PackedScene" uid="uid://blnextd451t1h" path="res://Scenes/Interactables/treasure.tscn" id="32_deat7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcj5y"]
@@ -939,6 +940,9 @@ visible = false
 position = Vector2(343.625, 233)
 scale = Vector2(0.266375, 0.302)
 texture = ExtResource("29_qihwy")
+
+[node name="Item" parent="ui layer/overlay" instance=ExtResource("30_m4ace")]
+position = Vector2(-4724, 17)
 
 [node name="temp_enemy" parent="." instance=ExtResource("26_xqbpv")]
 position = Vector2(-483, -44)
