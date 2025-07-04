@@ -38,6 +38,7 @@ public partial class V2Overlay : Control
         if (GD.Load("user://savegame.tres") == null)
         {
             ResourceSaver.Save(savegame, "user://savegame.tres");
+            GD.Print("Create Savegame");
         }
 
         HighScore = GetNode<Label>("HighScore");
@@ -250,9 +251,10 @@ public partial class V2Overlay : Control
         Master_Label.Text = "Master: " + myFloat.ToString();
         AudioServer.SetBusVolumeDb(Master_Index, Mathf.LinearToDb(myFloat));
 
-        var savegame = new SaveGame();
+        var savegame = GD.Load("user://savegame.tres") as SaveGame;
         savegame.Volume = myFloat;
         ResourceSaver.Save(savegame, "user://savegame.tres");
+        GD.Print("Save: Volume");
         set_volume = true;
     }
 

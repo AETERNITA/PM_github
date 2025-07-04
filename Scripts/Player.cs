@@ -891,10 +891,11 @@ public partial class Player : GenericCharacterClass
 	public void SaveTheGame()
 	{
 		//currently only the highscore
-		var savegame = new SaveGame();
+		var savegame = Load("user://savegame.tres") as SaveGame;
 		var oldsave = Load("user://savegame.tres") as SaveGame;
 		if (GetNode<V2Overlay>("%overlay").Points_number > oldsave.HighScore)
 		{
+			Print("Player: Savegame");
 			savegame.HighScore = GetNode<V2Overlay>("%overlay").Points_number;
 			ResourceSaver.Save(savegame, "user://savegame.tres");
 		}

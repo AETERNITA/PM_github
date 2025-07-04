@@ -43,8 +43,8 @@ public partial class RealGameScene : Node2D
 
     public async void reset_level()
     {
-        GetNode<Player>("%Player").SaveTheGame();
-
+        //GetNode<Player>("%Player").SaveTheGame();
+/* 
 
         List<Node> nodes = GetAllNodes(GetTree().Root);
 
@@ -55,14 +55,14 @@ public partial class RealGameScene : Node2D
                 item.QueueFree();
             }
         }
-
-        await ToSignal(GetTree().CreateTimer(0.1), SceneTreeTimer.SignalName.Timeout);
+ */
+        await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
 
 
         GetTree().ReloadCurrentScene();
     }
     
-    public List<Node> GetAllNodes(Node root)
+/*     public List<Node> GetAllNodes(Node root)
     {
         var nodeList = new List<Node>();
         TraverseNodes(root, nodeList);
@@ -76,5 +76,5 @@ public partial class RealGameScene : Node2D
         {
             TraverseNodes(child, list);
         }
-    }
+    } */
 }
