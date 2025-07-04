@@ -75,6 +75,7 @@ shape = SubResource("CircleShape2D_rvmyp")
 debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="damage_area"]
+visible = false
 scale = Vector2(0.38397, 0.398298)
 texture = ExtResource("4_agoaj")
 

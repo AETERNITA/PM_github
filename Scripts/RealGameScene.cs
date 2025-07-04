@@ -41,21 +41,33 @@ public partial class RealGameScene : Node2D
         }
     }
 
+    public void SpawnEnemyRemains(Vector2 EnemyPosition)
+    {
+        var scene = Load<PackedScene>("uid://cm4ljepflgkgd");
+        var instance = scene.Instantiate();
+        Node2D instance2D = instance as Node2D;
+        if (instance2D != null)
+        {
+            AddChild(instance2D);
+            instance2D.Position = EnemyPosition;
+        }
+    }
+
     public async void reset_level()
     {
         //GetNode<Player>("%Player").SaveTheGame();
-/* 
+        /* 
 
-        List<Node> nodes = GetAllNodes(GetTree().Root);
+                List<Node> nodes = GetAllNodes(GetTree().Root);
 
-        foreach (Node item in nodes)
-        {
-            if (item != GetTree().Root && item != this)
-            {
-                item.QueueFree();
-            }
-        }
- */
+                foreach (Node item in nodes)
+                {
+                    if (item != GetTree().Root && item != this)
+                    {
+                        item.QueueFree();
+                    }
+                }
+         */
         await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
 
 

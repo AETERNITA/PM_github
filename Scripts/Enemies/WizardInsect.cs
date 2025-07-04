@@ -146,6 +146,8 @@ public partial class WizardInsect : GenericCharacterClass
 			var OverlayRef = GetNode("/root/Game/%overlay") as V2Overlay;
 			OverlayRef.AddPoints(10000);
 			DeathSFX.Play();
+			//GetNode<RealGameScene>("/root/Game").SpawnEnemyRemains(GlobalPosition);
+			GetNode<Player>("/root/Game/%Player").AddDamageBoost();
 			QueueFree();
 		}
 		else
@@ -175,6 +177,7 @@ public partial class WizardInsect : GenericCharacterClass
 
 	private async void attack()
 	{
+		GetNode<Sprite2D>("damage_area/Sprite2D").Visible = true;
 		damaging = false;
 		GetNode<Node2D>("damage_area").GlobalPosition = GetNode<Player>("/root/Game/%Player").GlobalPosition;
 		await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
