@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm4ljepflgkgd"]
+
+[ext_resource type="Script" uid="uid://bj1oc0et5ulg4" path="res://Scripts/DamageBoost.cs" id="1_a11fl"]
+[ext_resource type="Texture2D" uid="uid://s1a5q0a48oro" path="res://Art/Enemies/snakesegment.png" id="2_f3r8x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1up"]
+size = Vector2(24.8249, 16.8035)
+
+[sub_resource type="Gradient" id="Gradient_qcu6d"]
+offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ewbju"]
+gradient = SubResource("Gradient_qcu6d")
+fill = 1
+fill_from = Vector2(0.49, 0.52)
+
+[node name="Item" type="Area2D"]
+scale = Vector2(-30.2796, -51.7277)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_a11fl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.113781, 0.00966607)
+scale = Vector2(0.114583, 0.0609753)
+shape = SubResource("RectangleShape2D_nf1up")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.130977, 0.010913)
+rotation = 3.14159
+scale = Vector2(0.0303537, 0.0100854)
+texture = ExtResource("2_f3r8x")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_ewbju")

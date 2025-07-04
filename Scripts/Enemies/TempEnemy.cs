@@ -121,6 +121,8 @@ public partial class TempEnemy : GenericCharacterClass
 			var OverlayRef = GetNode("/root/Game/%overlay") as V2Overlay;
 			OverlayRef.AddPoints(10000);
 			DeathSFX.Play();
+			//GetNode<RealGameScene>("/root/Game").SpawnEnemyRemains(GlobalPosition);
+			GetNode<Player>("/root/Game/%Player").AddDamageBoost();
 			QueueFree();
 		}
 		else

@@ -128,6 +128,8 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 			var OverlayRef = GetNode("/root/Game/%overlay") as V2Overlay;
 			OverlayRef.AddPoints(10000);
 			DeathSFX.Play();
+			//GetNode<RealGameScene>("/root/Game").SpawnEnemyRemains(GlobalPosition);
+			GetNode<Player>("/root/Game/%Player").AddDamageBoost();
 			folower1.QueueFree();
 			folower2.QueueFree();
 			QueueFree();

@@ -11,7 +11,7 @@ public partial class Player : GenericCharacterClass
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
 	[Export] private AudioStreamPlayer ItemUseAudio;
-	[Export] private AudioStreamPlayer ItemInteractAudio;
+	[Export] public AudioStreamPlayer ItemInteractAudio;
 	private CanvasModulate canvmod;
 	private bool isplaying = false;
 	public float dashSpeed = 1200.0f; // Geschwindigkeit beim Dash
@@ -42,6 +42,7 @@ public partial class Player : GenericCharacterClass
 	public double screenshake_strenght_dynamic = 0;
 	private double red_effect_time = 0;
 	private bool turnedleft = false;
+	private double DamageMultiplier = 1;
 
 	private List<string> itemqueue = new List<string>();
 
@@ -61,6 +62,7 @@ public partial class Player : GenericCharacterClass
 	private bool jumpActive = false;
 	private bool jump_boosted = false;
 	private bool healing = false;
+	private double DamageBoostTime = 0;
 
 	private double on_floor_temporal = 2;
 
@@ -212,13 +214,13 @@ public partial class Player : GenericCharacterClass
 		{
 			LaserschwertHit();
 		}
-		
-/* 
-		if (this.Velocity.X > 0){
-			gun.Position = new Vector2(232, 222);
-		}else if (this.Velocity.X < 0) gun.Position = new Vector2(-232, 222);
 
- */
+		/* 
+				if (this.Velocity.X > 0){
+					gun.Position = new Vector2(232, 222);
+				}else if (this.Velocity.X < 0) gun.Position = new Vector2(-232, 222);
+
+		 */
 		// Handle Jump
 		if (jumpActive && jumpTimer <= 0)
 		{
@@ -417,6 +419,22 @@ public partial class Player : GenericCharacterClass
 			(Material as ShaderMaterial).SetShaderParameter("damage_shader_int", 0);
 		}
 
+		if (DamageBoostTime > 0)
+		{
+			DamageBoostTime -= delta;
+			if (DamageBoostTime < 0)
+			{
+				DamageBoostTime = 0;
+			}
+			GetNode<CanvasLayer>("/root/Game/shading layer 2").Visible = true;
+			DamageMultiplier = 3;
+		}
+		else
+		{
+			GetNode<CanvasLayer>("/root/Game/shading layer 2").Visible = false;
+			DamageMultiplier = 1;
+		}
+
 	}
 
 	private void StartDash()
@@ -467,14 +485,16 @@ public partial class Player : GenericCharacterClass
 				Vector2 Controller_direction = new Vector2(x, y);
 				float angle = Controller_direction.Angle();
 				gunSprite.Rotation = angle;
-				
-				if ((Controller_direction.X - 0.5) > 0){
+
+				if ((Controller_direction.X - 0.5) > 0)
+				{
 					gun.Position = new Vector2(232, 222);
-				}else if ((Controller_direction.X + 0.5 )< 0) gun.Position = new Vector2(-232, 222);
+				}
+				else if ((Controller_direction.X + 0.5) < 0) gun.Position = new Vector2(-232, 222);
 			}
 		}
 
-		
+
 	}
 
 	private void Update_Inventory(double delta_time)
@@ -826,7 +846,7 @@ public partial class Player : GenericCharacterClass
 		for (int i = 0; i < downdash_area.Count; i++)
 		{
 			Print("damage to:" + downdash_area[i]);
-			downdash_area[i].take_damage(34);
+			downdash_area[i].take_damage(34 * DamageMultiplier);
 		}
 
 	}
@@ -855,7 +875,7 @@ public partial class Player : GenericCharacterClass
 		for (int i = 0; i < laserschwert_area.Count; i++)
 		{
 			Print("damage to:" + laserschwert_area[i]);
-			laserschwert_area[i].take_damage(34);
+			laserschwert_area[i].take_damage(34 * DamageMultiplier);
 		}
 
 	}
@@ -899,6 +919,11 @@ public partial class Player : GenericCharacterClass
 			savegame.HighScore = GetNode<V2Overlay>("%overlay").Points_number;
 			ResourceSaver.Save(savegame, "user://savegame.tres");
 		}
+	}
+
+	public void AddDamageBoost()
+	{
+		DamageBoostTime += 5;
 	}
 
 }
