@@ -11,7 +11,7 @@ public partial class Player : GenericCharacterClass
 	[Export] private AnimatedSprite2D _animatedSprite; // Reference to AnimatedSprite2D
 	[Export] private Node2D gunSprite;
 	[Export] private AudioStreamPlayer ItemUseAudio;
-	[Export] private AudioStreamPlayer ItemInteractAudio;
+	[Export] public AudioStreamPlayer ItemInteractAudio;
 	private CanvasModulate canvmod;
 	private bool isplaying = false;
 	public float dashSpeed = 1200.0f; // Geschwindigkeit beim Dash

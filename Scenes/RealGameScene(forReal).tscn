@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=83 format=4 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -31,6 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://hen8lhfjfgr" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001668.wav" id="28_fes2o"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="29_du02u"]
 [ext_resource type="Texture2D" uid="uid://d4lhgqq1hpf2p" path="res://Art/doomscroll logo v2.png" id="29_qihwy"]
+[ext_resource type="PackedScene" uid="uid://blnextd451t1h" path="res://Scenes/Interactables/treasure.tscn" id="32_deat7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcj5y"]
 size = Vector2(3979.84, 577.47)
@@ -664,6 +665,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shading layer 2" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="shading layer 2"]
 material = SubResource("ShaderMaterial_waod3")
@@ -946,6 +948,9 @@ position = Vector2(-2195, -861)
 
 [node name="Enemy" parent="." instance=ExtResource("29_du02u")]
 position = Vector2(-5240, -35)
+
+[node name="Item" parent="." instance=ExtResource("32_deat7")]
+position = Vector2(-5342, -892)
 
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
