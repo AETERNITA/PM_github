@@ -577,7 +577,7 @@ tile_set = ExtResource("8_fes2o")
 
 [node name="Interactables" type="Node" parent="."]
 
-[node name="Projectile" type="Area2D" parent="Interactables" node_paths=PackedStringArray("shoot_sfx", "flying_sfx")]
+[node name="Projectile" type="CharacterBody2D" parent="Interactables" node_paths=PackedStringArray("shoot_sfx", "flying_sfx")]
 position = Vector2(-2675, 0.243042)
 script = ExtResource("13_w7v74")
 shoot_sfx = NodePath("shooting_sfx")
@@ -654,7 +654,6 @@ color = Color(0.3, 0.3, 0.3, 1)
 position = Vector2(0, -3775)
 
 [node name="shading layer 1" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="shading layer 1"]
 material = SubResource("ShaderMaterial_fes2o")
@@ -665,7 +664,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="shading layer 2" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="shading layer 2"]
 material = SubResource("ShaderMaterial_waod3")
@@ -949,7 +947,6 @@ position = Vector2(-2195, -861)
 [node name="Enemy" parent="." instance=ExtResource("29_du02u")]
 position = Vector2(-5240, -35)
 
-[connection signal="body_entered" from="Interactables/Projectile" to="Interactables/Projectile" method="_on_body_entered"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
 [connection signal="value_changed" from="ui layer/overlay/Master_Slider" to="ui layer/overlay" method="_on_master_slider_value_changed"]
