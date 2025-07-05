@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://b8qt2qtvfxrjn"]
+[gd_scene load_steps=73 format=3 uid="uid://b8qt2qtvfxrjn"]
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
@@ -47,6 +47,7 @@
 [ext_resource type="AudioStream" uid="uid://dr8k0ov30iu3e" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001666.wav" id="44_nmr2m"]
 [ext_resource type="AudioStream" uid="uid://dpx4vhfoerhut" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001664.wav" id="44_r7t2e"]
 [ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="46_ax3m3"]
+[ext_resource type="AudioStream" uid="uid://uk7ti6rrrc16" path="res://Audio/soundscape/LOOP_Amidst the Flames.wav" id="48_8eeqe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r7t2e"]
 shader = ExtResource("2_r7t2e")
@@ -392,6 +393,10 @@ max_polyphony = 2
 [node name="ItemInteractAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("44_r7t2e")
 max_polyphony = 2
+
+[node name="DamageBoostAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("48_8eeqe")
+volume_db = 5.643
 
 [connection signal="body_entered" from="gunPivot/gunSprite/laserschwert_area" to="." method="_on_laserschwert_area_body_entered"]
 [connection signal="body_exited" from="gunPivot/gunSprite/laserschwert_area" to="." method="_on_laserschwert_area_body_exited"]

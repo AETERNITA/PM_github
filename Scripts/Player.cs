@@ -49,6 +49,8 @@ public partial class Player : GenericCharacterClass
 	private List<GenericCharacterClass> downdash_area = new List<GenericCharacterClass>();
 	private List<GenericCharacterClass> laserschwert_area = new List<GenericCharacterClass>();
 
+	private AudioStreamPlayer DamageBoostAudio;
+
 	public string soundscapes = "normal";
 
 	public bool escape_menu_active = false;
@@ -104,6 +106,7 @@ public partial class Player : GenericCharacterClass
 		DownDashImpactSFX = GetNode<AudioStreamPlayer>("DownDashImpact");
 		Landing_sfx = GetNode<AudioStreamPlayer>("Landing_sfx");
 		Losing_sfx = GetNode<AudioStreamPlayer>("dead_loser");
+		DamageBoostAudio = GetNode<AudioStreamPlayer>("DamageBoostAudio");
 
 		damage_particles = GetNode<GpuParticles2D>("damage_particles");
 		low_health_particles = GetNode<GpuParticles2D>("low_health_particles");
@@ -428,11 +431,17 @@ public partial class Player : GenericCharacterClass
 			}
 			GetNode<CanvasLayer>("/root/Game/shading layer 2").Visible = true;
 			DamageMultiplier = 3;
+			if (DamageBoostAudio.Playing != true)
+			{
+				DamageBoostAudio.Play();
+			}
+
 		}
 		else
 		{
 			GetNode<CanvasLayer>("/root/Game/shading layer 2").Visible = false;
 			DamageMultiplier = 1;
+			DamageBoostAudio.Stop();
 		}
 
 	}
@@ -923,7 +932,7 @@ public partial class Player : GenericCharacterClass
 
 	public void AddDamageBoost()
 	{
-		DamageBoostTime += 5;
+		DamageBoostTime = 5;
 	}
 
 }
