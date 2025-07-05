@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://k15e77q8bb2x"]
+
+[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="1_cunfl"]
+[ext_resource type="Script" uid="uid://86vt1ghcd21p" path="res://Scripts/Enemies/ExplosiveEnemy.cs" id="2_1hvpf"]
+[ext_resource type="Texture2D" uid="uid://bigi1lts57h1y" path="res://Art/enemy 1.png" id="3_g0yii"]
+[ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="4_1hvpf"]
+[ext_resource type="AudioStream" uid="uid://cu2jaweqxc8x3" path="res://Audio/Shotgun_BenelliM3_Shoot_005.wav" id="5_g0yii"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7kucs"]
+shader = ExtResource("1_cunfl")
+shader_parameter/damage_shader_int = 0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rvmyp"]
+radius = 100.108
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nxwx"]
+
+[sub_resource type="Gradient" id="Gradient_l7chm"]
+offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_52xpa"]
+gradient = SubResource("Gradient_l7chm")
+fill = 1
+fill_from = Vector2(0.49, 0.52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hac7"]
+size = Vector2(29.75, 217)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g0yii"]
+
+[node name="Enemy" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_7kucs")
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("2_1hvpf")
+
+[node name="damage_area" type="Area2D" parent="."]
+scale = Vector2(0.959173, 0.959173)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
+position = Vector2(100, 0)
+shape = SubResource("CircleShape2D_rvmyp")
+debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(1.35899e-05, -0.499996)
+scale = Vector2(0.195312, 0.130859)
+texture = ExtResource("3_g0yii")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-271.361, 110.806)
+rotation = 0.748746
+scale = Vector2(2.27494, 3.77749)
+skew = -0.436332
+texture = ExtResource("4_1hvpf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(10.1244, 10.1244)
+shape = SubResource("RectangleShape2D_2nxwx")
+one_way_collision_margin = 0.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(4.02735, 4.05213)
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 9.3
+texture = SubResource("GradientTexture2D_52xpa")
+
+[node name="GroundRay" type="RayCast2D" parent="."]
+target_position = Vector2(100, 108)
+
+[node name="wall_box" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_box"]
+position = Vector2(117, 1)
+scale = Vector2(1, 0.879998)
+shape = SubResource("RectangleShape2D_2hac7")
+debug_color = Color(0.138424, 0.63254, 0.384665, 0.42)
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_g0yii")
+volume_db = 20.0
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+scale = Vector2(40, 20)
+shape = SubResource("CircleShape2D_g0yii")
+
+[connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="damage_area" to="." method="_on_damage_area_body_exited"]
+[connection signal="body_entered" from="wall_box" to="." method="_on_wall_hit"]
+[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
+[connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_area_body_exited"]
