@@ -7,12 +7,12 @@
 
 [node name="Game" instance=ExtResource("1_qewr0")]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." index="2"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="." index="1"]
 tile_map_data = PackedByteArray("AACj/+P/AQA0ABkAAACp/+P/AQA0ABkAAACv/+P/AQA0ABkAAABV/7X/AQA0ABkAAABb/7X/AQA0ABkAAABh/7X/AQA0ABkAAAB+/5j/AQA0ABkAAACE/5j/AQA0ABkAAACK/5j/AQA0ABkAAADH/4T/AQA0ABkAAADN/4T/AQA0ABkAAADT/4T/AQA0ABkAAABX/2D/AQAtABkAAABd/2D/AQAtABkAAABj/2D/AQAtABkAAABp/2D/AQAtABkAAABv/2D/AQAtABkAAAB1/2D/AQAtABkAAAB7/2D/AQAtABkAAACB/2D/AQAtABkAAACH/2D/AQAtABkAAACN/2D/AQAtABkAAACT/2D/AQAtABkAAACZ/2D/AQAtABkAAAAY/2D/AQA0ABkAAAAe/2D/AQA0ABkAAAAk/2D/AQA0ABkAAAA=")
 tile_set = ExtResource("2_5a4lc")
 
-[node name="wizard" parent="." index="3" instance=ExtResource("3_m2ent")]
+[node name="wizard" parent="." index="2" instance=ExtResource("3_m2ent")]
 position = Vector2(-2452, -2723)
 
-[node name="Item" parent="." index="4" instance=ExtResource("4_dkalq")]
+[node name="Item" parent="." index="3" instance=ExtResource("4_dkalq")]
 position = Vector2(-3614, -2780)

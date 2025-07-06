@@ -38,7 +38,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
-position = Vector2(41.7026, 0)
+position = Vector2(14.5959, -1.04256)
 scale = Vector2(0.253751, 0.202896)
 shape = SubResource("CircleShape2D_rvmyp")
 debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
