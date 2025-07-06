@@ -30,7 +30,7 @@
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
 [ext_resource type="AudioStream" uid="uid://hen8lhfjfgr" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001668.wav" id="28_fes2o"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="29_du02u"]
-[ext_resource type="Texture2D" uid="uid://d4lhgqq1hpf2p" path="res://Art/doomscroll logo v2.png" id="29_qihwy"]
+[ext_resource type="Texture2D" uid="uid://bih1f3bwty4ta" path="res://Art/doomscroll logo v2.png" id="29_qihwy"]
 [ext_resource type="PackedScene" uid="uid://blnextd451t1h" path="res://Scenes/Interactables/treasure.tscn" id="32_deat7"]
 [ext_resource type="PackedScene" uid="uid://k15e77q8bb2x" path="res://Scenes/Enemies/ExplosiveEnemy.tscn" id="33_m4ace"]
 [ext_resource type="PackedScene" uid="uid://j8ke3w3vti84" path="res://Scenes/Enemies/wizardInsect_Explosive.tscn" id="34_0kq45"]

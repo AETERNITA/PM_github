@@ -2,9 +2,9 @@
 
 [ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="1_khmda"]
 [ext_resource type="Script" uid="uid://bwj6vo75vnd4a" path="res://Scripts/Enemies/WizardInsectExplosive.cs" id="2_khmda"]
-[ext_resource type="Texture2D" uid="uid://bfh1v82u14ovg" path="res://Art/Enemies/enemy 1 psem.png" id="3_drk42"]
-[ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="4_1xl5x"]
-[ext_resource type="Texture2D" uid="uid://ktpmd46mf0ek" path="res://Art/Enemies/spike thing psem.png" id="4_gn140"]
+[ext_resource type="Texture2D" uid="uid://chri6mlrbnlvy" path="res://Art/wizard.png" id="3_drk42"]
+[ext_resource type="Texture2D" uid="uid://b61eqj5u4k621" path="res://Art/bomb.png" id="4_gn140"]
+[ext_resource type="Texture2D" uid="uid://do8ednak5p5ho" path="res://Art/wizard insect.png" id="5_813e1"]
 [ext_resource type="AudioStream" uid="uid://cu2jaweqxc8x3" path="res://Audio/Shotgun_BenelliM3_Shoot_005.wav" id="6_drk42"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7kucs"]
@@ -55,14 +55,15 @@ target_position = Vector2(100, 108)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
-position = Vector2(-0.999999, -17)
-scale = Vector2(0.50273, 0.47273)
+position = Vector2(36, -2)
+scale = Vector2(0.2527, 0.23762)
 texture = ExtResource("3_drk42")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
 use_parent_material = true
-position = Vector2(27.8479, 50.7689)
-texture = ExtResource("4_1xl5x")
+position = Vector2(-170.162, 210.42)
+scale = Vector2(0.755386, 0.755386)
+texture = ExtResource("4_gn140")
 
 [node name="wall_box" type="Area2D" parent="."]
 
@@ -85,8 +86,9 @@ debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="damage_area"]
 visible = false
-scale = Vector2(0.38397, 0.398298)
-texture = ExtResource("4_gn140")
+position = Vector2(-68.8093, 0)
+scale = Vector2(0.27022, 0.280303)
+texture = ExtResource("5_813e1")
 
 [node name="ExplosionArea" type="Area2D" parent="."]
 collision_layer = 0

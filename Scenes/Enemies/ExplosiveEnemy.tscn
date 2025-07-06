@@ -2,8 +2,8 @@
 
 [ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="1_cunfl"]
 [ext_resource type="Script" uid="uid://86vt1ghcd21p" path="res://Scripts/Enemies/ExplosiveEnemy.cs" id="2_1hvpf"]
-[ext_resource type="Texture2D" uid="uid://bigi1lts57h1y" path="res://Art/enemy 1.png" id="3_g0yii"]
-[ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="4_1hvpf"]
+[ext_resource type="Texture2D" uid="uid://cpnmoqiqad7x5" path="res://Art/enemy bomb2.png" id="3_g0yii"]
+[ext_resource type="Texture2D" uid="uid://b61eqj5u4k621" path="res://Art/bomb.png" id="4_mj8ex"]
 [ext_resource type="AudioStream" uid="uid://cu2jaweqxc8x3" path="res://Audio/Shotgun_BenelliM3_Shoot_005.wav" id="5_g0yii"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7kucs"]
@@ -53,11 +53,11 @@ texture = ExtResource("3_g0yii")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
 use_parent_material = true
-position = Vector2(-271.361, 110.806)
+position = Vector2(-148.48, 225.433)
 rotation = 0.748746
-scale = Vector2(2.27494, 3.77749)
+scale = Vector2(0.815073, 0.948259)
 skew = -0.436332
-texture = ExtResource("4_1hvpf")
+texture = ExtResource("4_mj8ex")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(10.1244, 10.1244)
