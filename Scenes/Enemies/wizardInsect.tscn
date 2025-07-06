@@ -2,8 +2,8 @@
 
 [ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="1_itc1a"]
 [ext_resource type="Script" uid="uid://opa3vfsk0fyt" path="res://Scripts/Enemies/WizardInsect.cs" id="2_00aj0"]
-[ext_resource type="Texture2D" uid="uid://bfh1v82u14ovg" path="res://Art/Enemies/enemy 1 psem.png" id="2_dsex7"]
-[ext_resource type="Texture2D" uid="uid://ktpmd46mf0ek" path="res://Art/Enemies/spike thing psem.png" id="4_agoaj"]
+[ext_resource type="Texture2D" uid="uid://chri6mlrbnlvy" path="res://Art/wizard.png" id="3_00aj0"]
+[ext_resource type="Texture2D" uid="uid://do8ednak5p5ho" path="res://Art/wizard insect.png" id="4_agoaj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7kucs"]
 shader = ExtResource("1_itc1a")
@@ -51,9 +51,9 @@ target_position = Vector2(100, 108)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
-position = Vector2(-0.999999, -17)
-scale = Vector2(0.50273, 0.47273)
-texture = ExtResource("2_dsex7")
+position = Vector2(28, -13)
+scale = Vector2(0.260438, 0.244896)
+texture = ExtResource("3_00aj0")
 
 [node name="wall_box" type="Area2D" parent="."]
 
@@ -76,7 +76,8 @@ debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="damage_area"]
 visible = false
-scale = Vector2(0.38397, 0.398298)
+position = Vector2(-67.7667, 0)
+scale = Vector2(0.246069, 0.255251)
 texture = ExtResource("4_agoaj")
 
 [connection signal="body_entered" from="wall_box" to="." method="_on_wall_hit"]
