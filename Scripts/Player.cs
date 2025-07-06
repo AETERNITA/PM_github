@@ -57,7 +57,7 @@ public partial class Player : GenericCharacterClass
 
 	public float Speed = 600.0f;
 	private float minSpeed = 590.0f;
-	public float JumpVelocity = -700.0f;
+	public float JumpVelocity = -900.0f;
 	//private float dashTime = 0f;
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
@@ -608,7 +608,7 @@ public partial class Player : GenericCharacterClass
 
 			case "jumpboost":
 				//Print("jump initial effect for booooooooooooooooosting");
-				JumpVelocity = JumpVelocity * (int)strenght;
+				JumpVelocity = (int)(JumpVelocity * strenght);
 				jump_boosted = true;
 				break;
 
@@ -734,7 +734,7 @@ public partial class Player : GenericCharacterClass
 	}
 	private void JumpBoostbyEffect()
 	{
-		Item_add("jumpboost", 2, -1, 15);
+		Item_add("jumpboost", 1.5, -1, 15);
 	}
 
 	public void _on_normal_soundscape_finished()
