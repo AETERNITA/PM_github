@@ -52,6 +52,7 @@ scale = Vector2(0.195312, 0.130859)
 texture = ExtResource("3_g0yii")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+use_parent_material = true
 position = Vector2(-271.361, 110.806)
 rotation = 0.748746
 scale = Vector2(2.27494, 3.77749)
