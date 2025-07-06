@@ -126,7 +126,7 @@ public partial class ExplosiveEnemy : GenericCharacterClass
 	{
 		for (int i = 0; i < victims.Count; i++)
 		{
-			victims[i].take_damage(1);
+			victims[i].take_damage(Math.Min(4, 1 + Math.Abs(GlobalPosition.X / 10000)));
 		}
 	}
 

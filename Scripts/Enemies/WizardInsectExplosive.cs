@@ -149,7 +149,7 @@ public partial class WizardInsectExplosive : GenericCharacterClass
 		{
 			for (int i = 0; i < victims.Count; i++)
 			{
-				victims[i].take_damage(1);
+				victims[i].take_damage(Math.Min(5, 1 + Math.Abs(GlobalPosition.X / 10000)));
 			}
 		}
 
