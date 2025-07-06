@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://brf7stfy4s4nd"]
+[gd_scene load_steps=9 format=4 uid="uid://brf7stfy4s4nd"]
 
 [ext_resource type="PackedScene" uid="uid://bu1nylkaaafly" path="res://Scenes/master_roooms/room_leftdown.tscn" id="1_qewr0"]
 [ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="2_5a4lc"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="3_m2ent"]
 [ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="4_dkalq"]
+[ext_resource type="PackedScene" uid="uid://j8ke3w3vti84" path="res://Scenes/Enemies/wizardInsect_Explosive.tscn" id="5_yet5a"]
+[ext_resource type="PackedScene" uid="uid://k15e77q8bb2x" path="res://Scenes/Enemies/ExplosiveEnemy.tscn" id="6_007wg"]
+[ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="7_11k31"]
+[ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="8_3nc80"]
 
 [node name="Game" instance=ExtResource("1_qewr0")]
 
@@ -16,3 +20,15 @@ position = Vector2(-2452, -2723)
 
 [node name="Item" parent="." index="3" instance=ExtResource("4_dkalq")]
 position = Vector2(-3614, -2780)
+
+[node name="wizard2" parent="." index="4" instance=ExtResource("5_yet5a")]
+position = Vector2(-1376, -635)
+
+[node name="Enemy" parent="." index="5" instance=ExtResource("6_007wg")]
+position = Vector2(-2638, -1358)
+
+[node name="Enemy2" parent="." index="6" instance=ExtResource("7_11k31")]
+position = Vector2(-809, -2142)
+
+[node name="FlyingSnake" parent="." index="7" instance=ExtResource("8_3nc80")]
+position = Vector2(-2137, -2226)

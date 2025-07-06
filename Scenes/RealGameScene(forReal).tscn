@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=4 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=84 format=4 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -26,7 +26,6 @@
 [ext_resource type="Shader" uid="uid://bqggrd2e5l5qs" path="res://shaders/shadertry1.gdshader" id="26_lh6sl"]
 [ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="26_xqbpv"]
 [ext_resource type="Shader" uid="uid://csxjcaqtjnr25" path="res://shaders/pixeldither.gdshader" id="27_du02u"]
-[ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="27_lh6sl"]
 [ext_resource type="Script" uid="uid://bkx0qfbbkbvxs" path="res://Scripts/V2Overlay.cs" id="27_waod3"]
 [ext_resource type="AudioStream" uid="uid://hen8lhfjfgr" path="res://Audio/sfx/GAME_MENU_SCORE_SFX001668.wav" id="28_fes2o"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="29_du02u"]
@@ -959,9 +958,6 @@ mouse, right stick: aim for portalgun and attack"
 
 [node name="temp_enemy" parent="." instance=ExtResource("26_xqbpv")]
 position = Vector2(-483, -44)
-
-[node name="FlyingSnake" parent="." instance=ExtResource("27_lh6sl")]
-position = Vector2(-2195, -861)
 
 [node name="Enemy" parent="." instance=ExtResource("29_du02u")]
 position = Vector2(-5240, -35)

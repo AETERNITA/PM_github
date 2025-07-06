@@ -57,7 +57,7 @@ public partial class Player : GenericCharacterClass
 
 	public float Speed = 600.0f;
 	private float minSpeed = 590.0f;
-	public float JumpVelocity = -900.0f;
+	public float JumpVelocity = -800.0f;
 	//private float dashTime = 0f;
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
