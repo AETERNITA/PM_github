@@ -450,7 +450,7 @@ public partial class Player : GenericCharacterClass
 	{
 		isDashing = true;
 		dashTime = dashDuration;
-		dashDirection = direction.Normalized();
+		dashDirection = (new Vector2(direction.Normalized().X, 0)).Normalized();
 		canDash = false; // Dash wurde benutzt
 	}
 
