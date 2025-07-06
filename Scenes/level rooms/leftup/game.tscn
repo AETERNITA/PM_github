@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://hbjnuoukj6pt"]
+[gd_scene load_steps=14 format=4 uid="uid://hbjnuoukj6pt"]
 
 [ext_resource type="PackedScene" uid="uid://bqvy0u2i1ce53" path="res://Scenes/master_roooms/room_leftup.tscn" id="1_v28ke"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="2_b1vex"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="6_u58t2"]
 [ext_resource type="PackedScene" uid="uid://bom3ul8xliuam" path="res://Scenes/Interactables/jumpboost.tscn" id="7_p1fmt"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="8_p1fmt"]
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="9_rndp4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbbfg"]
 size = Vector2(3987.5, 600)
@@ -23,7 +24,7 @@ polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 
 [node name="Game" instance=ExtResource("1_v28ke")]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="2" groups=["World"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1" groups=["World"]]
 position = Vector2(-3065, -392)
 scale = Vector2(0.16, 0.16)
 
@@ -36,7 +37,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." index="3" groups=["World"]]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="2" groups=["World"]]
 position = Vector2(-2402, -472)
 scale = Vector2(0.16, 0.16)
 
@@ -52,7 +53,7 @@ shape = SubResource("RectangleShape2D_u58t2")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." index="4" groups=["World"]]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="3" groups=["World"]]
 position = Vector2(-1909, -664)
 scale = Vector2(0.16, 0.16)
 
@@ -65,7 +66,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D3" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="." index="5" groups=["World"]]
+[node name="StaticBody2D4" type="StaticBody2D" parent="." index="4" groups=["World"]]
 position = Vector2(-1246, -744)
 scale = Vector2(0.16, 0.16)
 
@@ -81,7 +82,7 @@ shape = SubResource("RectangleShape2D_u58t2")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="." index="6" groups=["World"]]
+[node name="StaticBody2D5" type="StaticBody2D" parent="." index="5" groups=["World"]]
 position = Vector2(-980, -970)
 scale = Vector2(0.16, 0.16)
 
@@ -94,7 +95,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D5" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D6" type="StaticBody2D" parent="." index="7" groups=["World"]]
+[node name="StaticBody2D6" type="StaticBody2D" parent="." index="6" groups=["World"]]
 position = Vector2(-317, -1050)
 scale = Vector2(0.16, 0.16)
 
@@ -110,7 +111,7 @@ shape = SubResource("RectangleShape2D_u58t2")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
-[node name="StaticBody2D7" type="StaticBody2D" parent="." index="8" groups=["World"]]
+[node name="StaticBody2D7" type="StaticBody2D" parent="." index="7" groups=["World"]]
 position = Vector2(-2176, -1426)
 scale = Vector2(0.16, 0.16)
 
@@ -123,7 +124,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D7" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D8" type="StaticBody2D" parent="." index="9" groups=["World"]]
+[node name="StaticBody2D8" type="StaticBody2D" parent="." index="8" groups=["World"]]
 position = Vector2(-1513, -1306)
 scale = Vector2(0.16, 0.16)
 
@@ -139,7 +140,7 @@ shape = SubResource("RectangleShape2D_u58t2")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
-[node name="StaticBody2D9" type="StaticBody2D" parent="." index="10" groups=["World"]]
+[node name="StaticBody2D9" type="StaticBody2D" parent="." index="9" groups=["World"]]
 position = Vector2(-3471, -1721)
 scale = Vector2(0.16, 0.16)
 
@@ -152,7 +153,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D9" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D10" type="StaticBody2D" parent="." index="11" groups=["World"]]
+[node name="StaticBody2D10" type="StaticBody2D" parent="." index="10" groups=["World"]]
 position = Vector2(-2808, -1601)
 scale = Vector2(0.16, 0.16)
 
@@ -168,7 +169,7 @@ shape = SubResource("RectangleShape2D_u58t2")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
-[node name="StaticBody2D15" type="StaticBody2D" parent="." index="12" groups=["World"]]
+[node name="StaticBody2D15" type="StaticBody2D" parent="." index="11" groups=["World"]]
 position = Vector2(-980, -2914)
 scale = Vector2(0.16, 0.16)
 
@@ -181,7 +182,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D15" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D16" type="StaticBody2D" parent="." index="13" groups=["World"]]
+[node name="StaticBody2D16" type="StaticBody2D" parent="." index="12" groups=["World"]]
 position = Vector2(-2176, -3370)
 scale = Vector2(0.16, 0.16)
 
@@ -194,7 +195,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D16" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D17" type="StaticBody2D" parent="." index="14" groups=["World"]]
+[node name="StaticBody2D17" type="StaticBody2D" parent="." index="13" groups=["World"]]
 position = Vector2(-1331, -3250)
 scale = Vector2(0.16, 0.16)
 
@@ -210,7 +211,7 @@ shape = SubResource("RectangleShape2D_u58t2")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
-[node name="StaticBody2D18" type="StaticBody2D" parent="." index="15" groups=["World"]]
+[node name="StaticBody2D18" type="StaticBody2D" parent="." index="14" groups=["World"]]
 position = Vector2(-524, -3813)
 scale = Vector2(0.16, 0.16)
 
@@ -223,7 +224,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D18" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D19" type="StaticBody2D" parent="." index="16" groups=["World"]]
+[node name="StaticBody2D19" type="StaticBody2D" parent="." index="15" groups=["World"]]
 position = Vector2(-1092, -3579)
 scale = Vector2(0.16, 0.16)
 
@@ -239,7 +240,7 @@ shape = SubResource("RectangleShape2D_u58t2")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
-[node name="StaticBody2D11" type="StaticBody2D" parent="." index="17" groups=["World"]]
+[node name="StaticBody2D11" type="StaticBody2D" parent="." index="16" groups=["World"]]
 position = Vector2(-2387, -2049)
 scale = Vector2(0.16, 0.16)
 
@@ -252,7 +253,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D11" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D12" type="StaticBody2D" parent="." index="18" groups=["World"]]
+[node name="StaticBody2D12" type="StaticBody2D" parent="." index="17" groups=["World"]]
 position = Vector2(-1724, -2213)
 scale = Vector2(0.16, 0.16)
 
@@ -268,7 +269,7 @@ shape = SubResource("RectangleShape2D_u58t2")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
-[node name="StaticBody2D13" type="StaticBody2D" parent="." index="19" groups=["World"]]
+[node name="StaticBody2D13" type="StaticBody2D" parent="." index="18" groups=["World"]]
 position = Vector2(-1186, -2455)
 scale = Vector2(0.16, 0.16)
 
@@ -281,7 +282,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D13" index="2"]
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
-[node name="StaticBody2D14" type="StaticBody2D" parent="." index="20" groups=["World"]]
+[node name="StaticBody2D14" type="StaticBody2D" parent="." index="19" groups=["World"]]
 position = Vector2(-523, -2619)
 scale = Vector2(0.16, 0.16)
 
@@ -297,41 +298,45 @@ shape = SubResource("RectangleShape2D_u58t2")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
-[node name="Enemy" parent="." index="21" instance=ExtResource("4_gbbfg")]
+[node name="Enemy" parent="." index="20" instance=ExtResource("4_gbbfg")]
 position = Vector2(-3107, -568)
 
-[node name="Enemy2" parent="." index="22" instance=ExtResource("4_gbbfg")]
+[node name="Enemy2" parent="." index="21" instance=ExtResource("4_gbbfg")]
 position = Vector2(-2416, -2226)
 
-[node name="Enemy3" parent="." index="23" instance=ExtResource("4_gbbfg")]
+[node name="Enemy3" parent="." index="22" instance=ExtResource("4_gbbfg")]
 position = Vector2(-575, -3987)
 
-[node name="Enemy4" parent="." index="24" instance=ExtResource("4_gbbfg")]
+[node name="Enemy4" parent="." index="23" instance=ExtResource("4_gbbfg")]
 position = Vector2(-1009, -1150)
 
-[node name="FlyingSnake" parent="." index="25" instance=ExtResource("5_cabw7")]
+[node name="FlyingSnake" parent="." index="24" instance=ExtResource("5_cabw7")]
 position = Vector2(-2434, -318)
 
-[node name="FlyingSnake2" parent="." index="26" instance=ExtResource("5_cabw7")]
+[node name="FlyingSnake2" parent="." index="25" instance=ExtResource("5_cabw7")]
 position = Vector2(-2832, -1461)
 
-[node name="FlyingSnake3" parent="." index="27" instance=ExtResource("5_cabw7")]
+[node name="FlyingSnake3" parent="." index="26" instance=ExtResource("5_cabw7")]
 position = Vector2(-2141, -3125)
 
-[node name="Item" parent="." index="28" instance=ExtResource("6_u58t2")]
+[node name="Item" parent="." index="27" instance=ExtResource("6_u58t2")]
 position = Vector2(-3520, -1934)
 
-[node name="Item2" parent="." index="29" instance=ExtResource("6_u58t2")]
+[node name="Item2" parent="." index="28" instance=ExtResource("6_u58t2")]
 position = Vector2(-2162, -3548)
 
-[node name="Item3" parent="." index="30" instance=ExtResource("7_p1fmt")]
+[node name="Item3" parent="." index="29" instance=ExtResource("7_p1fmt")]
 position = Vector2(-1857, -888)
 
-[node name="Item4" parent="." index="31" instance=ExtResource("7_p1fmt")]
+[node name="Item4" parent="." index="30" instance=ExtResource("7_p1fmt")]
 position = Vector2(-517, -2784)
 
-[node name="Enemy5" parent="." index="32" instance=ExtResource("8_p1fmt")]
+[node name="Enemy5" parent="." index="31" instance=ExtResource("8_p1fmt")]
 position = Vector2(-315, -1200)
 
-[node name="Enemy6" parent="." index="33" instance=ExtResource("8_p1fmt")]
+[node name="Enemy6" parent="." index="32" instance=ExtResource("8_p1fmt")]
 position = Vector2(-3349, -1915)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." index="33"]
+tile_map_data = PackedByteArray("AAAv/+f/AQAtABkAAAA0/+f/AQAtABkAAAA4/+f/AQAtABkAAAA8/+f/AQAtABkAAAA//+f/AQAtABkAAABD/+f/AQAtABkAAABI/+f/AQAtABkAAABM/+f/AQAtABkAAABR/+f/AQAtABkAAACx/8P/AQAtABkAAAC2/8P/AQAtABkAAAC5/8P/AQAtABkAAAC6/8P/AQAtABkAAAC//8P/AQAtABkAAADE/8P/AQAtABkAAADT/8P/AQAtABkAAADO/8P/AQAtABkAAADJ/8P/AQAtABkAAABm/6b/AQAtABkAAABr/6b/AQAtABkAAABw/6b/AQAtABkAAAB1/6b/AQAtABkAAAB6/6b/AQAtABkAAAB+/6b/AQAtABkAAACD/6b/AQAtABkAAACI/6b/AQAtABkAAAB3/9b/AQAtABkAAAB8/9b/AQAtABkAAACB/9b/AQAtABkAAACG/9b/AQAtABkAAACL/9b/AQAtABkAAACQ/9b/AQAtABkAAACV/9b/AQAtABkAAACZ/9b/AQAtABkAAAAW/5T/AQAtABkAAAAc/5T/AQAtABkAAAAh/5T/AQAtABkAAAAU/5T/AQAtABkAAAAm/5T/AQAtABkAAAAr/5T/AQAtABkAAAAs/5T/AQAtABkAAAAx/5T/AQAtABkAAAA2/5T/AQAtABkAAAA4/5T/AQAtABkAAABZ/3//AQAtABkAAABe/3//AQAtABkAAABf/3//AQAtABkAAABk/3//AQAtABkAAABp/3//AQAtABkAAABv/3//AQAtABkAAABz/3//AQAtABkAAAB4/3//AQAtABkAAAB8/3//AQAtABkAAACk/2b/AQAtABkAAACq/2b/AQAtABkAAACv/2b/AQAtABkAAACw/2b/AQAtABkAAAC1/2b/AQAtABkAAAC6/2b/AQAtABkAAAC+/2b/AQAtABkAAADC/2b/AQAtABkAAADG/2b/AQAtABkAAACx/0n/AQAtABkAAAC2/0n/AQAtABkAAAC7/0n/AQAtABkAAADA/0n/AQAtABkAAADD/0n/AQAtABkAAADI/0n/AQAtABkAAADJ/0n/AQAtABkAAADM/0n/AQAtABkAAADR/0n/AQAtABkAAADT/0n/AQAtABkAAABm/y3/AQAtABkAAABr/y3/AQAtABkAAABw/y3/AQAtABkAAAB1/y3/AQAtABkAAAB6/y3/AQAtABkAAAB//y3/AQAtABkAAACJ/y3/AQAtABkAAACE/y3/AQAtABkAAADO/xH/AQAtABkAAADN/xH/AQAtABkAAADS/xH/AQAtABkAAADX/xH/AQAtABkAAADb/xH/AQAtABkAAADg/xH/AQAtABkAAADh/xH/AQAtABkAAADm/xH/AQAtABkAAADr/xH/AQAtABkAAADw/xH/AQAtABkAAABi/+P/AQAtABkAAABo/+P/AQAtABkAAABt/+P/AQAtABkAAABw/+P/AQAtABkAAACq/9H/AQAtABkAAACv/9H/AQAtABkAAAC0/9H/AQAtABkAAAC1/9H/AQAtABkAAAC5/9H/AQAtABkAAADk/8D/AQAtABkAAADq/8D/AQAtABkAAADv/8D/AQAtABkAAADw/8D/AQAtABkAAADy/8D/AQAtABkAAACa/7D/AQAtABkAAACg/7D/AQAtABkAAACk/7D/AQAtABkAAACo/7D/AQAtABkAAABJ/53/AQAtABkAAABO/53/AQAtABkAAABT/53/AQAtABkAAABX/53/AQAtABkAAACM/3f/AQAtABkAAACS/3f/AQAtABkAAACX/3f/AQAtABkAAACb/3f/AQAtABkAAADY/17/AQAtABkAAADe/17/AQAtABkAAADj/17/AQAtABkAAADm/17/AQAtABkAAACl/zb/AQAtABkAAACr/zb/AQAtABkAAACw/zb/AQAtABkAAACz/zb/AQAtABkAAAC0/yL/AQAtABkAAAC6/yL/AQAtABkAAADA/yL/AQAtABkAAADC/yL/AQAtABkAAAA=")
+tile_set = ExtResource("9_rndp4")

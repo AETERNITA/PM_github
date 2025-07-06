@@ -22,7 +22,7 @@ polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 
 [node name="Game" instance=ExtResource("1_514kr")]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="2" groups=["World"]]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="1" groups=["World"]]
 position = Vector2(-1691, -311)
 scale = Vector2(0.16, 0.16)
 
@@ -35,7 +35,7 @@ shape = SubResource("RectangleShape2D_tt8x1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D" index="2"]
 occluder = SubResource("OccluderPolygon2D_qp5dr")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." index="3" groups=["World"]]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="2" groups=["World"]]
 position = Vector2(-1028, -106)
 scale = Vector2(0.16, 0.16)
 
@@ -51,7 +51,7 @@ shape = SubResource("RectangleShape2D_i1a1c")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_jura4")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="." index="4" groups=["World"]]
+[node name="StaticBody2D3" type="StaticBody2D" parent="." index="3" groups=["World"]]
 position = Vector2(-2765, -727)
 scale = Vector2(0.16, 0.16)
 
@@ -64,7 +64,7 @@ shape = SubResource("RectangleShape2D_tt8x1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D3" index="2"]
 occluder = SubResource("OccluderPolygon2D_qp5dr")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="." index="5" groups=["World"]]
+[node name="StaticBody2D4" type="StaticBody2D" parent="." index="4" groups=["World"]]
 position = Vector2(-2102, -522)
 scale = Vector2(0.16, 0.16)
 
@@ -80,7 +80,7 @@ shape = SubResource("RectangleShape2D_i1a1c")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_jura4")
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="." index="6" groups=["World"]]
+[node name="StaticBody2D5" type="StaticBody2D" parent="." index="5" groups=["World"]]
 position = Vector2(-3644, -1126)
 scale = Vector2(0.16, 0.16)
 
@@ -93,7 +93,7 @@ shape = SubResource("RectangleShape2D_tt8x1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D5" index="2"]
 occluder = SubResource("OccluderPolygon2D_qp5dr")
 
-[node name="StaticBody2D6" type="StaticBody2D" parent="." index="7" groups=["World"]]
+[node name="StaticBody2D6" type="StaticBody2D" parent="." index="6" groups=["World"]]
 position = Vector2(-2981, -921)
 scale = Vector2(0.16, 0.16)
 
@@ -109,7 +109,7 @@ shape = SubResource("RectangleShape2D_i1a1c")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_jura4")
 
-[node name="StaticBody2D7" type="StaticBody2D" parent="." index="8" groups=["World"]]
+[node name="StaticBody2D7" type="StaticBody2D" parent="." index="7" groups=["World"]]
 position = Vector2(-3042, -1509)
 scale = Vector2(0.16, 0.16)
 
@@ -122,7 +122,7 @@ shape = SubResource("RectangleShape2D_tt8x1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D7" index="2"]
 occluder = SubResource("OccluderPolygon2D_qp5dr")
 
-[node name="StaticBody2D8" type="StaticBody2D" parent="." index="9" groups=["World"]]
+[node name="StaticBody2D8" type="StaticBody2D" parent="." index="8" groups=["World"]]
 position = Vector2(-2379, -1695)
 scale = Vector2(0.16, 0.16)
 
@@ -138,7 +138,7 @@ shape = SubResource("RectangleShape2D_i1a1c")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_jura4")
 
-[node name="StaticBody2D9" type="StaticBody2D" parent="." index="10" groups=["World"]]
+[node name="StaticBody2D9" type="StaticBody2D" parent="." index="9" groups=["World"]]
 position = Vector2(-1764, -1875)
 scale = Vector2(0.16, 0.16)
 
@@ -151,7 +151,7 @@ shape = SubResource("RectangleShape2D_tt8x1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D9" index="2"]
 occluder = SubResource("OccluderPolygon2D_qp5dr")
 
-[node name="StaticBody2D10" type="StaticBody2D" parent="." index="11" groups=["World"]]
+[node name="StaticBody2D10" type="StaticBody2D" parent="." index="10" groups=["World"]]
 position = Vector2(-1313, -2061)
 scale = Vector2(0.16, 0.16)
 
@@ -167,7 +167,7 @@ shape = SubResource("RectangleShape2D_i1a1c")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_jura4")
 
-[node name="StaticBody2D11" type="StaticBody2D" parent="." index="12" groups=["World"]]
+[node name="StaticBody2D11" type="StaticBody2D" parent="." index="11" groups=["World"]]
 position = Vector2(-860, -2266)
 scale = Vector2(0.16, 0.16)
 
@@ -180,7 +180,7 @@ shape = SubResource("RectangleShape2D_tt8x1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D11" index="2"]
 occluder = SubResource("OccluderPolygon2D_qp5dr")
 
-[node name="StaticBody2D13" type="StaticBody2D" parent="." index="13" groups=["World"]]
+[node name="StaticBody2D13" type="StaticBody2D" parent="." index="12" groups=["World"]]
 position = Vector2(-816, -2727)
 scale = Vector2(0.16, 0.16)
 
@@ -193,7 +193,7 @@ shape = SubResource("RectangleShape2D_tt8x1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D13" index="2"]
 occluder = SubResource("OccluderPolygon2D_qp5dr")
 
-[node name="StaticBody2D14" type="StaticBody2D" parent="." index="14" groups=["World"]]
+[node name="StaticBody2D14" type="StaticBody2D" parent="." index="13" groups=["World"]]
 position = Vector2(-565, -3122)
 scale = Vector2(0.16, 0.16)
 
@@ -206,7 +206,7 @@ shape = SubResource("RectangleShape2D_tt8x1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D14" index="2"]
 occluder = SubResource("OccluderPolygon2D_qp5dr")
 
-[node name="StaticBody2D15" type="StaticBody2D" parent="." index="15" groups=["World"]]
+[node name="StaticBody2D15" type="StaticBody2D" parent="." index="14" groups=["World"]]
 position = Vector2(-320, -3511)
 scale = Vector2(0.16, 0.16)
 
@@ -219,7 +219,7 @@ shape = SubResource("RectangleShape2D_tt8x1")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D15" index="2"]
 occluder = SubResource("OccluderPolygon2D_qp5dr")
 
-[node name="StaticBody2D12" type="StaticBody2D" parent="." index="16" groups=["World"]]
+[node name="StaticBody2D12" type="StaticBody2D" parent="." index="15" groups=["World"]]
 position = Vector2(-197, -2452)
 scale = Vector2(0.16, 0.16)
 
@@ -235,32 +235,32 @@ shape = SubResource("RectangleShape2D_i1a1c")
 scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_jura4")
 
-[node name="Enemy" parent="." index="17" instance=ExtResource("4_tt8x1")]
+[node name="Enemy" parent="." index="16" instance=ExtResource("4_tt8x1")]
 position = Vector2(-3044, -1718)
 
-[node name="Enemy2" parent="." index="18" instance=ExtResource("4_tt8x1")]
+[node name="Enemy2" parent="." index="17" instance=ExtResource("4_tt8x1")]
 position = Vector2(-1676, -505)
 
-[node name="Enemy3" parent="." index="19" instance=ExtResource("4_tt8x1")]
+[node name="Enemy3" parent="." index="18" instance=ExtResource("4_tt8x1")]
 position = Vector2(-903, -2443)
 
-[node name="Enemy4" parent="." index="20" instance=ExtResource("4_tt8x1")]
+[node name="Enemy4" parent="." index="19" instance=ExtResource("4_tt8x1")]
 position = Vector2(-260, -3696)
 
-[node name="FlyingSnake" parent="." index="21" instance=ExtResource("5_qp5dr")]
+[node name="FlyingSnake" parent="." index="20" instance=ExtResource("5_qp5dr")]
 position = Vector2(-2816, -831)
 
-[node name="FlyingSnake2" parent="." index="22" instance=ExtResource("5_qp5dr")]
+[node name="FlyingSnake2" parent="." index="21" instance=ExtResource("5_qp5dr")]
 position = Vector2(-1757, -1979)
 
-[node name="FlyingSnake3" parent="." index="23" instance=ExtResource("5_qp5dr")]
+[node name="FlyingSnake3" parent="." index="22" instance=ExtResource("5_qp5dr")]
 position = Vector2(-610, -3257)
 
-[node name="Item" parent="." index="24" instance=ExtResource("6_i1a1c")]
+[node name="Item" parent="." index="23" instance=ExtResource("6_i1a1c")]
 position = Vector2(-3728, -1285)
 
-[node name="Item2" parent="." index="25" instance=ExtResource("7_jura4")]
+[node name="Item2" parent="." index="24" instance=ExtResource("7_jura4")]
 position = Vector2(-2120, -658)
 
-[node name="Item3" parent="." index="26" instance=ExtResource("6_i1a1c")]
+[node name="Item3" parent="." index="25" instance=ExtResource("6_i1a1c")]
 position = Vector2(-655, -2911)

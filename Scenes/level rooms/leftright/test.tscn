@@ -7,12 +7,12 @@
 
 [node name="Game" instance=ExtResource("1_iok7y")]
 
-[node name="Enemy" parent="." index="2" instance=ExtResource("2_810v5")]
+[node name="Enemy" parent="." index="1" instance=ExtResource("2_810v5")]
 position = Vector2(-3036, -273)
 
-[node name="FlyingSnake" parent="." index="3" instance=ExtResource("3_3ucxk")]
+[node name="FlyingSnake" parent="." index="2" instance=ExtResource("3_3ucxk")]
 position = Vector2(-2699, -1136)
 
-[node name="StaticBody2D3" parent="." index="4" instance=ExtResource("4_3ucxk")]
+[node name="StaticBody2D3" parent="." index="3" instance=ExtResource("4_3ucxk")]
 position = Vector2(-3239, -708)
 scale = Vector2(0.441798, -0.128613)
