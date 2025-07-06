@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://blnextd451t1h"]
 
 [ext_resource type="Script" uid="uid://bpm1ven3rs46a" path="res://Scripts/TreasureChest.cs" id="1_r3hgq"]
-[ext_resource type="Texture2D" uid="uid://cokrtbtf86bq" path="res://Art/door.png" id="2_bqmbc"]
+[ext_resource type="Texture2D" uid="uid://3b802kppj8k4" path="res://Art/coin.png" id="2_r3hgq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1up"]
 size = Vector2(24.8249, 68.4821)
@@ -23,14 +23,14 @@ script = ExtResource("1_r3hgq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.113781, 0.158183)
-scale = Vector2(0.114583, 0.0609753)
+scale = Vector2(0.184597, 0.0416433)
 shape = SubResource("RectangleShape2D_nf1up")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.118515, 0.202108)
 rotation = 3.14159
-scale = Vector2(0.0296994, 0.0204658)
-texture = ExtResource("2_bqmbc")
+scale = Vector2(0.00225854, 0.00138862)
+texture = ExtResource("2_r3hgq")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 shadow_enabled = true

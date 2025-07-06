@@ -21,3 +21,5 @@ mono_crash.*.json
 *.sln
 
 Godot_v4.4.1-stable_mono_win64/
+
+Releases/
