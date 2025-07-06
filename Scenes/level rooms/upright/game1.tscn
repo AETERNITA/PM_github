@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dnwh8jdcb2dvn"]
+[gd_scene load_steps=9 format=4 uid="uid://dnwh8jdcb2dvn"]
 
 [ext_resource type="PackedScene" uid="uid://ceo8tttylidv6" path="res://Scenes/master_roooms/room_upright.tscn" id="1_kbubs"]
 [ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="2_0av1u"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="4_2sq56"]
 [ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="5_ewbst"]
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="6_di6jm"]
+[ext_resource type="PackedScene" uid="uid://j8ke3w3vti84" path="res://Scenes/Enemies/wizardInsect_Explosive.tscn" id="7_2sq56"]
+[ext_resource type="PackedScene" uid="uid://k15e77q8bb2x" path="res://Scenes/Enemies/ExplosiveEnemy.tscn" id="8_ewbst"]
 
 [node name="Game" instance=ExtResource("1_kbubs")]
 
@@ -24,3 +26,12 @@ position = Vector2(-591, -3710)
 
 [node name="FlyingSnake" parent="." index="5" instance=ExtResource("6_di6jm")]
 position = Vector2(-1517, -529)
+
+[node name="wizard" parent="." index="6" instance=ExtResource("7_2sq56")]
+position = Vector2(-3030, -2375)
+
+[node name="Enemy2" parent="." index="7" instance=ExtResource("8_ewbst")]
+position = Vector2(-1599, -1384)
+
+[node name="Enemy3" parent="." index="8" instance=ExtResource("8_ewbst")]
+position = Vector2(-2895, -3537)
