@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="1_p5l27"]
 [ext_resource type="Script" uid="uid://bn06jgqvs7iro" path="res://Scripts/Enemies/FlyingSnakeSegment0.cs" id="2_ji1gf"]
-[ext_resource type="Texture2D" uid="uid://s1a5q0a48oro" path="res://Art/Enemies/snakesegment.png" id="3_u0xik"]
+[ext_resource type="Texture2D" uid="uid://dqjjeoeh0ct41" path="res://Art/snake1.png" id="3_u0xik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6do27"]
 shader = ExtResource("1_p5l27")
@@ -37,14 +37,15 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
-position = Vector2(58.3836, 0)
-scale = Vector2(0.416162, 0.332759)
+position = Vector2(41.7026, 0)
+scale = Vector2(0.253751, 0.202896)
 shape = SubResource("CircleShape2D_rvmyp")
 debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
 
 [node name="Segment 0" type="Sprite2D" parent="."]
 use_parent_material = true
-scale = Vector2(0.281462, 0.281461)
+position = Vector2(-6, -3)
+scale = Vector2(0.101156, 0.101155)
 texture = ExtResource("3_u0xik")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

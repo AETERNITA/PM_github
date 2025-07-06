@@ -7,7 +7,7 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 {
 
 	[Export] public float Speed = 150f;
-    [Export] public Vector2 Direction = Vector2.Left;
+	[Export] public Vector2 Direction = Vector2.Left;
 
 	[Export] public FlyingSnakeFollowingSegment folower1;
 	[Export] public FlyingSnakeFollowingSegment folower2;
@@ -22,10 +22,10 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 	private AudioStreamPlayer DeathSFX;
 	private AudioStreamPlayer DamageSFX;
 	
-    /* private RayCast2D _wallRay;
-    private RayCast2D _groundRay; */
+	/* private RayCast2D _wallRay;
+	private RayCast2D _groundRay; */
 
-    private Sprite2D _sprite;
+	private Sprite2D _sprite;
 	
 
 	public override void _Ready()
@@ -59,7 +59,7 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 
 		LookAt(player.GlobalPosition);
 		Vector2 directionToPlayer = (player.GlobalPosition - GlobalPosition).Normalized();
-        Velocity = directionToPlayer * Speed;
+		Velocity = directionToPlayer * Speed;
 		if ( Math.Abs(player.GlobalPosition.X - GlobalPosition.X) < 1000 && Math.Abs(player.GlobalPosition.Y - GlobalPosition.Y) < 1000)
 		{
 			MoveAndSlide();
@@ -90,9 +90,9 @@ public partial class FlyingSnakeSegment0 : FlyingSnakeSegment
 
 
 	/* private void _on_wall_hit(Node2D body)
-    {
-        FlipDirection();
-    } */
+	{
+		FlipDirection();
+	} */
 
 
 	private void FlipDirection()
