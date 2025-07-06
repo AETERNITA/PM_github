@@ -941,6 +941,21 @@ position = Vector2(343.625, 233)
 scale = Vector2(0.266375, 0.302)
 texture = ExtResource("29_qihwy")
 
+[node name="Controls" type="Label" parent="ui layer/overlay"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Controls:
+W, stick up: (double) jump
+S, stick down: dash downwards (deals damage)
+left shift, L3: dash in direction of movement
+right click, R1, R2: shoot a portal
+left click, L1, L2: Melee Attack
+F, Triangle (Playstation Controller): use first Item
+
+AD, left stick: left and right movement
+mouse, right stick: aim for portalgun and attack"
+
 [node name="temp_enemy" parent="." instance=ExtResource("26_xqbpv")]
 position = Vector2(-483, -44)
 

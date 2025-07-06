@@ -226,6 +226,7 @@ public partial class V2Overlay : Control
         }
         
         ResumeButton.Visible = escape_menu_active;
+        GetNode<Label>("Controls").Visible = escape_menu_active;
 
         player.SetEscMenuModulate(escape_menu_active);
 
