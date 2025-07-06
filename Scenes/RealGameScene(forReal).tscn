@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=85 format=4 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://d4lhgqq1hpf2p" path="res://Art/doomscroll logo v2.png" id="29_qihwy"]
 [ext_resource type="PackedScene" uid="uid://blnextd451t1h" path="res://Scenes/Interactables/treasure.tscn" id="32_deat7"]
 [ext_resource type="PackedScene" uid="uid://k15e77q8bb2x" path="res://Scenes/Enemies/ExplosiveEnemy.tscn" id="33_m4ace"]
+[ext_resource type="PackedScene" uid="uid://j8ke3w3vti84" path="res://Scenes/Enemies/wizardInsect_Explosive.tscn" id="34_0kq45"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcj5y"]
 size = Vector2(3979.84, 577.47)
@@ -954,6 +955,9 @@ position = Vector2(-5342, -892)
 
 [node name="Enemy2" parent="." instance=ExtResource("33_m4ace")]
 position = Vector2(-3233, -642)
+
+[node name="wizard" parent="." instance=ExtResource("34_0kq45")]
+position = Vector2(-4342, -42)
 
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
