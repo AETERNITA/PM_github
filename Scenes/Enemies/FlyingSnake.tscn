@@ -20,8 +20,8 @@ collision_mask = 33554433
 LeadingSegment = NodePath("../FlyingSnakeSegment0")
 
 [node name="FlyingSnakeFolowingSegment2" parent="." node_paths=PackedStringArray("LeadingSegment") instance=ExtResource("2_2crrk")]
-position = Vector2(-57, 4)
-collision_layer = 1024
+position = Vector2(-62.1911, 1.41343)
+collision_layer = 0
 collision_mask = 257
 LeadingSegment = NodePath("../FlyingSnakeFolowingSegment")
 

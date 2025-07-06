@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dssp4aip2fjud"]
+[gd_scene load_steps=11 format=3 uid="uid://dssp4aip2fjud"]
 
-[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="1_p5l27"]
+[ext_resource type="Shader" uid="uid://c0udu7hieru2a" path="res://shaders/damage_shader.tres" id="1_p5l27"]
 [ext_resource type="Script" uid="uid://bn06jgqvs7iro" path="res://Scripts/Enemies/FlyingSnakeSegment0.cs" id="2_ji1gf"]
-[ext_resource type="Texture2D" uid="uid://dqjjeoeh0ct41" path="res://Art/snake1.png" id="3_u0xik"]
+[ext_resource type="Texture2D" uid="uid://myutq4l2rk7y" path="res://Art/snake1.png" id="3_u0xik"]
+[ext_resource type="Texture2D" uid="uid://s1a5q0a48oro" path="res://Art/Enemies/snakesegment.png" id="4_tiruu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6do27"]
 shader = ExtResource("1_p5l27")
@@ -42,12 +43,6 @@ scale = Vector2(0.253751, 0.202896)
 shape = SubResource("CircleShape2D_rvmyp")
 debug_color = Color(0.88814, 0.267986, 0.503381, 0.419608)
 
-[node name="Segment 0" type="Sprite2D" parent="."]
-use_parent_material = true
-position = Vector2(-6, -3)
-scale = Vector2(0.101156, 0.101155)
-texture = ExtResource("3_u0xik")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_u0xik")
@@ -67,6 +62,18 @@ position = Vector2(30, -1)
 scale = Vector2(0.997539, 0.159999)
 shape = SubResource("RectangleShape2D_2hac7")
 debug_color = Color(0.138424, 0.63254, 0.384665, 0.42)
+
+[node name="Segment 0" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-6.85453e-07, 8.34465e-07)
+rotation = 0.218166
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_tiruu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Segment 0"]
+position = Vector2(-26.6667, 33.3333)
+scale = Vector2(0.202219, 0.203983)
+texture = ExtResource("3_u0xik")
 
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="damage_area" to="." method="_on_damage_area_body_exited"]
