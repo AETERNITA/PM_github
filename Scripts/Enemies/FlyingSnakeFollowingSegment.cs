@@ -25,9 +25,29 @@ public partial class FlyingSnakeFollowingSegment : FlyingSnakeSegment
 			GlobalPosition = LeadingSegment.GlobalPosition - DistanceBetween;
 		} */
 		Vector2 DirectionToLeader = LeadingSegment.GlobalPosition - GlobalPosition;
-		DirectionToLeader = DirectionToLeader.Normalized();
-		Velocity = DirectionToLeader * 900f;
-		MoveAndSlide();
+		if (DirectionToLeader.Length() > 50)
+		{
+			DirectionToLeader = DirectionToLeader.Normalized();
+			Velocity = DirectionToLeader * 200f;
+			MoveAndSlide();
+		}
+		else
+		{
+			if (DirectionToLeader.Length() > 30)
+			{
+				DirectionToLeader = DirectionToLeader.Normalized();
+				Velocity = DirectionToLeader * 0f;
+				MoveAndSlide();
+			}
+			else
+			{
+				DirectionToLeader = DirectionToLeader.Normalized();
+				Velocity = DirectionToLeader * 0f;
+				MoveAndSlide();
+			}
+			
+		}
+		
 	}
 
 	//disabled to make damage independent from chain lenght

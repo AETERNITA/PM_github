@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8glbgbvnh7mj"]
 
 [ext_resource type="Script" uid="uid://d4mjva6cu746m" path="res://Scripts/Enemies/FlyingSnakeFollowingSegment.cs" id="1_xm44f"]
-[ext_resource type="Texture2D" uid="uid://dlfwy1oejoic7" path="res://Art/snake2.png" id="2_xm44f"]
+[ext_resource type="Texture2D" uid="uid://s1a5q0a48oro" path="res://Art/Enemies/snakesegment.png" id="2_xm44f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ikv2w"]
 
@@ -9,11 +9,10 @@
 script = ExtResource("1_xm44f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(19, -16)
 rotation = -0.00535482
-scale = Vector2(0.0569016, 0.0569016)
+scale = Vector2(0.295827, 0.298613)
 texture = ExtResource("2_xm44f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.5, 1.5)
+scale = Vector2(0.25, 0.25)
 shape = SubResource("CircleShape2D_ikv2w")
