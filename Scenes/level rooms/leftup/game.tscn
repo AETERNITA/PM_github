@@ -25,6 +25,7 @@ polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 [node name="Game" instance=ExtResource("1_v28ke")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1" groups=["World"]]
+visible = false
 position = Vector2(-3065, -392)
 scale = Vector2(0.16, 0.16)
 
@@ -38,6 +39,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." index="2" groups=["World"]]
+visible = false
 position = Vector2(-2402, -472)
 scale = Vector2(0.16, 0.16)
 
@@ -54,6 +56,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." index="3" groups=["World"]]
+visible = false
 position = Vector2(-1909, -664)
 scale = Vector2(0.16, 0.16)
 
@@ -67,6 +70,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="." index="4" groups=["World"]]
+visible = false
 position = Vector2(-1246, -744)
 scale = Vector2(0.16, 0.16)
 
@@ -83,6 +87,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="." index="5" groups=["World"]]
+visible = false
 position = Vector2(-980, -970)
 scale = Vector2(0.16, 0.16)
 
@@ -96,6 +101,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="." index="6" groups=["World"]]
+visible = false
 position = Vector2(-317, -1050)
 scale = Vector2(0.16, 0.16)
 
@@ -112,6 +118,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="." index="7" groups=["World"]]
+visible = false
 position = Vector2(-2176, -1426)
 scale = Vector2(0.16, 0.16)
 
@@ -125,6 +132,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="." index="8" groups=["World"]]
+visible = false
 position = Vector2(-1513, -1306)
 scale = Vector2(0.16, 0.16)
 
@@ -141,6 +149,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="." index="9" groups=["World"]]
+visible = false
 position = Vector2(-3471, -1721)
 scale = Vector2(0.16, 0.16)
 
@@ -154,6 +163,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="." index="10" groups=["World"]]
+visible = false
 position = Vector2(-2808, -1601)
 scale = Vector2(0.16, 0.16)
 
@@ -170,6 +180,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
 [node name="StaticBody2D15" type="StaticBody2D" parent="." index="11" groups=["World"]]
+visible = false
 position = Vector2(-980, -2914)
 scale = Vector2(0.16, 0.16)
 
@@ -183,6 +194,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D16" type="StaticBody2D" parent="." index="12" groups=["World"]]
+visible = false
 position = Vector2(-2176, -3370)
 scale = Vector2(0.16, 0.16)
 
@@ -196,6 +208,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D17" type="StaticBody2D" parent="." index="13" groups=["World"]]
+visible = false
 position = Vector2(-1331, -3250)
 scale = Vector2(0.16, 0.16)
 
@@ -212,6 +225,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
 [node name="StaticBody2D18" type="StaticBody2D" parent="." index="14" groups=["World"]]
+visible = false
 position = Vector2(-524, -3813)
 scale = Vector2(0.16, 0.16)
 
@@ -225,6 +239,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D19" type="StaticBody2D" parent="." index="15" groups=["World"]]
+visible = false
 position = Vector2(-1092, -3579)
 scale = Vector2(0.16, 0.16)
 
@@ -241,6 +256,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
 [node name="StaticBody2D11" type="StaticBody2D" parent="." index="16" groups=["World"]]
+visible = false
 position = Vector2(-2387, -2049)
 scale = Vector2(0.16, 0.16)
 
@@ -254,6 +270,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D12" type="StaticBody2D" parent="." index="17" groups=["World"]]
+visible = false
 position = Vector2(-1724, -2213)
 scale = Vector2(0.16, 0.16)
 
@@ -270,6 +287,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_p1fmt")
 
 [node name="StaticBody2D13" type="StaticBody2D" parent="." index="18" groups=["World"]]
+visible = false
 position = Vector2(-1186, -2455)
 scale = Vector2(0.16, 0.16)
 
@@ -283,6 +301,7 @@ shape = SubResource("RectangleShape2D_gbbfg")
 occluder = SubResource("OccluderPolygon2D_cabw7")
 
 [node name="StaticBody2D14" type="StaticBody2D" parent="." index="19" groups=["World"]]
+visible = false
 position = Vector2(-523, -2619)
 scale = Vector2(0.16, 0.16)
 
