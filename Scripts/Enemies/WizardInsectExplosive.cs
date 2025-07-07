@@ -216,6 +216,7 @@ public partial class WizardInsectExplosive : GenericCharacterClass
 	private async void Explosion()
 	{
 		GetNode<AudioStreamPlayer>("Explosion").Play();
+		GetNode<GpuParticles2D>("ExplosionParticles").Restart();
 		for (int i = 0; i < victims_Explosion.Count; i++)
 		{
 			victims_Explosion[i].take_damage(40);

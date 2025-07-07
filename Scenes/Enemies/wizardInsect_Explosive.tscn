@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://j8ke3w3vti84"]
+[gd_scene load_steps=18 format=3 uid="uid://j8ke3w3vti84"]
 
-[ext_resource type="Shader" uid="uid://c5f1wtpoh3gfq" path="res://shaders/damage_shader.tres" id="1_khmda"]
+[ext_resource type="Shader" uid="uid://cg6l87pr6h5s0" path="res://shaders/damage_shader.tres" id="1_khmda"]
 [ext_resource type="Script" uid="uid://bwj6vo75vnd4a" path="res://Scripts/Enemies/WizardInsectExplosive.cs" id="2_khmda"]
 [ext_resource type="Texture2D" uid="uid://cybslg0u5rlgi" path="res://Art/wizard.png" id="3_drk42"]
 [ext_resource type="SpriteFrames" uid="uid://jujl2lh7wri2" path="res://Scenes/Enemies/wizardInsect.tres" id="3_gn140"]
@@ -32,6 +32,30 @@ radius = 100.108
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khmda"]
 radius = 6.40488
+
+[sub_resource type="Curve" id="Curve_gn140"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.19, 0.864078), 0.0, 0.0, 0, 0, Vector2(0.68, 0.00970876), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_813e1"]
+curve = SubResource("Curve_gn140")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l4dgb"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(100, 100, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 211.66
+initial_velocity_max = 211.66
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_813e1")
+color = Color(1, 0.803922, 0, 1)
 
 [node name="wizard" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_7kucs")
@@ -111,6 +135,15 @@ shape = SubResource("CircleShape2D_khmda")
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_drk42")
 volume_db = 20.0
+
+[node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+position = Vector2(0, 27)
+emitting = false
+amount = 100
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_l4dgb")
 
 [connection signal="body_entered" from="wall_box" to="." method="_on_wall_hit"]
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
