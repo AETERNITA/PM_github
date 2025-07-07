@@ -27,7 +27,7 @@ public partial class WizardInsectExplosive : GenericCharacterClass
 	/* 	private RayCast2D _wallRay;
 				private RayCast2D _groundRay; */
 
-	private Sprite2D _sprite;
+	private AnimatedSprite2D _sprite;
 
 	private bool damaging = false;
 
@@ -37,7 +37,7 @@ public partial class WizardInsectExplosive : GenericCharacterClass
 	{
 		GetEnemyAudioNodes();
 		//_groundRay = GetNode<RayCast2D>("GroundRay");
-		_sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
+		_sprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
 
 		var originalMaterial = Material;
 		var uniqueMaterial = (Material)originalMaterial.Duplicate();
@@ -221,7 +221,7 @@ public partial class WizardInsectExplosive : GenericCharacterClass
 			victims_Explosion[i].take_damage(40);
 		}
 		_sprite.Visible = false;
-		GetNode<Sprite2D>("Sprite2D/Sprite2D").Visible = false;
+		//GetNode<Sprite2D>("Sprite2D/Sprite2D").Visible = false;
 		await ToSignal(GetTree().CreateTimer(0.3), SceneTreeTimer.SignalName.Timeout);
 		QueueFree();
 	}

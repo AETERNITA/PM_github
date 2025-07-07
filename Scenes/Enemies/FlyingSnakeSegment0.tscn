@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://dssp4aip2fjud"]
 
-[ext_resource type="Shader" uid="uid://by4v7eabfyk7o" path="res://shaders/damage_shader.tres" id="1_p5l27"]
+[ext_resource type="Shader" uid="uid://c5f1wtpoh3gfq" path="res://shaders/damage_shader.tres" id="1_p5l27"]
 [ext_resource type="Script" uid="uid://bn06jgqvs7iro" path="res://Scripts/Enemies/FlyingSnakeSegment0.cs" id="2_ji1gf"]
-[ext_resource type="Texture2D" uid="uid://dqjjeoeh0ct41" path="res://Art/snake1.png" id="3_u0xik"]
-[ext_resource type="Texture2D" uid="uid://ck1cclsr71vst" path="res://Art/Enemies/snakesegment.png" id="4_tiruu"]
+[ext_resource type="Texture2D" uid="uid://myutq4l2rk7y" path="res://Art/snake1.png" id="3_u0xik"]
+[ext_resource type="Texture2D" uid="uid://s1a5q0a48oro" path="res://Art/Enemies/snakesegment.png" id="4_tiruu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6do27"]
 shader = ExtResource("1_p5l27")
