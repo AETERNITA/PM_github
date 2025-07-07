@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://b8qt2qtvfxrjn"]
+[gd_scene load_steps=78 format=3 uid="uid://b8qt2qtvfxrjn"]
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
@@ -129,14 +129,14 @@ height = 654.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_x3wgy"]
 radius = 83.1062
 
-[sub_resource type="Curve" id="Curve_r7t2e"]
+[sub_resource type="Curve" id="Curve_c1k8q"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.96, 0.941748), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_nmr2m"]
-curve = SubResource("Curve_r7t2e")
+[sub_resource type="CurveTexture" id="CurveTexture_e6mvm"]
+curve = SubResource("Curve_c1k8q")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ax3m3"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_57lvd"]
 particle_flag_disable_z = true
 emission_shape_scale = Vector3(50, 30, 1)
 emission_shape = 1
@@ -150,7 +150,7 @@ radial_accel_min = 100.0
 radial_accel_max = 100.0
 scale_min = 5.0
 scale_max = 5.0
-scale_curve = SubResource("CurveTexture_nmr2m")
+scale_curve = SubResource("CurveTexture_e6mvm")
 color = Color(1, 0.803922, 0, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_e6mvm"]
@@ -224,6 +224,30 @@ scale_min = 5.0
 scale_max = 5.0
 scale_curve = SubResource("CurveTexture_7ldla")
 color = Color(1, 0.431373, 0.113725, 1)
+
+[sub_resource type="Curve" id="Curve_r7t2e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.96, 0.941748), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c1k8q"]
+curve = SubResource("Curve_r7t2e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ax3m3"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(50, 30, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 7.691
+flatness = 1.0
+initial_velocity_min = 211.66
+initial_velocity_max = 211.66
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 100.0
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_c1k8q")
+color = Color(1, 0.803922, 0, 1)
 
 [sub_resource type="Curve" id="Curve_7ldla"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.345277, 0.601725), 0.0, 0.0, 0, 0, Vector2(0.584691, 0.157049), 0.0, 0.0, 0, 0, Vector2(0.82899, 0.0603808), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -313,7 +337,7 @@ one_shot = true
 speed_scale = 5.78
 explosiveness = 0.55
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_ax3m3")
+process_material = SubResource("ParticleProcessMaterial_57lvd")
 
 [node name="Move" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_e6mvm")
