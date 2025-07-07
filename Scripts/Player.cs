@@ -881,6 +881,9 @@ public partial class Player : GenericCharacterClass
 	private void LaserschwertHit()
 	{
 		Print("LaserschwertHit");
+		GetNode<AudioStreamPlayer>("MeleeAttack").Play();
+		GetNode<AudioStreamPlayer>("MeleeAttack2").Play();
+		GetNode<GpuParticles2D>("gunPivot/gunSprite/gun particles").Restart();
 		for (int i = 0; i < laserschwert_area.Count; i++)
 		{
 			Print("damage to:" + laserschwert_area[i]);

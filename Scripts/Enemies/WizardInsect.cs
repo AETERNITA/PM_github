@@ -23,7 +23,7 @@ public partial class WizardInsect : GenericCharacterClass
 	/* 	private RayCast2D _wallRay;
 				private RayCast2D _groundRay; */
 
-	private Sprite2D _sprite;
+	private AnimatedSprite2D _sprite;
 
 	private bool damaging = false;
 
@@ -33,7 +33,7 @@ public partial class WizardInsect : GenericCharacterClass
 	{
 		GetEnemyAudioNodes();
 		//_groundRay = GetNode<RayCast2D>("GroundRay");
-		_sprite = GetNodeOrNull<Sprite2D>("Sprite2D");
+		_sprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
 
 		var originalMaterial = Material;
 		var uniqueMaterial = (Material)originalMaterial.Duplicate();
