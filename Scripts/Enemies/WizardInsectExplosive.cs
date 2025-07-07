@@ -43,6 +43,7 @@ public partial class WizardInsectExplosive : GenericCharacterClass
 		var uniqueMaterial = (Material)originalMaterial.Duplicate();
 		Material = uniqueMaterial;
 		timeuntilattack = attacktime;
+		_sprite.Stop();
 	}
 
 
@@ -86,6 +87,10 @@ public partial class WizardInsectExplosive : GenericCharacterClass
 		deal_damage();
 
 		timeuntilattack -= delta;
+		if (timeuntilattack <= 1 && _sprite.IsPlaying() == false)
+		{
+			_sprite.Play();
+		}
 		if (timeuntilattack <= 0)
 		{
 			timeuntilattack = attacktime;
@@ -198,6 +203,7 @@ public partial class WizardInsectExplosive : GenericCharacterClass
 		damaging = false;
 		GetNode<Node2D>("damage_area").GlobalPosition = GetNode<Player>("/root/Game/%Player").GlobalPosition;
 		await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
+		_sprite.Stop();
 		damaging = true;
 	}
 	

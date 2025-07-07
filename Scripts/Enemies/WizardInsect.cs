@@ -34,6 +34,7 @@ public partial class WizardInsect : GenericCharacterClass
 		GetEnemyAudioNodes();
 		//_groundRay = GetNode<RayCast2D>("GroundRay");
 		_sprite = GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
+		_sprite.Stop();
 
 		var originalMaterial = Material;
 		var uniqueMaterial = (Material)originalMaterial.Duplicate();
@@ -82,15 +83,19 @@ public partial class WizardInsect : GenericCharacterClass
 		deal_damage();
 
 		timeuntilattack -= delta;
-		if (timeuntilattack <= 0)
+		if (timeuntilattack <= 1 && _sprite.IsPlaying() == false)
 		{
-			timeuntilattack = attacktime;
-			if (Math.Abs(GetNode<Player>("/root/Game/%Player").GlobalPosition.X - this.GlobalPosition.X) < 1000 && Math.Abs(GetNode<Player>("/root/Game/%Player").GlobalPosition.Y - this.GlobalPosition.Y) < 500)
-			{
-				attack();
-			}
-			
+			_sprite.Play();
 		}
+		if (timeuntilattack <= 0)
+			{
+				timeuntilattack = attacktime;
+				if (Math.Abs(GetNode<Player>("/root/Game/%Player").GlobalPosition.X - this.GlobalPosition.X) < 1000 && Math.Abs(GetNode<Player>("/root/Game/%Player").GlobalPosition.Y - this.GlobalPosition.Y) < 500)
+				{
+					attack();
+				}
+
+			}
 
 
 	}
@@ -181,6 +186,7 @@ public partial class WizardInsect : GenericCharacterClass
 		damaging = false;
 		GetNode<Node2D>("damage_area").GlobalPosition = GetNode<Player>("/root/Game/%Player").GlobalPosition;
 		await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
+		_sprite.Stop();
 		damaging = true;
 	}
 	

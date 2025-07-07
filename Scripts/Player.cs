@@ -59,6 +59,7 @@ public partial class Player : GenericCharacterClass
 	private float minSpeed = 500.0f;
 	public float JumpVelocity = -800.0f;
 	//private float dashTime = 0f;
+	private int DashCounter = 0;
 	private int jumpCount = 0;
 	private double jumpTimer = 0.3;
 	private bool jumpActive = false;
@@ -179,10 +180,11 @@ public partial class Player : GenericCharacterClass
 		direction = Input.GetVector("a", "d", "ui_up", "ui_down");
 
 		// if alt + a or d --> dash
-		if (Input.IsActionJustPressed("dash") && direction.X != 0 && !isDashing && canDash)
+		if (Input.IsActionJustPressed("dash") && direction.X != 0 && !isDashing && canDash && DashCounter <= 2)
 		{
 			//Print("dash active");
 			StartDash();
+			DashCounter++;
 			return;
 		}
 
@@ -200,6 +202,7 @@ public partial class Player : GenericCharacterClass
 		else
 		{
 			jumpCount = 0;
+			DashCounter = 0;
 			velocity.Y = -2; // Small downward force to prevent jittering
 		}
 
