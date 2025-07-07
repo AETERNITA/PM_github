@@ -67,8 +67,7 @@ script = ExtResource("2_khmda")
 use_parent_material = true
 scale = Vector2(0.266838, 0.266838)
 sprite_frames = ExtResource("3_gn140")
-autoplay = "default"
-frame_progress = 0.483283
+frame_progress = 0.205919
 
 [node name="Sprite2D2" type="Sprite2D" parent="AnimatedSprite2D"]
 use_parent_material = true
