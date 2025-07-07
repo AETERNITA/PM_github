@@ -56,7 +56,7 @@ public partial class Player : GenericCharacterClass
 	public bool escape_menu_active = false;
 
 	public float Speed = 600.0f;
-	private float minSpeed = 590.0f;
+	private float minSpeed = 500.0f;
 	public float JumpVelocity = -800.0f;
 	//private float dashTime = 0f;
 	private int jumpCount = 0;
