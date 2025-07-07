@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://j8ke3w3vti84"]
+[gd_scene load_steps=15 format=3 uid="uid://j8ke3w3vti84"]
 
 [ext_resource type="Shader" uid="uid://by4v7eabfyk7o" path="res://shaders/damage_shader.tres" id="1_khmda"]
 [ext_resource type="Script" uid="uid://bwj6vo75vnd4a" path="res://Scripts/Enemies/WizardInsectExplosive.cs" id="2_khmda"]
 [ext_resource type="Texture2D" uid="uid://chri6mlrbnlvy" path="res://Art/wizard.png" id="3_drk42"]
+[ext_resource type="SpriteFrames" uid="uid://jujl2lh7wri2" path="res://Scenes/Enemies/wizardInsect.tres" id="3_gn140"]
 [ext_resource type="Texture2D" uid="uid://b61eqj5u4k621" path="res://Art/bomb.png" id="4_gn140"]
 [ext_resource type="Texture2D" uid="uid://do8ednak5p5ho" path="res://Art/wizard insect.png" id="5_813e1"]
 [ext_resource type="AudioStream" uid="uid://cu2jaweqxc8x3" path="res://Audio/Shotgun_BenelliM3_Shoot_005.wav" id="6_drk42"]
@@ -30,12 +31,19 @@ size = Vector2(29.75, 217)
 radius = 100.108
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_khmda"]
+radius = 6.40488
 
 [node name="wizard" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_7kucs")
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("2_khmda")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.266838, 0.266838)
+sprite_frames = ExtResource("3_gn140")
+autoplay = "default"
+frame_progress = 0.483283
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(11.5, 0)
@@ -53,17 +61,18 @@ texture = SubResource("GradientTexture2D_52xpa")
 [node name="GroundRay" type="RayCast2D" parent="."]
 target_position = Vector2(100, 108)
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-6.99994, 48)
+scale = Vector2(0.136603, 0.128451)
+texture = ExtResource("4_gn140")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 use_parent_material = true
 position = Vector2(36, -2)
 scale = Vector2(0.2527, 0.23762)
 texture = ExtResource("3_drk42")
-
-[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
-use_parent_material = true
-position = Vector2(-170.162, 210.42)
-scale = Vector2(0.755386, 0.755386)
-texture = ExtResource("4_gn140")
 
 [node name="wall_box" type="Area2D" parent="."]
 
@@ -95,7 +104,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
-scale = Vector2(40, 20)
+scale = Vector2(22.8827, 21.4084)
 shape = SubResource("CircleShape2D_khmda")
 
 [node name="Explosion" type="AudioStreamPlayer" parent="."]
