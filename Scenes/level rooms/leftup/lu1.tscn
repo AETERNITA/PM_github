@@ -1,177 +1,52 @@
-[gd_scene load_steps=14 format=3 uid="uid://rh2tegpkugba"]
+[gd_scene load_steps=8 format=4 uid="uid://rh2tegpkugba"]
 
 [ext_resource type="PackedScene" uid="uid://bqvy0u2i1ce53" path="res://Scenes/master_roooms/room_leftup.tscn" id="1_jfgg3"]
-[ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="2_gojst"]
-[ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="3_1vjnk"]
 [ext_resource type="PackedScene" uid="uid://cj6b4eob6gi5j" path="res://Scenes/Enemies/Enemy.tscn" id="4_hvb5r"]
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="5_n0sfk"]
 [ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="6_w55cb"]
 [ext_resource type="PackedScene" uid="uid://bom3ul8xliuam" path="res://Scenes/Interactables/jumpboost.tscn" id="7_ojyse"]
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="7_w5l7d"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="8_oqfox"]
-[ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="9_gojst"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbbfg"]
-size = Vector2(3987.5, 600)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cabw7"]
-polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u58t2"]
-size = Vector2(2006.25, 312.5)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_p1fmt"]
-polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 
 [node name="Game" instance=ExtResource("1_jfgg3")]
 
-[node name="StaticBody2D7" type="StaticBody2D" parent="." index="1" groups=["World"]]
-position = Vector2(-466, -517)
-scale = Vector2(0.16, 0.16)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D7" index="0"]
-texture = ExtResource("2_gojst")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7" index="1"]
-shape = SubResource("RectangleShape2D_gbbfg")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D7" index="2"]
-occluder = SubResource("OccluderPolygon2D_cabw7")
-
-[node name="StaticBody2D9" type="StaticBody2D" parent="." index="2" groups=["World"]]
-position = Vector2(-2674, -1481)
-scale = Vector2(0.759995, 0.16)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D9" index="0"]
-texture = ExtResource("2_gojst")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9" index="1"]
-shape = SubResource("RectangleShape2D_gbbfg")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D9" index="2"]
-occluder = SubResource("OccluderPolygon2D_cabw7")
-
-[node name="StaticBody2D20" type="StaticBody2D" parent="." index="3" groups=["World"]]
-position = Vector2(-1672, -2464)
-scale = Vector2(0.759995, 0.16)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D20" index="0"]
-texture = ExtResource("2_gojst")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D20" index="1"]
-shape = SubResource("RectangleShape2D_gbbfg")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D20" index="2"]
-occluder = SubResource("OccluderPolygon2D_cabw7")
-
-[node name="StaticBody2D21" type="StaticBody2D" parent="." index="4" groups=["World"]]
-position = Vector2(-2655, -3769)
-scale = Vector2(0.759995, 0.16)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D21" index="0"]
-texture = ExtResource("2_gojst")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D21" index="1"]
-shape = SubResource("RectangleShape2D_gbbfg")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D21" index="2"]
-occluder = SubResource("OccluderPolygon2D_cabw7")
-
-[node name="StaticBody2D11" type="StaticBody2D" parent="." index="5" groups=["World"]]
-position = Vector2(-3877, -3033)
-scale = Vector2(0.16, 0.16)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D11" index="0"]
-texture = ExtResource("2_gojst")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D11" index="1"]
-shape = SubResource("RectangleShape2D_gbbfg")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D11" index="2"]
-occluder = SubResource("OccluderPolygon2D_cabw7")
-
-[node name="StaticBody2D12" type="StaticBody2D" parent="." index="6" groups=["World"]]
-position = Vector2(-4006, -1886)
-scale = Vector2(0.16, 0.16)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D12" index="0"]
-scale = Vector2(0.500008, 0.500008)
-texture = ExtResource("3_1vjnk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D12" index="1"]
-position = Vector2(-3.125, 0)
-shape = SubResource("RectangleShape2D_u58t2")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D12" index="2"]
-scale = Vector2(0.500008, 0.500008)
-occluder = SubResource("OccluderPolygon2D_p1fmt")
-
-[node name="StaticBody2D13" type="StaticBody2D" parent="." index="7" groups=["World"]]
-position = Vector2(-328, -2952)
-scale = Vector2(0.16, 0.16)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D13" index="0"]
-scale = Vector2(0.500008, 0.500008)
-texture = ExtResource("3_1vjnk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D13" index="1"]
-position = Vector2(-3.125, 0)
-shape = SubResource("RectangleShape2D_u58t2")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D13" index="2"]
-scale = Vector2(0.500008, 0.500008)
-occluder = SubResource("OccluderPolygon2D_p1fmt")
-
-[node name="StaticBody2D14" type="StaticBody2D" parent="." index="8" groups=["World"]]
-position = Vector2(-3087, -2794)
-scale = Vector2(0.16, 0.16)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D14" index="0"]
-scale = Vector2(0.500008, 0.500008)
-texture = ExtResource("3_1vjnk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D14" index="1"]
-position = Vector2(-3.125, 0)
-shape = SubResource("RectangleShape2D_u58t2")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D14" index="2"]
-scale = Vector2(0.500008, 0.500008)
-occluder = SubResource("OccluderPolygon2D_p1fmt")
-
-[node name="Enemy2" parent="." index="9" instance=ExtResource("4_hvb5r")]
+[node name="Enemy2" parent="." index="1" instance=ExtResource("4_hvb5r")]
 position = Vector2(-3906, -3210)
 
-[node name="Enemy3" parent="." index="10" instance=ExtResource("4_hvb5r")]
+[node name="Enemy3" parent="." index="2" instance=ExtResource("4_hvb5r")]
 position = Vector2(-1968, -3955)
 
-[node name="FlyingSnake2" parent="." index="11" instance=ExtResource("5_n0sfk")]
+[node name="FlyingSnake2" parent="." index="3" instance=ExtResource("5_n0sfk")]
 position = Vector2(-3527, -1995)
 
-[node name="FlyingSnake4" parent="." index="12" instance=ExtResource("5_n0sfk")]
+[node name="FlyingSnake4" parent="." index="4" instance=ExtResource("5_n0sfk")]
 position = Vector2(-2714, -4343)
 
-[node name="FlyingSnake3" parent="." index="13" instance=ExtResource("5_n0sfk")]
+[node name="FlyingSnake3" parent="." index="5" instance=ExtResource("5_n0sfk")]
 position = Vector2(-2141, -3125)
 
-[node name="Item" parent="." index="14" instance=ExtResource("6_w55cb")]
+[node name="Item" parent="." index="6" instance=ExtResource("6_w55cb")]
 position = Vector2(-1495, -1679)
 
-[node name="Item2" parent="." index="15" instance=ExtResource("6_w55cb")]
+[node name="Item2" parent="." index="7" instance=ExtResource("6_w55cb")]
 position = Vector2(-3035, -2947)
 
-[node name="Item3" parent="." index="16" instance=ExtResource("6_w55cb")]
+[node name="Item3" parent="." index="8" instance=ExtResource("6_w55cb")]
 position = Vector2(-3095, -3975)
 
-[node name="Item4" parent="." index="17" instance=ExtResource("7_ojyse")]
+[node name="Item4" parent="." index="9" instance=ExtResource("7_ojyse")]
 position = Vector2(-3159, -2941)
 
-[node name="Item6" parent="." index="18" instance=ExtResource("7_ojyse")]
+[node name="Item6" parent="." index="10" instance=ExtResource("7_ojyse")]
 position = Vector2(-4118, -3210)
 
-[node name="Item5" parent="." index="19" instance=ExtResource("7_ojyse")]
+[node name="Item5" parent="." index="11" instance=ExtResource("7_ojyse")]
 position = Vector2(-462, -721)
 
-[node name="Enemy6" parent="." index="20" instance=ExtResource("8_oqfox")]
+[node name="Enemy6" parent="." index="12" instance=ExtResource("8_oqfox")]
 position = Vector2(-1324, -1660)
 
-[node name="Player" parent="." index="21" instance=ExtResource("9_gojst")]
-position = Vector2(-3944, -532)
+[node name="TileMapLayer2" type="TileMapLayer" parent="." index="13"]
+position = Vector2(1, 0)
+tile_map_data = PackedByteArray("AAD8/qP/AQAuABAAAAAB/6P/AQAuABAAAAAG/6P/AQAuABAAAAAL/6P/AQAuABAAAAAQ/6P/AQAuABAAAAAV/6P/AQAuABAAAAAa/6P/AQAuABAAAAAf/6P/AQAuABAAAAAk/6P/AQAuABAAAAAp/6P/AQAuABAAAAAu/6P/AQAuABAAAAAz/6P/AQAuABAAAAA4/6P/AQAuABAAAAA9/6P/AQAuABAAAABC/6P/AQAuABAAAABH/6P/AQAuABAAAABM/6P/AQAuABAAAABR/6P/AQAuABAAAABW/6P/AQAuABAAAABb/6P/AQAuABAAAABg/6P/AQAuABAAAABl/6P/AQAuABAAAABq/6P/AQAuABAAAABv/6P/AQAuABAAAAB0/6P/AQAuABAAAAB5/6P/AQAuABAAAAB+/6P/AQAuABAAAACD/6P/AQAuABAAAACI/6P/AQAuABAAAACN/6P/AQAuABAAAACS/6P/AQAuABAAAACX/6P/AQAuABAAAACc/6P/AQAuABAAAACh/6P/AQAuABAAAACm/6P/AQAuABAAAACr/6P/AQAuABAAAACw/6P/AQAuABAAAAC1/6P/AQAuABAAAAA7/2X/AQAuABAAAABA/2X/AQAuABAAAABF/2X/AQAuABAAAABK/2X/AQAuABAAAABP/2X/AQAuABAAAABU/2X/AQAuABAAAABZ/2X/AQAuABAAAABe/2X/AQAuABAAAABj/2X/AQAuABAAAABo/2X/AQAuABAAAABt/2X/AQAuABAAAABy/2X/AQAuABAAAAB3/2X/AQAuABAAAAB8/2X/AQAuABAAAACB/2X/AQAuABAAAACG/2X/AQAuABAAAACL/2X/AQAuABAAAACQ/2X/AQAuABAAAACV/2X/AQAuABAAAACa/2X/AQAuABAAAACf/2X/AQAuABAAAACk/2X/AQAuABAAAACp/2X/AQAuABAAAACu/2X/AQAuABAAAACz/2X/AQAuABAAAAC4/2X/AQAuABAAAAC9/2X/AQAuABAAAADC/2X/AQAuABAAAADH/2X/AQAuABAAAADM/2X/AQAuABAAAADR/2X/AQAuABAAAADW/2X/AQAuABAAAADb/2X/AQAuABAAAADg/2X/AQAuABAAAADl/2X/AQAuABAAAADq/2X/AQAuABAAAADv/2X/AQAuABAAAAD0/2X/AQAuABAAAAD+/hT/AQAuABAAAAAD/xT/AQAuABAAAAAI/xT/AQAuABAAAAAN/xT/AQAuABAAAAAS/xT/AQAuABAAAAAX/xT/AQAuABAAAAAc/xT/AQAuABAAAAAh/xT/AQAuABAAAAAm/xT/AQAuABAAAAAr/xT/AQAuABAAAAAw/xT/AQAuABAAAAA1/xT/AQAuABAAAAA6/xT/AQAuABAAAAA//xT/AQAuABAAAABE/xT/AQAuABAAAABJ/xT/AQAuABAAAABO/xT/AQAuABAAAABT/xT/AQAuABAAAABY/xT/AQAuABAAAABd/xT/AQAuABAAAABi/xT/AQAuABAAAABn/xT/AQAuABAAAABs/xT/AQAuABAAAABx/xT/AQAuABAAAAB2/xT/AQAuABAAAAB7/xT/AQAuABAAAACA/xT/AQAuABAAAACF/xT/AQAuABAAAACK/xT/AQAuABAAAACP/xT/AQAuABAAAACU/xT/AQAuABAAAACZ/xT/AQAuABAAAACe/xT/AQAuABAAAACj/xT/AQAuABAAAACo/xT/AQAuABAAAACt/xT/AQAuABAAAACy/xT/AQAuABAAAAC3/xT/AQAuABAAAAD9/kP/AQAvAAMAAAAG/0P/AQAvAAMAAAAP/0P/AQAvAAMAAAAY/0P/AQAvAAMAAADW/+D/AQAvAAMAAADf/+D/AQAvAAMAAADo/+D/AQAvAAMAAADx/+D/AQAvAAMAAADi/0j/AQAtABkAAADo/0j/AQAtABkAAADu/0j/AQAtABkAAAD0/0j/AQAtABkAAAD8/or/AQAtABkAAAAC/4r/AQAtABkAAAAI/4r/AQAtABkAAAAO/4r/AQAtABkAAAA1/1H/AQAtABkAAAA7/1H/AQAtABkAAABB/1H/AQAtABkAAABH/1H/AQAtABkAAAA=")
+tile_set = ExtResource("7_w5l7d")
