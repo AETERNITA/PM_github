@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8glbgbvnh7mj"]
 
 [ext_resource type="Script" uid="uid://d4mjva6cu746m" path="res://Scripts/Enemies/FlyingSnakeFollowingSegment.cs" id="1_xm44f"]
-[ext_resource type="Texture2D" uid="uid://s1a5q0a48oro" path="res://Art/Enemies/snakesegment.png" id="2_xm44f"]
+[ext_resource type="Texture2D" uid="uid://ck1cclsr71vst" path="res://Art/Enemies/snakesegment.png" id="2_xm44f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ikv2w"]
 

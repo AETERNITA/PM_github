@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwiwgqcncmrhi"]
 
 [ext_resource type="Script" uid="uid://brduqvatf4sbl" path="res://Scripts/Healing.cs" id="1_14sl8"]
-[ext_resource type="Texture2D" uid="uid://26b0rxcrsd0t" path="res://Art/wrench.png" id="2_fapc6"]
+[ext_resource type="Texture2D" uid="uid://5kb8kevm7ehi" path="res://Art/heal powerup.png" id="2_14sl8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1up"]
-size = Vector2(24.8249, 68.4821)
+size = Vector2(29.1106, 46.6058)
 
 [sub_resource type="Gradient" id="Gradient_qcu6d"]
 offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
@@ -22,15 +22,15 @@ collision_mask = 2
 script = ExtResource("1_14sl8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.113781, 0.158183)
+position = Vector2(-0.115589, -0.0289981)
 scale = Vector2(0.114583, 0.0609753)
 shape = SubResource("RectangleShape2D_nf1up")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.0284451, 0)
+position = Vector2(-0.198153, -0.077328)
 rotation = 3.14159
-scale = Vector2(0.0398611, 0.0199066)
-texture = ExtResource("2_fapc6")
+scale = Vector2(0.00463982, 0.00295491)
+texture = ExtResource("2_14sl8")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 shadow_enabled = true

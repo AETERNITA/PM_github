@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://j8ke3w3vti84"]
 
-[ext_resource type="Shader" uid="uid://c0udu7hieru2a" path="res://shaders/damage_shader.tres" id="1_khmda"]
+[ext_resource type="Shader" uid="uid://by4v7eabfyk7o" path="res://shaders/damage_shader.tres" id="1_khmda"]
 [ext_resource type="Script" uid="uid://bwj6vo75vnd4a" path="res://Scripts/Enemies/WizardInsectExplosive.cs" id="2_khmda"]
-[ext_resource type="Texture2D" uid="uid://cybslg0u5rlgi" path="res://Art/wizard.png" id="3_drk42"]
-[ext_resource type="Texture2D" uid="uid://dsjiujq25xn1u" path="res://Art/bomb.png" id="4_gn140"]
-[ext_resource type="Texture2D" uid="uid://c6i1ha761ldfh" path="res://Art/wizard insect.png" id="5_813e1"]
+[ext_resource type="Texture2D" uid="uid://chri6mlrbnlvy" path="res://Art/wizard.png" id="3_drk42"]
+[ext_resource type="Texture2D" uid="uid://b61eqj5u4k621" path="res://Art/bomb.png" id="4_gn140"]
+[ext_resource type="Texture2D" uid="uid://do8ednak5p5ho" path="res://Art/wizard insect.png" id="5_813e1"]
 [ext_resource type="AudioStream" uid="uid://cu2jaweqxc8x3" path="res://Audio/Shotgun_BenelliM3_Shoot_005.wav" id="6_drk42"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7kucs"]
