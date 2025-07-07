@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://jujl2lh7wri2"]
+
+[ext_resource type="Texture2D" uid="uid://eme6s4tdcb2v" path="res://Art/Enemies/wizard idle.png" id="1_anyc5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8hnf"]
+atlas = ExtResource("1_anyc5")
+region = Rect2(0, 0, 1289, 1010)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0trra"]
+atlas = ExtResource("1_anyc5")
+region = Rect2(1289, 0, 1289, 1010)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wjfr"]
+atlas = ExtResource("1_anyc5")
+region = Rect2(2578, 0, 1289, 1010)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_l8hnf")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_0trra")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_0wjfr")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_0trra")
+}, {
+"duration": 60.0,
+"texture": SubResource("AtlasTexture_l8hnf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
