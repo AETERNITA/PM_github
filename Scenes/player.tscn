@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dtloyirt8ryrq" path="res://Scripts/Player.cs" id="1_7irut"]
 [ext_resource type="Texture2D" uid="uid://bxfg2g7f2hegv" path="res://Art/Player_idle_animation.png" id="2_54v62"]
-[ext_resource type="Shader" uid="uid://bq1w2ep75km7o" path="res://shaders/damage_shader.tres" id="2_r7t2e"]
+[ext_resource type="Shader" uid="uid://by4v7eabfyk7o" path="res://shaders/damage_shader.tres" id="2_r7t2e"]
 [ext_resource type="Texture2D" uid="uid://dfck8gkf2bqas" path="res://Art/player jump animation.png" id="3_6rnjq"]
 [ext_resource type="AudioStream" uid="uid://bj3caq34uapvl" path="res://Audio/sfx/footsteps/Footstep Robot Large 2_01.wav" id="6_8gxox"]
 [ext_resource type="AudioStream" uid="uid://d3okjdgi3hhw1" path="res://Audio/sfx/footsteps/Footstep Monster Big Distant 1_01.wav" id="6_sweqm"]
-[ext_resource type="Texture2D" uid="uid://bc3yly5s5y8bt" path="res://Art/gun2.png" id="7_8eeqe"]
+[ext_resource type="Texture2D" uid="uid://b8jp08kduilme" path="res://Art/gun2.png" id="7_8eeqe"]
 [ext_resource type="AudioStream" uid="uid://dwuxqhbqgmncq" path="res://Audio/sfx/footsteps/Footstep Robot Large 2_02.wav" id="7_11gg7"]
 [ext_resource type="AudioStream" uid="uid://boo3dmjt2lspu" path="res://Audio/sfx/HEALING SPELL - White Magic Light Throw Whoosh 01    [003701].mp3" id="7_tx1dd"]
 [ext_resource type="AudioStream" uid="uid://cp1r5iyd44gx4" path="res://Audio/sfx/healing/HEALING MAGIC SPELL SEQUENCE - Universal Generic Beam Throw Scrape - 01    [003694].mp3" id="8_gymyn"]
@@ -378,7 +378,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="dashdown_damage_area"]
 position = Vector2(0, 390.5)
-scale = Vector2(24.12, 5.6)
+scale = Vector2(35.44, 14.68)
 shape = SubResource("RectangleShape2D_ph33w")
 debug_color = Color(0.973007, 0.157827, 0.113885, 0.42)
 
