@@ -224,7 +224,7 @@ public partial class V2Overlay : Control
         {
             RestartButton.Visible = escape_menu_active;
         }
-        
+
         ResumeButton.Visible = escape_menu_active;
         GetNode<Label>("Controls").Visible = escape_menu_active;
 
@@ -244,7 +244,7 @@ public partial class V2Overlay : Control
             darken();
         }
 
-        
+
     }
 
     public void _on_master_slider_value_changed(float myFloat)
@@ -270,6 +270,8 @@ public partial class V2Overlay : Control
         UISound.Play();
         GetTree().Paused = false;
         GetNode<Sprite2D>("logo").Visible = false;
+        GetNode<Button>("tutorial").Visible = false;
+        GetNode<Node2D>("/root/Game/%tutorial").QueueFree();
         if (in_start_menu)
         {
             Button start_button = GetNode<Button>("Play_Button");
@@ -296,6 +298,22 @@ public partial class V2Overlay : Control
         await ToSignal(GetTree().CreateTimer(0.3), SceneTreeTimer.SignalName.Timeout);
 
         GetNode<RealGameScene>("/root/Game").reset_level();
+    }
+
+    public void _on_tutorial_button_pressed()
+    {
+        UISound.Play();
+        GetTree().Paused = false;
+        GetNode<Sprite2D>("logo").Visible = false;
+        GetNode<Button>("tutorial").Visible = false;
+        if (in_start_menu)
+        {
+            Button start_button = GetNode<Button>("Play_Button");
+            start_button.Hide();
+            in_start_menu = false;
+        }
+        GetNode<Node2D>("/root/Game/%GeneratedWorld").QueueFree();
+        GetNode<Node>("/root/Game/Interactables").QueueFree();
     }
     
 

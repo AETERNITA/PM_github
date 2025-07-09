@@ -1,27 +1,29 @@
-[gd_scene load_steps=36 format=3 uid="uid://b4aier5ish0bu"]
+[gd_scene load_steps=28 format=3 uid="uid://b4aier5ish0bu"]
 
-[ext_resource type="Script" uid="uid://dftcdxy41b0yj" path="res://Scripts/tutorial.cs" id="1_70gml"]
 [ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="1_on4kn"]
 [ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="2_8va2t"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_70gml"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="3_8va2t"]
 [ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="4_8mnmb"]
 [ext_resource type="Script" uid="uid://7s0ufxj5ol0f" path="res://Scripts/Background.cs" id="5_koko0"]
-[ext_resource type="Script" uid="uid://c3jr1av6ahmj1" path="res://Scripts/Item.cs" id="6_lsb8r"]
-[ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="7_ap3ea"]
-[ext_resource type="Texture2D" uid="uid://26b0rxcrsd0t" path="res://Art/wrench.png" id="8_t6ver"]
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="11_koko0"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="12_lsb8r"]
 [ext_resource type="PackedScene" uid="uid://k15e77q8bb2x" path="res://Scenes/Enemies/ExplosiveEnemy.tscn" id="13_ap3ea"]
 
+[sub_resource type="Theme" id="Theme_on4kn"]
+default_font_size = 50
+
+[sub_resource type="Theme" id="Theme_70gml"]
+default_font_size = 50
+
+[sub_resource type="Theme" id="Theme_8va2t"]
+default_font_size = 50
+
+[sub_resource type="Theme" id="Theme_8mnmb"]
+default_font_size = 50
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhfnd"]
 size = Vector2(4054.17, 415.278)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvjhf"]
-size = Vector2(4008.33, 302.503)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vmw6g"]
-polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4hjyh"]
 size = Vector2(65.1303, 19.7202)
@@ -62,45 +64,21 @@ size = Vector2(3974.98, 587.5)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4ods2"]
 polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8va2t"]
-size = Vector2(24.8249, 68.4821)
-
-[sub_resource type="Gradient" id="Gradient_qcu6d"]
-offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8mnmb"]
-gradient = SubResource("Gradient_qcu6d")
-fill = 1
-fill_from = Vector2(0.49, 0.52)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_koko0"]
-size = Vector2(24.8249, 68.4821)
-
-[sub_resource type="Gradient" id="Gradient_lsb8r"]
-offsets = PackedFloat32Array(0.141104, 0.680982, 0.819018, 0.966258)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.00403396, 0.00403396, 0.00403396, 1, 0.0245399, 0.0245399, 0.0245399, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ap3ea"]
-gradient = SubResource("Gradient_lsb8r")
-fill = 1
-fill_from = Vector2(0.49, 0.52)
-
 [node name="tutorial" type="Node2D"]
 
-[node name="World" type="Node" parent="." groups=["World"]]
-script = ExtResource("1_70gml")
+[node name="World" type="Node2D" parent="." groups=["World"]]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="World"]
 tile_set = ExtResource("2_8va2t")
 
-[node name="Labels" type="Node" parent="World"]
+[node name="Labels" type="Node2D" parent="World"]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="World/Labels"]
-offset_left = -3018.0
-offset_top = -632.0
-offset_right = -2674.0
-offset_bottom = -419.0
+offset_left = -2454.0
+offset_top = -550.0
+offset_right = -439.0
+offset_bottom = 116.0
+theme = SubResource("Theme_on4kn")
 text = "D/A stick left/right: Movement right/left
 Movement:
 W, stick up: jump
@@ -109,17 +87,19 @@ left shift, L3: dash in diresction of movement
 "
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="World/Labels"]
-offset_left = 2007.0
-offset_top = -683.0
-offset_right = 2325.0
-offset_bottom = -455.0
+offset_left = 1434.0
+offset_top = -485.0
+offset_right = 2947.0
+offset_bottom = -151.0
+theme = SubResource("Theme_70gml")
 text = "If you press W or your stick up twice you double jump"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="World/Labels"]
-offset_left = 3301.0
-offset_top = -723.0
-offset_right = 3906.0
-offset_bottom = -491.0
+offset_left = 3269.0
+offset_top = -424.0
+offset_right = 5021.0
+offset_bottom = 487.0
+theme = SubResource("Theme_8va2t")
 text = "There are Two types of items:
 -healing
 -jump boost
@@ -127,10 +107,11 @@ text = "There are Two types of items:
 You can use them with F or Triangle on playstation Controller"
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="World/Labels"]
-offset_left = 5393.0
-offset_top = -681.0
-offset_right = 6142.0
-offset_bottom = -350.0
+offset_left = 5447.0
+offset_top = -848.0
+offset_right = 6785.0
+offset_bottom = 407.0
+theme = SubResource("Theme_8mnmb")
 text = "There are a few types of enemies:
 -flying snake
 -Wizard
@@ -143,7 +124,7 @@ To aim use your mouse or right stick
 
 If you kill an Enemy you get an short boost in damage dealed"
 
-[node name="Walls" type="Node" parent="World" groups=["World"]]
+[node name="Walls" type="Node2D" parent="World" groups=["World"]]
 
 [node name="Wall_Left" type="StaticBody2D" parent="World/Walls" groups=["World"]]
 position = Vector2(10000, -478.757)
@@ -160,22 +141,7 @@ shape = SubResource("RectangleShape2D_bhfnd")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World/Walls/Wall_Left"]
 polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 
-[node name="Wall_Right" type="StaticBody2D" parent="World/Walls" groups=["World"]]
-position = Vector2(-3603, -478.757)
-rotation = 1.5708
-scale = Vector2(0.72, 0.72)
-
-[node name="Sprite2D" type="Sprite2D" parent="World/Walls/Wall_Right"]
-texture = ExtResource("1_on4kn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Walls/Wall_Right"]
-position = Vector2(4.16559, -161.252)
-shape = SubResource("RectangleShape2D_tvjhf")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="World/Walls/Wall_Right"]
-occluder = SubResource("OccluderPolygon2D_vmw6g")
-
-[node name="Ground" type="Node" parent="World" groups=["World"]]
+[node name="Ground" type="Node2D" parent="World" groups=["World"]]
 
 [node name="Ground2" type="StaticBody2D" parent="World/Ground" groups=["World"]]
 position = Vector2(4296, 286.243)
@@ -211,7 +177,7 @@ shape = SubResource("RectangleShape2D_4hjyh")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="World/Ground/Ground1"]
 occluder = SubResource("OccluderPolygon2D_dl7dh")
 
-[node name="Platforms" type="Node" parent="World" groups=["World"]]
+[node name="Platforms" type="Node2D" parent="World" groups=["World"]]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="World/Platforms" groups=["World"]]
 position = Vector2(-2131, -81.757)
@@ -335,6 +301,7 @@ scale = Vector2(0.324499, 1)
 occluder = SubResource("OccluderPolygon2D_5gpbq")
 
 [node name="Background" type="Sprite2D" parent="World"]
+visible = false
 z_index = -1
 z_as_relative = false
 position = Vector2(-2775, -559.757)
@@ -343,6 +310,7 @@ texture = ExtResource("4_8mnmb")
 script = ExtResource("5_koko0")
 
 [node name="Background2" type="Sprite2D" parent="World"]
+visible = false
 z_index = -1
 z_as_relative = false
 position = Vector2(9832.9, -543.364)
@@ -351,62 +319,13 @@ texture = ExtResource("4_8mnmb")
 script = ExtResource("5_koko0")
 
 [node name="Background3" type="Sprite2D" parent="World"]
+visible = false
 z_index = -1
 z_as_relative = false
 position = Vector2(3344.4, -551.364)
 scale = Vector2(1.7308, 1.39406)
 texture = ExtResource("4_8mnmb")
 script = ExtResource("5_koko0")
-
-[node name="Item" type="Area2D" parent="World"]
-position = Vector2(4054.32, -101.119)
-rotation = 3.14159
-scale = Vector2(52.4079, 72.1117)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("6_lsb8r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Item"]
-position = Vector2(-0.113781, 0.158183)
-scale = Vector2(0.114583, 0.0609753)
-shape = SubResource("RectangleShape2D_8va2t")
-
-[node name="Sprite2D" type="Sprite2D" parent="World/Item"]
-position = Vector2(-0.0284451, 0)
-rotation = 3.14159
-scale = Vector2(0.0398611, 0.0199066)
-texture = ExtResource("7_ap3ea")
-
-[node name="PointLight2D" type="PointLight2D" parent="World/Item"]
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 9.3
-texture = SubResource("GradientTexture2D_8mnmb")
-
-[node name="Item2" type="Area2D" parent="World"]
-position = Vector2(4419.16, -101.583)
-rotation = -3.14159
-scale = Vector2(52.4079, 72.1117)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("6_lsb8r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Item2"]
-position = Vector2(-0.113781, 0.0773282)
-scale = Vector2(0.114583, 0.0609753)
-shape = SubResource("RectangleShape2D_koko0")
-
-[node name="Sprite2D" type="Sprite2D" parent="World/Item2"]
-position = Vector2(-0.0284451, 0)
-rotation = 3.14159
-scale = Vector2(0.0398611, 0.0199066)
-texture = ExtResource("8_t6ver")
-
-[node name="PointLight2D" type="PointLight2D" parent="World/Item2"]
-shadow_enabled = true
-shadow_filter = 1
-shadow_filter_smooth = 9.3
-texture = SubResource("GradientTexture2D_ap3ea")
 
 [node name="FlyingSnake" parent="." instance=ExtResource("11_koko0")]
 position = Vector2(7862, -352)

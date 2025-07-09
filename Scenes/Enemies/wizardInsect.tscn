@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bdv23i2f4kqvl"]
 
-[ext_resource type="Shader" uid="uid://cg6l87pr6h5s0" path="res://shaders/damage_shader.tres" id="1_itc1a"]
+[ext_resource type="Shader" uid="uid://du4jb8edaqy8d" path="res://shaders/damage_shader.tres" id="1_itc1a"]
 [ext_resource type="Script" uid="uid://opa3vfsk0fyt" path="res://Scripts/Enemies/WizardInsect.cs" id="2_00aj0"]
 [ext_resource type="Texture2D" uid="uid://cybslg0u5rlgi" path="res://Art/wizard.png" id="3_00aj0"]
 [ext_resource type="SpriteFrames" uid="uid://jujl2lh7wri2" path="res://Scenes/Enemies/wizardInsect.tres" id="3_agoaj"]

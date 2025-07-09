@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=4 uid="uid://ioyfqr7mv56h"]
+[gd_scene load_steps=85 format=4 uid="uid://ioyfqr7mv56h"]
 
 [ext_resource type="Script" uid="uid://dg47e8cwi0wyc" path="res://Scripts/RealGameScene.cs" id="1_07a3i"]
 [ext_resource type="PackedScene" uid="uid://b8qt2qtvfxrjn" path="res://Scenes/player.tscn" id="2_07a3i"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://d03sdahipsbpk" path="res://Audio/sfx/Zombie002_Die_A_001.mp3" id="19_waod3"]
 [ext_resource type="AudioStream" uid="uid://dhtpdvbgh2ge3" path="res://Audio/sfx/hits/BLACK MAGIC SPELL THROW - Dark Scary Fly Swoosh or Zap - 01    [003608].mp3" id="20_4nnjb"]
 [ext_resource type="PackedScene" uid="uid://bvw102bqfjrsl" path="res://Scenes/generated_world.tscn" id="21_waod3"]
+[ext_resource type="PackedScene" uid="uid://b4aier5ish0bu" path="res://Scenes/tutorial.tscn" id="23_0kq45"]
 [ext_resource type="AudioStream" uid="uid://wyiyh5d3bp8i" path="res://Audio/sfx/hits/Impact_Flesh_Gory_Strong_004.mp3" id="24_qp5vb"]
 [ext_resource type="Script" uid="uid://gnla6sdxnvc6" path="res://Scripts/Canvas.cs" id="25_du02u"]
 [ext_resource type="Shader" uid="uid://cvn3hm24mdeba" path="res://shaders/canvas.gdshader" id="26_fes2o"]
@@ -622,6 +623,23 @@ position = Vector2(-2307, -267)
 [node name="Enemy" parent="Interactables" instance=ExtResource("26_xqbpv")]
 position = Vector2(-4057, -875)
 
+[node name="temp_enemy" parent="Interactables" instance=ExtResource("26_xqbpv")]
+position = Vector2(-483, -44)
+
+[node name="Enemy2" parent="Interactables" instance=ExtResource("29_du02u")]
+position = Vector2(-5240, -35)
+
+[node name="Item" parent="Interactables" instance=ExtResource("32_deat7")]
+position = Vector2(-5342, -892)
+rotation = -3.14159
+scale = Vector2(30.2796, 51.7277)
+
+[node name="Enemy3" parent="Interactables" instance=ExtResource("33_m4ace")]
+position = Vector2(-3233, -642)
+
+[node name="wizard" parent="Interactables" instance=ExtResource("34_0kq45")]
+position = Vector2(-4342, -42)
+
 [node name="PortalController" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(-2775, 0.243042)
 script = ExtResource("17_1mxrs")
@@ -653,7 +671,12 @@ light_mask = 3
 color = Color(0.3, 0.3, 0.3, 1)
 
 [node name="GeneratedWorld" parent="." instance=ExtResource("21_waod3")]
+unique_name_in_owner = true
 position = Vector2(0, -3775)
+
+[node name="tutorial" parent="." instance=ExtResource("23_0kq45")]
+unique_name_in_owner = true
+position = Vector2(3858, 27)
 
 [node name="shading layer 1" type="CanvasLayer" parent="."]
 
@@ -956,20 +979,20 @@ F, Triangle (Playstation Controller): use first Item
 AD, left stick: left and right movement
 mouse, right stick: aim for portalgun and attack"
 
-[node name="temp_enemy" parent="." instance=ExtResource("26_xqbpv")]
-position = Vector2(-483, -44)
-
-[node name="Enemy" parent="." instance=ExtResource("29_du02u")]
-position = Vector2(-5240, -35)
-
-[node name="Item" parent="." instance=ExtResource("32_deat7")]
-position = Vector2(-5342, -892)
-
-[node name="Enemy2" parent="." instance=ExtResource("33_m4ace")]
-position = Vector2(-3233, -642)
-
-[node name="wizard" parent="." instance=ExtResource("34_0kq45")]
-position = Vector2(-4342, -42)
+[node name="tutorial" type="Button" parent="ui layer/overlay"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -411.0
+offset_top = -121.0
+offset_right = -317.0
+offset_bottom = -90.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Tutorial"
 
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/HealButton" to="Player" method="_on_heal_button_pressed"]
 [connection signal="pressed" from="ui layer/overlay/gridcontainer/DamageButton" to="Player" method="_on_damage_button_pressed"]
@@ -977,3 +1000,4 @@ position = Vector2(-4342, -42)
 [connection signal="pressed" from="ui layer/overlay/Play_Button" to="ui layer/overlay" method="_on_button_pressed"]
 [connection signal="pressed" from="ui layer/overlay/RestartButton" to="ui layer/overlay" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="ui layer/overlay/ResumeButton" to="ui layer/overlay" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ui layer/overlay/tutorial" to="ui layer/overlay" method="_on_tutorial_button_pressed"]
