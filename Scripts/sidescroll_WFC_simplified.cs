@@ -133,18 +133,23 @@ public partial class sidescroll_WFC_simplified : Node2D
 
         //Add leftright rooms
         RoomsRooms[0].Add("uid://dv3r6iox0xgiu");
+        RoomsRooms[0].Add("uid://cfpdng0bj01la");
 
         //Add leftdown rooms
         RoomsRooms[1].Add("uid://brf7stfy4s4nd");
+        RoomsRooms[1].Add("uid://bfcvxwf4tlv6l");
 
         //Add leftup rooms
         RoomsRooms[2].Add("uid://hbjnuoukj6pt");
+        RoomsRooms[2].Add("uid://rh2tegpkugba");
 
         //Add upright rooms
         RoomsRooms[3].Add("uid://dnwh8jdcb2dvn");
+        RoomsRooms[3].Add("uid://b81u4l1ge1p18");
 
         //Add downright rooms
         RoomsRooms[4].Add("uid://b5kad35bebkb1");
+        RoomsRooms[4].Add("uid://dimew2aifojp2");
 
         //setup_start_area(start_height);
     }
