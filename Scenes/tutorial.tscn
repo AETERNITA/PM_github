@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://b4aier5ish0bu"]
+[gd_scene load_steps=36 format=3 uid="uid://b4aier5ish0bu"]
 
 [ext_resource type="Script" uid="uid://dftcdxy41b0yj" path="res://Scripts/tutorial.cs" id="1_70gml"]
 [ext_resource type="Texture2D" uid="uid://bgmgu1qk0dngu" path="res://Art/Ground red.jpg" id="1_on4kn"]
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="2_8va2t"]
 [ext_resource type="Texture2D" uid="uid://deibt6h0hqyrv" path="res://Art/Ground Blue.jpg" id="2_70gml"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="3_8va2t"]
 [ext_resource type="Texture2D" uid="uid://doejes84npxb7" path="res://Art/bg city game.jpg-autosave.jpg" id="4_8mnmb"]
@@ -9,6 +10,9 @@
 [ext_resource type="Script" uid="uid://c3jr1av6ahmj1" path="res://Scripts/Item.cs" id="6_lsb8r"]
 [ext_resource type="Texture2D" uid="uid://d4nhgvvmpy3nx" path="res://Art/battery.png" id="7_ap3ea"]
 [ext_resource type="Texture2D" uid="uid://26b0rxcrsd0t" path="res://Art/wrench.png" id="8_t6ver"]
+[ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="11_koko0"]
+[ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="12_lsb8r"]
+[ext_resource type="PackedScene" uid="uid://k15e77q8bb2x" path="res://Scenes/Enemies/ExplosiveEnemy.tscn" id="13_ap3ea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhfnd"]
 size = Vector2(4054.17, 415.278)
@@ -87,19 +91,57 @@ fill_from = Vector2(0.49, 0.52)
 [node name="World" type="Node" parent="." groups=["World"]]
 script = ExtResource("1_70gml")
 
+[node name="TileMapLayer" type="TileMapLayer" parent="World"]
+tile_set = ExtResource("2_8va2t")
+
 [node name="Labels" type="Node" parent="World"]
 
-[node name="Label" type="Label" parent="World/Labels"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="RichTextLabel" type="RichTextLabel" parent="World/Labels"]
+offset_left = -3018.0
+offset_top = -632.0
+offset_right = -2674.0
+offset_bottom = -419.0
+text = "D/A stick left/right: Movement right/left
+Movement:
+W, stick up: jump
+S, stick down: dash downwards
+left shift, L3: dash in diresction of movement
+"
 
-[node name="Label2" type="Label" parent="World/Labels"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="RichTextLabel2" type="RichTextLabel" parent="World/Labels"]
+offset_left = 2007.0
+offset_top = -683.0
+offset_right = 2325.0
+offset_bottom = -455.0
+text = "If you press W or your stick up twice you double jump"
 
-[node name="Label3" type="Label" parent="World/Labels"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="RichTextLabel3" type="RichTextLabel" parent="World/Labels"]
+offset_left = 3301.0
+offset_top = -723.0
+offset_right = 3906.0
+offset_bottom = -491.0
+text = "There are Two types of items:
+-healing
+-jump boost
+
+You can use them with F or Triangle on playstation Controller"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="World/Labels"]
+offset_left = 5393.0
+offset_top = -681.0
+offset_right = 6142.0
+offset_bottom = -350.0
+text = "There are a few types of enemies:
+-flying snake
+-Wizard
+-Enemy
+
+Both Wizard and Enemy also have an explosive variant.
+
+You can attack with your left mouse or L1,L2 and shoot a portal with right mouse or R1, R2
+To aim use your mouse or right stick
+
+If you kill an Enemy you get an short boost in damage dealed"
 
 [node name="Walls" type="Node" parent="World" groups=["World"]]
 
@@ -365,3 +407,12 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 9.3
 texture = SubResource("GradientTexture2D_ap3ea")
+
+[node name="FlyingSnake" parent="." instance=ExtResource("11_koko0")]
+position = Vector2(7862, -352)
+
+[node name="wizard" parent="." instance=ExtResource("12_lsb8r")]
+position = Vector2(8763, -36)
+
+[node name="Enemy" parent="." instance=ExtResource("13_ap3ea")]
+position = Vector2(6981, -22)
