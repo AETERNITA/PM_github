@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfcvxwf4tlv6l"]
+[gd_scene load_steps=13 format=4 uid="uid://bfcvxwf4tlv6l"]
 
 [ext_resource type="PackedScene" uid="uid://bu1nylkaaafly" path="res://Scenes/master_roooms/room_leftdown.tscn" id="1_2vc7o"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="2_n867x"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bhqp1vi70xynl" path="res://Scenes/Enemies/FlyingSnake.tscn" id="5_d7qgd"]
 [ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="6_d7qgd"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="7_hqjbm"]
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="8_sxh5u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56ib4"]
 size = Vector2(3987.5, 600)
@@ -23,6 +24,7 @@ polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 [node name="Game" instance=ExtResource("1_2vc7o")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1" groups=["World"]]
+visible = false
 position = Vector2(-3024, -456)
 scale = Vector2(0.16, 0.16)
 
@@ -36,6 +38,7 @@ shape = SubResource("RectangleShape2D_56ib4")
 occluder = SubResource("OccluderPolygon2D_d7qgd")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." index="2" groups=["World"]]
+visible = false
 position = Vector2(-2361, -536)
 scale = Vector2(0.16, 0.16)
 
@@ -52,6 +55,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_sxh5u")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." index="3" groups=["World"]]
+visible = false
 position = Vector2(-1874, -884)
 scale = Vector2(0.16, 0.16)
 
@@ -65,6 +69,7 @@ shape = SubResource("RectangleShape2D_56ib4")
 occluder = SubResource("OccluderPolygon2D_d7qgd")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="." index="4" groups=["World"]]
+visible = false
 position = Vector2(-1211, -964)
 scale = Vector2(0.16, 0.16)
 
@@ -81,6 +86,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_sxh5u")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="." index="5" groups=["World"]]
+visible = false
 position = Vector2(-2388, -1398)
 scale = Vector2(0.16, 0.16)
 
@@ -94,6 +100,7 @@ shape = SubResource("RectangleShape2D_56ib4")
 occluder = SubResource("OccluderPolygon2D_d7qgd")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="." index="6" groups=["World"]]
+visible = false
 position = Vector2(-1725, -1478)
 scale = Vector2(0.16, 0.16)
 
@@ -110,6 +117,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_sxh5u")
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="." index="7" groups=["World"]]
+visible = false
 position = Vector2(-3367, -1747)
 scale = Vector2(0.16, 0.16)
 
@@ -123,6 +131,7 @@ shape = SubResource("RectangleShape2D_56ib4")
 occluder = SubResource("OccluderPolygon2D_d7qgd")
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="." index="8" groups=["World"]]
+visible = false
 position = Vector2(-2704, -1827)
 scale = Vector2(0.16, 0.16)
 
@@ -158,3 +167,7 @@ position = Vector2(-2400, -683)
 
 [node name="Enemy4" parent="." index="15" instance=ExtResource("7_hqjbm")]
 position = Vector2(-1237, -1113)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." index="16"]
+tile_map_data = PackedByteArray("AAAy/+T/AQAtABkAAAA4/+T/AQAtABkAAAA+/+T/AQAtABkAAABD/+T/AQAtABkAAABJ/+T/AQAtABkAAABO/+T/AQAtABkAAABT/+T/AQAtABkAAABk/9//AQAtABkAAABo/9//AQAtABkAAABs/9//AQAtABkAAABv/9//AQAtABkAAABz/9//AQAtABkAAAB5/8j/AQAtABkAAAB+/8j/AQAtABkAAACC/8j/AQAtABkAAACG/8j/AQAtABkAAACL/8j/AQAtABkAAACQ/8j/AQAtABkAAACU/8j/AQAtABkAAACY/8j/AQAtABkAAACb/8j/AQAtABkAAACs/8X/AQAtABkAAACy/8X/AQAtABkAAAC1/8X/AQAtABkAAAC6/8X/AQAtABkAAAC8/8X/AQAtABkAAACM/6X/AQAtABkAAACN/6X/AQAtABkAAACR/6X/AQAtABkAAACV/6X/AQAtABkAAACZ/6X/AQAtABkAAACb/6X/AQAtABkAAAB7/6j/AQAtABkAAAB2/6j/AQAtABkAAABw/6j/AQAtABkAAABs/6j/AQAtABkAAABn/6j/AQAtABkAAABk/6j/AQAtABkAAABf/6j/AQAtABkAAABc/6j/AQAtABkAAABY/6j/AQAtABkAAABP/4//AQAtABkAAABV/4//AQAtABkAAABY/4//AQAtABkAAABd/4//AQAtABkAAABe/4//AQAtABkAAAAb/5P/AQAtABkAAAAg/5P/AQAtABkAAAAk/5P/AQAtABkAAAAp/5P/AQAtABkAAAAt/5P/AQAtABkAAAAx/5P/AQAtABkAAAA1/5P/AQAtABkAAAA4/5P/AQAtABkAAAA5/5P/AQAtABkAAAA8/5P/AQAtABkAAAA//5P/AQAtABkAAAA=")
+tile_set = ExtResource("8_sxh5u")

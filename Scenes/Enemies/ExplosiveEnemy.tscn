@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://k15e77q8bb2x"]
 
-[ext_resource type="Shader" uid="uid://cg6l87pr6h5s0" path="res://shaders/damage_shader.tres" id="1_cunfl"]
+[ext_resource type="Shader" uid="uid://du4jb8edaqy8d" path="res://shaders/damage_shader.tres" id="1_cunfl"]
 [ext_resource type="Script" uid="uid://86vt1ghcd21p" path="res://Scripts/Enemies/ExplosiveEnemy.cs" id="2_1hvpf"]
 [ext_resource type="Texture2D" uid="uid://c6euviit02ix0" path="res://Art/enemy bomb2.png" id="3_g0yii"]
 [ext_resource type="Texture2D" uid="uid://dsjiujq25xn1u" path="res://Art/bomb.png" id="4_mj8ex"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b81u4l1ge1p18"]
+[gd_scene load_steps=14 format=4 uid="uid://b81u4l1ge1p18"]
 
 [ext_resource type="PackedScene" uid="uid://ceo8tttylidv6" path="res://Scenes/master_roooms/room_upright.tscn" id="1_mggoy"]
 [ext_resource type="Texture2D" uid="uid://b25bu1hq0o8t4" path="res://Art/Ground Green.jpg" id="2_53yxk"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cwiwgqcncmrhi" path="res://Scenes/Interactables/healing.tscn" id="6_wx1nm"]
 [ext_resource type="PackedScene" uid="uid://bom3ul8xliuam" path="res://Scenes/Interactables/jumpboost.tscn" id="7_4fy2k"]
 [ext_resource type="PackedScene" uid="uid://bdv23i2f4kqvl" path="res://Scenes/Enemies/wizardInsect.tscn" id="8_4fy2k"]
+[ext_resource type="TileSet" uid="uid://b0jo6qw78sxvj" path="res://Art/RealTileSet.tres" id="9_vi0u8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w5j0d"]
 size = Vector2(3987.5, 600)
@@ -24,6 +25,7 @@ polygon = PackedVector2Array(-2000, -300, -2000, 300, 2000, 300, 2000, -300)
 [node name="Game" instance=ExtResource("1_mggoy")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1" groups=["World"]]
+visible = false
 position = Vector2(-3482, -3274)
 scale = Vector2(0.16, 0.16)
 
@@ -37,6 +39,7 @@ shape = SubResource("RectangleShape2D_w5j0d")
 occluder = SubResource("OccluderPolygon2D_hqstj")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." index="2" groups=["World"]]
+visible = false
 position = Vector2(-2819, -3053)
 scale = Vector2(0.16, 0.16)
 
@@ -53,6 +56,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_4fy2k")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." index="3" groups=["World"]]
+visible = false
 position = Vector2(-2253, -2053)
 scale = Vector2(0.16, 0.16)
 
@@ -66,6 +70,7 @@ shape = SubResource("RectangleShape2D_w5j0d")
 occluder = SubResource("OccluderPolygon2D_hqstj")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="." index="4" groups=["World"]]
+visible = false
 position = Vector2(-1590, -1832)
 scale = Vector2(0.16, 0.16)
 
@@ -82,6 +87,7 @@ scale = Vector2(0.500008, 0.500008)
 occluder = SubResource("OccluderPolygon2D_4fy2k")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="." index="5" groups=["World"]]
+visible = false
 position = Vector2(-959, -1223)
 scale = Vector2(0.16, 0.16)
 
@@ -95,6 +101,7 @@ shape = SubResource("RectangleShape2D_w5j0d")
 occluder = SubResource("OccluderPolygon2D_hqstj")
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="." index="6" groups=["World"]]
+visible = false
 position = Vector2(-296, -1002)
 scale = Vector2(0.16, 0.16)
 
@@ -136,3 +143,7 @@ position = Vector2(-304, -1163)
 
 [node name="Enemy5" parent="." index="15" instance=ExtResource("8_4fy2k")]
 position = Vector2(-2852, -3203)
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." index="16"]
+tile_map_data = PackedByteArray("AAAV/zP/AQAtABkAAAAa/zP/AQAtABkAAAAf/zP/AQAtABkAAAAj/zP/AQAtABkAAAAo/zP/AQAtABkAAAAt/zP/AQAtABkAAAAy/zP/AQAtABkAAAA2/zP/AQAtABkAAAA3/zP/AQAtABkAAABI/0L/AQAtABkAAABO/0L/AQAtABkAAABS/0L/AQAtABkAAABV/0L/AQAtABkAAABX/0L/AQAtABkAAABi/3//AQAtABkAAABn/3//AQAtABkAAABs/3//AQAtABkAAABx/3//AQAtABkAAAB3/3//AQAtABkAAAB8/3//AQAtABkAAACA/3//AQAtABkAAACE/3//AQAtABkAAACU/4//AQAtABkAAACV/4//AQAtABkAAACa/4//AQAtABkAAACe/4//AQAtABkAAACj/4//AQAtABkAAACy/7P/AQAtABkAAAC3/7P/AQAtABkAAAC4/7P/AQAtABkAAAC9/7P/AQAtABkAAADC/7P/AQAtABkAAADH/7P/AQAtABkAAADL/7P/AQAtABkAAADR/7P/AQAtABkAAADU/7P/AQAtABkAAADm/8L/AQAtABkAAADr/8L/AQAtABkAAADv/8L/AQAtABkAAADz/8L/AQAtABkAAAD0/8L/AQAtABkAAAA=")
+tile_set = ExtResource("9_vi0u8")
